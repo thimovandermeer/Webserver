@@ -3,13 +3,15 @@ This is our webserver project
 
 unlink, exit, lseek,  gettimeofday, strptime, strftime, usleep, select, socket, accept, listen, send, recv, bind, connect, inet_addr, setsockopt, getsockname, fcntl
 
-# Time:
+## Time:
 ### usleep():
 Usage: _int usleep(useconds_t microseconds);_
+
 This function suspends execution of the calling thread until either the microseconds have elapsed or a signal is deliverd to the thread and it action is to invoke a signal-catching function or to terminate the process.
 
 ### gettimeofday():
 Usage: _int gettimeofday(struct timeval *restrict tp, void *restrict tzp);_
+
 Gives the system's notion of the current Greenwich time.
 truct timeval: 
 {
@@ -19,33 +21,30 @@ truct timeval:
 The function returns a 0 when the call succeeded, a -1 is returned when an error occured and the errno is set to indicate the error. 
 Depending on whether tp or tzp is NULL, one of the structs is populated with the timezone struct.
 
-# Directory handling:
+## Directory handling:
+- mkdir, rmdir
 ### getcwd():
 Usage: _char *getcwd(char *buf, size_t size);_
 
 Get current working directory.
-
 getcwd mallocs for _buf_ for length _size_. If _size_ is 0, _buf_ is allocated as big as necessary. Returned buffer has to be freed!
 
 ### chdir():
 Usage: _int chdir(const char *path);_
 
 Change working directory.
-
 Returns 0 on success and -1 on error.
 
 ### opendir():
 Usage: _DIR *opendir(const char *name);_
 
 Opens the directory stream of the provided _path_.
-
 Return pointer to the directory stream or NULL on error.
 
 ### readdir():
 Usage: _struct dirent *readdir(DIR *dirp);_
 
 Reads a directory stream.
-
 Returns a pointer to _dirent struct_ containing the next item in DIR or NULL on error.	 
 The struct has the following format:
 ```
@@ -63,8 +62,10 @@ struct dirent {
 Usage: _int closedir(DIR *dirp);_
 
 Closes the directory stream associated with \*dirp.
-
 Return 0 on success and -1 on error.
+
+## File handling:
+- open, read, close
 
 ### dup() & dup2():
 Usage:
@@ -88,7 +89,7 @@ The fstat() obtains the same information about an open file known by thefile des
 
 Upon successful completion a value of 0 is returned. Otherwise, a value of -1 is returned and errno is set to indicate the error.
 
-# Wait, process termination.
+## Wait, process termination.
 Good to know:
 - pid_t is a data type with a signed integer type which is capable of representing a process ID.
 
@@ -112,6 +113,8 @@ _stat_loc_ is a pointer to an area where status information about how the child 
 If _rusage_ is non-zero, a summary of the resources used by the terminated process and all its children is returned (this information is currently not available for stopped processes).
      
 Wait4() provides a more general interface for programs that need to wait for certain child processes, that need resource utilization statistics accumulated by child processes. The older wait3() call is the same as wait4() with a pid value of -1. The waitpid() call is identical to wait4() with an rusage value of zero.
+
+## Other
 
 ### execve():
 Usage: _int execve(const char *pathname, char *const argv[], char *const envp[]);_
