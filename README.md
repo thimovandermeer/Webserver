@@ -1,9 +1,51 @@
 # Webserver
 This is our webserver project
 
-unlink, exit, lseek,  gettimeofday, strptime, strftime, usleep, select, socket, accept, listen, send, recv, bind, connect, inet_addr, setsockopt, getsockname, fcntl
+unlink, lseek, select, accept, listen, send, recv, connect, inet_addr, fcntl
+
+//return values are not taken into account
+
+## Sockets
+Socket programming is a way of connecting two nodes on a network to communicate with each other. One socket(node) listens on a particular port at an IP, while other socket reaches out to the other to form a connection. Server forms the listener socket while client reaches out to the server.
+
+### socket():
+Usage: _int socket(int domain, int type, int protocol);_
+Socket() creates an endpoint for communication and returns a descriptor. The domain parameter specifies a communications domain within which communication will take place. The type specifies the semantics of communication. The protocol specifies a particular to be used with the socket.
+Examp: server_fd = socket(AF_INET, SOCK_STREAM, 0)
+
+### getsockopt() & setsockopt() :
+Usage: _int getsockopt(int socketfd, int level, int option_name, void *restrict option_value, socklen_t *restrict option_len);_
+
+Usage: _int setsockopt(int socketfd, int level, int option_name, const void *option_value, socklen_t option_len);_
+
+These functions help in manipulating options for the socket referred by the file descriptor sockfd. 
+
+sockfd =	A descriptor that identifies a socket.
+level =		The level at which the option is defined (for example, SOL_SOCKET).
+optname	=	The socket option for which the value is to be set (for example, 	SO_BROADCAST). The optname parameter must be a socket option defined within the specified level, or behavior is undefined.
+optval =	A pointer to the buffer in which the value for the requested option is specified.
+optlen =	The size, in bytes, of the buffer pointed to by the optval parameter.
+
+The difference between these functions is the "*restrict", which tells the compiler that th *restrict_ptr is the only way to access the object pointed by it and compiler doesn’t need to add any additional checks.
+
+### bind():
+Usage: _int bind(int socket, const struct sockaddr *address, socklen_t address_len);_
+When we talk about naming a socket, we are talking about assigning a transport addres to the socker (a port number in IP networking). In sockets, this operation is called binding an address and the 'bind' system call is used for this.
+Examp:  bind(server_fd, (struct sockaddr *)&address, sizeof(address))
 
 ## Time:
+### strptime():
+Usage: _char * strptime(const char * restrict buf, const char * restrict format, struct tm * restrict timeptr);_
+
+Parse date and time string
+The strptime() function parses the string in the buffer buf according to the string pointed to by format, and fills in the elements of the structure pointed to by timeptr. The resulting values will be relative to the local time zone. 
+
+### strftime():
+Usage: _size_t strftime(char *restrict buffer, size_t maxsize, const char *restrict format, const struct tm *restrict timeptr);_
+
+Format date and time
+The strftime() function formats the information from timeptr into the buffer, according to the string pointed to by format. Format is handled the same way as in strptime(). All ordinary characters are copied directly into the buffer. 
+
 ### usleep():
 Usage: _int usleep(useconds_t microseconds);_
 
@@ -20,6 +62,11 @@ truct timeval:
 };
 The function returns a 0 when the call succeeded, a -1 is returned when an error occured and the errno is set to indicate the error. 
 Depending on whether tp or tzp is NULL, one of the structs is populated with the timezone struct.
+
+## Server handling
+
+### select():				//niet af
+Usage: _ int select(int nfds, fd_set *restrict readfds, fd_set *restrict writefds,fd_set *restrict errorfds, struct timeval *restrict timeout);_
 
 ## Directory handling:
 - mkdir, rmdir
