@@ -1,11 +1,12 @@
 # Webserver
 This is our webserver project
 
-unlink, lseek, select, accept, listen, send, recv, connect, inet_addr, fcntl
+select
 
 //return values are not taken into account
 
-## Sockets
+
+## Server / Socket 
 Socket programming is a way of connecting two nodes on a network to communicate with each other. One socket(node) listens on a particular port at an IP, while other socket reaches out to the other to form a connection. Server forms the listener socket while client reaches out to the server.
 
 ### socket():
@@ -29,9 +30,48 @@ optlen =	The size, in bytes, of the buffer pointed to by the optval parameter.
 The difference between these functions is the "*restrict", which tells the compiler that th *restrict_ptr is the only way to access the object pointed by it and compiler doesn’t need to add any additional checks.
 
 ### bind():
-Usage: _int bind(int socket, const struct sockaddr *address, socklen_t address_len);_
+Usage: _int bind(int server_fd, const struct sockaddr *address, socklen_t address_len);_
 When we talk about naming a socket, we are talking about assigning a transport addres to the socker (a port number in IP networking). In sockets, this operation is called binding an address and the 'bind' system call is used for this.
 Examp:  bind(server_fd, (struct sockaddr *)&address, sizeof(address))
+
+### listen():
+Usage: _ int listen(int server_fd, int backlog);_
+before a client can connect to a server, the server should have a socket that is prepared to accept the connections. The 'listen' system call tells a socket that it should be capable af accepting incomming connections.
+The 'backlog' defines the maximum number of pending connections that can be queued up before connections are refused.
+Examp: if (listen(server_fd, 10) < 0)
+		{
+			perror("In listen");
+			exit(EXIT_FAILURE);
+		}
+
+### accept():
+Usage: _int accept(int server_fd, struct sockaddr *restrict address, socklen_t *restrict address_len);_
+The 'accept' system call grabs the first connection request on the queue of pending connections (setup in listen) and creates a new socket for that connection.
+The second paramater is the address structure that gets filled in with the address of the client that is doing the connect. This allows us to examine the address and port number of the connecting socket if we want to.
+Examp: new_socket = accept(server_fd, (struct sockaddr*)&address, (socklen_t*)&addrlen))
+
+## Server / Other
+
+### inet_addr():
+Usage: _ in_addr_t inet_addr(const char *cp);_
+The inet_addr() routine converts a string representing an IPv4 Internet address (for example, “127.0.0.1”) into a numeric Internet address. 
+
+### send():
+Usage: _ssize_t send(int server_fd, const void *buffer, size_t length, int flags);_
+send() is used to transmit a message to another socket.  send() may be used only when the socket is in a connected state. If no messages space is available at the socket to hold the message to be transmitted, then send() normally blocks, unless the socket has been placed in non-blocking I/O mode.
+
+### recv():
+Usage: _ssize_t recv(int socket, void *buffer, size_t length, int flags);_
+The recv() call is usually used on a connected socket and is similar to the read() function, the only difference is that recv() has flags.
+The function returns the length of the message on successful completion.  If a message is too long to fit in the supplied buffer, excess bytes may be discarded depending on the type of socket the message is received from.
+
+### connect():
+Usage: _ int connect(int serverfd, const struct sockaddr *address, socklen_t address_len);
+The connect() system call connects the socket referred to by the file descriptor serverfd to the address specified by address.  The addrlen argument specifies the size of addr.  The format of the address in addr is determined by the address space of the socket serverfd.
+
+### select():				//niet af
+Usage: _ int select(int nfds, fd_set *restrict readfds, fd_set *restrict writefds,fd_set *restrict errorfds, struct timeval *restrict timeout);_
+select() allows a program to monitor multiple file descriptors, waiting until one or more of the file descriptors become "ready" for some class of I/O operation (e.g., input possible).  A file descriptor is considered ready if it is possible to perform a corresponding I/O operation or a sufficiently small write(2)) without blocking. select() can monitor only file descriptors numbers that are less than FD_SETSIZE.
 
 ## Time:
 ### strptime():
@@ -63,13 +103,14 @@ truct timeval:
 The function returns a 0 when the call succeeded, a -1 is returned when an error occured and the errno is set to indicate the error. 
 Depending on whether tp or tzp is NULL, one of the structs is populated with the timezone struct.
 
-## Server handling
-
-### select():				//niet af
-Usage: _ int select(int nfds, fd_set *restrict readfds, fd_set *restrict writefds,fd_set *restrict errorfds, struct timeval *restrict timeout);_
 
 ## Directory handling:
-- mkdir, rmdir
+- mkdir(), rmdir()
+
+### unlink():
+Usage: _int unlink(const char *path);_
+Unlink is similar to rmdir(), but can't remove directories, less sanity checking and is marginally leaner for single calls due to it's simplicity.
+
 ### getcwd():
 Usage: _char *getcwd(char *buf, size_t size);_
 
@@ -108,11 +149,20 @@ struct dirent {
 ### closedir():
 Usage: _int closedir(DIR *dirp);_
 
-Closes the directory stream associated with \*dirp.
+Closes the directory stream associated with *dirp.
 Return 0 on success and -1 on error.
 
 ## File handling:
-- open, read, close
+- open(), read(), close()
+
+### fcntl():
+Usage:	_int fcntl(int fildes, int cmd, ...);
+		int fcntl(fd, F_SETFL, O_NONBLOCK);_
+We can only use this function in this way, any other flags are forbidden. The F_SETFL flag sets descriptor status flags to arg.
+
+### lseek():
+Usage: _off_t lseek(int fd, off_t offset, int whence);_
+The lseek() function repositions the offset of the file descriptor fd to the argument offset, according to the directive whence. The argument fd must be an open file descriptor.  lseek() repositions the file pointer fildes depending on whence.
 
 ### dup() & dup2():
 Usage:
