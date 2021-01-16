@@ -3,6 +3,7 @@ This is our webserver project
 
 //return values are not always taken into account
 
+
 ## Server / Socket 
 Socket programming is a way of connecting two nodes on a network to communicate with each other. One socket(node) listens on a particular port at an IP, while other socket reaches out to the other to form a connection. Server forms the listener socket while client reaches out to the server.
 
@@ -53,6 +54,7 @@ if (listen(server_fd, 10) < 0)
 	}
 ```
 
+
 ### accept():
 Usage: _int accept(int server_fd, struct sockaddr *restrict address, socklen_t *restrict address_len);_
 
@@ -68,6 +70,7 @@ Examp:  struct sockaddr_in _address_;
 
 ### inet_addr():
 Usage: _in_addr_t inet_addr(const char *cp);_
+
 The inet_addr() routine converts a string representing an IPv4 Internet address (for example, “127.0.0.1”) into a numeric Internet address. 
 
 ### send():
@@ -87,7 +90,7 @@ Usage: _int connect(int server_fd, const struct sockaddr *address, socklen_t add
 The connect() system call connects the socket referred to by the file descriptor _serverfd_ to the address specified by _address_.  The _addrlen_ argument specifies the size of _addr_.  The format of the address in _addr_ is determined by the address space of the socket _server_fd_.
 
 ### select():
-Usage: _ int select(int nfds, fd_set *restrict readfds, fd_set *restrict writefds,fd_set *restrict errorfds, struct timeval *restrict timeout);_
+Usage: _int select(int nfds, fd_set *restrict readfds, fd_set *restrict writefds,fd_set *restrict errorfds, struct timeval *restrict timeout);_
 
 select() allows a program to monitor multiple file descriptors, waiting until one or more of the file descriptors become 'ready' for some class of I/O operation (e.g., input possible).  A file descriptor is considered ready if it is possible to perform a corresponding I/O operation or a sufficiently small write(2)) without blocking. select() can monitor only file descriptors numbers that are less than FD_SETSIZE.
 select() updates fd_set's, so we need to build fd_set's before each select() call.
@@ -258,6 +261,8 @@ Usage: _int pipe(int pipefd[2]);_
 Creates a pipe, a unidirectional data channel that can be used for interprocess communication. The array _pipefd_ is used to return two file descriptors referring to the ends of the pipe. pipefd[0] refers to the read end of the pipe. pipefd[1] refers to the write end of the pipe. Data written to the write end of the pipe is buffered by the kernel until it is read from the read end of the pipe.
 
 ## Other
+- malloc(), free(), write()
+
 ### execve():
 Usage: _int execve(const char *pathname, char *const argv[], char *const envp[]);_
 
