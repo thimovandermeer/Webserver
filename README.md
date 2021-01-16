@@ -8,30 +8,40 @@ Socket programming is a way of connecting two nodes on a network to communicate 
 
 ### socket():
 Usage: _int socket(int domain, int type, int protocol);_
+
 Socket() creates an endpoint for communication and returns a descriptor. The _domain_ parameter specifies a communications domain within which communication will take place. The type specifies the semantics of communication. The _protocol_ specifies a particular to be used with the socket.
 Examp: server_fd = socket(AF_INET, SOCK_STREAM, 0)
 
 ### getsockopt() & setsockopt() :
-Usage: _int getsockopt(int socketfd, int level, int option_name, void *restrict option_value, socklen_t *restrict option_len);_
-Usage: _int setsockopt(int socketfd, int level, int option_name, const void *option_value, socklen_t option_len);_
+Usage: 
+- _int getsockopt(int socketfd, int level, int option_name, void *restrict option_value, socklen_t *restrict option_len);_
+- _int setsockopt(int socketfd, int level, int option_name, const void *option_value, socklen_t option_len);_
+
 These functions help in manipulating options for the socket referred by the file descriptor sockfd. 
 
 sockfd =	A descriptor that identifies a socket.
+
 level =		The level at which the option is defined (for example, SOL_SOCKET).
+
 optname	=	The socket option for which the value is to be set (for example, SO_BROADCAST). The optname parameter must be a socket option defined within the specified level, or behavior is undefined.
+
 optval =	A pointer to the buffer in which the value for the requested option is specified.
+
 optlen =	The size, in bytes, of the buffer pointed to by the optval parameter.
 
-The difference between these functions is the "*restrict", which tells the compiler that the *restrict_ptr is the only way to access the object pointed by it and compiler doesn’t need to add any additional checks.
+The difference between these functions is the "*restrict", which tells the compiler that the _*restrict_ptr_ is the only way to access the object pointed by it and compiler doesn’t need to add any additional checks.
 
 ### bind():
 Usage: _int bind(int server_fd, const struct sockaddr *address, socklen_t address_len);_
+
 When we talk about naming a socket, we are talking about assigning a transport addres to the socket (a port number in IP networking). In sockets, this operation is called binding an address and the 'bind' system call is used for this.
+
 Examp:  struct sockaddr_in _address_;
 		bind(server_fd, (struct sockaddr *)&address, sizeof(address))
 
 ### listen():
-Usage: _ int listen(int server_fd, int backlog);_
+Usage: _int listen(int server_fd, int backlog);_
+
 Before a client can connect to a server, the server should have a socket that is prepared to accept the connections. The 'listen' system call tells a socket that it should be capable of accepting incomming connections.
 The _backlog_ defines the maximum number of pending connections that can be queued up before connections are refused.
 Examp: 
@@ -45,34 +55,43 @@ if (listen(server_fd, 10) < 0)
 
 ### accept():
 Usage: _int accept(int server_fd, struct sockaddr *restrict address, socklen_t *restrict address_len);_
+
 The 'accept' system call grabs the first connection request on the queue of pending connections (setup in listen) and creates a new socket for that connection.
+
 The second paramater is the address structure that gets filled in with the address of the client that is doing the connect. This allows us to examine the address and port number of the connecting socket if we want to.
+
 Examp:  struct sockaddr_in _address_;
+
 		new_socket = accept(server_fd, (struct sockaddr*)&address, (socklen_t*)&addrlen))
 
 ## Server / Other
 
 ### inet_addr():
-Usage: _ in_addr_t inet_addr(const char *cp);_
+Usage: _in_addr_t inet_addr(const char *cp);_
 The inet_addr() routine converts a string representing an IPv4 Internet address (for example, “127.0.0.1”) into a numeric Internet address. 
 
 ### send():
 Usage: _ssize_t send(int serverfd, const void *buffer, size_t length, int flags);_
+
 send() is used to transmit a message to another socket.  send() may be used only when the socket is in a connected state. If no messages space is available at the socket to hold the message to be transmitted, then send() normally blocks, unless the socket has been placed in non-blocking I/O mode. _serverfd_ is the socket file descriptor, _buffer_ contains the message to be sent, _length_ is the lengt of this message and _flags_ specifies the type of message transmission.
 
 ### recv():
 Usage: _ssize_t recv(int socket, void *buffer, size_t length, int flags);_
+
 The recv() call is usually used on a connected socket and is similar to the read() function, the only difference is that recv() has flags.
 The function returns the length of the message on successful completion. If a message is too long to fit in the supplied buffer, excess bytes may be discarded depending on the type of socket the message is received from.
 
 ### connect():
-Usage: _int connect(int serverfd, const struct sockaddr *address, socklen_t address_len);_
-The connect() system call connects the socket referred to by the file descriptor _serverfd_ to the address specified by _address_.  The _addrlen_ argument specifies the size of _addr_.  The format of the address in _addr_ is determined by the address space of the socket _serverfd_.
+Usage: _int connect(int server_fd, const struct sockaddr *address, socklen_t address_len);_
+
+The connect() system call connects the socket referred to by the file descriptor _serverfd_ to the address specified by _address_.  The _addrlen_ argument specifies the size of _addr_.  The format of the address in _addr_ is determined by the address space of the socket _server_fd_.
 
 ### select():
 Usage: _ int select(int nfds, fd_set *restrict readfds, fd_set *restrict writefds,fd_set *restrict errorfds, struct timeval *restrict timeout);_
+
 select() allows a program to monitor multiple file descriptors, waiting until one or more of the file descriptors become 'ready' for some class of I/O operation (e.g., input possible).  A file descriptor is considered ready if it is possible to perform a corresponding I/O operation or a sufficiently small write(2)) without blocking. select() can monitor only file descriptors numbers that are less than FD_SETSIZE.
 select() updates fd_set's, so we need to build fd_set's before each select() call.
+
 Examp: int activity = select(maxfd + 1, &read_fds, &write_fds, &except_fds, NULL);
 
 ## Time:
@@ -112,6 +131,7 @@ Depending on whether _tp_ or _tzp_ is NULL, one of the structs is populated with
 
 ### unlink():
 Usage: _int unlink(const char *path);_
+
 Unlink is similar to rmdir(), but can't remove directories, less sanity checking and is marginally leaner for single calls due to it's simplicity.
 
 ### getcwd():
@@ -159,12 +179,15 @@ Return 0 on success and -1 on error.
 - open(), read(), close()
 
 ### fcntl():
-Usage:	_int fcntl(int fildes, int cmd, ...);_
-		_int fcntl(fd, F_SETFL, O_NONBLOCK);_
+Usage:	
+- _int fcntl(int fildes, int cmd, ...);_
+- _int fcntl(fd, F_SETFL, O_NONBLOCK);_
+
 We can only use this function in this way, any other flags are forbidden. The F_SETFL flag sets descriptor status flags to arg.
 
 ### lseek():
 Usage: _off_t lseek(int fd, off_t offset, int whence);_
+
 The lseek() function repositions the _offset_ of the file descriptor _fd_ to the argument _offset_, according to the directive _whence_. The _fd_ must be an open file descriptor. lseek() repositions the file pointer _fd__ depending on _whence_.
 
 ### dup() & dup2():
