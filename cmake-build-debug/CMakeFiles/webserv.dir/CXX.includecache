@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jonasbb/Documents/Projects/webserv/testmain.cpp
+iostream
+-
+cstdlib
+-
+cstring
+-
+sys/utsname.h
+-
+sys/socket.h
+-
+netdb.h
+-
+unistd.h
+-
+

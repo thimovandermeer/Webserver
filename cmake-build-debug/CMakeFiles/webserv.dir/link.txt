@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wall -g3 -Werror -Wextra -g   CMakeFiles/webserv.dir/testmain.cpp.o  -o webserv 
