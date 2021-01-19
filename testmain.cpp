@@ -5,6 +5,7 @@
 #include <sys/socket.h>
 #include <netdb.h>
 #include <unistd.h>
+#include <stdio.h>
 
 #define PORT_NR 8069
 
@@ -14,6 +15,7 @@ bool		g_leaks = false;
 void	leaksExit(const std::string &err_msg, int code)
 {
 	std::cerr << "Error: " << err_msg << std::endl;
+	perror(NULL);
 	if (g_leaks)
 	{
 		// should only execute on Mac
@@ -55,12 +57,19 @@ void	serverStuff()
 	int					ret;
 	struct sockaddr_in	addr = {};
 
-	listenfd = socket(AF_INET, SOCK_STREAM, 0);
+	listenfd = socket(PF_INET, SOCK_STREAM, 0);
 	if (listenfd < 0)
 		leaksExit("socket error", listenfd);
+	bzero(&addr, sizeof(addr));
 	addr.sin_family = AF_INET;
 	addr.sin_addr.s_addr = htonl(INADDR_ANY);
 	addr.sin_port = htons(PORT_NR);
+	// clear port if in use; if program quits now, socket might still be in use
+	int n = 1;
+	ret = setsockopt(listenfd, SOL_SOCKET, SO_REUSEADDR, &n, sizeof(n));
+	if (ret < 0)
+		leaksExit("setsockopt error", ret);
+	// end of clearing port
 	ret = bind(listenfd, (sockaddr*)&addr, sizeof(addr));
 	if (ret < 0)
 		leaksExit("bind error", ret);
@@ -69,6 +78,7 @@ void	serverStuff()
 		leaksExit("listen error", ret);
 
 	// this loop will read 1 entire header and send a super basic response
+
 	while (true)
 	{
 		int 	connectfd;
@@ -77,7 +87,8 @@ void	serverStuff()
 		buf[100] = 0;
 		std::cout << "listening on " << PORT_NR << std::endl;
 		connectfd = accept(listenfd, (sockaddr*)NULL, NULL);
-
+		if (connectfd < 0)
+			leaksExit("accept error", connectfd);
 		ret = 1;
 		while (ret > 0)
 		{
@@ -96,6 +107,7 @@ void	serverStuff()
 		write(connectfd, bf.c_str(), bf.length());
 		close(connectfd);
 	}
+	close(listenfd);
 }
 
 int		main(int ac, char **av)
