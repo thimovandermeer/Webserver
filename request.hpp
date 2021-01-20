@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <string>
+#include <map>
 
 class Request{
     public:
@@ -13,7 +14,7 @@ class Request{
         Request(const Request &copy);
         Request &operator=(const Request &);
 
-        std::string getMethod() const;
+        int getMethod() const;
         std::string getVersion() const;
         std::string getPath() const;
 
@@ -25,7 +26,6 @@ class Request{
         std::string _method;
         std::string _path;
         std::string _version;
-
 } ;
 
 //A R

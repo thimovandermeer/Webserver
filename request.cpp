@@ -1,5 +1,16 @@
 #include "request.hpp"
 
+std::string methods[8] = {
+        "GET",
+        "HEAD",
+        "POST",
+        "PUT",
+        "DELETE",
+        "CONNECT",
+        "OPTIONS",
+        "TRACE"
+} ;
+
 Request::Request() {}
 Request::~Request() {}
 
@@ -15,8 +26,12 @@ Request &Request::operator=(const Request &)
 
 Request::Request(std::string requestLine) : _requestLine(requestLine) {}
 
-std::string Request::getMethod() const {
-    return _method;
+int Request::getMethod() const {
+    for (int i = 0; i < 7; i++){
+        if (_method.compare(methods[i]) == 0)
+            return i;
+    }
+    return -1;      //invalid eerder opvangen?
 }
 
 std::string Request::getPath() const {
@@ -34,9 +49,11 @@ void Request::parseRequest()
 
     firstSpace = _requestLine.find(" ");
     _method = _requestLine.substr(0, firstSpace);
+
     secondSpace = _requestLine.find(" ",firstSpace+1);
     _path = _requestLine.substr(firstSpace+1, secondSpace-firstSpace-1);
     _version = _requestLine.substr(secondSpace+1, _requestLine.length());
+
 
 }
 
