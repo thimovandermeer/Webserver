@@ -6,7 +6,17 @@
 
 #IncludeRegexTransform: 
 
-/home/jonasbb/Documents/Projects/webserv/testmain.cpp
+/Users/jbennink/Documents/Projects/webserv/parser.cpp
+webserv.hpp
+/Users/jbennink/Documents/Projects/webserv/webserv.hpp
+
+/Users/jbennink/Documents/Projects/webserv/testmain.cpp
+webserv.hpp
+/Users/jbennink/Documents/Projects/webserv/webserv.hpp
+
+/Users/jbennink/Documents/Projects/webserv/webserv.hpp
+iostream
+-
 iostream
 -
 cstdlib
@@ -21,6 +31,8 @@ netdb.h
 -
 unistd.h
 -
-stdio.h
+cstdio
+-
+fstream
 -
 
