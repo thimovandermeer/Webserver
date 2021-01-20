@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/jonasbb/Documents/Projects/webserv/testmain.cpp
+/Users/thimovandermeer/CLionProjects/Webserver/testmain.cpp
 iostream
 -
 cstdlib
