@@ -42,7 +42,7 @@ std::string Request::getVersion() const {
     return _version;
 }
 
-void Request::parseRequest()
+void Request::parseRequestLine()
 {
     size_t      firstSpace;
     size_t      secondSpace;
@@ -52,19 +52,11 @@ void Request::parseRequest()
     secondSpace = _requestLine.find(" ",firstSpace+1);
     _path = _requestLine.substr(firstSpace+1, secondSpace-firstSpace-1);
     _version = _requestLine.substr(secondSpace+1, _requestLine.length());
-
+    if (_version.compare("HTTP/1.1") != 0) {        //error overleggen
+        _error = -1;
+        _version = "NULL";
+    }
 }
-
-//A Request
-//-line begins with a method token, followed by a single space, the Request
-//-target, another single space, the protocol version and ends with a new line.
-//Request
-//-line   = method ‘space' Request
-//-target ‘space’ HTTP-version ‘newline’.
-//example = GET http://www.w3.org/pub/WWW/TheProject.html HTTP/1.1
-//Status-line.
-
-
 
 
 

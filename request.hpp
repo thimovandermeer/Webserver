@@ -18,7 +18,7 @@ class Request{
         std::string getVersion() const;
         std::string getPath() const;
 
-        void parseRequest();
+        void parseRequestLine();
 
 
      private:
@@ -26,6 +26,7 @@ class Request{
         std::string _method;
         std::string _path;
         std::string _version;
+        int         _error;
 } ;
 
 //A R
