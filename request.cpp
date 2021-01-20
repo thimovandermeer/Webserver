@@ -49,11 +49,9 @@ void Request::parseRequest()
 
     firstSpace = _requestLine.find(" ");
     _method = _requestLine.substr(0, firstSpace);
-
     secondSpace = _requestLine.find(" ",firstSpace+1);
     _path = _requestLine.substr(firstSpace+1, secondSpace-firstSpace-1);
     _version = _requestLine.substr(secondSpace+1, _requestLine.length());
-
 
 }
 
