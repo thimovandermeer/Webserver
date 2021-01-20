@@ -1,0 +1,24 @@
+name: Test.requestclass
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  ubuntu:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: ./run.sh requestclass
+      run: ./run.sh requestclass
+  macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: ./run.sh requestclass
+        run: ./run.sh requestclass
+   
