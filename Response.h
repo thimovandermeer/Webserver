@@ -7,6 +7,7 @@
 
 
 #include <string>
+#include <ostream>
 
 class Response {
 public:
@@ -16,11 +17,18 @@ public:
 
 	Response &operator=(const Response &src);
 
-	void 		checkMethod();
+	void 		checkMethod(Request &request, Requestconfig &requestconfig);
+
+	friend std::ostream &operator<<(std::ostream &os, const Response &response);
+
+	bool operator==(const Response &rhs) const;
+
+	bool operator!=(const Response &rhs) const;
+
 private:
 	std::string _response;
 	std::string _content;
-	std::string _path;
+	const char *_path;
 	int 		_code;
 private:
 	void getMethod();

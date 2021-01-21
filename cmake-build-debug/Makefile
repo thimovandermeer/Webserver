@@ -170,6 +170,33 @@ Response.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/Response.cpp.s
 .PHONY : Response.cpp.s
 
+testResponse.o: testResponse.cpp.o
+
+.PHONY : testResponse.o
+
+# target to build an object file
+testResponse.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/testResponse.cpp.o
+.PHONY : testResponse.cpp.o
+
+testResponse.i: testResponse.cpp.i
+
+.PHONY : testResponse.i
+
+# target to preprocess a source file
+testResponse.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/testResponse.cpp.i
+.PHONY : testResponse.cpp.i
+
+testResponse.s: testResponse.cpp.s
+
+.PHONY : testResponse.s
+
+# target to generate assembly for a file
+testResponse.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/testResponse.cpp.s
+.PHONY : testResponse.cpp.s
+
 testmain.o: testmain.cpp.o
 
 .PHONY : testmain.o
@@ -209,6 +236,9 @@ help:
 	@echo "... Response.o"
 	@echo "... Response.i"
 	@echo "... Response.s"
+	@echo "... testResponse.o"
+	@echo "... testResponse.i"
+	@echo "... testResponse.s"
 	@echo "... testmain.o"
 	@echo "... testmain.i"
 	@echo "... testmain.s"

@@ -86,6 +86,9 @@
 		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/Response.h">
 			<Option target="webserv"/>
 		</Unit>
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/testResponse.cpp">
+			<Option target="webserv"/>
+		</Unit>
 		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/testmain.cpp">
 			<Option target="webserv"/>
 		</Unit>
