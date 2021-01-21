@@ -10,12 +10,13 @@
 # include <unistd.h>
 # include <cstdio>
 # include <fstream>
+# include <sstream>
 
 extern std::string	g_name;
 extern bool			g_leaks;
 
 void	leaksExit(const std::string &errMsg, int code);
 
-void	startParsing(int ac, char **av);
+void	openConfig(int ac, char **av);
 
 #endif

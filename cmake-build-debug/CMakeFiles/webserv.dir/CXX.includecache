@@ -10,10 +10,6 @@
 webserv.hpp
 /Users/jbennink/Documents/Projects/webserv/webserv.hpp
 
-/Users/jbennink/Documents/Projects/webserv/testmain.cpp
-webserv.hpp
-/Users/jbennink/Documents/Projects/webserv/webserv.hpp
-
 /Users/jbennink/Documents/Projects/webserv/webserv.hpp
 iostream
 -
@@ -34,5 +30,7 @@ unistd.h
 cstdio
 -
 fstream
+-
+sstream
 -
 
