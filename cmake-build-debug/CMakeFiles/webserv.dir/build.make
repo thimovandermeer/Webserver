@@ -103,31 +103,31 @@ CMakeFiles/webserv.dir/parser.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/webserv.dir/parser.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jbennink/Documents/Projects/webserv/parser.cpp -o CMakeFiles/webserv.dir/parser.cpp.s
 
-CMakeFiles/webserv.dir/Server.cpp.o: CMakeFiles/webserv.dir/flags.make
-CMakeFiles/webserv.dir/Server.cpp.o: ../Server.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/webserv.dir/Server.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/webserv.dir/Server.cpp.o -c /Users/jbennink/Documents/Projects/webserv/Server.cpp
+CMakeFiles/webserv.dir/server.cpp.o: CMakeFiles/webserv.dir/flags.make
+CMakeFiles/webserv.dir/server.cpp.o: ../server.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/webserv.dir/server.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/webserv.dir/server.cpp.o -c /Users/jbennink/Documents/Projects/webserv/server.cpp
 
-CMakeFiles/webserv.dir/Server.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/webserv.dir/Server.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/jbennink/Documents/Projects/webserv/Server.cpp > CMakeFiles/webserv.dir/Server.cpp.i
+CMakeFiles/webserv.dir/server.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/webserv.dir/server.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/jbennink/Documents/Projects/webserv/server.cpp > CMakeFiles/webserv.dir/server.cpp.i
 
-CMakeFiles/webserv.dir/Server.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/webserv.dir/Server.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jbennink/Documents/Projects/webserv/Server.cpp -o CMakeFiles/webserv.dir/Server.cpp.s
+CMakeFiles/webserv.dir/server.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/webserv.dir/server.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jbennink/Documents/Projects/webserv/server.cpp -o CMakeFiles/webserv.dir/server.cpp.s
 
 # Object files for target webserv
 webserv_OBJECTS = \
 "CMakeFiles/webserv.dir/testmain.cpp.o" \
 "CMakeFiles/webserv.dir/parser.cpp.o" \
-"CMakeFiles/webserv.dir/Server.cpp.o"
+"CMakeFiles/webserv.dir/server.cpp.o"
 
 # External object files for target webserv
 webserv_EXTERNAL_OBJECTS =
 
 webserv: CMakeFiles/webserv.dir/testmain.cpp.o
 webserv: CMakeFiles/webserv.dir/parser.cpp.o
-webserv: CMakeFiles/webserv.dir/Server.cpp.o
+webserv: CMakeFiles/webserv.dir/server.cpp.o
 webserv: CMakeFiles/webserv.dir/build.make
 webserv: CMakeFiles/webserv.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable webserv"

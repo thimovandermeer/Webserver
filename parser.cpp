@@ -1,4 +1,5 @@
 #include "webserv.hpp"
+#include "server.hpp"
 
 bool	isEmptyLine(std::string line)
 {
@@ -10,7 +11,7 @@ bool	isEmptyLine(std::string line)
 	return (true);
 }
 
-std::string	firstword(std::string line)
+std::string	firstword(std::string& line)
 {
 	std::string ret;
 	int			i;
@@ -47,10 +48,31 @@ void	parseError(int lineNr) // not sure if we wanna exit in this case, can figur
 	leaksExit(errStr.str(), 1);
 }
 
+int 	getLocation(std::fstream& configFile, int lineNr)
+{
+	// should eventually fill a class Location, for now it just skips over
+	// all the location lines
+	std::string	line;
+	while (std::getline(configFile, line))
+	{
+		lineNr++;
+		if (configFile.eof())
+			parseError(lineNr);
+		std::cout << "line is: " << line << std::endl;
+		if (isEmptyLine(line))
+			continue;
+		line = trimEndSpaces(line);
+		if (line == "}")
+			break;
+	}
+	return (lineNr);
+}
+
 void	startParsing(std::fstream& configFile)
 {
-	std::string	line;
-	int			lineNr = 0;
+	std::string			line;
+	std::vector<server>	serverColleciton;
+	int					lineNr = 0;
 
 	while (std::getline(configFile, line))
 	{
@@ -58,18 +80,17 @@ void	startParsing(std::fstream& configFile)
 		if (configFile.eof())
 			break;
 		if (isEmptyLine(line))
-		{
 			continue;
-		}
 		std::cout << "line is: " << line << std::endl;
 		line = trimEndSpaces(line);
-		if (line != "Server {")
+		if (line != "server {")
 			parseError(lineNr);
-		// start reading in Server block
+		// start reading in server block
+		server	newServer;
 		while (std::getline(configFile, line))
 		{
 			lineNr++;
-			if (configFile.eof())
+			if (configFile.eof() && line.length() == 0)
 				parseError(lineNr);
 			if (isEmptyLine(line))
 			{
@@ -78,12 +99,17 @@ void	startParsing(std::fstream& configFile)
 			std::cout << "line is: " << line << std::endl;
 			line = trimEndSpaces(line);
 			if (firstword(line) == "location")
-				; //do location
-			else if (line == "}") // end of Server block
+				lineNr = getLocation(configFile, lineNr); //make and fill location
+			else if (line == "}") // end of server block
 				break;
-
+			else
+				; // fill server data type
 		}
-		std::cout << "done with Server block" << std::endl;
+		// check if all data set in server is correct
+		if (!newServer.valueCheck())
+			parseError(lineNr);
+		serverColleciton.push_back(newServer);
+		std::cout << "done with server block" << std::endl;
 	}
 	std::cout << "done" << std::endl;
 }

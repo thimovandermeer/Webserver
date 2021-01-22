@@ -115,7 +115,7 @@ int		main(int ac, char **av)
 	g_leaks = false;
 	if (ac != 1)
 		setLeaks(ac, av);
-	std::cout << "sup ik ben een Server :)" << std::endl;
+	std::cout << "sup ik ben een server :)" << std::endl;
 	openConfig(ac, av);
 //	serverStuff();
 	leaksExit("", -5);

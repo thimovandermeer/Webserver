@@ -82,13 +82,13 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/jbennink/Documents/Projects/webserv/Server.cpp">
-			<Option target="webserv"/>
-		</Unit>
-		<Unit filename="/Users/jbennink/Documents/Projects/webserv/Server.hpp">
-			<Option target="webserv"/>
-		</Unit>
 		<Unit filename="/Users/jbennink/Documents/Projects/webserv/parser.cpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/jbennink/Documents/Projects/webserv/server.cpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/jbennink/Documents/Projects/webserv/server.hpp">
 			<Option target="webserv"/>
 		</Unit>
 		<Unit filename="/Users/jbennink/Documents/Projects/webserv/testmain.cpp">
