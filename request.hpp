@@ -10,7 +10,7 @@ class Request{
     public:
         Request();
         ~Request();
-        Request(std::string requestLine);
+        Request(std::string request);
         Request(const Request &copy);
         Request &operator=(const Request &);
 
