@@ -48,7 +48,6 @@ class Request{
         std::string _path;
         std::string _version;
     std::map<headerType, std::string>	_headerMap;
-//    std::map<std::string, headerType>	_headerMap;
         int         _status;
 } ;
 

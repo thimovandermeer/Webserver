@@ -76,14 +76,24 @@ void Request::parseRequestLine()        //errors overal nog overleggen
     _version = _request.substr(pos1+1, pos2-pos1-1);
     if (_version.compare("HTTP/1.1") != 0)         //error en return overleggen
         _status = 400;
-    _request = _request.substr(pos2+2, _request.length());
-    std::cout << _request << "." << std::endl;
-
+    _request = _request.substr(pos2+2, std::string::npos);
 }
 
 void Request::parseHeaders()
 {
-    size_t      pos;
+    int      pos;
+    size_t      length;
+    int amount = 0;
+
+    while (_request[pos] != '\r' && _request[pos + 1] != '\n'){     //zorgen dat pos over de eerste heen springt
+        length = _request.find("\r\n", pos);
+        pos = length+2;
+        amount++;
+    }
+    std::cout << amount << std::endl ;
+    _request = _request.substr(pos+2, std::string::npos);
+    std::cout << _request << std::endl;
+
 }
 
 
