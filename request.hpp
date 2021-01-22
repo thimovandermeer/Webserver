@@ -10,7 +10,7 @@ class Request{
     public:
         Request();
         ~Request();
-        Request(std::string RequestLine);
+        Request(std::string requestLine);
         Request(const Request &copy);
         Request &operator=(const Request &);
 
@@ -22,11 +22,12 @@ class Request{
         void parseHeaders();
 
      private:
-        std::string _requestLine;
+        std::string _request;
         std::string _method;
         std::string _path;
         std::string _version;
-        int         _error;
+        int         _status;
+        size_t      _position;
 } ;
 
 //A R
