@@ -6,9 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/Users/jbennink/Documents/Projects/webserv/parser.cpp
+/Users/jbennink/Documents/Projects/webserv/server.cpp
+server.hpp
+/Users/jbennink/Documents/Projects/webserv/server.hpp
+
+/Users/jbennink/Documents/Projects/webserv/server.hpp
 webserv.hpp
 /Users/jbennink/Documents/Projects/webserv/webserv.hpp
+vector
+-
 
 /Users/jbennink/Documents/Projects/webserv/webserv.hpp
 iostream
