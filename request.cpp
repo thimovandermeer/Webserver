@@ -25,24 +25,24 @@ Request &Request::operator=(const Request &)
 }
 
 Request::Request(std::string request) : _request(request) {
-//    _headerMap[ACCEPT_CHARSET] = "ACCEPT-CHARSET";
-//    _headerMap[ACCEPT_LANGUAGE] = "ACCEPT_LANGUAGE";
-//    _headerMap[ALLOW] = "ALLOW";
-//    _headerMap[AUTHORIZATION] = "AUTHORIZATION";
-//    _headerMap[CONTENT_LANGUAGE] = "CONTENT_LANGUAGE";
-//    _headerMap[CONTENT_LENGTH] = "CONTENT_LENGTH";
-//    _headerMap[CONTENT_LOCATION] = "CONTENT_LOCATION";
-//    _headerMap[CONTENT_TYPE] = "CONTENT_TYPE";
-//    _headerMap[DATE] = "DATE";
-//    _headerMap[HOST] = "HOST";
-//    _headerMap[LAST_MODIFIED] = "LAST_MODIFIED";
-//    _headerMap[LOCATION] = "LOCATION";
-//    _headerMap[REFERER] = "REFERER";
-//    _headerMap[RETRY_AFTER] = "RETRY_AFTER";
-//    _headerMap[SERVER] = "SERVER";
-//    _headerMap[TRANSFER_ENCODING] = "TRANSFER_ENCODING";
-//    _headerMap[USER_AGENT] = "USER_AGENT";
-//    _headerMap[WWW_AUTHENTICATE] = "WWW_AUTHENTICATE";
+    _headerMap["ACCEPT_CHARSET"] = ACCEPT_CHARSET;
+    _headerMap["ACCEPT_LANGUAGE"] = ACCEPT_LANGUAGE;
+    _headerMap["ALLOW"] = ALLOW;
+    _headerMap["AUTHORIZATION"] = AUTHORIZATION;
+    _headerMap["CONTENT_LANGUAGE"] = CONTENT_LANGUAGE;
+    _headerMap["CONTENT_LENGTH"] = CONTENT_LENGTH;
+    _headerMap["CONTENT_LOCATION"] = CONTENT_LOCATION;
+    _headerMap["CONTENT_TYPE"] = CONTENT_TYPE;
+    _headerMap["DATE"] = DATE;
+    _headerMap["HOST"] = HOST;
+    _headerMap["LAST_MODIFIED"] = LAST_MODIFIED;
+    _headerMap["LOCATION"] = LOCATION;
+    _headerMap["REFERER"] = REFERER;
+    _headerMap["RETRY_AFTER"] = RETRY_AFTER;
+    _headerMap["SERVER"] = SERVER;
+    _headerMap["TRANSFER_ENCODING"] = TRANSFER_ENCODING;
+    _headerMap["USER_AGENT"] = USER_AGENT;
+    _headerMap["WWW_AUTHENTICATE"] = WWW_AUTHENTICATE;
 }
 
 int Request::getMethod() const {
