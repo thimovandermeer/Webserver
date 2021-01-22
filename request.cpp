@@ -25,24 +25,24 @@ Request &Request::operator=(const Request &)
 }
 
 Request::Request(std::string request) : _request(request) {
-    _headerMap[ACCEPT_CHARSET] = "ACCEPT-CHARSET";
-    _headerMap[ACCEPT_LANGUAGE] = "ACCEPT_LANGUAGE";
-    _headerMap[ALLOW] = "ALLOW";
-    _headerMap[AUTHORIZATION] = "AUTHORIZATION";
-    _headerMap[CONTENT_LANGUAGE] = "CONTENT_LANGUAGE";
-    _headerMap[CONTENT_LENGTH] = "CONTENT_LENGTH";
-    _headerMap[CONTENT_LOCATION] = "CONTENT_LOCATION";
-    _headerMap[CONTENT_TYPE] = "CONTENT_TYPE";
-    _headerMap[DATE] = "DATE";
-    _headerMap[HOST] = "HOST";
-    _headerMap[LAST_MODIFIED] = "LAST_MODIFIED";
-    _headerMap[LOCATION] = "LOCATION";
-    _headerMap[REFERER] = "REFERER";
-    _headerMap[RETRY_AFTER] = "RETRY_AFTER";
-    _headerMap[SERVER] = "SERVER";
-    _headerMap[TRANSFER_ENCODING] = "TRANSFER_ENCODING";
-    _headerMap[USER_AGENT] = "USER_AGENT";
-    _headerMap[WWW_AUTHENTICATE] = "WWW_AUTHENTICATE";
+//    _headerMap[ACCEPT_CHARSET] = "ACCEPT-CHARSET";
+//    _headerMap[ACCEPT_LANGUAGE] = "ACCEPT_LANGUAGE";
+//    _headerMap[ALLOW] = "ALLOW";
+//    _headerMap[AUTHORIZATION] = "AUTHORIZATION";
+//    _headerMap[CONTENT_LANGUAGE] = "CONTENT_LANGUAGE";
+//    _headerMap[CONTENT_LENGTH] = "CONTENT_LENGTH";
+//    _headerMap[CONTENT_LOCATION] = "CONTENT_LOCATION";
+//    _headerMap[CONTENT_TYPE] = "CONTENT_TYPE";
+//    _headerMap[DATE] = "DATE";
+//    _headerMap[HOST] = "HOST";
+//    _headerMap[LAST_MODIFIED] = "LAST_MODIFIED";
+//    _headerMap[LOCATION] = "LOCATION";
+//    _headerMap[REFERER] = "REFERER";
+//    _headerMap[RETRY_AFTER] = "RETRY_AFTER";
+//    _headerMap[SERVER] = "SERVER";
+//    _headerMap[TRANSFER_ENCODING] = "TRANSFER_ENCODING";
+//    _headerMap[USER_AGENT] = "USER_AGENT";
+//    _headerMap[WWW_AUTHENTICATE] = "WWW_AUTHENTICATE";
 }
 
 int Request::getMethod() const {
@@ -81,19 +81,42 @@ void Request::parseRequestLine()        //errors overal nog overleggen
 
 void Request::parseHeaders()
 {
-    int      pos;
+    size_t      pos = 0;
     size_t      length;
-    int amount = 0;
+    std::string header;
+    std::string upperHeader;
+    std::string value;
 
-    while (_request[pos] != '\r' && _request[pos + 1] != '\n'){     //zorgen dat pos over de eerste heen springt
-        length = _request.find("\r\n", pos);
+    while (_request[pos] != '\r' && _request[pos + 1] != '\n'){
+        header.clear();
+        value.clear();
+        length = _request.find(":", pos);
+        header = _request.substr(pos, length-pos);
         pos = length+2;
-        amount++;
+        length = _request.find("\r\n", pos);
+        value = _request.substr(pos, length-pos);
+        for (int i = 0; header[i]; i++)
+            upperHeader += std::toupper(header[i]);
+        std::cout << "[" << header << "]" << "[" << value << "]" << std::endl;
+        std::map<std::string, headerType>::iterator it = _headerMap.find(upperHeader);
+        // if hij niet bestaat
+        _headerMap.insert(std::make_pair(it->second, value));
+        pos = length+2;
     }
-    std::cout << amount << std::endl ;
-    _request = _request.substr(pos+2, std::string::npos);
-    std::cout << _request << std::endl;
+//    std::map<std::string, headerType>::iterator it = _headerMap.find(upperHeader);
+//    if (it != _headerMap.end()) {
+//        if (_headers.find(it->second) != _headers.end() && _status_code == 200) {
+//            std::cerr << "BAD REQ 12" << std::endl;
+//            _status_code = 400;
+//        }
+//        _headers.insert(std::make_pair(it->second, value));
+//    }
 
+    _request = _request.substr(pos+2, std::string::npos);
 }
 
+void Request::parseBody()
+{
+    std::cout << _request << std::endl;
+}
 
