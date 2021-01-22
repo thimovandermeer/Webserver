@@ -19,7 +19,7 @@ class Request{
         std::string getPath() const;
 
         void parseRequestLine();
-
+        void parseHeaders();
 
      private:
         std::string _requestLine;

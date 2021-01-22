@@ -42,22 +42,28 @@ std::string Request::getVersion() const {
     return _version;
 }
 
-void Request::parseRequestLine()
+void Request::parseRequestLine()        //errors overal nog overleggen
 {
-    size_t      firstSpace;
-    size_t      secondSpace;
+    size_t      position;
 
-    firstSpace = _requestLine.find(" ");
-    _method = _requestLine.substr(0, firstSpace);
-    secondSpace = _requestLine.find(" ",firstSpace+1);
-    _path = _requestLine.substr(firstSpace+1, secondSpace-firstSpace-1);
-    _version = _requestLine.substr(secondSpace+1, _requestLine.length());
+    position = _requestLine.find(" ");
+    _method = _requestLine.substr(0, position);
+    _requestLine = _requestLine.substr(position+1);
+    position = _requestLine.find(" ");
+    _path = _requestLine.substr(0, position);
+    _requestLine = _requestLine.substr(position+1);
+    position = _requestLine.find("\n");
     if (_version.compare("HTTP/1.1") != 0) {        //error overleggen
         _error = -1;
         _version = "NULL";
     }
+     _version = _requestLine.substr(0, position);
+    _requestLine = _requestLine.substr(position+1);
 }
 
-
+void Request::parseHeaders()
+{
+    size_t      position;
+}
 
 
