@@ -127,6 +127,7 @@ void Request::parseHeaders() {
     _request = _request.substr(pos+2, std::string::npos);
 }
 
+// nog checken wat nog meer geparsed moet worden bij de body
 void Request::parseBody() {
     if (_request.find("\r\n") == std::string::npos){
         _body = false;
