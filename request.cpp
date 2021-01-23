@@ -20,17 +20,18 @@ Request::~Request() {
     _defHeaders.clear();
 }
 
-Request::Request(const Request &copy)
-{
+// hoe compleet willen we deze maken? helemaal uitschrijven?
+Request::Request(const Request &copy) {
     *this = copy;
 }
 
-Request &Request::operator=(const Request &)
-{
+// hoe compleet willen we deze maken? helemaal uitschrijven?
+Request &Request::operator=(const Request &) {
     return (*this);
 }
 
 Request::Request(std::string request) : _request(request) {
+    _status = 200;
     _headerMap["ACCEPT_CHARSET"] = ACCEPT_CHARSET;
     _headerMap["ACCEPT_LANGUAGE"] = ACCEPT_LANGUAGE;
     _headerMap["ALLOW"] = ALLOW;
@@ -67,13 +68,17 @@ std::string Request::getVersion() const {
     return _version;
 }
 
-std::map<headerType, std::string> Request::getHeaders() const{
+std::map<headerType, std::string> Request::getHeaders() const {
     return _defHeaders;
 }
 
+std::string Request::getBody() const {
+    if (_body == true)
+            return _request;
+    return "NULL";            //error van maken
+}
 
-void Request::parseRequestLine()        //errors overal nog overleggen
-{
+void Request::parseRequestLine(){
     size_t pos1;
     size_t pos2;
 
@@ -91,8 +96,9 @@ void Request::parseRequestLine()        //errors overal nog overleggen
 }
 
 //checken of de header niet dubbel is binnengekomen
-void Request::parseHeaders()
-{
+//wat als de header niet bestaat
+//whitespaces check toevoegen
+void Request::parseHeaders() {
     size_t      pos = 0;
     size_t      length;
     std::string header;
@@ -112,31 +118,20 @@ void Request::parseHeaders()
             upperHeader += std::toupper(header[i]);
         std::map<std::string, headerType>::iterator it = _headerMap.find(upperHeader);
         // if hij niet bestaat
-
         _defHeaders.insert(std::make_pair(it->second, value));
         pos = length+2;
     }
-    for ( std::map<headerType, std::string>::iterator it = _defHeaders.begin(); it != _defHeaders.end(); it++) {
-        std::cout << it->first << " " << it->second << std::endl;
-    }
-//    for(auto it = myMap.cbegin(); it != myMap.cend(); ++it)
-//    {
-//        std::cout << it->first << " " << it->second.first << " " << it->second.second << "\n";
+//    for ( std::map<headerType, std::string>::iterator it = _defHeaders.begin(); it != _defHeaders.end(); it++) {
+//        std::cout << it->first << " " << it->second << std::endl;
 //    }
-//    std::map<std::string, headerType>::iterator it = _headerMap.find(upperHeader);
-//    if (it != _headerMap.end()) {
-//        if (_headers.find(it->second) != _headers.end() && _status_code == 200) {
-//            std::cerr << "BAD REQ 12" << std::endl;
-//            _status_code = 400;
-//        }
-//        _headers.insert(std::make_pair(it->second, value));
-//    }
-
     _request = _request.substr(pos+2, std::string::npos);
 }
 
-void Request::parseBody()
-{
-    std::cout << _request << std::endl;
+void Request::parseBody() {
+    if (_request.find("\r\n") == std::string::npos){
+        _body = false;
+        return ;
+    }
+    _body = true;
 }
 

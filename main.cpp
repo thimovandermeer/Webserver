@@ -7,11 +7,15 @@ int main(void){
                                 "Allow: jajaja\r\n"
                                 "Retry_after: waaromdoejijhetniet\r\n"
                                 "User-Agent: The Imaginary Browser\r\n\r\n"
-                                "hoi");
+                                "hoi\r\n"
+                                "hoi\r\n"
+                                );
     test->parseRequestLine();
 //    std::cout << test->getMethod() << "." << std::endl ;
 //    std::cout << test->getPath() << "." << std::endl ;
 //    std::cout << test->getVersion() << "." << std::endl ;
     test->parseHeaders();
+    test->parseBody();
+    std::cout << test->getBody() << "." << std::endl;
     delete test;
 };

@@ -6,6 +6,7 @@
 #include <string>
 #include <map>
 #include <locale>
+#include <vector>
 
 enum headerType {
     ACCEPT_CHARSET,
@@ -40,6 +41,7 @@ class Request{
         std::string getVersion() const;
         std::string getPath() const;
         std::map<headerType, std::string> getHeaders() const;
+        std::string getBody() const;
 
         void parseRequestLine();
         void parseHeaders();
@@ -53,6 +55,7 @@ class Request{
         std::map<std::string, headerType>	_headerMap;
         std::map<headerType, std::string>   _defHeaders;
         int         _status;
+        bool        _body;
 } ;
 
 #endif
