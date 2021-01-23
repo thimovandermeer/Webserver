@@ -39,6 +39,7 @@ class Request{
         int getMethod() const;
         std::string getVersion() const;
         std::string getPath() const;
+        std::map<headerType, std::string> getHeaders() const;
 
         void parseRequestLine();
         void parseHeaders();
@@ -50,6 +51,7 @@ class Request{
         std::string _path;
         std::string _version;
         std::map<std::string, headerType>	_headerMap;
+        std::map<headerType, std::string>   _defHeaders;
         int         _status;
 } ;
 

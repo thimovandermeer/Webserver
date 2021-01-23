@@ -3,7 +3,9 @@
 int main(void){
     Request *test = new Request("POST /files/fruit.txt HTTP/1.1\r\n"
                                 "Host: eloquentjavascript.net\r\n"
-                                "Server: leukeserverdit\r\n"
+                                "Date: leukeserverdit\r\n"
+                                "Allow: jajaja\r\n"
+                                "Retry_after: waaromdoejijhetniet\r\n"
                                 "User-Agent: The Imaginary Browser\r\n\r\n"
                                 "hoi");
     test->parseRequestLine();

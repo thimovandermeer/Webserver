@@ -12,7 +12,13 @@ std::string methods[8] = {
 } ;
 
 Request::Request() {}
-Request::~Request() {}
+Request::~Request() {
+    _request.clear();
+    _method.clear();
+    _path.clear();
+    _headerMap.clear();
+    _defHeaders.clear();
+}
 
 Request::Request(const Request &copy)
 {
@@ -61,6 +67,11 @@ std::string Request::getVersion() const {
     return _version;
 }
 
+std::map<headerType, std::string> Request::getHeaders() const{
+    return _defHeaders;
+}
+
+
 void Request::parseRequestLine()        //errors overal nog overleggen
 {
     size_t pos1;
@@ -79,6 +90,7 @@ void Request::parseRequestLine()        //errors overal nog overleggen
     _request = _request.substr(pos2+2, std::string::npos);
 }
 
+//checken of de header niet dubbel is binnengekomen
 void Request::parseHeaders()
 {
     size_t      pos = 0;
@@ -90,6 +102,7 @@ void Request::parseHeaders()
     while (_request[pos] != '\r' && _request[pos + 1] != '\n'){
         header.clear();
         value.clear();
+        upperHeader.clear();
         length = _request.find(":", pos);
         header = _request.substr(pos, length-pos);
         pos = length+2;
@@ -97,12 +110,19 @@ void Request::parseHeaders()
         value = _request.substr(pos, length-pos);
         for (int i = 0; header[i]; i++)
             upperHeader += std::toupper(header[i]);
-        std::cout << "[" << header << "]" << "[" << value << "]" << std::endl;
         std::map<std::string, headerType>::iterator it = _headerMap.find(upperHeader);
         // if hij niet bestaat
-        _headerMap.insert(std::make_pair(it->second, value));
+
+        _defHeaders.insert(std::make_pair(it->second, value));
         pos = length+2;
     }
+    for ( std::map<headerType, std::string>::iterator it = _defHeaders.begin(); it != _defHeaders.end(); it++) {
+        std::cout << it->first << " " << it->second << std::endl;
+    }
+//    for(auto it = myMap.cbegin(); it != myMap.cend(); ++it)
+//    {
+//        std::cout << it->first << " " << it->second.first << " " << it->second.second << "\n";
+//    }
 //    std::map<std::string, headerType>::iterator it = _headerMap.find(upperHeader);
 //    if (it != _headerMap.end()) {
 //        if (_headers.find(it->second) != _headers.end() && _status_code == 200) {
