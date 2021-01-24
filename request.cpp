@@ -57,7 +57,7 @@ int Request::getMethod() const {
         if (_method.compare(methods[i]) == 0)
             return i;
     }
-    return -1;      //invalid eerder opvangen?
+    return -1;
 }
 
 std::string Request::getPath() const {
@@ -78,6 +78,8 @@ std::string Request::getBody() const {
     return "NULL";            //error van maken
 }
 
+//path van url checken of die bestaat?
+//hoe gaan we om als het niet HTTP//1.1 is?
 void Request::parseRequestLine(){
     size_t pos1;
     size_t pos2;
@@ -86,6 +88,9 @@ void Request::parseRequestLine(){
         _status = 400;          //error van maken en eruit gaan //of 301?
     pos2 = _request.find(" ");
     _method = _request.substr(0, pos2);
+    if (getMethod() == -1){     //niet bestaande method
+        _status = 400;
+    }
     pos1 = _request.find(" ", pos2 + 1);
     _path = _request.substr(pos2+1, pos1-pos2-1);
     pos2 = _request.find("\r\n");
@@ -136,6 +141,7 @@ void Request::parseHeaders() {
         _defHeaders.insert(std::make_pair(it->second, value));
         pos = length+2;
     }
+    //om te laten zien dat hij goed parsed
     for ( std::map<headerType, std::string>::iterator it = _defHeaders.begin(); it != _defHeaders.end(); it++) {
         std::cout << "[" << it->first << "]" << "[" << it->second << "]" << std::endl;
     }
