@@ -95,9 +95,7 @@ void Request::parseRequestLine(){
     _request = _request.substr(pos2+2, std::string::npos);
 }
 
-//checken of de header niet dubbel is binnengekomen
-//wat als de header niet bestaat
-//whitespaces check toevoegen
+//spaties aan einde van value weg?
 void Request::parseHeaders() {
     size_t      pos = 0;
     size_t      length;
@@ -110,24 +108,43 @@ void Request::parseHeaders() {
         value.clear();
         upperHeader.clear();
         length = _request.find(":", pos);
+        if (std::isspace(_request[length - 1])){       //spatie voor :
+            _status = 400;
+            return ;
+        }
         header = _request.substr(pos, length-pos);
-        pos = length+2;
+        if (std::isspace(_request[length + 1]))     //spatie na :
+            pos = length+2;
+        else
+            pos = length+1;
         length = _request.find("\r\n", pos);
         value = _request.substr(pos, length-pos);
+        if (std::isspace(value.length()))//
+            _request.erase(value.length());//
         for (int i = 0; header[i]; i++)
             upperHeader += std::toupper(header[i]);
         std::map<std::string, headerType>::iterator it = _headerMap.find(upperHeader);
-        // if hij niet bestaat
+        if (it == _headerMap.end()){        //als de header niet bestaat
+            _status = 400;
+            return ;
+        }
+        std::map<headerType, std::string>::iterator it_h = _defHeaders.find(it->second);
+        if (it_h != _defHeaders.end()){   //als er een dubbele header in zit
+            _status = 400;
+            return ;
+        }
         _defHeaders.insert(std::make_pair(it->second, value));
         pos = length+2;
     }
-//    for ( std::map<headerType, std::string>::iterator it = _defHeaders.begin(); it != _defHeaders.end(); it++) {
-//        std::cout << it->first << " " << it->second << std::endl;
-//    }
+    for ( std::map<headerType, std::string>::iterator it = _defHeaders.begin(); it != _defHeaders.end(); it++) {
+        std::cout << "[" << it->first << "]" << "[" << it->second << "]" << std::endl;
+    }
     _request = _request.substr(pos+2, std::string::npos);
 }
 
 // nog checken wat nog meer geparsed moet worden bij de body
+// extra check inbouwen om voor de juiste headers te kijken?
+// content-length header?
 void Request::parseBody() {
     if (_request.find("\r\n") == std::string::npos){
         _body = false;

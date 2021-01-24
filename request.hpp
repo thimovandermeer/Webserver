@@ -7,6 +7,7 @@
 #include <map>
 #include <locale>
 #include <vector>
+#include <algorithm>
 
 enum headerType {
     ACCEPT_CHARSET,
