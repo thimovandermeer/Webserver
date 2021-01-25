@@ -77,18 +77,18 @@ include CMakeFiles/webserv.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/webserv.dir/flags.make
 
-CMakeFiles/webserv.dir/Response.cpp.o: CMakeFiles/webserv.dir/flags.make
-CMakeFiles/webserv.dir/Response.cpp.o: ../Response.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/webserv.dir/Response.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/webserv.dir/Response.cpp.o -c /Users/thimovandermeer/CLionProjects/Webserver/Response.cpp
+CMakeFiles/webserv.dir/srcs/Response.cpp.o: CMakeFiles/webserv.dir/flags.make
+CMakeFiles/webserv.dir/srcs/Response.cpp.o: ../srcs/Response.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/webserv.dir/srcs/Response.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/webserv.dir/srcs/Response.cpp.o -c /Users/thimovandermeer/CLionProjects/Webserver/srcs/Response.cpp
 
-CMakeFiles/webserv.dir/Response.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/webserv.dir/Response.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/thimovandermeer/CLionProjects/Webserver/Response.cpp > CMakeFiles/webserv.dir/Response.cpp.i
+CMakeFiles/webserv.dir/srcs/Response.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/webserv.dir/srcs/Response.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/thimovandermeer/CLionProjects/Webserver/srcs/Response.cpp > CMakeFiles/webserv.dir/srcs/Response.cpp.i
 
-CMakeFiles/webserv.dir/Response.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/webserv.dir/Response.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/thimovandermeer/CLionProjects/Webserver/Response.cpp -o CMakeFiles/webserv.dir/Response.cpp.s
+CMakeFiles/webserv.dir/srcs/Response.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/webserv.dir/srcs/Response.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/thimovandermeer/CLionProjects/Webserver/srcs/Response.cpp -o CMakeFiles/webserv.dir/srcs/Response.cpp.s
 
 CMakeFiles/webserv.dir/tests/response_main.cpp.o: CMakeFiles/webserv.dir/flags.make
 CMakeFiles/webserv.dir/tests/response_main.cpp.o: ../tests/response_main.cpp
@@ -118,14 +118,14 @@ CMakeFiles/webserv.dir/request.cpp.s: cmake_force
 
 # Object files for target webserv
 webserv_OBJECTS = \
-"CMakeFiles/webserv.dir/Response.cpp.o" \
+"CMakeFiles/webserv.dir/srcs/Response.cpp.o" \
 "CMakeFiles/webserv.dir/tests/response_main.cpp.o" \
 "CMakeFiles/webserv.dir/request.cpp.o"
 
 # External object files for target webserv
 webserv_EXTERNAL_OBJECTS =
 
-webserv: CMakeFiles/webserv.dir/Response.cpp.o
+webserv: CMakeFiles/webserv.dir/srcs/Response.cpp.o
 webserv: CMakeFiles/webserv.dir/tests/response_main.cpp.o
 webserv: CMakeFiles/webserv.dir/request.cpp.o
 webserv: CMakeFiles/webserv.dir/build.make

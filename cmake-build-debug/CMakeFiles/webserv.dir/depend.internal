@@ -3,12 +3,12 @@
 
 CMakeFiles/webserv.dir/Response.cpp.o
  /Users/thimovandermeer/CLionProjects/Webserver/Response.cpp
- /Users/thimovandermeer/CLionProjects/Webserver/Response.h
+ /Users/thimovandermeer/CLionProjects/Webserver/Response.hpp
  /Users/thimovandermeer/CLionProjects/Webserver/request.hpp
 CMakeFiles/webserv.dir/request.cpp.o
  /Users/thimovandermeer/CLionProjects/Webserver/request.cpp
  /Users/thimovandermeer/CLionProjects/Webserver/request.hpp
 CMakeFiles/webserv.dir/tests/response_main.cpp.o
- /Users/thimovandermeer/CLionProjects/Webserver/Response.h
+ /Users/thimovandermeer/CLionProjects/Webserver/Response.hpp
  /Users/thimovandermeer/CLionProjects/Webserver/request.hpp
  /Users/thimovandermeer/CLionProjects/Webserver/tests/response_main.cpp

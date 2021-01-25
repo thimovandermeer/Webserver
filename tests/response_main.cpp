@@ -11,23 +11,75 @@
 /* ************************************************************************** */
 
 #include "../request.hpp"
-#include "../Response.h"
+#include "../Response.hpp"
+#include "Catch2.h"
 
 #include <stdio.h>
 // in here we put all our tests
 
-void	test_all_methods()
+void	testGetMethod()
+{
+	Response 		Response;
+	RequestConfig	requestConfig;
+	Request			request;
+	std::string path = "path.txt";
+	requestConfig.setpath(path);
+	request.setMethod("GET");
+	Response.checkMethod(request, requestConfig);
+
+	// hier komen functies die goed gaan dus hier moeten specifieke teksten gereturnt worden
+	std::cout << Response.getContent() << std::endl;
+	std::cout << Response.getCode() << std::endl;
+	// hier komen functies die fout gaan dus hier moeten specifieke exit codes komen
+	path = "doei.txt";
+	requestConfig.setpath(path);
+	Response.checkMethod(request,requestConfig);
+	std::cout << Response.getContent() << std::endl;
+	std::cout << Response.getCode() << std::endl;
+}
+
+void testHeadMethod()
 {
 
 }
+
+void testPostMethod()
+{
+
+}
+
+void testDeleteMethod()
+{
+
+}
+
+void testConnectMethod()
+{
+
+}
+
+void testOptionsMethod()
+{
+
+}
+
+void testTraceMethod()
+{
+
+}
+
 int main()
 {
-	Response Response;
-	RequestConfig requestConfig;
-	Request	request;
-	std::string path = "hallo";
-	requestConfig.setpath(path);
-	Response.checkMethod(request, requestConfig);
 
+	// testing all method
+
+	// test get method
+	testGetMethod();
+	testHeadMethod();
+	testPostMethod();
+	testDeleteMethod();
+	testConnectMethod();
+	testOptionsMethod();
+	testTraceMethod();
 
 }

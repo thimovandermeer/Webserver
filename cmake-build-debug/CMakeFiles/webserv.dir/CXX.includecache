@@ -6,7 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/Users/thimovandermeer/CLionProjects/Webserver/request.cpp
+/Users/thimovandermeer/CLionProjects/Webserver/Response.hpp
+string
+-
+ostream
+-
 request.hpp
 /Users/thimovandermeer/CLionProjects/Webserver/request.hpp
 
@@ -22,5 +26,13 @@ locale
 vector
 -
 algorithm
+-
+
+/Users/thimovandermeer/CLionProjects/Webserver/tests/response_main.cpp
+../request.hpp
+/Users/thimovandermeer/CLionProjects/Webserver/request.hpp
+../Response.hpp
+/Users/thimovandermeer/CLionProjects/Webserver/Response.hpp
+stdio.h
 -
 

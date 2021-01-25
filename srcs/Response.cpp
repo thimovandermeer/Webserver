@@ -2,8 +2,9 @@
 // Created by Thimo Van der meer on 20/01/2021.
 //
 
-#include "Response.h"
-#include "request.hpp"
+#include "../srcs/Response.hpp"
+#include "../srcs/request.hpp"
+#include "../srcs/ResponseHeader.hpp"
 #include <fstream>
 #include <unistd.h>
 
@@ -35,18 +36,27 @@ bool Response::operator!=(const Response &rhs) const
 	return !(rhs == *this);
 }
 
+Response & Response::operator=(const Response &src)
+{
+	_response = src._response;
+	_content = src._content;
+	_path = src._path;
+	_code = src._code;
+	return (*this);
+}
+
 void Response::checkMethod(Request &request, RequestConfig &requestconfig)
 {
 	_path = requestconfig.getpath();
 	_code = 200;
 	if(request.getMethod() == 0)
-		getMethod();
+		getMethod(); // done
 	if(request.getMethod() == 1)
-		headMethod();
+		headMethod(); //
 	if(request.getMethod() == 2)
 		postMethod();
 	if(request.getMethod() == 3)
-		putMethod();
+		putMethod(request.getBody());
 	if(request.getMethod() == 4)
 		deleteMethod();
 	if (request.getMethod() == 5)
@@ -54,44 +64,66 @@ void Response::checkMethod(Request &request, RequestConfig &requestconfig)
 	if (request.getMethod() == 6)
 		optionsMethod();
 	if (request.getMethod() == 7)
-		traceMethod();
+		traceMethod(request);
 }
 
-void Response::getMethod()
+void 	Response::readContent()
 {
 	std::ifstream file;
-	// here the response header should me initiated
 
-	// check if path to file exists
 	const char *c = _path.c_str();
 	if(access(c, F_OK) != 0)
 		_code = 404;
-	// check if you can open the file
 	file.open(_path, std::ifstream::in);
 	if(!file.is_open())
 		_code = 403;
-	// check if someone has permission to open the file // dont know if this is necessary tho
-
-	// read file
-	// safe stuff in file to content
 	_content.assign((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
 	file.close();
 }
 
+void 	Response::writeContent(std::string content)
+{
+	std::ofstream file;
+	_code = 204;
+	const char *c = _path.c_str();
+	if(access(c, F_OK) != 0)
+		_code = 404;
+	file.open(_path, std::ofstream::out | std::ofstream::trunc);
+	if(!file.is_open())
+		_code = 403;
+	file << content;
+	file.close();
+
+}
+void Response::getMethod()
+{
+	ResponseHeader header;
+	// here the response header should me initiated
+	// so something like create response header
+	_response = header.getHeader(_content, _path, _code) + _content;
+
+}
+
 void Response::headMethod()
 {
+	ResponseHeader header;
+	readContent();
+  	_response = header.getHeader(_content, _path, _code);
 }
 
 void Response::postMethod()
 {
+	// need more knowledge about CGI
 }
 
-void Response::putMethod()
+void Response::putMethod(std::string content)
 {
+
 }
 
 void Response::deleteMethod()
 {
+
 }
 
 void Response::connectMethod()
@@ -103,10 +135,29 @@ void Response::optionsMethod()
 
 }
 
-void Response::traceMethod()
+void Response::traceMethod(Request &request)
 {
 
 }
+
+// getters
+std::string 		Response::getContent()
+{
+	return _content;
+}
+
+const std::string 	&Response::getResponse() const
+{
+	return _response;
+}
+
+int 				Response::getCode()
+{
+	return _code;
+}
+
+
+
 
 std::ostream &operator<<(std::ostream &os, const Response &response)
 {

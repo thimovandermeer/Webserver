@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/thimovandermeer/CLionProjects/Webserver/Response.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/Response.cpp.o"
   "/Users/thimovandermeer/CLionProjects/Webserver/request.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/request.cpp.o"
+  "/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response.cpp.o"
   "/Users/thimovandermeer/CLionProjects/Webserver/tests/response_main.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/tests/response_main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")

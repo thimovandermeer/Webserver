@@ -37,7 +37,9 @@ class Request{
         Request(std::string request);
         Request(const Request &copy);
         Request &operator=(const Request &);
-
+		void setMethod(std::string method){
+			_method = method;
+		};// dont forget to delete this one please thimo dont forget it before pushing <3
         int getMethod() const;
         std::string getVersion() const;
         std::string getPath() const;

@@ -143,33 +143,6 @@ webserv/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/build
 .PHONY : webserv/fast
 
-Response.o: Response.cpp.o
-
-.PHONY : Response.o
-
-# target to build an object file
-Response.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/Response.cpp.o
-.PHONY : Response.cpp.o
-
-Response.i: Response.cpp.i
-
-.PHONY : Response.i
-
-# target to preprocess a source file
-Response.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/Response.cpp.i
-.PHONY : Response.cpp.i
-
-Response.s: Response.cpp.s
-
-.PHONY : Response.s
-
-# target to generate assembly for a file
-Response.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/Response.cpp.s
-.PHONY : Response.cpp.s
-
 request.o: request.cpp.o
 
 .PHONY : request.o
@@ -196,6 +169,33 @@ request.s: request.cpp.s
 request.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/request.cpp.s
 .PHONY : request.cpp.s
+
+srcs/Response.o: srcs/Response.cpp.o
+
+.PHONY : srcs/Response.o
+
+# target to build an object file
+srcs/Response.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Response.cpp.o
+.PHONY : srcs/Response.cpp.o
+
+srcs/Response.i: srcs/Response.cpp.i
+
+.PHONY : srcs/Response.i
+
+# target to preprocess a source file
+srcs/Response.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Response.cpp.i
+.PHONY : srcs/Response.cpp.i
+
+srcs/Response.s: srcs/Response.cpp.s
+
+.PHONY : srcs/Response.s
+
+# target to generate assembly for a file
+srcs/Response.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Response.cpp.s
+.PHONY : srcs/Response.cpp.s
 
 tests/response_main.o: tests/response_main.cpp.o
 
@@ -233,12 +233,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... webserv"
-	@echo "... Response.o"
-	@echo "... Response.i"
-	@echo "... Response.s"
 	@echo "... request.o"
 	@echo "... request.i"
 	@echo "... request.s"
+	@echo "... srcs/Response.o"
+	@echo "... srcs/Response.i"
+	@echo "... srcs/Response.s"
 	@echo "... tests/response_main.o"
 	@echo "... tests/response_main.i"
 	@echo "... tests/response_main.s"
