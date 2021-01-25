@@ -1,4 +1,4 @@
-name: Test.requestclass
+name: Test.responseclass
 
 on:
   push:
@@ -19,6 +19,6 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - name: ./run.sh requestclass
-        run: ./run.sh requestclass
+      - name: ./run.sh response
+        run: ./run.sh response
    
