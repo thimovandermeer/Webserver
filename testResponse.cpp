@@ -6,10 +6,4 @@
 #include "Request.h"
 #include "Requestconfig.h"
 
-int main()
-{
-	Response Response();
 
-	checkMethod(request, requestconfig);
-
-}

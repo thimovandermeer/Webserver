@@ -14,6 +14,8 @@
 // in here we put all our tests
 int main()
 {
-	printf("Hallo");
-	
+	Response Response();
+
+	checkMethod(request, requestconfig);
+
 }
