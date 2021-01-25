@@ -20,15 +20,20 @@ Request::~Request() {
     _defHeaders.clear();
 }
 
-// hoe compleet willen we deze maken? helemaal uitschrijven?
-Request::Request(const Request &copy) {
-    *this = copy;
+Request::Request(const Request &original) {
+    *this = original;
 }
 
-// hoe compleet willen we deze maken? helemaal uitschrijven?
-Request &Request::operator=(const Request &) {
+Request &Request::operator=(const Request &original) {
+    this->_request = original._request;
+    this->_method = original._method;
+    this->_path = original._path;
+    this->_version = original._version;
+    this->_headerMap = original._headerMap;
+    this->_defHeaders = original._defHeaders;
+    this->_status = original._status;
+    this->_body = original._body;
     return (*this);
-    // uitbreiden
 }
 
 Request::Request(std::string request) : _request(request) {
@@ -90,8 +95,8 @@ void Request::parseRequestLine(){
         _status = 400;          //error van maken en eruit gaan //of 301?
     pos2 = _request.find(" ");
     _method = _request.substr(0, pos2);
-    if (getMethod() == -1){     //niet bestaande method
-        _status = 400;
+    if (getMethod() == -1){
+        _status = 405;
     }
     pos1 = _request.find(" ", pos2 + 1);
     _path = _request.substr(pos2+1, pos1-pos2-1);
