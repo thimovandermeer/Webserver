@@ -1,10 +1,20 @@
 #include "server.hpp"
+#include <string>
 #include <map>
 
-server::server() : _portNr(0), _maxBodySize(0), _autoindex(false)
-{}
+server::server() : _portNr(0), _maxBodySize(1000000), _autoindex(false)
+{
+	this->_typeFunctionMap.insert(std::make_pair("listen", &server::setPort));
+	this->_typeFunctionMap.insert(std::make_pair("client_max_body_size", &server::setMaxBodySize));
+	this->_typeFunctionMap.insert(std::make_pair("autoindex", &server::setAutoindex));
+	this->_typeFunctionMap.insert(std::make_pair("root", &server::setRoot));
+	this->_typeFunctionMap.insert(std::make_pair("error_page", &server::setErrorPage));
+	this->_typeFunctionMap.insert(std::make_pair("host", &server::setHost));
+	this->_typeFunctionMap.insert(std::make_pair("server_name", &server::setServerNames));
+	this->_typeFunctionMap.insert(std::make_pair("index", &server::setIndices));
+}
 
-server::server(server const &original)
+server::server(server const &original) : _portNr(), _maxBodySize(), _autoindex()
 {
 	*this = original;
 }
@@ -25,14 +35,14 @@ server&	server::operator=(server const &original)
 	return (*this);
 }
 
-void	server::setPort(int portNr)
+void	server::setPort(std::string &portNr)
 {
-	this->_portNr = portNr;
+	this->_portNr = stoi(portNr);
 }
 
-void	server::setmaxBodySize(size_t size)
+void	server::setMaxBodySize(std::string &size)
 {
-	this->_maxBodySize = size;
+	this->_maxBodySize = stol(size);
 }
 
 void	server::setAutoindex(std::string &autoindex)
@@ -42,8 +52,8 @@ void	server::setAutoindex(std::string &autoindex)
 		this->_autoindex = true;
 		return;
 	}
-	if (autoindex != "off") // input is neither on nor off, so wrong
-		;
+	if (autoindex != "off") // input is neither 'on' nor 'off', so wrong
+		throw server::inputErrorException();
 }
 
 void	server::setRoot(std::string &root)
@@ -127,8 +137,6 @@ bool	server::valueCheck() const
 		return (false);
 	if (this->_host.empty())
 		return (false);
-	if (this->_serverNames.empty())
-		return (false);
 	return (true);
 
 }
@@ -138,7 +146,21 @@ const char *server::inputErrorException::what() const throw()
 	return ("config file is incorrect");
 }
 
-void server::findValue(std::string &line)
+//typedef  (server::*)(std::string&) serverGet;
+
+void server::findValue(std::string &key, std::string line)
 {
-//	std::map<std::string,
+	if (*(line.rbegin()) != ';') // line doesn't end with ';'
+		throw server::inputErrorException();
+
+	std::map<std::string, setter>::iterator it;
+	it = this->_typeFunctionMap.find(key);
+	if (it == this->_typeFunctionMap.end()) // unknown key value
+	{
+		std::cerr << "unknown key: " << key << std::endl;
+		throw server::inputErrorException();
+	}
+	line.resize(line.size() - 1); // remove ';'
+	line = line.substr(line.find_first_of(" \t") + 1); // remove first word
+	(this->*(this->_typeFunctionMap.at(key)))(line);
 }

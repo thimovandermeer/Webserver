@@ -83,6 +83,8 @@ void	startParsing(std::fstream& configFile)
 			continue;
 		std::cout << "line is: " << line << std::endl;
 		line = trimEndSpaces(line);
+		if (line[0] == '#') // comment line
+			continue;
 		if (line != "server {")
 			parseError(lineNr);
 		// start reading in server block
@@ -93,9 +95,9 @@ void	startParsing(std::fstream& configFile)
 			if (configFile.eof() && line.length() == 0)
 				parseError(lineNr);
 			if (isEmptyLine(line))
-			{
 				continue;
-			}
+			if (line[0] == '#') // comment line
+				continue;
 			std::cout << "line is: " << line << std::endl;
 			line = trimEndSpaces(line);
 			if (firstword(line) == "location")
@@ -107,7 +109,8 @@ void	startParsing(std::fstream& configFile)
 				// fill server data type
 				try
 				{
-					newServer
+					std::string value = firstword(line);
+					newServer.findValue(value,line);
 				}
 				catch (std::exception &e)
 				{
@@ -118,7 +121,7 @@ void	startParsing(std::fstream& configFile)
 		}
 		// check if all data set in server is correct
 		if (!newServer.valueCheck())
-			parseError(lineNr);
+			leaksExit("invalid values in server block", 1);
 		serverColleciton.push_back(newServer);
 		std::cout << "done with server block" << std::endl;
 	}
@@ -133,7 +136,7 @@ void	openConfig(int ac, char **av)
 	if (ac == 1 || (ac == 2 && g_leaks))
 	{
 		std::cout << "open default config" << std::endl;
-		configFile.open("testconfig.conf");
+		configFile.open("parseTestConfig.conf");
 		if (!configFile)
 			leaksExit("default config missing", 1);
 	}
@@ -149,14 +152,3 @@ void	openConfig(int ac, char **av)
 	}
 	startParsing(configFile);
 }
-/*
- * port
- * root
- * optional server_name
- * default error page
- * limit client body size
- * index
- * autoindex
- * host
- * locations
-*/
