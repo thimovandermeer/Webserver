@@ -28,6 +28,7 @@ Request::Request(const Request &copy) {
 // hoe compleet willen we deze maken? helemaal uitschrijven?
 Request &Request::operator=(const Request &) {
     return (*this);
+    // uitbreiden
 }
 
 Request::Request(std::string request) : _request(request) {
@@ -78,8 +79,9 @@ std::string Request::getBody() const {
     return "NULL";            //error van maken
 }
 
-//path van url checken of die bestaat?
 //hoe gaan we om als het niet HTTP//1.1 is?
+// RFC checken --> tweede
+
 void Request::parseRequestLine(){
     size_t pos1;
     size_t pos2;
@@ -100,7 +102,6 @@ void Request::parseRequestLine(){
     _request = _request.substr(pos2+2, std::string::npos);
 }
 
-//spaties aan einde van value weg?
 void Request::parseHeaders() {
     size_t      pos = 0;
     size_t      length;
@@ -151,6 +152,7 @@ void Request::parseHeaders() {
 // nog checken wat nog meer geparsed moet worden bij de body
 // extra check inbouwen om voor de juiste headers te kijken?
 // content-length header?
+// wel een body zonder dat die nodig is, statuscode 400etc bekijken
 void Request::parseBody() {
     if (_request.find("\r\n") == std::string::npos){
         _body = false;
