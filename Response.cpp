@@ -3,10 +3,11 @@
 //
 
 #include "Response.h"
-#include "Request.h"
-#include "Requestconfig.h"
+#include "request.hpp"
 #include <fstream>
 #include <unistd.h>
+
+
 
 Response::Response()
 {
@@ -34,35 +35,36 @@ bool Response::operator!=(const Response &rhs) const
 	return !(rhs == *this);
 }
 
-void Response::checkMethod(Request &request, Requestconfig &requestconfig)
+void Response::checkMethod(Request &request, RequestConfig &requestconfig)
 {
 	_path = requestconfig.getpath();
 	_code = 200;
-	if(request.getMethod() == "GET")
+	if(request.getMethod() == 0)
 		getMethod();
-	if(request.getMethod() == "HEAD")
+	if(request.getMethod() == 1)
 		headMethod();
-	if(request.getMethod() == "POST")
+	if(request.getMethod() == 2)
 		postMethod();
-	if(request.getMethod() == "PUT")
+	if(request.getMethod() == 3)
 		putMethod();
-	if(request.getMethod() == "DELETE")
+	if(request.getMethod() == 4)
 		deleteMethod();
-	if (request.getMethod() == "CONNECT")
+	if (request.getMethod() == 5)
 		connectMethod();
-	if (request.getMethod() == "OPTIONS")
+	if (request.getMethod() == 6)
 		optionsMethod();
-	if (request.getMethod() == "TRACE")
+	if (request.getMethod() == 7)
 		traceMethod();
 }
 
 void Response::getMethod()
 {
-	ifstream file;
+	std::ifstream file;
 	// here the response header should me initiated
 
 	// check if path to file exists
-	if(acces(_path, F_OK) != 0)
+	const char *c = _path.c_str();
+	if(access(c, F_OK) != 0)
 		_code = 404;
 	// check if you can open the file
 	file.open(_path, std::ifstream::in);

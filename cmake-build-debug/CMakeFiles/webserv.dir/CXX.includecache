@@ -6,21 +6,21 @@
 
 #IncludeRegexTransform: 
 
-/Users/thimovandermeer/CLionProjects/Webserver/testmain.cpp
+/Users/thimovandermeer/CLionProjects/Webserver/request.cpp
+request.hpp
+/Users/thimovandermeer/CLionProjects/Webserver/request.hpp
+
+/Users/thimovandermeer/CLionProjects/Webserver/request.hpp
 iostream
 -
-cstdlib
+string
 -
-cstring
+map
 -
-sys/utsname.h
+locale
 -
-sys/socket.h
+vector
 -
-netdb.h
--
-unistd.h
--
-stdio.h
+algorithm
 -
 

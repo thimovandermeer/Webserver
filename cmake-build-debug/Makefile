@@ -170,59 +170,59 @@ Response.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/Response.cpp.s
 .PHONY : Response.cpp.s
 
-testResponse.o: testResponse.cpp.o
+request.o: request.cpp.o
 
-.PHONY : testResponse.o
-
-# target to build an object file
-testResponse.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/testResponse.cpp.o
-.PHONY : testResponse.cpp.o
-
-testResponse.i: testResponse.cpp.i
-
-.PHONY : testResponse.i
-
-# target to preprocess a source file
-testResponse.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/testResponse.cpp.i
-.PHONY : testResponse.cpp.i
-
-testResponse.s: testResponse.cpp.s
-
-.PHONY : testResponse.s
-
-# target to generate assembly for a file
-testResponse.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/testResponse.cpp.s
-.PHONY : testResponse.cpp.s
-
-testmain.o: testmain.cpp.o
-
-.PHONY : testmain.o
+.PHONY : request.o
 
 # target to build an object file
-testmain.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/testmain.cpp.o
-.PHONY : testmain.cpp.o
+request.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/request.cpp.o
+.PHONY : request.cpp.o
 
-testmain.i: testmain.cpp.i
+request.i: request.cpp.i
 
-.PHONY : testmain.i
+.PHONY : request.i
 
 # target to preprocess a source file
-testmain.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/testmain.cpp.i
-.PHONY : testmain.cpp.i
+request.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/request.cpp.i
+.PHONY : request.cpp.i
 
-testmain.s: testmain.cpp.s
+request.s: request.cpp.s
 
-.PHONY : testmain.s
+.PHONY : request.s
 
 # target to generate assembly for a file
-testmain.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/testmain.cpp.s
-.PHONY : testmain.cpp.s
+request.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/request.cpp.s
+.PHONY : request.cpp.s
+
+tests/response_main.o: tests/response_main.cpp.o
+
+.PHONY : tests/response_main.o
+
+# target to build an object file
+tests/response_main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/tests/response_main.cpp.o
+.PHONY : tests/response_main.cpp.o
+
+tests/response_main.i: tests/response_main.cpp.i
+
+.PHONY : tests/response_main.i
+
+# target to preprocess a source file
+tests/response_main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/tests/response_main.cpp.i
+.PHONY : tests/response_main.cpp.i
+
+tests/response_main.s: tests/response_main.cpp.s
+
+.PHONY : tests/response_main.s
+
+# target to generate assembly for a file
+tests/response_main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/tests/response_main.cpp.s
+.PHONY : tests/response_main.cpp.s
 
 # Help Target
 help:
@@ -236,12 +236,12 @@ help:
 	@echo "... Response.o"
 	@echo "... Response.i"
 	@echo "... Response.s"
-	@echo "... testResponse.o"
-	@echo "... testResponse.i"
-	@echo "... testResponse.s"
-	@echo "... testmain.o"
-	@echo "... testmain.i"
-	@echo "... testmain.s"
+	@echo "... request.o"
+	@echo "... request.i"
+	@echo "... request.s"
+	@echo "... tests/response_main.o"
+	@echo "... tests/response_main.i"
+	@echo "... tests/response_main.s"
 .PHONY : help
 
 

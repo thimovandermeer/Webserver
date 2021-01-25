@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/webserv.dir/Response.cpp.o"
-  "CMakeFiles/webserv.dir/testResponse.cpp.o"
-  "CMakeFiles/webserv.dir/testmain.cpp.o"
+  "CMakeFiles/webserv.dir/request.cpp.o"
+  "CMakeFiles/webserv.dir/tests/response_main.cpp.o"
   "webserv"
   "webserv.pdb"
 )
