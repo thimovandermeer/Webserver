@@ -103,7 +103,18 @@ void	startParsing(std::fstream& configFile)
 			else if (line == "}") // end of server block
 				break;
 			else
-				; // fill server data type
+			{
+				// fill server data type
+				try
+				{
+					newServer
+				}
+				catch (std::exception &e)
+				{
+					std::cerr << "Config file line " << lineNr << ", ";
+					leaksExit(e.what(), 1);
+				}
+			}
 		}
 		// check if all data set in server is correct
 		if (!newServer.valueCheck())
@@ -112,6 +123,7 @@ void	startParsing(std::fstream& configFile)
 		std::cout << "done with server block" << std::endl;
 	}
 	std::cout << "done" << std::endl;
+	// will return vector of servers
 }
 
 void	openConfig(int ac, char **av)

@@ -1,4 +1,5 @@
 #include "server.hpp"
+#include <map>
 
 server::server() : _portNr(0), _maxBodySize(0), _autoindex(false)
 {}
@@ -41,7 +42,7 @@ void	server::setAutoindex(std::string &autoindex)
 		this->_autoindex = true;
 		return;
 	}
-	if (autoindex != "off") // input is wrong
+	if (autoindex != "off") // input is neither on nor off, so wrong
 		;
 }
 
@@ -130,4 +131,14 @@ bool	server::valueCheck() const
 		return (false);
 	return (true);
 
+}
+
+const char *server::inputErrorException::what() const throw()
+{
+	return ("config file is incorrect");
+}
+
+void server::findValue(std::string &line)
+{
+//	std::map<std::string,
 }

@@ -20,6 +20,12 @@ public:
 	~server();
 	server&	operator=(server const &original);
 
+class	inputErrorException : public std::runtime_error {
+	public:
+		virtual const char*	what() const throw();
+
+	};
+
 	void	setPort(int portNr);
 	void	setRoot(std::string &root);
 	void	setServerNames(std::string &names);
@@ -39,6 +45,8 @@ public:
 	std::vector<std::string>	getIndices() const;
 
 	bool	valueCheck() const;
+
+	void	findValue(std::string &line);
 };
 
 
