@@ -80,16 +80,28 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/Response.hpp">
-			<Option target="webserv"/>
-		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/request.cpp">
-			<Option target="webserv"/>
-		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/request.hpp">
-			<Option target="webserv"/>
-		</Unit>
 		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response.cpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response.hpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/ResponseHeader.cpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/ResponseHeader.hpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/request.cpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/request.hpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/utils.cpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/utils.hpp">
 			<Option target="webserv"/>
 		</Unit>
 		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/tests/response_main.cpp">

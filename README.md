@@ -5,7 +5,7 @@ This is our webserver project
 
 
 ## Server / Socket 
-Socket programming is a way of connecting two nodes on a network to communicate with each other. One socket(node) listens on a particular port at an IP, while other socket reaches out to the other to form a connection. Server forms the listener socket while client reaches out to the server.
+Socket programming is a way of connecting two nodes on a network to communicate with each other. One socket(node) listens on a particular port at an IP, while other socket reaches out to the other to form a connection. Server forms the listener socket while client reaches out to the _server.
 
 ### socket():
 Usage: _int socket(int domain, int type, int protocol);_
@@ -43,7 +43,7 @@ Examp:  struct sockaddr_in _address_;
 ### listen():
 Usage: _int listen(int server_fd, int backlog);_
 
-Before a client can connect to a server, the server should have a socket that is prepared to accept the connections. The 'listen' system call tells a socket that it should be capable of accepting incomming connections.
+Before a client can connect to a _server, the _server should have a socket that is prepared to accept the connections. The 'listen' system call tells a socket that it should be capable of accepting incomming connections.
 The _backlog_ defines the maximum number of pending connections that can be queued up before connections are refused.
 Examp: 
 ```
@@ -217,7 +217,7 @@ Upon successful completion a value of 0 is returned. Otherwise, a value of -1 is
 
 ## Wait, process termination.
 Good to know:
-pid_t is a data type with a signed integer type which is capable of representing a process ID.
+pid_t is a _date type with a signed integer type which is capable of representing a process ID.
 
 ### wait():
 Usage: _pid_t wait(int *stat_loc);_
@@ -258,7 +258,7 @@ Sends a signal to a process or a group of processes specified by pid. The signal
 ### pipe():
 Usage: _int pipe(int pipefd[2]);_
 
-Creates a pipe, a unidirectional data channel that can be used for interprocess communication. The array _pipefd_ is used to return two file descriptors referring to the ends of the pipe. pipefd[0] refers to the read end of the pipe. pipefd[1] refers to the write end of the pipe. Data written to the write end of the pipe is buffered by the kernel until it is read from the read end of the pipe.
+Creates a pipe, a unidirectional _date channel that can be used for interprocess communication. The array _pipefd_ is used to return two file descriptors referring to the ends of the pipe. pipefd[0] refers to the read end of the pipe. pipefd[1] refers to the write end of the pipe. Data written to the write end of the pipe is buffered by the kernel until it is read from the read end of the pipe.
 
 ## Other
 - malloc(), free(), write()
@@ -269,7 +269,7 @@ Usage: _int execve(const char *pathname, char *const argv[], char *const envp[])
 Executes the program referred to by _pathname_.  This causes
 the program that is currently being run by the calling process to be
 *replaced with a new program*, with newly initialized stack, heap, and
-(initialized and uninitialized) data segments.
+(initialized and uninitialized) _date segments.
 
 ### exit():
 Usage: _void exit(int status)_
@@ -282,7 +282,7 @@ Or, in the equivalent but easier to read:
 _typedef void (*sig_t) (int);_
 _sig_t signal(int sig, sig_t func);_
 
-Signals allow the manipulation of a process from outside its domain, as well as allowing the process to manipulate itself or copies of itself (children).  There are two general types of signals: those that cause termination of a process and those that do not.
+Signals _allow the manipulation of a process from outside its domain, as well as allowing the process to manipulate itself or copies of itself (children).  There are two general types of signals: those that cause termination of a process and those that do not.
 
 The _sig_ arguments specifies which signal was received(there are 31 options). The _func_ procedure allows a user to choose the action upon receipt of a signal. 
 

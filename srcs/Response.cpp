@@ -36,7 +36,7 @@ bool Response::operator!=(const Response &rhs) const
 	return !(rhs == *this);
 }
 
-Response & Response::operator=(const Response &src)
+Response &Response::operator=(const Response &src)
 {
 	_response = src._response;
 	_content = src._content;

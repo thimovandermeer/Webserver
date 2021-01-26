@@ -143,33 +143,6 @@ webserv/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/build
 .PHONY : webserv/fast
 
-request.o: request.cpp.o
-
-.PHONY : request.o
-
-# target to build an object file
-request.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/request.cpp.o
-.PHONY : request.cpp.o
-
-request.i: request.cpp.i
-
-.PHONY : request.i
-
-# target to preprocess a source file
-request.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/request.cpp.i
-.PHONY : request.cpp.i
-
-request.s: request.cpp.s
-
-.PHONY : request.s
-
-# target to generate assembly for a file
-request.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/request.cpp.s
-.PHONY : request.cpp.s
-
 srcs/Response.o: srcs/Response.cpp.o
 
 .PHONY : srcs/Response.o
@@ -196,6 +169,87 @@ srcs/Response.s: srcs/Response.cpp.s
 srcs/Response.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Response.cpp.s
 .PHONY : srcs/Response.cpp.s
+
+srcs/ResponseHeader.o: srcs/ResponseHeader.cpp.o
+
+.PHONY : srcs/ResponseHeader.o
+
+# target to build an object file
+srcs/ResponseHeader.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/ResponseHeader.cpp.o
+.PHONY : srcs/ResponseHeader.cpp.o
+
+srcs/ResponseHeader.i: srcs/ResponseHeader.cpp.i
+
+.PHONY : srcs/ResponseHeader.i
+
+# target to preprocess a source file
+srcs/ResponseHeader.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/ResponseHeader.cpp.i
+.PHONY : srcs/ResponseHeader.cpp.i
+
+srcs/ResponseHeader.s: srcs/ResponseHeader.cpp.s
+
+.PHONY : srcs/ResponseHeader.s
+
+# target to generate assembly for a file
+srcs/ResponseHeader.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/ResponseHeader.cpp.s
+.PHONY : srcs/ResponseHeader.cpp.s
+
+srcs/request.o: srcs/request.cpp.o
+
+.PHONY : srcs/request.o
+
+# target to build an object file
+srcs/request.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/request.cpp.o
+.PHONY : srcs/request.cpp.o
+
+srcs/request.i: srcs/request.cpp.i
+
+.PHONY : srcs/request.i
+
+# target to preprocess a source file
+srcs/request.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/request.cpp.i
+.PHONY : srcs/request.cpp.i
+
+srcs/request.s: srcs/request.cpp.s
+
+.PHONY : srcs/request.s
+
+# target to generate assembly for a file
+srcs/request.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/request.cpp.s
+.PHONY : srcs/request.cpp.s
+
+srcs/utils.o: srcs/utils.cpp.o
+
+.PHONY : srcs/utils.o
+
+# target to build an object file
+srcs/utils.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/utils.cpp.o
+.PHONY : srcs/utils.cpp.o
+
+srcs/utils.i: srcs/utils.cpp.i
+
+.PHONY : srcs/utils.i
+
+# target to preprocess a source file
+srcs/utils.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/utils.cpp.i
+.PHONY : srcs/utils.cpp.i
+
+srcs/utils.s: srcs/utils.cpp.s
+
+.PHONY : srcs/utils.s
+
+# target to generate assembly for a file
+srcs/utils.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/utils.cpp.s
+.PHONY : srcs/utils.cpp.s
 
 tests/response_main.o: tests/response_main.cpp.o
 
@@ -233,12 +287,18 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... webserv"
-	@echo "... request.o"
-	@echo "... request.i"
-	@echo "... request.s"
 	@echo "... srcs/Response.o"
 	@echo "... srcs/Response.i"
 	@echo "... srcs/Response.s"
+	@echo "... srcs/ResponseHeader.o"
+	@echo "... srcs/ResponseHeader.i"
+	@echo "... srcs/ResponseHeader.s"
+	@echo "... srcs/request.o"
+	@echo "... srcs/request.i"
+	@echo "... srcs/request.s"
+	@echo "... srcs/utils.o"
+	@echo "... srcs/utils.i"
+	@echo "... srcs/utils.s"
 	@echo "... tests/response_main.o"
 	@echo "... tests/response_main.i"
 	@echo "... tests/response_main.s"
