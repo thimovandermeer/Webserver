@@ -30,6 +30,7 @@ enum headerType {
     WWW_AUTHENTICATE
 };
 
+//struct maken met de variabelen van request?
 class Request{
     public:
         Request();
