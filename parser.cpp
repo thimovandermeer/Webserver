@@ -58,7 +58,7 @@ int 	getLocation(std::fstream& configFile, int lineNr)
 		lineNr++;
 		if (configFile.eof())
 			parseError(lineNr);
-		std::cout << "line is: " << line << std::endl;
+//		std::cout << "line is: " << line << std::endl;
 		if (isEmptyLine(line))
 			continue;
 		line = trimEndSpaces(line);
@@ -81,7 +81,7 @@ void	startParsing(std::fstream& configFile)
 			break;
 		if (isEmptyLine(line))
 			continue;
-		std::cout << "line is: " << line << std::endl;
+//		std::cout << "line is: " << line << std::endl;
 		line = trimEndSpaces(line);
 		if (line[0] == '#') // comment line
 			continue;
@@ -98,7 +98,7 @@ void	startParsing(std::fstream& configFile)
 				continue;
 			if (line[0] == '#') // comment line
 				continue;
-			std::cout << "line is: " << line << std::endl;
+//			std::cout << "line is: " << line << std::endl;
 			line = trimEndSpaces(line);
 			if (firstword(line) == "location")
 				lineNr = getLocation(configFile, lineNr); //make and fill location
@@ -124,8 +124,9 @@ void	startParsing(std::fstream& configFile)
 			leaksExit("invalid values in server block", 1);
 		serverColleciton.push_back(newServer);
 		std::cout << "done with server block" << std::endl;
+		std::cout << newServer << std::endl << std::endl;
 	}
-	std::cout << "done" << std::endl;
+//	std::cout << "done" << std::endl;
 	// will return vector of servers
 }
 

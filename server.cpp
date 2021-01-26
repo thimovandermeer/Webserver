@@ -1,6 +1,14 @@
 #include "server.hpp"
 #include <string>
 #include <map>
+#include <sstream>
+#include <iostream>
+#include <iomanip>
+
+const char	*server::inputErrorException::what() const throw()
+{
+	return ("config file is incorrect");
+}
 
 server::server() : _portNr(0), _maxBodySize(1000000), _autoindex(false)
 {
@@ -37,12 +45,17 @@ server&	server::operator=(server const &original)
 
 void	server::setPort(std::string &portNr)
 {
-	this->_portNr = stoi(portNr);
+//	this->_portNr = stoi(portNr); this is C++11
+	std::stringstream	ss(portNr);
+	ss >> this->_portNr;
 }
 
 void	server::setMaxBodySize(std::string &size)
 {
-	this->_maxBodySize = stol(size);
+//	this->_maxBodySize = stol(size); this is C++11
+	std::stringstream	ss(size);
+	ss >> this->_maxBodySize;
+
 }
 
 void	server::setAutoindex(std::string &autoindex)
@@ -141,14 +154,7 @@ bool	server::valueCheck() const
 
 }
 
-const char *server::inputErrorException::what() const throw()
-{
-	return ("config file is incorrect");
-}
-
-//typedef  (server::*)(std::string&) serverGet;
-
-void server::findValue(std::string &key, std::string line)
+void	server::findValue(std::string &key, std::string line)
 {
 	if (*(line.rbegin()) != ';') // line doesn't end with ';'
 		throw server::inputErrorException();
@@ -163,4 +169,39 @@ void server::findValue(std::string &key, std::string line)
 	line.resize(line.size() - 1); // remove ';'
 	line = line.substr(line.find_first_of(" \t") + 1); // remove first word
 	(this->*(this->_typeFunctionMap.at(key)))(line);
+}
+
+std::ostream&	operator<<(std::ostream& os, const server& serv)
+{
+	os << std::setw(15) << std::left << "portNr: " << serv.getPortNr() << std::endl;
+	os << std::setw(15) << std::left << "max body size: " << serv.getMaxBodySize() << std::endl;
+	os << std::setw(15) << std::left << "autoindex: ";
+	if (serv.getAutoindex())
+		os << "on" << std::endl;
+	else
+		os << "off" << std::endl;
+	os << std::setw(15) << std::left << "root: " << serv.getRoot() << std::endl;
+	os << std::setw(15) << std::left << "errorpage: " << serv.getErrorPage() << std::endl;
+	os << std::setw(15) << std::left << "host: " << serv.getHost() << std::endl;
+
+	std::vector<std::string> vc;
+	std::vector<std::string>::iterator it;
+
+	vc = serv.getServerNames();
+	it = vc.begin();
+	os << "server names: " << std::endl;
+	while (!vc.empty() && it != vc.end())
+	{
+		os << "\t- " << *it << std::endl;
+		it++;
+	}
+	vc = serv.getIndices();
+	it = vc.begin();
+	os << "indices: " << std::endl;
+	while (!vc.empty() && it != vc.end())
+	{
+		os << "\t- " << *it << std::endl;
+		it++;
+	}
+	return (os);
 }

@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/Users/jbennink/Documents/Projects/webserv/location.hpp
+string
+-
+
 /Users/jbennink/Documents/Projects/webserv/parser.cpp
 webserv.hpp
 /Users/jbennink/Documents/Projects/webserv/webserv.hpp
@@ -13,13 +17,15 @@ server.hpp
 /Users/jbennink/Documents/Projects/webserv/server.hpp
 
 /Users/jbennink/Documents/Projects/webserv/server.hpp
-webserv.hpp
-/Users/jbennink/Documents/Projects/webserv/webserv.hpp
+location.hpp
+/Users/jbennink/Documents/Projects/webserv/location.hpp
 vector
 -
 map
 -
 stdexcept
+-
+string
 -
 
 /Users/jbennink/Documents/Projects/webserv/webserv.hpp

@@ -82,6 +82,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/jbennink/Documents/Projects/webserv/location.cpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/jbennink/Documents/Projects/webserv/location.hpp">
+			<Option target="webserv"/>
+		</Unit>
 		<Unit filename="/Users/jbennink/Documents/Projects/webserv/parser.cpp">
 			<Option target="webserv"/>
 		</Unit>

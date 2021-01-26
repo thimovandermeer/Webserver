@@ -1,9 +1,10 @@
 #ifndef SERVER_HPP
 # define SERVER_HPP
-# include "webserv.hpp"
+# include "location.hpp"
 # include <vector>
 # include <map>
 # include <stdexcept>
+# include <string>
 
 class server {
 public:
@@ -31,7 +32,7 @@ public:
 	~server();
 	server&	operator=(server const &original);
 
-	void	setPort(std::string &portNr);
+	void	setPort(std::string &listen);
 	void	setMaxBodySize(std::string &size);
 	void	setAutoindex(std::string &autoindex);
 	void	setRoot(std::string &root);
@@ -54,5 +55,7 @@ public:
 	void	findValue(std::string &key, std::string line);
 };
 
+std::ostream&	operator<<(std::ostream& os, const server& serv);
 
-#endif //WEBSERV_SERVER_HPP
+
+#endif

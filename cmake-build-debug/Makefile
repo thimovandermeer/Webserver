@@ -143,6 +143,33 @@ webserv/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/build
 .PHONY : webserv/fast
 
+location.o: location.cpp.o
+
+.PHONY : location.o
+
+# target to build an object file
+location.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/location.cpp.o
+.PHONY : location.cpp.o
+
+location.i: location.cpp.i
+
+.PHONY : location.i
+
+# target to preprocess a source file
+location.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/location.cpp.i
+.PHONY : location.cpp.i
+
+location.s: location.cpp.s
+
+.PHONY : location.s
+
+# target to generate assembly for a file
+location.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/location.cpp.s
+.PHONY : location.cpp.s
+
 parser.o: parser.cpp.o
 
 .PHONY : parser.o
@@ -233,6 +260,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... webserv"
+	@echo "... location.o"
+	@echo "... location.i"
+	@echo "... location.s"
 	@echo "... parser.o"
 	@echo "... parser.i"
 	@echo "... parser.s"
