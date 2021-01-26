@@ -1,7 +1,7 @@
 #include "request.hpp"
 
 int main(void){
-    Request *test = new Request("POST /files/fruit.txt HTTP/1.1\r\n"
+    Request *test = new Request("POST /files/?fruit.txt HTTP/1.1\r\n"
                                 "Host: eloquentjavascript.net\r\n"
                                 "Date:leukeserverdit\r\n"
                                 "Allow: jajaja \r\n"
@@ -12,12 +12,14 @@ int main(void){
                                 "hoi\r\n"
                                 );
     test->parseRequestLine();
-    std::cout << test->getContentType() << std::endl ;
+//    std::cout << test->getContentType() << std::endl ;
 
-//    std::cout << test->getMethod() << "." << std::endl ;
-//    std::cout << test->getUri() << "." << std::endl ;
-//    std::cout << test->getVersion() << "." << std::endl ;
-    test->parseHeaders();
+    std::cout << test->getMethod() << "." << std::endl ;
+    std::cout << test->getUri() << "." << std::endl ;
+    std::cout << test->getCgiEnv() << "." << std::endl ;
+    std::cout << test->getVersion() << "." << std::endl ;
+
+        test->parseHeaders();
     test->parseBody();
 //    std::cout << test->getContentType() << std::endl ;
 //    std::cout << test->getBody() << "." << std::endl;

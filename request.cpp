@@ -1,5 +1,9 @@
 #include "request.hpp"
 
+//ik kan alle variables ook in een struct zetten en de struct returnen
+//in de hoofdfunctie (parseRequest oid), dan hoeven er daarna geen getters
+//meer gebruikt te worden
+
 std::string methods[8] = {
         "GET",
         "HEAD",
@@ -94,12 +98,18 @@ std::string Request::getContentType()  {
     return (it_h->second);
 }
 
+std::string Request::getCgiEnv() const{
+    return _cgiEnv;
+}
+
+
 //hoe gaan we om als het niet HTTP//1.1 is?
 // RFC checken --> tweede
 
 void Request::parseRequestLine(){
-    size_t pos1;
-    size_t pos2;
+    size_t      pos1;
+    size_t      pos2;
+//    std::string temp;
 
     if (_request[0] == ' ' || _request.find("\r\n") == std::string::npos)
         _status = 400;          //error van maken
@@ -108,15 +118,21 @@ void Request::parseRequestLine(){
     if (getMethod() == -1){
         _status = 405;          //or 501?
     }
-    pos1 = _request.find(" ", pos2 + 1);
-    // hier moet ik eerst nog checken of er een ? in de url staat, als dat zo is dan
-    // moet ik het gedeelte daarachter als cgi_enverionmentVariable opsslaan
-    _uri = _request.substr(pos2+1, pos1-pos2-1);
-    pos2 = _request.find("\r\n");
-    _version = _request.substr(pos1+1, pos2-pos1-1);
+    pos2+=1;
+    pos1 = _request.find(" ", pos2);
+    if (_request.find("?", pos2, pos1) == std::string::npos){
+        pos1 = _request.find("?");
+        _uri = _request.substr(pos2, pos1-pos2);
+        pos2 = _request.find(" ", pos1);
+        _cgiEnv = _request.substr(pos1+1, pos2-pos1-1);
+    }
+    else
+        _uri = _request.substr(pos2+1, pos1-pos2-1);
+    pos1 = _request.find("\r\n");
+    _version = _request.substr(pos2+1, pos1-pos2-1);
     if (_version.compare("HTTP/1.1") != 0)         //error
         _status = 400;
-    _request = _request.substr(pos2+2, std::string::npos);
+    _request = _request.substr(pos1+2, std::string::npos);
 }
 
 void Request::parseHeaders() {

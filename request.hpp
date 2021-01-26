@@ -45,6 +45,7 @@ class Request{
         std::map<headerType, std::string> getHeaders() const;
         std::string getBody() const;
         std::string getContentType();
+        std::string getCgiEnv() const;
 
         void parseRequestLine();
         void parseHeaders();
@@ -55,6 +56,7 @@ class Request{
         std::string _method;
         std::string _uri;
         std::string _version;
+        std::string _cgiEnv;
         std::map<std::string, headerType>	_headerMap;
         std::map<headerType, std::string>   _defHeaders;
         int         _status;
