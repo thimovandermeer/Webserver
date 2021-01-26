@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/jbennink/Documents/Projects/webserv/server.cpp
+server.hpp
+/Users/jbennink/Documents/Projects/webserv/server.hpp
+
+/Users/jbennink/Documents/Projects/webserv/server.hpp
+webserv.hpp
+/Users/jbennink/Documents/Projects/webserv/webserv.hpp
+vector
+-
+
+/Users/jbennink/Documents/Projects/webserv/webserv.hpp
+iostream
+-
+iostream
+-
+cstdlib
+-
+cstring
+-
+sys/utsname.h
+-
+sys/socket.h
+-
+netdb.h
+-
+unistd.h
+-
+cstdio
+-
+fstream
+-
+sstream
+-
+
