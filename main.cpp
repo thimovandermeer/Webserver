@@ -12,7 +12,7 @@ int main(void){
                                 );
     test->parseRequestLine();
     std::cout << test->getMethod() << "." << std::endl ;
-    std::cout << test->getPath() << "." << std::endl ;
+    std::cout << test->getUri() << "." << std::endl ;
     std::cout << test->getVersion() << "." << std::endl ;
     test->parseHeaders();
     test->parseBody();
