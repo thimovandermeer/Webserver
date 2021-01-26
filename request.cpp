@@ -81,7 +81,7 @@ std::map<headerType, std::string> Request::getHeaders() const {
 std::string Request::getBody() const {
     if (_body == true)
             return _request;
-    return "NULL";            //error van maken
+    return ("NULL");            //error van maken
 }
 
 std::string Request::getContentType()  {
@@ -109,7 +109,7 @@ void Request::parseRequestLine(){
         _status = 405;          //or 501?
     }
     pos1 = _request.find(" ", pos2 + 1);
-    _uri = _request.substr(pos2+1, pos1-pos2-1);
+    _uri = _request.substr(pos2+1, pos1-pos2-1);        //uri tot '?' inlezen? de rest voor cgi gebruiken?
     pos2 = _request.find("\r\n");
     _version = _request.substr(pos1+1, pos2-pos1-1);
     if (_version.compare("HTTP/1.1") != 0)         //error
