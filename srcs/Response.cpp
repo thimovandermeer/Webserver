@@ -15,6 +15,7 @@ Response::Response()
 	_response = "";
 	_content ="";
 	_path = "";
+	_contentType = "";
 	_code = 0;
 }
 
@@ -28,7 +29,8 @@ bool Response::operator==(const Response &rhs) const
 	return _response == rhs._response &&
 		   _content == rhs._content &&
 		   _path == rhs._path &&
-		   _code == rhs._code;
+		   _code == rhs._code &&
+			_contentType == rhs._contentType;
 }
 
 bool Response::operator!=(const Response &rhs) const
@@ -49,6 +51,7 @@ void Response::checkMethod(Request &request, RequestConfig &requestconfig)
 {
 	_path = requestconfig.getpath();
 	_code = 200;
+	_contentType = request.getContentType();
 	if(request.getMethod() == 0)
 		getMethod(); // done
 	if(request.getMethod() == 1)
@@ -100,7 +103,8 @@ void Response::getMethod()
 	ResponseHeader header;
 	// here the response header should me initiated
 	// so something like create response header
-	_response = header.getHeader(_content, _path, _code) + _content;
+	readContent();
+	_response = header.getHeader(_content, _path, _code, _contentType) + _content;
 
 }
 
@@ -108,7 +112,7 @@ void Response::headMethod()
 {
 	ResponseHeader header;
 	readContent();
-  	_response = header.getHeader(_content, _path, _code);
+  	_response = header.getHeader(_content, _path, _code, _contentType);
 }
 
 void Response::postMethod()
@@ -118,7 +122,7 @@ void Response::postMethod()
 
 void Response::putMethod(std::string content)
 {
-
+	(void)content;
 }
 
 void Response::deleteMethod()
@@ -137,7 +141,7 @@ void Response::optionsMethod()
 
 void Response::traceMethod(Request &request)
 {
-
+	(void)request;
 }
 
 // getters

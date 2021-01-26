@@ -143,6 +143,33 @@ webserv/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/build
 .PHONY : webserv/fast
 
+Tests/response_main.o: Tests/response_main.cpp.o
+
+.PHONY : Tests/response_main.o
+
+# target to build an object file
+Tests/response_main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/Tests/response_main.cpp.o
+.PHONY : Tests/response_main.cpp.o
+
+Tests/response_main.i: Tests/response_main.cpp.i
+
+.PHONY : Tests/response_main.i
+
+# target to preprocess a source file
+Tests/response_main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/Tests/response_main.cpp.i
+.PHONY : Tests/response_main.cpp.i
+
+Tests/response_main.s: Tests/response_main.cpp.s
+
+.PHONY : Tests/response_main.s
+
+# target to generate assembly for a file
+Tests/response_main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/Tests/response_main.cpp.s
+.PHONY : Tests/response_main.cpp.s
+
 srcs/Response.o: srcs/Response.cpp.o
 
 .PHONY : srcs/Response.o
@@ -251,33 +278,6 @@ srcs/utils.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/utils.cpp.s
 .PHONY : srcs/utils.cpp.s
 
-tests/response_main.o: tests/response_main.cpp.o
-
-.PHONY : tests/response_main.o
-
-# target to build an object file
-tests/response_main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/tests/response_main.cpp.o
-.PHONY : tests/response_main.cpp.o
-
-tests/response_main.i: tests/response_main.cpp.i
-
-.PHONY : tests/response_main.i
-
-# target to preprocess a source file
-tests/response_main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/tests/response_main.cpp.i
-.PHONY : tests/response_main.cpp.i
-
-tests/response_main.s: tests/response_main.cpp.s
-
-.PHONY : tests/response_main.s
-
-# target to generate assembly for a file
-tests/response_main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/tests/response_main.cpp.s
-.PHONY : tests/response_main.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -287,6 +287,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... webserv"
+	@echo "... Tests/response_main.o"
+	@echo "... Tests/response_main.i"
+	@echo "... Tests/response_main.s"
 	@echo "... srcs/Response.o"
 	@echo "... srcs/Response.i"
 	@echo "... srcs/Response.s"
@@ -299,9 +302,6 @@ help:
 	@echo "... srcs/utils.o"
 	@echo "... srcs/utils.i"
 	@echo "... srcs/utils.s"
-	@echo "... tests/response_main.o"
-	@echo "... tests/response_main.i"
-	@echo "... tests/response_main.s"
 .PHONY : help
 
 

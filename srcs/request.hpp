@@ -48,7 +48,7 @@ class Request{
         void parseRequestLine();
         void parseHeaders();
         void parseBody();
-
+		void setMethod(std::string method);
      private:
         std::string _request;
         std::string _method;

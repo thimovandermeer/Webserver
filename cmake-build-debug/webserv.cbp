@@ -80,6 +80,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/Tests/response_main.cpp">
+			<Option target="webserv"/>
+		</Unit>
 		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response.cpp">
 			<Option target="webserv"/>
 		</Unit>
@@ -102,9 +105,6 @@
 			<Option target="webserv"/>
 		</Unit>
 		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/utils.hpp">
-			<Option target="webserv"/>
-		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/tests/response_main.cpp">
 			<Option target="webserv"/>
 		</Unit>
 		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/CMakeLists.txt">

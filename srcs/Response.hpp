@@ -44,6 +44,7 @@ private:
 	std::string _response;
 	std::string _content;
 	std::string _path;
+	std::string _contentType;
 	int 		_code;
 private:
 	// functions for each different method

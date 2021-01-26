@@ -13,33 +13,12 @@
 #include "../srcs/request.hpp"
 #include "../srcs/Response.hpp"
 #include "../srcs/utils.hpp"
-//#include "Catch2.h"
+
 
 #include <stdio.h>
 // in here we put all our tests
 
-void	testGetMethod()
-{
-	// test time function;
-	std::cout << getTime() << std::endl;
-//	Response 		Response;
-//	RequestConfig	requestConfig;
-//	Request			request;
-//	std::string path = "path.txt";
-//	requestConfig.setpath(path);
-//	request.setMethod("GET");
-//	Response.checkMethod(request, requestConfig);
-//
-//	// hier komen functies die goed gaan dus hier moeten specifieke teksten gereturnt worden
-//	std::cout << Response.getContent() << std::endl;
-//	std::cout << Response.getCode() << std::endl;
-//	// hier komen functies die fout gaan dus hier moeten specifieke exit codes komen
-//	path = "doei.txt";
-//	requestConfig.setpath(path);
-//	Response.checkMethod(request,requestConfig);
-//	std::cout << Response.getContent() << std::endl;
-//	std::cout << Response.getCode() << std::endl;
-}
+
 
 void testHeadMethod()
 {
@@ -71,9 +50,38 @@ void testTraceMethod()
 
 }
 
+void testHeaders(Response *response)
+{
+	std::cout << response->getResponse() << std::endl;
+}
+
+void	testGetMethod()
+{
+	Response 		response;
+	RequestConfig	requestConfig;
+	Request			request;
+	std::string path = "path.txt";
+	requestConfig.setpath(path);
+	request.setMethod("GET");
+
+	response.checkMethod(request, requestConfig);
+
+	// hier komen functies die goed gaan dus hier moeten specifieke teksten gereturnt worden
+	std::cout << response.getContent() << std::endl;
+	std::cout << response.getCode() << std::endl;
+	testHeaders(&response);
+	// hier komen functies die fout gaan dus hier moeten specifieke exit codes komen
+	path = "doei.txt";
+	requestConfig.setpath(path);
+	response.checkMethod(request, requestConfig);
+	std::cout << response.getContent();
+	std::cout << response.getCode();
+	testHeaders(&response);
+}
+
 int main()
 {
-
+	// testing the headers
 	// testing all method
 
 	// test get method

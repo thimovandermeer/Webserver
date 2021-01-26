@@ -176,3 +176,7 @@ void Request::parseBody() {
     _body = true;
 }
 
+void Request::setMethod(std::string method) // verwijderen thimo
+{
+	_method = method;
+}

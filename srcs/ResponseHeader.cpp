@@ -62,11 +62,11 @@ ResponseHeader &ResponseHeader::operator=(const ResponseHeader &src)
 }
 
 // public member functions
-std::string ResponseHeader::getHeader(std::string content, std::string path, int code)
+std::string ResponseHeader::getHeader(std::string content, std::string path, int code, std::string contentType)
 {
 	std::string header;
 	// set all headers to appropriate info
-	setAllHeaders(content, path, code);
+	setAllHeaders(content, path, code, contentType);
 	// write header
 	header = "HTTP/1.1 " + std::to_string(code) + " " + createStatusMessage(code) + "\r\n";
 	header += writeHeader();
@@ -88,13 +88,13 @@ std::string		ResponseHeader::createStatusMessage(int code)
 		return ("Zieke Error in onze code");
 }
 
-void 		ResponseHeader::setAllHeaders(std::string content, std::string path, int code)
+void 		ResponseHeader::setAllHeaders(std::string content, std::string path, int code, std::string contentType)
 {
 	setAllow(code);
 	setContentLanguage();
 	setContentLength(content.length());
 	setContentLocation(path, code);
-	setContentType(); // deze moet nog gefixt worden
+	setContentType(contentType);
 	setDate();
 	setLastModified(path);
 	setLocation(path, code);
@@ -133,6 +133,7 @@ std::string 		ResponseHeader::writeHeader()
 	if (_wwwAuthenticate != "")
 		header += "Www-Authenticate: " + _wwwAuthenticate + "\r\n";
 	header += "\r\n";
+	return (header);
 }
 
 
@@ -179,7 +180,7 @@ void ResponseHeader::setContentLength(int length)
 
 void ResponseHeader::setContentType(const std::string &contentType)
 {
-
+	_contentType = contentType;
 }
 
 void ResponseHeader::setDate()
