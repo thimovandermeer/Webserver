@@ -6,16 +6,20 @@ int main(void){
                                 "Date:leukeserverdit\r\n"
                                 "Allow: jajaja \r\n"
                                 "Retry_After: waaromdoejijhetniet\r\n"
+//                                "Content_type: .json\r\n"
                                 "User_Agent: The Imaginary Browser\r\n\r\n"
                                 "hoi\r\n"
                                 "hoi\r\n"
                                 );
     test->parseRequestLine();
-    std::cout << test->getMethod() << "." << std::endl ;
-    std::cout << test->getUri() << "." << std::endl ;
-    std::cout << test->getVersion() << "." << std::endl ;
+    std::cout << test->getContentType() << std::endl ;
+
+//    std::cout << test->getMethod() << "." << std::endl ;
+//    std::cout << test->getUri() << "." << std::endl ;
+//    std::cout << test->getVersion() << "." << std::endl ;
     test->parseHeaders();
     test->parseBody();
-    std::cout << test->getBody() << "." << std::endl;
+//    std::cout << test->getContentType() << std::endl ;
+//    std::cout << test->getBody() << "." << std::endl;
     delete test;
 };

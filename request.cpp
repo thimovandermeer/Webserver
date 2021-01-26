@@ -84,6 +84,16 @@ std::string Request::getBody() const {
     return "NULL";            //error van maken
 }
 
+std::string Request::getContentType()  {
+    if (_defHeaders.begin() == _defHeaders.end())
+        return ("NULL");
+    std::map<std::string, headerType>::iterator it = _headerMap.find("CONTENT_TYPE");
+    std::map<headerType, std::string>::iterator it_h = _defHeaders.find(it->second);
+    if (it_h == _defHeaders.end())
+        return ("NULL");
+    return (it_h->second);
+}
+
 //hoe gaan we om als het niet HTTP//1.1 is?
 // RFC checken --> tweede
 

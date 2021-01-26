@@ -43,6 +43,7 @@ class Request{
         std::string getUri() const;
         std::map<headerType, std::string> getHeaders() const;
         std::string getBody() const;
+        std::string getContentType();
 
         void parseRequestLine();
         void parseHeaders();
