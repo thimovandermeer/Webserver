@@ -35,16 +35,15 @@ class Request{
         Request();
         ~Request();
         Request(std::string request);
-        Request(const Request &copy);
-        Request &operator=(const Request &);
-		void setMethod(std::string method){
-			_method = method;
-		};// dont forget to delete this one please thimo dont forget it before pushing <3
+        Request(const Request &original);
+        Request &operator=(const Request &original);
+
         int getMethod() const;
         std::string getVersion() const;
-        std::string getPath() const;
+        std::string getUri() const;
         std::map<headerType, std::string> getHeaders() const;
         std::string getBody() const;
+        std::string getContentType();
 
         void parseRequestLine();
         void parseHeaders();
@@ -53,7 +52,7 @@ class Request{
      private:
         std::string _request;
         std::string _method;
-        std::string _path;
+        std::string _uri;
         std::string _version;
         std::map<std::string, headerType>	_headerMap;
         std::map<headerType, std::string>   _defHeaders;

@@ -15,20 +15,25 @@ Request::Request() {}
 Request::~Request() {
     _request.clear();
     _method.clear();
-    _path.clear();
+    _uri.clear();
     _headerMap.clear();
     _defHeaders.clear();
 }
 
-// hoe compleet willen we deze maken? helemaal uitschrijven?
-Request::Request(const Request &copy) {
-    *this = copy;
+Request::Request(const Request &original) {
+    *this = original;
 }
 
-// hoe compleet willen we deze maken? helemaal uitschrijven?
-Request &Request::operator=(const Request &) {
+Request &Request::operator=(const Request &original) {
+    this->_request = original._request;
+    this->_method = original._method;
+    this->_uri = original._uri;
+    this->_version = original._version;
+    this->_headerMap = original._headerMap;
+    this->_defHeaders = original._defHeaders;
+    this->_status = original._status;
+    this->_body = original._body;
     return (*this);
-    // uitbreiden
 }
 
 Request::Request(std::string request) : _request(request) {
@@ -61,8 +66,8 @@ int Request::getMethod() const {
     return -1;
 }
 
-std::string Request::getPath() const {
-    return _path;
+std::string Request::getUri() const {
+    return _uri;
 }
 
 std::string Request::getVersion() const {
@@ -79,6 +84,16 @@ std::string Request::getBody() const {
     return "NULL";            //error van maken
 }
 
+std::string Request::getContentType()  {
+    if (_defHeaders.begin() == _defHeaders.end())
+        return ("NULL");
+    std::map<std::string, headerType>::iterator it = _headerMap.find("CONTENT_TYPE");
+    std::map<headerType, std::string>::iterator it_h = _defHeaders.find(it->second);
+    if (it_h == _defHeaders.end())
+        return ("NULL");
+    return (it_h->second);
+}
+
 //hoe gaan we om als het niet HTTP//1.1 is?
 // RFC checken --> tweede
 
@@ -87,17 +102,17 @@ void Request::parseRequestLine(){
     size_t pos2;
 
     if (_request[0] == ' ' || _request.find("\r\n") == std::string::npos)
-        _status = 400;          //error van maken en eruit gaan //of 301?
+        _status = 400;          //error van maken
     pos2 = _request.find(" ");
     _method = _request.substr(0, pos2);
-    if (getMethod() == -1){     //niet bestaande method
-        _status = 400;
+    if (getMethod() == -1){
+        _status = 405;          //or 501?
     }
     pos1 = _request.find(" ", pos2 + 1);
-    _path = _request.substr(pos2+1, pos1-pos2-1);
+    _uri = _request.substr(pos2+1, pos1-pos2-1);
     pos2 = _request.find("\r\n");
     _version = _request.substr(pos1+1, pos2-pos1-1);
-    if (_version.compare("HTTP/1.1") != 0)         //error en return overleggen
+    if (_version.compare("HTTP/1.1") != 0)         //error
         _status = 400;
     _request = _request.substr(pos2+2, std::string::npos);
 }
