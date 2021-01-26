@@ -6,7 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/Users/jbennink/Documents/Projects/webserv/server.cpp
+/Users/jbennink/Documents/Projects/webserv/parser.cpp
+webserv.hpp
+/Users/jbennink/Documents/Projects/webserv/webserv.hpp
 server.hpp
 /Users/jbennink/Documents/Projects/webserv/server.hpp
 
@@ -14,6 +16,10 @@ server.hpp
 webserv.hpp
 /Users/jbennink/Documents/Projects/webserv/webserv.hpp
 vector
+-
+map
+-
+stdexcept
 -
 
 /Users/jbennink/Documents/Projects/webserv/webserv.hpp
