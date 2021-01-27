@@ -9,10 +9,6 @@ std::string methods[8] = {
         "HEAD",
         "POST",
         "PUT",
-        "DELETE",
-        "CONNECT",
-        "OPTIONS",
-        "TRACE"
 } ;
 
 Request::Request() {}
