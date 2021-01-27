@@ -35,6 +35,15 @@
   <component name="ChangeListManager">
     <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catch/010-TestCase.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/catch/010-TestCase.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/catch/010-TestFunction.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/catch/CatchMain.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/catch/CatchMain.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/catch/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/catch/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catch/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/catch/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catch/catch2.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/catch_test.hpp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +75,11 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">

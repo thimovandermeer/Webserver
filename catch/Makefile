@@ -1,9 +1,9 @@
 NAME = catch_test
-SRCS = reqeust_test.cpp
+SRCS = catch_main.cpp test_catch.cpp ../test_function.cpp
 OBJS = $(SRCS:.cpp=.o)
 
-# Add the directories you need here:
-INCLUDE = ../
+# hier haalt hij de juiste header files vandaag
+# INCLUDE = -I../
 # -I../srcs/list -I../srcs -I../srcs/vector -I../srcs/stack -I../srcs/queue -I../srcs/map
 
 CXXFLAGS = -std=c++11

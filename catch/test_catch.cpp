@@ -1,8 +1,7 @@
-//unsigned int Factorial( unsigned int number ) {
-//    return number > 1 ? Factorial(number-1)*number : 1;
-//}
-#include "catch2.hpp"
-#include "../catch_test.hpp"
+#include "catch.hpp"
+#include "../test_header.hpp"
+
+//unsigned int Factorial( unsigned int number );
 
 TEST_CASE( "Factorials are computed", "[factorial]" ) {
 REQUIRE( Factorial(1) == 1 );
