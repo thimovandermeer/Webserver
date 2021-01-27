@@ -9,6 +9,10 @@
 /Users/jbennink/Documents/Projects/webserv/location.hpp
 string
 -
+vector
+-
+map
+-
 
 /Users/jbennink/Documents/Projects/webserv/parser.cpp
 webserv.hpp

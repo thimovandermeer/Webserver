@@ -86,7 +86,7 @@ int getLocation(std::string &startLine, std::fstream &configFile, int lineNr, se
 		}
 	}
 	if (!newLoc.valueCheck())
-		parseError(lineNr);
+		leaksExit("invalid values in location block", 1);
 	newServer.addLocation(newLoc);
 	return (lineNr);
 }
