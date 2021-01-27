@@ -98,14 +98,18 @@ std::string Request::getCgiEnv() const{
     return _cgiEnv;
 }
 
+void Request::parseRequest() {
+    //kan van ze allemaal ints maken om hier errors op te vangen
+    parseRequestLine();
+    parseHeaders();
+    parseBody();
+}
 
 //hoe gaan we om als het niet HTTP//1.1 is?
 // RFC checken --> tweede
-
 void Request::parseRequestLine(){
     size_t      pos1;
     size_t      pos2;
-//    std::string temp;
 
     if (_request[0] == ' ' || _request.find("\r\n") == std::string::npos)
         _status = 400;          //error van maken
