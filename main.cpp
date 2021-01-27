@@ -11,7 +11,7 @@ int main(void){
                                 "hoi\r\n"
                                 "hoi\r\n"
                                 );
-    test->parseRequestLine();
+    test->parseRequest();
 //    std::cout << test->getContentType() << std::endl ;
 
     std::cout << test->getMethod() << "." << std::endl ;
