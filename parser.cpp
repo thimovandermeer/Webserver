@@ -48,11 +48,17 @@ void	parseError(int lineNr) // not sure if we wanna exit in this case, can figur
 	leaksExit(errStr.str(), 1);
 }
 
-int 	getLocation(std::fstream& configFile, int lineNr)
+int getLocation(std::string &startLine, std::fstream &configFile, int lineNr, server &newServer)
 {
 	// should eventually fill a class Location, for now it just skips over
 	// all the location lines
 	std::string	line;
+	std::string	match;
+
+	match = startLine.substr(9, startLine.length() - 11);
+	// 9 is length of "location ", 11 is that + the " {" at the end;
+	location	newLoc(match);
+
 	while (std::getline(configFile, line))
 	{
 		lineNr++;
@@ -61,10 +67,27 @@ int 	getLocation(std::fstream& configFile, int lineNr)
 //		std::cout << "line is: " << line << std::endl;
 		if (isEmptyLine(line))
 			continue;
+		if (line[0] == '#') // comment line
+			continue;
 		line = trimEndSpaces(line);
+		if (line == "server {" || firstword(line) == "location")
+			parseError(lineNr);
 		if (line == "}")
 			break;
+		try
+		{
+			std::string value = firstword(line);
+			newLoc.findValue(value,line);
+		}
+		catch (std::exception &e)
+		{
+			std::cerr << "Config file line " << lineNr << ", ";
+			leaksExit(e.what(), 1);
+		}
 	}
+	if (!newLoc.valueCheck())
+		parseError(lineNr);
+	newServer.addLocation(newLoc);
 	return (lineNr);
 }
 
@@ -101,7 +124,7 @@ void	startParsing(std::fstream& configFile)
 //			std::cout << "line is: " << line << std::endl;
 			line = trimEndSpaces(line);
 			if (firstword(line) == "location")
-				lineNr = getLocation(configFile, lineNr); //make and fill location
+				lineNr = getLocation(line, configFile, lineNr, newServer); //make and fill location
 			else if (line == "}") // end of server block
 				break;
 			else
@@ -123,7 +146,6 @@ void	startParsing(std::fstream& configFile)
 		if (!newServer.valueCheck())
 			leaksExit("invalid values in server block", 1);
 		serverColleciton.push_back(newServer);
-		std::cout << "done with server block" << std::endl;
 		std::cout << newServer << std::endl << std::endl;
 	}
 //	std::cout << "done" << std::endl;

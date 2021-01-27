@@ -1,4 +1,5 @@
 #include "server.hpp"
+#include "location.hpp"
 #include <string>
 #include <map>
 #include <sstream>
@@ -7,7 +8,7 @@
 
 const char	*server::inputErrorException::what() const throw()
 {
-	return ("config file is incorrect");
+	return ("error in server block in config file");
 }
 
 server::server() : _portNr(0), _maxBodySize(1000000), _autoindex(false)
@@ -55,7 +56,8 @@ void	server::setMaxBodySize(std::string &size)
 //	this->_maxBodySize = stol(size); this is C++11
 	std::stringstream	ss(size);
 	ss >> this->_maxBodySize;
-
+	if (this->_maxBodySize == 0) // unlimited
+		this->_maxBodySize = (ULLONG_MAX); // this is 18.45 million terrabyte, I think we're ok with 'unlimited'
 }
 
 void	server::setAutoindex(std::string &autoindex)
@@ -140,11 +142,14 @@ std::vector<std::string>	server::getIndices() const
 	return (this->_indices);
 }
 
+std::vector<location>		server::getLocations() const
+{
+	return (this->_locations);
+}
+
 bool	server::valueCheck() const
 {
 	if (this->_portNr <= 0)
-		return (false);
-	if (this->_maxBodySize <= 0)
 		return (false);
 	if (this->_errorPage.empty())
 		return (false);
@@ -171,7 +176,12 @@ void	server::findValue(std::string &key, std::string line)
 	(this->*(this->_typeFunctionMap.at(key)))(line);
 }
 
-std::ostream&	operator<<(std::ostream& os, const server& serv)
+void	server::addLocation(location &newLoc)
+{
+	this->_locations.push_back(newLoc);
+}
+
+std::ostream&	operator<<(std::ostream &os, const server &serv)
 {
 	os << std::setw(15) << std::left << "portNr: " << serv.getPortNr() << std::endl;
 	os << std::setw(15) << std::left << "max body size: " << serv.getMaxBodySize() << std::endl;
@@ -203,5 +213,8 @@ std::ostream&	operator<<(std::ostream& os, const server& serv)
 		os << "\t- " << *it << std::endl;
 		it++;
 	}
+	os << "locations: " << std::endl;
+	for (size_t i = 0; i < serv.getLocations().size(); i++)
+		os << " >" << serv.getLocations()[i] << std::endl;
 	return (os);
 }

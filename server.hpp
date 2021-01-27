@@ -25,7 +25,7 @@ private:
 	std::vector<std::string>		_serverNames;
 	std::vector<std::string>		_indices;
 	std::map<std::string, setter>	_typeFunctionMap;
-	// vector filled with locations;
+	std::vector<location>			_locations;
 public:
 	server();
 	server(server const &original);
@@ -49,13 +49,14 @@ public:
 	std::string					getHost() const;
 	std::vector<std::string>	getServerNames() const;
 	std::vector<std::string>	getIndices() const;
+	std::vector<location>		getLocations() const;
 
+	void	addLocation(location &newLoc);
 	bool	valueCheck() const;
 
 	void	findValue(std::string &key, std::string line);
 };
 
-std::ostream&	operator<<(std::ostream& os, const server& serv);
-
+std::ostream&	operator<<(std::ostream &os, const server &serv);
 
 #endif
