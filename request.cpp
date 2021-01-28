@@ -1,9 +1,5 @@
 #include "request.hpp"
 
-//ik kan alle variables ook in een struct zetten en de struct returnen
-//in de hoofdfunctie (parseRequest oid), dan hoeven er daarna geen getters
-//meer gebruikt te worden
-
 std::string methods[8] = {
         "GET",
         "HEAD",
@@ -176,21 +172,22 @@ void Request::parseHeaders() {
         pos = length+2;
     }
     //om te laten zien dat hij goed parsed
-    for ( std::map<headerType, std::string>::iterator it = _defHeaders.begin(); it != _defHeaders.end(); it++) {
-        std::cout << "[" << it->first << "]" << "[" << it->second << "]" << std::endl;
-    }
+//    for ( std::map<headerType, std::string>::iterator it = _defHeaders.begin(); it != _defHeaders.end(); it++) {
+//        std::cout << "[" << it->first << "]" << "[" << it->second << "]" << std::endl;
+//    }
     _request = _request.substr(pos+2, std::string::npos);
 }
 
-// nog checken wat nog meer geparsed moet worden bij de body
 // extra check inbouwen om voor de juiste headers te kijken?
 // content-length header?
 // wel een body zonder dat die nodig is, statuscode 400etc bekijken
+// newlines uit body halen?
 void Request::parseBody() {
     if (_request.find("\r\n") == std::string::npos){
         _body = false;
         return ;
     }
     _body = true;
+
 }
 
