@@ -1,5 +1,5 @@
 example to compile:
-g++ -std=c++11 -Wall 010-TestCase.cpp 
+c
 
 to run:
 ./a.out             //shows the amount of tests that are passed
