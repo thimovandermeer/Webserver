@@ -35,15 +35,12 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="finished server, fucked around a bit">
+    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="changed error msg for wrong values in location block">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/parseTestConfig.conf" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/parseTestConfig.conf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/webserv" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/webserv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/location.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/location.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/location.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/location.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/parser.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/server.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/server.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +109,9 @@
       <updated>1611567318717</updated>
       <workItem from="1611567322302" duration="974000" />
       <workItem from="1611583021313" duration="909000" />
-      <workItem from="1611738438200" duration="8367000" />
+      <workItem from="1611738438200" duration="8992000" />
+      <workItem from="1611822347972" duration="982000" />
+      <workItem from="1611835259883" duration="921000" />
     </task>
     <task id="LOCAL-00001" summary="finished server, fucked around a bit">
       <created>1611672178142</created>
@@ -121,7 +120,21 @@
       <option name="project" value="LOCAL" />
       <updated>1611672178142</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="location parsing works and &lt;&lt; overload works for both server and location">
+      <created>1611752196852</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1611752196852</updated>
+    </task>
+    <task id="LOCAL-00003" summary="changed error msg for wrong values in location block">
+      <created>1611752491073</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1611752491073</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,29 +166,31 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="finished server, fucked around a bit" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished server, fucked around a bit" />
+    <MESSAGE value="location parsing works and &lt;&lt; overload works for both server and location" />
+    <MESSAGE value="changed error msg for wrong values in location block" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed error msg for wrong values in location block" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1106" y="353" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1611751811866">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="1106" y="353" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1611751811866" />
-    <state width="1794" height="388" key="GridCell.Tab.0.bottom" timestamp="1611751864034">
+    <state width="1794" height="205" key="GridCell.Tab.0.bottom" timestamp="1611838089774">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1794" height="388" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1611751864034" />
-    <state width="1794" height="388" key="GridCell.Tab.0.center" timestamp="1611751864033">
+    <state width="1794" height="205" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1611838089774" />
+    <state width="1794" height="205" key="GridCell.Tab.0.center" timestamp="1611838089773">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1794" height="388" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1611751864033" />
-    <state width="1794" height="388" key="GridCell.Tab.0.left" timestamp="1611751864031">
+    <state width="1794" height="205" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1611838089773" />
+    <state width="1794" height="205" key="GridCell.Tab.0.left" timestamp="1611838089772">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1794" height="388" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1611751864031" />
-    <state width="1794" height="388" key="GridCell.Tab.0.right" timestamp="1611751864033">
+    <state width="1794" height="205" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1611838089772" />
+    <state width="1794" height="205" key="GridCell.Tab.0.right" timestamp="1611838089773">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1794" height="388" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1611751864033" />
+    <state width="1794" height="205" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1611838089773" />
     <state width="1794" height="470" key="GridCell.Tab.1.bottom" timestamp="1611750793632">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -197,14 +212,14 @@
     </state>
     <state x="221" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1611145260616" />
     <state x="393" y="155" key="SettingsEditor/0.23.2560.1337@0.23.2560.1337" timestamp="1611671431195" />
-    <state x="1242" y="431" key="Vcs.Push.Dialog.v2" timestamp="1611672190229">
+    <state x="1242" y="431" key="Vcs.Push.Dialog.v2" timestamp="1611752493211">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="1242" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1611672190229" />
-    <state x="1426" y="489" key="refactoring.ChangeSignatureDialog" timestamp="1611742074631">
+    <state x="1242" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1611752493211" />
+    <state x="1426" y="489" key="refactoring.ChangeSignatureDialog" timestamp="1611837854393">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="1426" y="489" key="refactoring.ChangeSignatureDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1611742074631" />
+    <state x="1426" y="489" key="refactoring.ChangeSignatureDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1611837854393" />
     <state x="684" y="314" width="1192" height="1005" key="search.everywhere.popup" timestamp="1611751400222">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>

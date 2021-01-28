@@ -48,10 +48,8 @@ void	parseError(int lineNr) // not sure if we wanna exit in this case, can figur
 	leaksExit(errStr.str(), 1);
 }
 
-int getLocation(std::string &startLine, std::fstream &configFile, int lineNr, server &newServer)
+location	getLocation(std::string &startLine, std::fstream &configFile, int &lineNr)
 {
-	// should eventually fill a class Location, for now it just skips over
-	// all the location lines
 	std::string	line;
 	std::string	match;
 
@@ -64,7 +62,6 @@ int getLocation(std::string &startLine, std::fstream &configFile, int lineNr, se
 		lineNr++;
 		if (configFile.eof())
 			parseError(lineNr);
-//		std::cout << "line is: " << line << std::endl;
 		if (isEmptyLine(line))
 			continue;
 		if (line[0] == '#') // comment line
@@ -87,11 +84,10 @@ int getLocation(std::string &startLine, std::fstream &configFile, int lineNr, se
 	}
 	if (!newLoc.valueCheck())
 		leaksExit("invalid values in location block", 1);
-	newServer.addLocation(newLoc);
-	return (lineNr);
+	return (newLoc);
 }
 
-void	startParsing(std::fstream& configFile)
+std::vector<server> startParsing(std::fstream& configFile)
 {
 	std::string			line;
 	std::vector<server>	serverColleciton;
@@ -104,7 +100,6 @@ void	startParsing(std::fstream& configFile)
 			break;
 		if (isEmptyLine(line))
 			continue;
-//		std::cout << "line is: " << line << std::endl;
 		line = trimEndSpaces(line);
 		if (line[0] == '#') // comment line
 			continue;
@@ -121,10 +116,12 @@ void	startParsing(std::fstream& configFile)
 				continue;
 			if (line[0] == '#') // comment line
 				continue;
-//			std::cout << "line is: " << line << std::endl;
 			line = trimEndSpaces(line);
 			if (firstword(line) == "location")
-				lineNr = getLocation(line, configFile, lineNr, newServer); //make and fill location
+			{
+				location newLoc = getLocation(line, configFile, lineNr);
+				newServer.addLocation(newLoc);
+			}
 			else if (line == "}") // end of server block
 				break;
 			else
@@ -148,8 +145,7 @@ void	startParsing(std::fstream& configFile)
 		serverColleciton.push_back(newServer);
 		std::cout << newServer << std::endl << std::endl;
 	}
-//	std::cout << "done" << std::endl;
-	// will return vector of servers
+	return (serverColleciton);
 }
 
 void	openConfig(int ac, char **av)
