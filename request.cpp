@@ -12,13 +12,7 @@ std::string methods[8] = {
 } ;
 
 Request::Request() {}
-Request::~Request() {
-    _request.clear();
-    _method.clear();
-    _uri.clear();
-    _headerMap.clear();
-    _defHeaders.clear();
-}
+Request::~Request() {}
 
 Request::Request(const Request &original) {
     *this = original;
