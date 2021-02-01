@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/Users/thimovandermeer/CLionProjects/Webserver/Tests/CatchMain.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/Tests/CatchMain.cpp.o"
   "/Users/thimovandermeer/CLionProjects/Webserver/Tests/response_main.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/Tests/response_main.cpp.o"
   "/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response.cpp.o"
   "/Users/thimovandermeer/CLionProjects/Webserver/srcs/ResponseHeader.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/ResponseHeader.cpp.o"

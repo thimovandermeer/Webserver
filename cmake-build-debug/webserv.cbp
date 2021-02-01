@@ -80,6 +80,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/Tests/CatchMain.cpp">
+			<Option target="webserv"/>
+		</Unit>
 		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/Tests/response_main.cpp">
 			<Option target="webserv"/>
 		</Unit>

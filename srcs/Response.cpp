@@ -7,7 +7,7 @@
 #include "../srcs/ResponseHeader.hpp"
 #include <fstream>
 #include <unistd.h>
-
+#include <sys/stat.h>
 
 
 Response::Response()
@@ -55,19 +55,11 @@ void Response::checkMethod(Request &request, RequestConfig &requestconfig)
 	if(request.getMethod() == 0)
 		getMethod(); // done
 	if(request.getMethod() == 1)
-		headMethod(); //
+		headMethod(); // done
 	if(request.getMethod() == 2)
 		postMethod();
 	if(request.getMethod() == 3)
-		putMethod(request.getBody());
-	if(request.getMethod() == 4)
-		deleteMethod();
-	if (request.getMethod() == 5)
-		connectMethod();
-	if (request.getMethod() == 6)
-		optionsMethod();
-	if (request.getMethod() == 7)
-		traceMethod(request);
+		putMethod(request.getBody()); // done
 }
 
 void 	Response::readContent()
@@ -101,8 +93,6 @@ void 	Response::writeContent(std::string content)
 void Response::getMethod()
 {
 	ResponseHeader header;
-	// here the response header should me initiated
-	// so something like create response header
 	readContent();
 	_response = header.getHeader(_content, _path, _code, _contentType) + _content;
 
@@ -122,26 +112,9 @@ void Response::postMethod()
 
 void Response::putMethod(std::string content)
 {
-	(void)content;
-}
-
-void Response::deleteMethod()
-{
-
-}
-
-void Response::connectMethod()
-{
-}
-
-void Response::optionsMethod()
-{
-
-}
-
-void Response::traceMethod(Request &request)
-{
-	(void)request;
+	ResponseHeader header;
+	writeContent(content);
+	_response = header.getHeader(_content, _path, _code, _contentType); // here we got a potential bug
 }
 
 // getters
@@ -159,9 +132,6 @@ int 				Response::getCode()
 {
 	return _code;
 }
-
-
-
 
 std::ostream &operator<<(std::ostream &os, const Response &response)
 {

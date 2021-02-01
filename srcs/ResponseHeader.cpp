@@ -157,7 +157,7 @@ void ResponseHeader::setAllow(const int &code)
 {
 	if (code == 405)
 	{
-		_allow = "Get, Head, Post, Put, Delete, Connect, Options, Trace";
+		_allow = "Get, Head, Post, Put";
 	}
 	else
 		_allow = "";
@@ -259,6 +259,5 @@ void ResponseHeader::setRetryAfter(int code, int number)
 		_retryAfter = std::to_string(number);
 	}
 }
-
 
 // equal operators etc

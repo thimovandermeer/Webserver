@@ -55,6 +55,16 @@ void testHeaders(Response *response)
 	std::cout << response->getResponse() << std::endl;
 }
 
+void	setRequests()
+{
+	Request *request;
+
+	for (int i = 0; i < 10; i++)
+	{
+		request[i] = new request;
+	}
+}
+
 void	testGetMethod()
 {
 	Response 		response;
@@ -79,18 +89,21 @@ void	testGetMethod()
 	testHeaders(&response);
 }
 
-int main()
-{
-	// testing the headers
-	// testing all method
-
-	// test get method
-	testGetMethod();
-	testHeadMethod();
-	testPostMethod();
-	testDeleteMethod();
-	testConnectMethod();
-	testOptionsMethod();
-	testTraceMethod();
-
-}
+//int main()
+//{
+//	std::string request = "Hallo hfkjhlkhgw";
+//
+//	request request;
+//	request.parse(request);
+//	// testing the headers
+//	// testing all method
+//
+//	// test get method
+//	testGetMethod();
+//	testHeadMethod();
+//	testPostMethod();
+//	testDeleteMethod();
+//	testConnectMethod();
+//	testOptionsMethod();
+//	testTraceMethod();
+//}

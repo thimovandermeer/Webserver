@@ -52,10 +52,6 @@ private:
 	void 	headMethod();
 	void 	postMethod();
 	void 	putMethod(std::string content);
-	void 	deleteMethod();
-	void 	connectMethod();
-	void 	optionsMethod();
-	void	traceMethod(Request &request);
 
 	// helper functions
 	void 	readContent();

@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/webserv.dir/Tests/CatchMain.cpp.o"
   "CMakeFiles/webserv.dir/Tests/response_main.cpp.o"
   "CMakeFiles/webserv.dir/srcs/Response.cpp.o"
   "CMakeFiles/webserv.dir/srcs/ResponseHeader.cpp.o"

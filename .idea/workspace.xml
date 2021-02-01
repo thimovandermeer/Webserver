@@ -37,12 +37,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/untitled/test.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/count.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/response_main.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/CXX.includecache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/DependInfo.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/build.make" afterDir="false" />
@@ -50,8 +50,10 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.internal" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/request.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/request.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/tests/response_main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/tests/response_main.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/tests/response_main.cpp.o" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/webserv" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/webserv" afterDir="false" />
@@ -59,14 +61,6 @@
       <change beforePath="$PROJECT_DIR$/srcs/Response.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Response.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/ResponseHeader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/ResponseHeader.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/ResponseHeader.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/ResponseHeader.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/request.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/request.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/request.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/request.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Catch2.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/diff.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/request_main.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/response_main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/response_main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/webserv.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,26 +117,16 @@
       <recent name="$PROJECT_DIR$/Test_makefiles" />
     </key>
   </component>
-  <component name="RunManager" selected="CMake Application.webserv">
+  <component name="RunManager" selected="Catch.Test">
     <configuration name="Test" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv" TEST_CLASS="[List]" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="webserv" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <list>
@@ -175,7 +159,10 @@
       <workItem from="1611640072490" duration="17586000" />
       <workItem from="1611667678679" duration="661000" />
       <workItem from="1611668414500" duration="2286000" />
-      <workItem from="1611672470076" duration="1984000" />
+      <workItem from="1611672470076" duration="2719000" />
+      <workItem from="1611728588404" duration="5324000" />
+      <workItem from="1611826349571" duration="52000" />
+      <workItem from="1612162610041" duration="421000" />
     </task>
     <task id="LOCAL-00003" summary="nearly done all set functions of responseheader">
       <created>1611650661666</created>
@@ -198,7 +185,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611662993267</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="first Merge met Request">
+      <created>1611677024441</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1611677024441</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,17 +242,7 @@
     <MESSAGE value="Added responseheader" />
     <MESSAGE value="nearly done all set functions of responseheader" />
     <MESSAGE value="push before pull merel's work" />
-    <option name="LAST_COMMIT_MESSAGE" value="push before pull merel's work" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/srcs/ResponseHeader.cpp</url>
-          <line>207</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="first Merge met Request" />
+    <option name="LAST_COMMIT_MESSAGE" value="first Merge met Request" />
   </component>
 </project>
