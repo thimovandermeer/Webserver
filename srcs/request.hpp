@@ -30,10 +30,8 @@ enum headerType {
     WWW_AUTHENTICATE
 };
 
-//struct maken met de variabelen van request?
 class Request{
     public:
-        Request();
         ~Request();
         Request(std::string request);
         Request(const Request &original);
@@ -53,6 +51,7 @@ class Request{
         void parseBody();
 		void setMethod(std::string method);
      private:
+        Request();
         std::string _request;
         std::string _method;
         std::string _uri;
