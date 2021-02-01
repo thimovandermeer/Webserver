@@ -7,24 +7,20 @@
 #include <sys/time.h>
 #include <sys/stat.h>
 // canonical form functions
-ResponseHeader::ResponseHeader()
+ResponseHeader::ResponseHeader(std::string &content, std::string &path, int code, std::string &contentType)
 {
-	_acceptCharsets = "";
-	_acceptLanguage ="";
-	_allow = "";
-	_authorization ="";
-	_contentLanguage ="";
-	_contentLength = "";
-	_contentType = "";
-	_date ="";
-	_host ="";
-	_lastModified ="";
-	_location ="";
-	_referer ="";
-	_retryAfter ="";
-	_server ="";
-	_transferEncoding ="";
-	_wwwAuthenticate = "";
+	setAllow(code);
+	setContentLanguage();
+	setContentLength(content.length());
+	setContentLocation(path, code);
+	setContentType(contentType);
+	setDate();
+	setLastModified(path);
+	setLocation(path, code);
+	setRetryAfter(code, 10);
+	setServer();
+	setTransferEncoding();
+	setWwwAuthenticate(code);
 }
 
 ResponseHeader::ResponseHeader(const ResponseHeader &src)
@@ -62,11 +58,11 @@ ResponseHeader &ResponseHeader::operator=(const ResponseHeader &src)
 }
 
 // public member functions
-std::string ResponseHeader::getHeader(std::string content, std::string path, int code, std::string contentType)
+std::string ResponseHeader::getHeader(int code)
 {
 	std::string header;
 	// set all headers to appropriate info
-	setAllHeaders(content, path, code, contentType);
+//	setAllHeaders(content, path, code, contentType);
 	// write header
 	header = "HTTP/1.1 " + std::to_string(code) + " " + createStatusMessage(code) + "\r\n";
 	header += writeHeader();
@@ -86,22 +82,6 @@ std::string		ResponseHeader::createStatusMessage(int code)
 		return ("Not found");
 	else
 		return ("Zieke Error in onze code");
-}
-
-void 		ResponseHeader::setAllHeaders(std::string content, std::string path, int code, std::string contentType)
-{
-	setAllow(code);
-	setContentLanguage();
-	setContentLength(content.length());
-	setContentLocation(path, code);
-	setContentType(contentType);
-	setDate();
-	setLastModified(path);
-	setLocation(path, code);
-	setRetryAfter(code, 10);
-	setServer();
-	setTransferEncoding();
-	setWwwAuthenticate(code);
 }
 
 std::string 		ResponseHeader::writeHeader()

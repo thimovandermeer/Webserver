@@ -143,33 +143,6 @@ webserv/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/build
 .PHONY : webserv/fast
 
-Tests/CatchMain.o: Tests/CatchMain.cpp.o
-
-.PHONY : Tests/CatchMain.o
-
-# target to build an object file
-Tests/CatchMain.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/Tests/CatchMain.cpp.o
-.PHONY : Tests/CatchMain.cpp.o
-
-Tests/CatchMain.i: Tests/CatchMain.cpp.i
-
-.PHONY : Tests/CatchMain.i
-
-# target to preprocess a source file
-Tests/CatchMain.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/Tests/CatchMain.cpp.i
-.PHONY : Tests/CatchMain.cpp.i
-
-Tests/CatchMain.s: Tests/CatchMain.cpp.s
-
-.PHONY : Tests/CatchMain.s
-
-# target to generate assembly for a file
-Tests/CatchMain.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/Tests/CatchMain.cpp.s
-.PHONY : Tests/CatchMain.cpp.s
-
 Tests/response_main.o: Tests/response_main.cpp.o
 
 .PHONY : Tests/response_main.o
@@ -314,9 +287,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... webserv"
-	@echo "... Tests/CatchMain.o"
-	@echo "... Tests/CatchMain.i"
-	@echo "... Tests/CatchMain.s"
 	@echo "... Tests/response_main.o"
 	@echo "... Tests/response_main.i"
 	@echo "... Tests/response_main.s"

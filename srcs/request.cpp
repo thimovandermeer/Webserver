@@ -176,9 +176,9 @@ void Request::parseHeaders() {
         pos = length+2;
     }
     //om te laten zien dat hij goed parsed
-    for ( std::map<headerType, std::string>::iterator it = _defHeaders.begin(); it != _defHeaders.end(); it++) {
-        std::cout << "[" << it->first << "]" << "[" << it->second << "]" << std::endl;
-    }
+//    for ( std::map<headerType, std::string>::iterator it = _defHeaders.begin(); it != _defHeaders.end(); it++) {
+//        std::cout << "[" << it->first << "]" << "[" << it->second << "]" << std::endl;
+//    }
     _request = _request.substr(pos+2, std::string::npos);
 }
 

@@ -55,25 +55,22 @@ void testHeaders(Response *response)
 	std::cout << response->getResponse() << std::endl;
 }
 
-void	setRequests()
-{
-	Request *request;
-
-	for (int i = 0; i < 10; i++)
-	{
-		request[i] = new request;
-	}
-}
-
 void	testGetMethod()
 {
+	Request request("POST /path.txt HTTP/1.1\r\n"
+					"Host: eloquentjavascript.net\r\n"
+					"Date:leukeserverdit\r\n"
+					"Allow: jajaja \r\n"
+					"Retry_After: waaromdoejijhetniet\r\n"
+				  	"Content_type: .json\r\n"
+					"User_Agent: The Imaginary Browser\r\n\r\n"
+					"hoi\r\n"
+					"hoi\r\n"
+	);
+	request.parseRequest();
+	std::string 	path;
 	Response 		response;
 	RequestConfig	requestConfig;
-	Request			request;
-	std::string path = "path.txt";
-	requestConfig.setpath(path);
-	request.setMethod("GET");
-
 	response.checkMethod(request, requestConfig);
 
 	// hier komen functies die goed gaan dus hier moeten specifieke teksten gereturnt worden
@@ -81,29 +78,31 @@ void	testGetMethod()
 	std::cout << response.getCode() << std::endl;
 	testHeaders(&response);
 	// hier komen functies die fout gaan dus hier moeten specifieke exit codes komen
-	path = "doei.txt";
+	Request request1;
+	request1.setMethod("GET");
+	path = "path.txt";
 	requestConfig.setpath(path);
-	response.checkMethod(request, requestConfig);
+	response.checkMethod(request1, requestConfig);
 	std::cout << response.getContent();
 	std::cout << response.getCode();
 	testHeaders(&response);
 }
 
-//int main()
-//{
-//	std::string request = "Hallo hfkjhlkhgw";
-//
-//	request request;
-//	request.parse(request);
-//	// testing the headers
-//	// testing all method
-//
-//	// test get method
-//	testGetMethod();
-//	testHeadMethod();
-//	testPostMethod();
-//	testDeleteMethod();
-//	testConnectMethod();
-//	testOptionsMethod();
-//	testTraceMethod();
-//}
+int main()
+{
+
+
+
+//	request.setMethod("GET");
+	// testing the headers
+	// testing all method
+
+	// test get method
+	testGetMethod();
+	testHeadMethod();
+	testPostMethod();
+	testDeleteMethod();
+	testConnectMethod();
+	testOptionsMethod();
+	testTraceMethod();
+}

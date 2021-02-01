@@ -24,20 +24,6 @@ Response::~Response()
 
 }
 
-bool Response::operator==(const Response &rhs) const
-{
-	return _response == rhs._response &&
-		   _content == rhs._content &&
-		   _path == rhs._path &&
-		   _code == rhs._code &&
-			_contentType == rhs._contentType;
-}
-
-bool Response::operator!=(const Response &rhs) const
-{
-	return !(rhs == *this);
-}
-
 Response &Response::operator=(const Response &src)
 {
 	_response = src._response;
@@ -51,7 +37,7 @@ void Response::checkMethod(Request &request, RequestConfig &requestconfig)
 {
 	_path = requestconfig.getpath();
 	_code = 200;
-	_contentType = request.getContentType();
+//	_contentType = request.getContentType();
 	if(request.getMethod() == 0)
 		getMethod(); // done
 	if(request.getMethod() == 1)
@@ -92,17 +78,17 @@ void 	Response::writeContent(std::string content)
 }
 void Response::getMethod()
 {
-	ResponseHeader header;
+	ResponseHeader header(_content, _path, _code, _contentType);
 	readContent();
-	_response = header.getHeader(_content, _path, _code, _contentType) + _content;
+	_response = header.getHeader(_code) + _content;
 
 }
 
 void Response::headMethod()
 {
-	ResponseHeader header;
+	ResponseHeader header(_content, _path, _code, _contentType);
 	readContent();
-  	_response = header.getHeader(_content, _path, _code, _contentType);
+  	_response = header.getHeader(_code);
 }
 
 void Response::postMethod()
@@ -112,9 +98,9 @@ void Response::postMethod()
 
 void Response::putMethod(std::string content)
 {
-	ResponseHeader header;
+	ResponseHeader header(_content, _path, _code, _contentType);
 	writeContent(content);
-	_response = header.getHeader(_content, _path, _code, _contentType); // here we got a potential bug
+	_response = header.getHeader(_code); // here we got a potential bug
 }
 
 // getters

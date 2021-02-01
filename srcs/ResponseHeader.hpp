@@ -14,7 +14,7 @@ class ResponseHeader
 {
 public:
 	// public functions
-	ResponseHeader();
+	ResponseHeader(std::string &content, std::string &path, int code, std::string &contentType);
 	ResponseHeader(const ResponseHeader &src);
 	virtual ~ResponseHeader();
 
@@ -42,11 +42,10 @@ private:
 
 	// private member functions
 	std::string		createStatusMessage(int code);
-	void 			setAllHeaders(std::string content, std::string path, int code, std::string contentType);
 	std::string 	writeHeader();
 	// public members
 public:
-	std::string 	getHeader(std::string content, std::string path, int code, std::string contentType);
+	std::string getHeader(int code);
 
 
 
