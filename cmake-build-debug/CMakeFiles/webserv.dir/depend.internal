@@ -8,11 +8,17 @@ CMakeFiles/webserv.dir/parser.cpp.o
  /Users/jbennink/Documents/Projects/webserv/location.hpp
  /Users/jbennink/Documents/Projects/webserv/parser.cpp
  /Users/jbennink/Documents/Projects/webserv/server.hpp
+ /Users/jbennink/Documents/Projects/webserv/serverCluster.hpp
  /Users/jbennink/Documents/Projects/webserv/webserv.hpp
 CMakeFiles/webserv.dir/server.cpp.o
  /Users/jbennink/Documents/Projects/webserv/location.hpp
  /Users/jbennink/Documents/Projects/webserv/server.cpp
  /Users/jbennink/Documents/Projects/webserv/server.hpp
+CMakeFiles/webserv.dir/serverCluster.cpp.o
+ /Users/jbennink/Documents/Projects/webserv/location.hpp
+ /Users/jbennink/Documents/Projects/webserv/server.hpp
+ /Users/jbennink/Documents/Projects/webserv/serverCluster.cpp
+ /Users/jbennink/Documents/Projects/webserv/serverCluster.hpp
 CMakeFiles/webserv.dir/testmain.cpp.o
  /Users/jbennink/Documents/Projects/webserv/testmain.cpp
  /Users/jbennink/Documents/Projects/webserv/webserv.hpp

@@ -97,6 +97,12 @@
 		<Unit filename="/Users/jbennink/Documents/Projects/webserv/server.hpp">
 			<Option target="webserv"/>
 		</Unit>
+		<Unit filename="/Users/jbennink/Documents/Projects/webserv/serverCluster.cpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/jbennink/Documents/Projects/webserv/serverCluster.hpp">
+			<Option target="webserv"/>
+		</Unit>
 		<Unit filename="/Users/jbennink/Documents/Projects/webserv/testmain.cpp">
 			<Option target="webserv"/>
 		</Unit>

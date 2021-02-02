@@ -19,8 +19,9 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:jonas_start" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/jonas_start" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
@@ -36,11 +37,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="changed error msg for wrong values in location block">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/parseTestConfig.conf" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/parseTestConfig.conf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/webserv" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/webserv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/webserv.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/webserv.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/location.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/location.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/location.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/location.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/parser.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/server.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/server.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,10 +70,17 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Responseclass" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1nKALsapog2SZk1VhTrbGE3Ajec" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -71,12 +96,12 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
   </component>
   <component name="RunManager" selected="CMake Application.webserv">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="webserv leaks" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="leaks" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv">
@@ -112,6 +137,8 @@
       <workItem from="1611738438200" duration="8992000" />
       <workItem from="1611822347972" duration="982000" />
       <workItem from="1611835259883" duration="921000" />
+      <workItem from="1611922813142" duration="1096000" />
+      <workItem from="1612263996600" duration="7505000" />
     </task>
     <task id="LOCAL-00001" summary="finished server, fucked around a bit">
       <created>1611672178142</created>
@@ -151,7 +178,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="jonas_start" />
+                        <option value="origin/jonas_start" />
                       </list>
                     </value>
                   </entry>
@@ -175,43 +202,43 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="1106" y="353" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1611751811866" />
-    <state width="1794" height="205" key="GridCell.Tab.0.bottom" timestamp="1611838089774">
+    <state width="2155" height="279" key="GridCell.Tab.0.bottom" timestamp="1612276717387">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1794" height="205" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1611838089774" />
-    <state width="1794" height="205" key="GridCell.Tab.0.center" timestamp="1611838089773">
+    <state width="2155" height="279" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1612276717387" />
+    <state width="2155" height="279" key="GridCell.Tab.0.center" timestamp="1612276717387">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1794" height="205" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1611838089773" />
-    <state width="1794" height="205" key="GridCell.Tab.0.left" timestamp="1611838089772">
+    <state width="2155" height="279" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1612276717387" />
+    <state width="2155" height="279" key="GridCell.Tab.0.left" timestamp="1612276717386">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1794" height="205" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1611838089772" />
-    <state width="1794" height="205" key="GridCell.Tab.0.right" timestamp="1611838089773">
+    <state width="2155" height="279" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1612276717386" />
+    <state width="2155" height="279" key="GridCell.Tab.0.right" timestamp="1612276717387">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1794" height="205" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1611838089773" />
-    <state width="1794" height="470" key="GridCell.Tab.1.bottom" timestamp="1611750793632">
+    <state width="2155" height="279" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1612276717387" />
+    <state width="2155" height="279" key="GridCell.Tab.1.bottom" timestamp="1612276658371">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1794" height="470" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1611750793632" />
-    <state width="1794" height="470" key="GridCell.Tab.1.center" timestamp="1611750793631">
+    <state width="2155" height="279" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1612276658371" />
+    <state width="2155" height="279" key="GridCell.Tab.1.center" timestamp="1612276658371">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1794" height="470" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1611750793631" />
-    <state width="1794" height="470" key="GridCell.Tab.1.left" timestamp="1611750793631">
+    <state width="2155" height="279" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1612276658371" />
+    <state width="2155" height="279" key="GridCell.Tab.1.left" timestamp="1612276658370">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1794" height="470" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1611750793631" />
-    <state width="1794" height="470" key="GridCell.Tab.1.right" timestamp="1611750793632">
+    <state width="2155" height="279" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1612276658370" />
+    <state width="2155" height="279" key="GridCell.Tab.1.right" timestamp="1612276658371">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1794" height="470" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1611750793632" />
-    <state x="393" y="155" key="SettingsEditor" timestamp="1611671431195">
+    <state width="2155" height="279" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1612276658371" />
+    <state x="393" y="155" key="SettingsEditor" timestamp="1611923553847">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="221" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1611145260616" />
-    <state x="393" y="155" key="SettingsEditor/0.23.2560.1337@0.23.2560.1337" timestamp="1611671431195" />
+    <state x="393" y="155" key="SettingsEditor/0.23.2560.1337@0.23.2560.1337" timestamp="1611923553847" />
     <state x="1242" y="431" key="Vcs.Push.Dialog.v2" timestamp="1611752493211">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -225,5 +252,16 @@
     </state>
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1611423518650" />
     <state x="684" y="314" width="1192" height="1005" key="search.everywhere.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1611751400222" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/parser.cpp</url>
+          <line>178</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -5,13 +5,19 @@
 #include <sstream>
 #include <iostream>
 #include <iomanip>
+#include <unistd.h>
 
 const char	*server::inputErrorException::what() const throw()
 {
 	return ("error in server block in config file");
 }
 
-server::server() : _portNr(0), _maxBodySize(1000000), _autoindex(false)
+const char	*server::syscallErrorException::what() const throw()
+{
+	return ("a syscall has returned an error");
+}
+
+server::server() : _portNr(0), _maxBodySize(1000000), _autoindex(false), _errorPage("default_error_page") //should change default error page
 {
 	this->_typeFunctionMap.insert(std::make_pair("listen", &server::setPort));
 	this->_typeFunctionMap.insert(std::make_pair("client_max_body_size", &server::setMaxBodySize));
@@ -29,7 +35,10 @@ server::server(server const &original) : _portNr(), _maxBodySize(), _autoindex()
 }
 
 server::~server()
-{}
+{
+	close(this->_listenFd);
+	close(this->_connectFd);
+}
 
 server&	server::operator=(server const &original)
 {
@@ -102,57 +111,77 @@ void	server::setIndices(std::string &indices)
 		this->_indices.push_back(index);
 }
 
-int			server::getPortNr() const
+void	server::setConnectFd(int fd)
+{
+	this->_connectFd = fd;
+}
+
+const int			&server::getPortNr() const
 {
 	return (this->_portNr);
 }
 
-size_t		server::getMaxBodySize() const
+const size_t		&server::getMaxBodySize() const
 {
 	return (this->_maxBodySize);
 }
 
-bool		server::getAutoindex() const
+const bool			&server::getAutoindex() const
 {
 	return (this->_autoindex);
 }
 
-std::string	server::getRoot() const
+const std::string	&server::getRoot() const
 {
 	return (this->_root);
 }
 
-std::string	server::getErrorPage() const
+const std::string	&server::getErrorPage() const
 {
 	return (this->_errorPage);
 }
 
-std::string	server::getHost() const
+const std::string	&server::getHost() const
 {
 	return (this->_host);
 }
 
-std::vector<std::string>	server::getServerNames() const
+const std::vector<std::string>	&server::getServerNames() const
 {
 	return (this->_serverNames);
 }
 
-std::vector<std::string>	server::getIndices() const
+const std::vector<std::string>	&server::getIndices() const
 {
 	return (this->_indices);
 }
 
-std::vector<location>		server::getLocations() const
+const std::vector<location>		&server::getLocations() const
 {
 	return (this->_locations);
+}
+
+const int	&server::getListenFd() const
+{
+	return (this->_listenFd);
+}
+
+const struct sockaddr_in	&server::getAddr() const
+{
+	return (this->_addr);
+}
+
+const int	&server::getConnectFd() const
+{
+	return(this->_connectFd);
 }
 
 bool	server::valueCheck() const
 {
 	if (this->_portNr <= 0)
 		return (false);
-	if (this->_errorPage.empty())
-		return (false);
+//	if (this->_errorPage.empty())
+//		return (false);
 	if (this->_host.empty())
 		return (false);
 	return (true);
@@ -179,6 +208,44 @@ void	server::findValue(std::string &key, std::string line)
 void	server::addLocation(location &newLoc)
 {
 	this->_locations.push_back(newLoc);
+}
+
+void	server::startListening()
+{
+	int	ret;
+
+	this->_listenFd = socket(PF_INET, SOCK_STREAM, 0);
+	if (this->_listenFd < 0)
+	{
+		std::cerr << "socket error" << std::endl;
+		throw server::syscallErrorException();
+	}
+	bzero(&this->_addr, sizeof(this->_addr));
+	this->_addr.sin_family = AF_INET;
+	this->_addr.sin_port = htons(this->_portNr);
+	this->_addr.sin_addr.s_addr = htonl(INADDR_ANY); // this can be the IP address
+
+	// clear port if it is in use
+	int options = 1;
+	ret = setsockopt(this->_listenFd, SOL_SOCKET, SO_REUSEADDR, &options, sizeof(options));
+	if (ret < 0)
+	{
+		std::cerr << "setsockopt error" << std::endl;
+		throw server::syscallErrorException();
+	}
+
+	ret = bind(this->_listenFd, (sockaddr*)&(this->_addr), sizeof(this->_addr));
+	if (ret < 0)
+	{
+		std::cerr << "bind error: possibly you have multiple servers listening on the same socket" << std::endl;
+		throw server::syscallErrorException();
+	}
+	ret = listen(this->_listenFd, NR_OF_CONNECTIONS);
+	if (ret < 0)
+	{
+		std::cerr << "listen error" << std::endl;
+		throw server::syscallErrorException();
+	}
 }
 
 std::ostream&	operator<<(std::ostream &os, const server &serv)

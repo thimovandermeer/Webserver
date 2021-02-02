@@ -37,12 +37,12 @@ public:
 	void	setErrorPage(std::string &errorPage);
 	void	setIndices(std::string &indices);
 
-	bool						getAutoindex() const;
-	std::string					getMatch() const;
-	std::string					getRoot() const;
-	std::string					getMethod() const;
-	std::string					getErrorPage() const;
-	std::vector<std::string>	getIndices() const;
+	const bool						&getAutoindex() const;
+	const std::string				&getMatch() const;
+	const std::string				&getRoot() const;
+	const std::string				&getMethod() const;
+	const std::string				&getErrorPage() const;
+	const std::vector<std::string>	&getIndices() const;
 
 	void	findValue(std::string &key, std::string line);
 	bool	valueCheck() const;

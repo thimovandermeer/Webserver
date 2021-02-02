@@ -7,11 +7,17 @@ CMakeFiles/webserv.dir/location.cpp.o: ../location.hpp
 CMakeFiles/webserv.dir/parser.cpp.o: ../location.hpp
 CMakeFiles/webserv.dir/parser.cpp.o: ../parser.cpp
 CMakeFiles/webserv.dir/parser.cpp.o: ../server.hpp
+CMakeFiles/webserv.dir/parser.cpp.o: ../serverCluster.hpp
 CMakeFiles/webserv.dir/parser.cpp.o: ../webserv.hpp
 
 CMakeFiles/webserv.dir/server.cpp.o: ../location.hpp
 CMakeFiles/webserv.dir/server.cpp.o: ../server.cpp
 CMakeFiles/webserv.dir/server.cpp.o: ../server.hpp
+
+CMakeFiles/webserv.dir/serverCluster.cpp.o: ../location.hpp
+CMakeFiles/webserv.dir/serverCluster.cpp.o: ../server.hpp
+CMakeFiles/webserv.dir/serverCluster.cpp.o: ../serverCluster.cpp
+CMakeFiles/webserv.dir/serverCluster.cpp.o: ../serverCluster.hpp
 
 CMakeFiles/webserv.dir/testmain.cpp.o: ../testmain.cpp
 CMakeFiles/webserv.dir/testmain.cpp.o: ../webserv.hpp

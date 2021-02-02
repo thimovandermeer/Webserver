@@ -5,12 +5,21 @@
 # include <map>
 # include <stdexcept>
 # include <string>
+# include <sys/socket.h>
+# include <netdb.h>
+
+# define NR_OF_CONNECTIONS 10
 
 class server {
 public:
 	typedef void	(server::*setter)(std::string&);
 
 	class	inputErrorException : public std::exception {
+	public:
+		virtual const char*	what() const throw();
+	};
+
+	class	syscallErrorException : public std::exception {
 	public:
 		virtual const char*	what() const throw();
 	};
@@ -26,6 +35,11 @@ private:
 	std::vector<std::string>		_indices;
 	std::map<std::string, setter>	_typeFunctionMap;
 	std::vector<location>			_locations;
+
+	int					_listenFd;
+	struct sockaddr_in	_addr;
+	int					_connectFd;
+
 public:
 	server();
 	server(server const &original);
@@ -41,20 +55,28 @@ public:
 	void	setServerNames(std::string &names);
 	void	setIndices(std::string &indices);
 
-	int							getPortNr() const;
-	size_t						getMaxBodySize() const;
-	bool						getAutoindex() const;
-	std::string					getRoot() const;
-	std::string					getErrorPage() const;
-	std::string					getHost() const;
-	std::vector<std::string>	getServerNames() const;
-	std::vector<std::string>	getIndices() const;
-	std::vector<location>		getLocations() const;
+	void	setConnectFd(int fd);
+
+	const int						&getPortNr() const;
+	const size_t					&getMaxBodySize() const;
+	const bool						&getAutoindex() const;
+	const std::string				&getRoot() const;
+	const std::string				&getErrorPage() const;
+	const std::string				&getHost() const;
+	const std::vector<std::string>	&getServerNames() const;
+	const std::vector<std::string>	&getIndices() const;
+	const std::vector<location>		&getLocations() const;
+
+	const int						&getListenFd() const;
+	const struct sockaddr_in		&getAddr() const;
+	const int						&getConnectFd() const;
 
 	void	addLocation(location &newLoc);
 	bool	valueCheck() const;
 
 	void	findValue(std::string &key, std::string line);
+
+	void	startListening();
 };
 
 std::ostream&	operator<<(std::ostream &os, const server &serv);

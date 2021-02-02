@@ -224,6 +224,33 @@ server.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/server.cpp.s
 .PHONY : server.cpp.s
 
+serverCluster.o: serverCluster.cpp.o
+
+.PHONY : serverCluster.o
+
+# target to build an object file
+serverCluster.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/serverCluster.cpp.o
+.PHONY : serverCluster.cpp.o
+
+serverCluster.i: serverCluster.cpp.i
+
+.PHONY : serverCluster.i
+
+# target to preprocess a source file
+serverCluster.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/serverCluster.cpp.i
+.PHONY : serverCluster.cpp.i
+
+serverCluster.s: serverCluster.cpp.s
+
+.PHONY : serverCluster.s
+
+# target to generate assembly for a file
+serverCluster.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/serverCluster.cpp.s
+.PHONY : serverCluster.cpp.s
+
 testmain.o: testmain.cpp.o
 
 .PHONY : testmain.o
@@ -269,6 +296,9 @@ help:
 	@echo "... server.o"
 	@echo "... server.i"
 	@echo "... server.s"
+	@echo "... serverCluster.o"
+	@echo "... serverCluster.i"
+	@echo "... serverCluster.s"
 	@echo "... testmain.o"
 	@echo "... testmain.i"
 	@echo "... testmain.s"
