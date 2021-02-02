@@ -44,6 +44,7 @@ class Request{
         std::string getBody() const;
         std::string getContentType();
         std::string getCgiEnv() const;
+		int getStatus() const;
 
         void parseRequest();
         void parseRequestLine();

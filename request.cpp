@@ -92,6 +92,10 @@ std::string Request::getCgiEnv() const{
     return _cgiEnv;
 }
 
+int Request::getStatus() const {
+	return _status;
+}
+
 void Request::parseRequest() {
     //kan van ze allemaal ints maken om hier errors op te vangen
     parseRequestLine();
@@ -110,7 +114,7 @@ void Request::parseRequestLine(){
     pos2 = _request.find(" ");
     _method = _request.substr(0, pos2);
     if (getMethod() == -1){
-        _status = 405;          //or 501?
+        _status = 405;
     }
     pos2+=1;
     pos1 = _request.find(" ", pos2);
@@ -152,8 +156,8 @@ void Request::parseHeaders() {
             pos = length+1;
         length = _request.find("\r\n", pos);
         value = _request.substr(pos, length-pos);
-        if (std::isspace(value.length()))//
-            _request.erase(value.length());//
+        if (std::isspace(value.length()))
+            _request.erase(value.length());
         for (int i = 0; header[i]; i++)
             upperHeader += std::toupper(header[i]);
         std::map<std::string, headerType>::iterator it = _headerMap.find(upperHeader);
