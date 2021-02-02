@@ -1,5 +1,5 @@
 #include "catch.hpp"
-#include "../request.hpp"
+#include "../srcs/request.hpp"
 
 TEST_CASE_METHOD(Request, "Request test", "[Request]"){
     std::string req = "POST /files/?fruit.txt HTTP/1.1\r\n"
@@ -14,3 +14,4 @@ TEST_CASE_METHOD(Request, "Request test", "[Request]"){
     REQUIRE(test.getCgiEnv() == "fruit.txt");
     REQUIRE(test.getContentType() == "NULL");
 }
+

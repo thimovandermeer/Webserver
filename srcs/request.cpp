@@ -1,4 +1,4 @@
-#include "../srcs/request.hpp"
+#include "request.hpp"
 
 std::string methods[8] = {
         "GET",

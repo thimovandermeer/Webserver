@@ -57,34 +57,27 @@ void testHeaders(Response *response)
 
 void	testGetMethod()
 {
-	Request request("POST /path.txt HTTP/1.1\r\n"
+	Request request("GET path.txt HTTP/1.1\r\n"
 					"Host: eloquentjavascript.net\r\n"
 					"Date:leukeserverdit\r\n"
 					"Allow: jajaja \r\n"
 					"Retry_After: waaromdoejijhetniet\r\n"
 				  	"Content_type: .json\r\n"
 					"User_Agent: The Imaginary Browser\r\n\r\n"
-					"hoi\r\n"
+
+					"EPICSICKE SHIUT OUWW\r\n"
 					"hoi\r\n"
 	);
 	request.parseRequest();
-	std::string 	path;
 	Response 		response;
 	RequestConfig	requestConfig;
+	std::string path;
+	path = "path.txt";
+	requestConfig.setpath(path);
 	response.checkMethod(request, requestConfig);
-
 	// hier komen functies die goed gaan dus hier moeten specifieke teksten gereturnt worden
 	std::cout << response.getContent() << std::endl;
 	std::cout << response.getCode() << std::endl;
-	testHeaders(&response);
-	// hier komen functies die fout gaan dus hier moeten specifieke exit codes komen
-	Request request1;
-	request1.setMethod("GET");
-	path = "path.txt";
-	requestConfig.setpath(path);
-	response.checkMethod(request1, requestConfig);
-	std::cout << response.getContent();
-	std::cout << response.getCode();
 	testHeaders(&response);
 }
 

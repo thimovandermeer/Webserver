@@ -2,9 +2,9 @@
 // Created by Thimo Van der meer on 20/01/2021.
 //
 
-#include "../srcs/Response.hpp"
-#include "../srcs/request.hpp"
-#include "../srcs/ResponseHeader.hpp"
+#include "Response.hpp"
+#include "request.hpp"
+#include "ResponseHeader.hpp"
 #include <fstream>
 #include <unistd.h>
 #include <sys/stat.h>
@@ -37,13 +37,13 @@ void Response::checkMethod(Request &request, RequestConfig &requestconfig)
 {
 	_path = requestconfig.getpath();
 	_code = 200;
-//	_contentType = request.getContentType();
+	_contentType = request.getContentType();
 	if(request.getMethod() == 0)
 		getMethod(); // done
 	if(request.getMethod() == 1)
 		headMethod(); // done
 	if(request.getMethod() == 2)
-		postMethod();
+		postMethod(request.getBody());
 	if(request.getMethod() == 3)
 		putMethod(request.getBody()); // done
 }
@@ -67,8 +67,8 @@ void 	Response::writeContent(std::string content)
 	std::ofstream file;
 	_code = 204;
 	const char *c = _path.c_str();
-	if(access(c, F_OK) != 0)
-		_code = 404;
+	if(access(c, F_OK) == 0)
+		_code = 201;
 	file.open(_path, std::ofstream::out | std::ofstream::trunc);
 	if(!file.is_open())
 		_code = 403;
@@ -78,28 +78,40 @@ void 	Response::writeContent(std::string content)
 }
 void Response::getMethod()
 {
-	ResponseHeader header(_content, _path, _code, _contentType);
 	readContent();
+	ResponseHeader header(_content, _path, _code, _contentType);
 	_response = header.getHeader(_code) + _content;
 
 }
 
 void Response::headMethod()
 {
-	ResponseHeader header(_content, _path, _code, _contentType);
 	readContent();
+	ResponseHeader header(_content, _path, _code, _contentType);
   	_response = header.getHeader(_code);
 }
 
-void Response::postMethod()
+void Response::postMethod(std::string content)
 {
+	std::ofstream file;
+	_code = 204;
+	const char *c = _path.c_str();
+	if(access(c, F_OK) == 0)
+		_code = 201;
+	file.open(_path, std::ios::out | std::ios::app);
+	if(!file.is_open())
+		_code = 403;
+	file << content;
+	file.close();
+	ResponseHeader header(content, _path, _code, _contentType);
+	_response = header.getHeader(_code); // here we got a potential bug
 	// need more knowledge about CGI
 }
 
 void Response::putMethod(std::string content)
 {
-	ResponseHeader header(_content, _path, _code, _contentType);
 	writeContent(content);
+	ResponseHeader header(content, _path, _code, _contentType);
 	_response = header.getHeader(_code); // here we got a potential bug
 }
 

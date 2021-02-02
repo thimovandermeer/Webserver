@@ -50,10 +50,22 @@ ResponseHeader::~ResponseHeader()
 
 ResponseHeader &ResponseHeader::operator=(const ResponseHeader &src)
 {
-	if (this != &src)
-	{
-		*this = src;
-	}
+	_acceptCharsets = src._acceptCharsets;
+	_acceptLanguage = src._acceptLanguage;
+	_allow = src._allow;
+	_authorization = src._authorization;
+	_contentLanguage =src._contentLanguage;
+	_contentLength = src._contentLength;
+	_contentType = src._contentType;
+	_date = src._date;
+	_host = src._host;
+	_lastModified = src._lastModified;
+	_location = src._location;
+	_referer = src._referer;
+	_retryAfter = src._retryAfter;
+	_server = src._server;
+	_transferEncoding = src._transferEncoding;
+	_wwwAuthenticate = src._wwwAuthenticate;
 	return (*this);
 }
 
@@ -76,6 +88,8 @@ std::string		ResponseHeader::createStatusMessage(int code)
 		return ("OK");
 	else if (code == 201)
 		return ("Created");
+	else if (code == 204)
+		return ("No Content");
 	else if (code == 403)
 		return ("Forbidden");
 	else if (code == 404)
@@ -123,15 +137,6 @@ void ResponseHeader::setContentLocation(const std::string &path, int code)
 	if (code != 404)
 		_contentLocation = path;
 }
-//void ResponseHeader::setAcceptCharsets(const std::string &acceptCharsets)
-//{
-//
-//}
-
-//void ResponseHeader::setAcceptLanguage(const std::string &acceptLanguage)
-//{
-//
-//}
 
 void ResponseHeader::setAllow(const int &code)
 {
@@ -142,11 +147,6 @@ void ResponseHeader::setAllow(const int &code)
 	else
 		_allow = "";
 }
-
-//void ResponseHeader::setAuthorization(const std::string &authorization)
-//{
-//
-//}
 
 void ResponseHeader::setContentLanguage()
 {
@@ -172,11 +172,6 @@ void ResponseHeader::setDate()
 	_date = buf; // might cast in to a string lets check later
 }
 
-//void ResponseHeader::setHost(const std::string &host)
-//{
-//
-//}
-
 void ResponseHeader::setLastModified(const std::string &path)
 {
 	struct stat stats;
@@ -198,11 +193,6 @@ void ResponseHeader::setLocation(const std::string &path, int code)
 		_location = path;
 	}
 }
-
-//void ResponseHeader::setReferer(const std::string &referer)
-//{
-//
-//}
 
 void ResponseHeader::setServer()
 {
@@ -238,6 +228,93 @@ void ResponseHeader::setRetryAfter(int code, int number)
 	{
 		_retryAfter = std::to_string(number);
 	}
+	else
+		_retryAfter = "";
 }
 
-// equal operators etc
+// Getters for testing
+
+const std::string &ResponseHeader::getAcceptCharsets() const
+{
+	return _acceptCharsets;
+}
+
+const std::string &ResponseHeader::getAcceptLanguage() const
+{
+	return _acceptLanguage;
+}
+
+const std::string &ResponseHeader::getAllow() const
+{
+	return _allow;
+}
+
+const std::string &ResponseHeader::getAuthorization() const
+{
+	return _authorization;
+}
+
+const std::string &ResponseHeader::getContentLanguage() const
+{
+	return _contentLanguage;
+}
+
+const std::string &ResponseHeader::getContentLocation() const
+{
+	return _contentLocation;
+}
+
+const std::string &ResponseHeader::getContentLength() const
+{
+	return _contentLength;
+}
+
+const std::string &ResponseHeader::getContentType() const
+{
+	return _contentType;
+}
+
+const std::string &ResponseHeader::getDate() const
+{
+	return _date;
+}
+
+const std::string &ResponseHeader::getHost() const
+{
+	return _host;
+}
+
+const std::string &ResponseHeader::getLastModified() const
+{
+	return _lastModified;
+}
+
+const std::string &ResponseHeader::getLocation() const
+{
+	return _location;
+}
+
+const std::string &ResponseHeader::getReferer() const
+{
+	return _referer;
+}
+
+const std::string &ResponseHeader::getRetryAfter() const
+{
+	return _retryAfter;
+}
+
+const std::string &ResponseHeader::getServer() const
+{
+	return _server;
+}
+
+const std::string &ResponseHeader::getTransferEncoding() const
+{
+	return _transferEncoding;
+}
+
+const std::string &ResponseHeader::getWwwAuthenticate() const
+{
+	return _wwwAuthenticate;
+}

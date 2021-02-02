@@ -22,19 +22,14 @@ public:
 
 private:
 	// private setter functions
-	void 			setAcceptCharsets(const std::string &);
-	void 			setAcceptLanguage(const std::string &);
 	void 			setAllow(const int &code);
-	void 			setAuthorization(const std::string &);
 	void 			setContentLanguage();
 	void 			setContentLength(int length);
 	void 			setContentLocation(const std::string &path, int code);
 	void 			setContentType(const std::string &contentType);
 	void 			setDate();
-	void 			setHost(const std::string &host);
 	void 			setLastModified(const std::string &path);
 	void 			setLocation(const std::string &path, int code);
-	void 			setReferer(const std::string &referer);
 	void 			setServer();
 	void 			setTransferEncoding();
 	void 			setRetryAfter(int code, int number);
@@ -47,6 +42,39 @@ private:
 public:
 	std::string getHeader(int code);
 
+	const std::string &getAcceptCharsets() const;
+
+	const std::string &getAcceptLanguage() const;
+
+	const std::string &getAllow() const;
+
+	const std::string &getAuthorization() const;
+
+	const std::string &getContentLanguage() const;
+
+	const std::string &getContentLocation() const;
+
+	const std::string &getContentLength() const;
+
+	const std::string &getContentType() const;
+
+	const std::string &getDate() const;
+
+	const std::string &getHost() const;
+
+	const std::string &getLastModified() const;
+
+	const std::string &getLocation() const;
+
+	const std::string &getReferer() const;
+
+	const std::string &getRetryAfter() const;
+
+	const std::string &getServer() const;
+
+	const std::string &getTransferEncoding() const;
+
+	const std::string &getWwwAuthenticate() const;
 
 
 private:

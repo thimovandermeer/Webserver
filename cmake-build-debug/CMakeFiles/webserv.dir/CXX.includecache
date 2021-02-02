@@ -21,7 +21,7 @@ string
 -
 ostream
 -
-../srcs/request.hpp
+request.hpp
 /Users/thimovandermeer/CLionProjects/Webserver/srcs/request.hpp
 
 /Users/thimovandermeer/CLionProjects/Webserver/srcs/request.hpp

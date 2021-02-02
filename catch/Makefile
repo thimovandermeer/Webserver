@@ -1,5 +1,5 @@
 NAME = catch_test
-SRCS = catch_main.cpp test_request.cpp ../request.cpp
+SRCS = catch_main.cpp test_response.cpp ../srcs/request.cpp ../srcs/Response.cpp ../srcs/ResponseHeader.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 CXXFLAGS = -std=c++11

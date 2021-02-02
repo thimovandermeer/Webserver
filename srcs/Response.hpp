@@ -8,7 +8,7 @@
 
 #include <string>
 #include <ostream>
-#include "../srcs/request.hpp"
+#include "request.hpp"
 // this needs to be deleted when request is been made
 class RequestConfig{
 public:
@@ -50,7 +50,7 @@ private:
 	// functions for each different method
 	void 	getMethod();
 	void 	headMethod();
-	void 	postMethod();
+	void 	postMethod(std::string content);
 	void 	putMethod(std::string content);
 
 	// helper functions
