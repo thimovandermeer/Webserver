@@ -91,10 +91,8 @@ location	getLocation(std::string &startLine, std::fstream &configFile, int &line
 void	startParsing(std::fstream& configFile, serverCluster &cluster)
 {
 	std::string			line;
-//	std::vector<server>	*serverCollection;
 	int					lineNr = 0;
 
-//	serverCollection = new std::vector<server>;
 	while (std::getline(configFile, line))
 	{
 		lineNr++;
@@ -182,4 +180,5 @@ void	openConfig(int ac, char **av)
 	{
 		leaksExit(e.what(), 1);
 	}
+	cluster.startListening();
 }

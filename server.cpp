@@ -6,6 +6,7 @@
 #include <iostream>
 #include <iomanip>
 #include <unistd.h>
+#include <sys/socket.h>
 
 const char	*server::inputErrorException::what() const throw()
 {
@@ -244,6 +245,18 @@ void	server::startListening()
 	if (ret < 0)
 	{
 		std::cerr << "listen error" << std::endl;
+		throw server::syscallErrorException();
+	}
+}
+
+void	server::run()
+{
+	struct sockaddr connectingAddr;
+	socklen_t		addressLen;
+	this->_connectFd = accept(this->_listenFd, &connectingAddr, &addressLen);
+	if (this->_connectFd < 0)
+	{
+		std::cerr << "accept error" << std::endl;
 		throw server::syscallErrorException();
 	}
 }

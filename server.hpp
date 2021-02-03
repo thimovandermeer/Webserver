@@ -77,6 +77,8 @@ public:
 	void	findValue(std::string &key, std::string line);
 
 	void	startListening();
+
+	void	run();
 };
 
 std::ostream&	operator<<(std::ostream &os, const server &serv);
