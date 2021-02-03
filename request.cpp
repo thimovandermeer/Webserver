@@ -78,8 +78,8 @@ std::string Request::getBody() const {
 std::string Request::getContentType()  {
     if (_defHeaders.begin() == _defHeaders.end())
         return ("NULL");
-    std::map<std::string, headerType>::iterator it = _headerMap.find("CONTENT_TYPE");
-    std::map<headerType, std::string>::iterator it_h = _defHeaders.find(it->second);
+//    std::map<std::string, headerType>::iterator it = _headerMap.find("CONTENT_TYPE");
+    std::map<headerType, std::string>::iterator it_h = _defHeaders.find(CONTENT_TYPE);
     if (it_h == _defHeaders.end())
         return ("NULL");
     return (it_h->second);
@@ -97,7 +97,11 @@ void Request::parseRequest() {
     //kan van ze allemaal ints maken om hier errors op te vangen
     parseRequestLine();
     parseHeaders();
-    parseBody();
+    if (_defHeaders.find(TRANSFER_ENCODING) != _defHeaders.end())
+        parseBody();
+    else
+        _body = _request;
+    _request.clear();
 }
 
 void Request::parseRequestLine(){
