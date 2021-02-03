@@ -7,6 +7,7 @@
 #include <iomanip>
 #include <unistd.h>
 #include <sys/socket.h>
+#include "request.hpp"
 
 const char	*server::inputErrorException::what() const throw()
 {
@@ -259,6 +260,7 @@ void	server::run()
 		std::cerr << "accept error" << std::endl;
 		throw server::syscallErrorException();
 	}
+	request.
 }
 
 std::ostream&	operator<<(std::ostream &os, const server &serv)

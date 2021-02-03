@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../srcs/request.hpp"
-#include "../srcs/Response.hpp"
-#include "../srcs/utils.hpp"
+#include "../srcs/Request/request.hpp"
+#include "../srcs/Response/Response.hpp"
+#include "../srcs/Utils/utils.hpp"
 
 #include <stdio.h>
 #include <fstream>

@@ -1,5 +1,5 @@
 #include "catch.hpp"
-#include "../srcs/request.hpp"
+#include "../srcs/Request/request.hpp"
 
 TEST_CASE_METHOD(Request, "Request test", "[Request]"){
     std::string req = "POST /files/?fruit.txt HTTP/1.1\r\n"

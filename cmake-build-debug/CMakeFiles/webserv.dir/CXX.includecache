@@ -6,23 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/thimovandermeer/CLionProjects/Webserver/Tests/response_main.cpp
-../srcs/request.hpp
-/Users/thimovandermeer/CLionProjects/Webserver/srcs/request.hpp
-../srcs/Response.hpp
-/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response.hpp
-../srcs/utils.hpp
-/Users/thimovandermeer/CLionProjects/Webserver/srcs/utils.hpp
-stdio.h
--
-fstream
--
-
-/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response.hpp
-string
--
-ostream
--
+/Users/thimovandermeer/CLionProjects/Webserver/srcs/request.cpp
 request.hpp
 /Users/thimovandermeer/CLionProjects/Webserver/srcs/request.hpp
 
@@ -39,6 +23,4 @@ vector
 -
 algorithm
 -
-
-/Users/thimovandermeer/CLionProjects/Webserver/srcs/utils.hpp
 

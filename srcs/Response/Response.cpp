@@ -3,12 +3,12 @@
 //
 
 #include "Response.hpp"
-#include "request.hpp"
+#include "../Request/request.hpp"
 #include "ResponseHeader.hpp"
 #include <fstream>
 #include <unistd.h>
 #include <sys/stat.h>
-#include "utils.hpp"
+#include "../Utils/utils.hpp"
 
 
 Response::Response()

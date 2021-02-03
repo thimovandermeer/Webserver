@@ -1,6 +1,6 @@
 #ifndef SERVERCLUSTER_HPP
 # define SERVERCLUSTER_HPP
-# include "server.hpp"
+# include "../Server/server.hpp"
 
 class serverCluster {
 public:

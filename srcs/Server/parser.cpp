@@ -1,6 +1,6 @@
-#include "webserv.hpp"
+#include "../webserv.hpp"
 #include "server.hpp"
-#include "serverCluster.hpp"
+#include "../Cluster/serverCluster.hpp"
 
 bool	isEmptyLine(std::string line)
 {

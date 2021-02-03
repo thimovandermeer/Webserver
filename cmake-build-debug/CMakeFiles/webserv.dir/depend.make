@@ -23,5 +23,14 @@ CMakeFiles/webserv.dir/srcs/location.cpp.o: ../srcs/location.hpp
 CMakeFiles/webserv.dir/srcs/request.cpp.o: ../srcs/request.cpp
 CMakeFiles/webserv.dir/srcs/request.cpp.o: ../srcs/request.hpp
 
+CMakeFiles/webserv.dir/srcs/server.cpp.o: ../srcs/location.hpp
+CMakeFiles/webserv.dir/srcs/server.cpp.o: ../srcs/server.cpp
+CMakeFiles/webserv.dir/srcs/server.cpp.o: ../srcs/server.hpp
+
+CMakeFiles/webserv.dir/srcs/serverCluster.cpp.o: ../srcs/location.hpp
+CMakeFiles/webserv.dir/srcs/serverCluster.cpp.o: ../srcs/server.hpp
+CMakeFiles/webserv.dir/srcs/serverCluster.cpp.o: ../srcs/serverCluster.cpp
+CMakeFiles/webserv.dir/srcs/serverCluster.cpp.o: ../srcs/serverCluster.hpp
+
 CMakeFiles/webserv.dir/srcs/utils.cpp.o: ../srcs/utils.cpp
 

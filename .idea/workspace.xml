@@ -38,7 +38,41 @@
   <component name="ChangeListManager">
     <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="Response and request part ready for first run">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/response_main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/response_main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catch/test_request.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/catch/test_request.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catch/test_response.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/catch/test_response.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/Tests/response_main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/Tests/response_main.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/request.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/request.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/webserv" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/webserv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/webserv.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/webserv.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Response.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Response.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/ResponseHeader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/ResponseHeader.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/ResponseHeader.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/ResponseHeader.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/location.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/location.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/location.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/location.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/parser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/parser.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/request.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Request/request.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/request.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Request/request.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/server.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/server.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/server.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/server.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/serverCluster.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/serverCluster.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Cluster/serverCluster.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Utils/utils.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/utils.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Utils/utils.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +116,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -90,11 +124,11 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/srcs" />
-      <recent name="$PROJECT_DIR$/catch" />
-      <recent name="$PROJECT_DIR$/Tests" />
-      <recent name="$PROJECT_DIR$/tests" />
-      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/srcs/Utils" />
+      <recent name="$PROJECT_DIR$/srcs/Cluster" />
+      <recent name="$PROJECT_DIR$/srcs/Server" />
+      <recent name="$PROJECT_DIR$/srcs/Request" />
+      <recent name="$PROJECT_DIR$/srcs/Response" />
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.webserv">

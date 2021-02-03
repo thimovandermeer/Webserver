@@ -83,34 +83,52 @@
 		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/Tests/response_main.cpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response.cpp">
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Cluster/serverCluster.cpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response.hpp">
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Cluster/serverCluster.hpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/ResponseHeader.cpp">
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Request/request.cpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/ResponseHeader.hpp">
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Request/request.hpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/location.cpp">
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response/Response.cpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/location.hpp">
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response/Response.hpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/request.cpp">
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response/ResponseHeader.cpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/request.hpp">
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response/ResponseHeader.hpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/utils.cpp">
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Server/location.cpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/utils.hpp">
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Server/location.hpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Server/server.cpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Server/server.hpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Utils/utils.cpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Utils/utils.hpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/webserv.cpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/webserv.hpp">
 			<Option target="webserv"/>
 		</Unit>
 		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/CMakeLists.txt">

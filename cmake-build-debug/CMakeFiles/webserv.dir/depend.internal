@@ -23,5 +23,14 @@ CMakeFiles/webserv.dir/srcs/location.cpp.o
 CMakeFiles/webserv.dir/srcs/request.cpp.o
  /Users/thimovandermeer/CLionProjects/Webserver/srcs/request.cpp
  /Users/thimovandermeer/CLionProjects/Webserver/srcs/request.hpp
+CMakeFiles/webserv.dir/srcs/server.cpp.o
+ /Users/thimovandermeer/CLionProjects/Webserver/srcs/location.hpp
+ /Users/thimovandermeer/CLionProjects/Webserver/srcs/server.cpp
+ /Users/thimovandermeer/CLionProjects/Webserver/srcs/server.hpp
+CMakeFiles/webserv.dir/srcs/serverCluster.cpp.o
+ /Users/thimovandermeer/CLionProjects/Webserver/srcs/location.hpp
+ /Users/thimovandermeer/CLionProjects/Webserver/srcs/server.hpp
+ /Users/thimovandermeer/CLionProjects/Webserver/srcs/serverCluster.cpp
+ /Users/thimovandermeer/CLionProjects/Webserver/srcs/serverCluster.hpp
 CMakeFiles/webserv.dir/srcs/utils.cpp.o
  /Users/thimovandermeer/CLionProjects/Webserver/srcs/utils.cpp
