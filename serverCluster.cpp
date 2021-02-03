@@ -52,7 +52,8 @@ void	serverCluster::startListening()
 	timeout.tv_sec = 1;
 	timeout.tv_usec = 0; // timeout of 1 sec
 
-	while (true)
+	int n = 1; // this is just to get rid of clang-tidy for now
+	while (n > 0)
 	{
 		select(this->_nrOfServers * NR_OF_CONNECTIONS + 1, &this->readFds, NULL, NULL, &timeout);
 
@@ -63,7 +64,14 @@ void	serverCluster::startListening()
 			if (FD_ISSET(s.getListenFd(), &this->readFds))
 			{
 				s.run();
+				FD_SET(s.getConnectFd(), &this->writeFds);
 			}
+
+//			if (FD_ISSET(s.getConnectFd(), &this->writeFds))
+//			{
+//				// write response
+//			}
+
 			it++;
 		}
 	}

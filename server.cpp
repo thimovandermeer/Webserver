@@ -37,8 +37,8 @@ server::server(server const &original) : _portNr(), _maxBodySize(), _autoindex()
 
 server::~server()
 {
-	close(this->_listenFd);
-	close(this->_connectFd);
+	close(this->_socketFd);
+	close(this->_acceptFd);
 }
 
 server&	server::operator=(server const &original)
@@ -114,7 +114,7 @@ void	server::setIndices(std::string &indices)
 
 void	server::setConnectFd(int fd)
 {
-	this->_connectFd = fd;
+	this->_acceptFd = fd;
 }
 
 const int			&server::getPortNr() const
@@ -164,7 +164,7 @@ const std::vector<location>		&server::getLocations() const
 
 const int	&server::getListenFd() const
 {
-	return (this->_listenFd);
+	return (this->_socketFd);
 }
 
 const struct sockaddr_in	&server::getAddr() const
@@ -174,7 +174,7 @@ const struct sockaddr_in	&server::getAddr() const
 
 const int	&server::getConnectFd() const
 {
-	return(this->_connectFd);
+	return(this->_acceptFd);
 }
 
 bool	server::valueCheck() const
@@ -215,8 +215,8 @@ void	server::startListening()
 {
 	int	ret;
 
-	this->_listenFd = socket(PF_INET, SOCK_STREAM, 0);
-	if (this->_listenFd < 0)
+	this->_socketFd = socket(PF_INET, SOCK_STREAM, 0);
+	if (this->_socketFd < 0)
 	{
 		std::cerr << "socket error" << std::endl;
 		throw server::syscallErrorException();
@@ -228,20 +228,20 @@ void	server::startListening()
 
 	// clear port if it is in use
 	int options = 1;
-	ret = setsockopt(this->_listenFd, SOL_SOCKET, SO_REUSEADDR, &options, sizeof(options));
+	ret = setsockopt(this->_socketFd, SOL_SOCKET, SO_REUSEADDR, &options, sizeof(options));
 	if (ret < 0)
 	{
 		std::cerr << "setsockopt error" << std::endl;
 		throw server::syscallErrorException();
 	}
 
-	ret = bind(this->_listenFd, (sockaddr*)&(this->_addr), sizeof(this->_addr));
+	ret = bind(this->_socketFd, (sockaddr*)&(this->_addr), sizeof(this->_addr));
 	if (ret < 0)
 	{
 		std::cerr << "bind error: possibly you have multiple servers listening on the same socket" << std::endl;
 		throw server::syscallErrorException();
 	}
-	ret = listen(this->_listenFd, NR_OF_CONNECTIONS);
+	ret = listen(this->_socketFd, NR_OF_CONNECTIONS);
 	if (ret < 0)
 	{
 		std::cerr << "listen error" << std::endl;
@@ -253,8 +253,8 @@ void	server::run()
 {
 	struct sockaddr connectingAddr;
 	socklen_t		addressLen;
-	this->_connectFd = accept(this->_listenFd, &connectingAddr, &addressLen);
-	if (this->_connectFd < 0)
+	this->_acceptFd = accept(this->_socketFd, &connectingAddr, &addressLen);
+	if (this->_acceptFd < 0)
 	{
 		std::cerr << "accept error" << std::endl;
 		throw server::syscallErrorException();

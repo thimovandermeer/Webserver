@@ -36,9 +36,9 @@ private:
 	std::map<std::string, setter>	_typeFunctionMap;
 	std::vector<location>			_locations;
 
-	int					_listenFd;
+	int					_socketFd;
 	struct sockaddr_in	_addr;
-	int					_connectFd;
+	int					_acceptFd;
 
 public:
 	server();
