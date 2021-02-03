@@ -45,6 +45,7 @@ class Request{
         std::string getContentType();
 		std::string getHost();
         std::string getCgiEnv() const;
+		int getStatus() const;
 
         void parseRequest();
         void parseRequestLine();
@@ -58,10 +59,11 @@ class Request{
         std::string _uri;
         std::string _version;
         std::string _cgiEnv;
+        std::string _body;
         std::map<std::string, headerType>	_headerMap;
         std::map<headerType, std::string>   _defHeaders;
         int         _status;
-        bool        _body;
+        bool        _body_bool;
 } ;
 
 #endif
