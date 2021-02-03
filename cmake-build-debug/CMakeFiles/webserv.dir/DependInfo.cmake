@@ -4,11 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/merelmourik/Desktop/webserv_git/Tests/response_main.cpp" "/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/CMakeFiles/webserv.dir/Tests/response_main.cpp.o"
-  "/Users/merelmourik/Desktop/webserv_git/srcs/Response.cpp" "/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response.cpp.o"
-  "/Users/merelmourik/Desktop/webserv_git/srcs/ResponseHeader.cpp" "/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/CMakeFiles/webserv.dir/srcs/ResponseHeader.cpp.o"
-  "/Users/merelmourik/Desktop/webserv_git/srcs/request.cpp" "/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/CMakeFiles/webserv.dir/srcs/request.cpp.o"
-  "/Users/merelmourik/Desktop/webserv_git/srcs/utils.cpp" "/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/CMakeFiles/webserv.dir/srcs/utils.cpp.o"
+  "/Users/thimovandermeer/CLionProjects/Webserver/Tests/response_main.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/Tests/response_main.cpp.o"
+  "/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response.cpp.o"
+  "/Users/thimovandermeer/CLionProjects/Webserver/srcs/ResponseHeader.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/ResponseHeader.cpp.o"
+  "/Users/thimovandermeer/CLionProjects/Webserver/srcs/location.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/location.cpp.o"
+  "/Users/thimovandermeer/CLionProjects/Webserver/srcs/parser.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/parser.cpp.o"
+  "/Users/thimovandermeer/CLionProjects/Webserver/srcs/request.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/request.cpp.o"
+  "/Users/thimovandermeer/CLionProjects/Webserver/srcs/server.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/server.cpp.o"
+  "/Users/thimovandermeer/CLionProjects/Webserver/srcs/utils.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/utils.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

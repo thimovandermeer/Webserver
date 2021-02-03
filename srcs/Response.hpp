@@ -9,20 +9,8 @@
 #include <string>
 #include <ostream>
 #include "request.hpp"
+#include "server.hpp"
 // this needs to be deleted when request is been made
-class RequestConfig{
-public:
-	std::string getpath(){
-		return _path;
-	};
-	void 		setpath(std::string &path){
-		_path = path;
-	}
-private:
-	std::string _path;
-};
-// Dont forget to delete this :)
-
 
 class Response {
 public:
@@ -32,7 +20,7 @@ public:
 
 	Response &operator=(const Response &src);
 
-	void 		checkMethod(Request &request, RequestConfig &requestconfig);
+	void 		checkMethod(Request &request, server &server);
 
 	friend std::ostream &operator<<(std::ostream &os, const Response &response);
 
@@ -48,10 +36,11 @@ private:
 	int 		_code;
 private:
 	// functions for each different method
-	void 	getMethod();
-	void 	headMethod();
-	void 	postMethod(std::string content);
-	void 	putMethod(std::string content);
+	void 		getMethod();
+	std::string	getPath(server &server, Request &request);
+	void 		headMethod();
+	void 		postMethod(std::string content);
+	void 		putMethod(std::string content);
 
 	// helper functions
 	void 	readContent();

@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/merelmourik/Desktop/webserv_git/cmake-build-debug"/>
+				<Option working_dir="/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/merelmourik/Desktop/webserv_git/cmake-build-debug"/>
+				<Option working_dir="/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/merelmourik/Desktop/webserv_git/cmake-build-debug"/>
+				<Option working_dir="/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="webserv">
-				<Option output="/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/webserv" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/merelmourik/Desktop/webserv_git/cmake-build-debug"/>
+				<Option output="/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/webserv" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -52,15 +52,15 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/Makefile&quot;  VERBOSE=1 webserv"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 webserv"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="webserv/fast">
-				<Option output="/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/webserv" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/merelmourik/Desktop/webserv_git/cmake-build-debug"/>
+				<Option output="/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/webserv" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -73,41 +73,56 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/Makefile&quot;  VERBOSE=1 webserv/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 webserv/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/merelmourik/Desktop/webserv_git/Tests/response_main.cpp">
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/Tests/response_main.cpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/merelmourik/Desktop/webserv_git/srcs/Response.cpp">
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response.cpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/merelmourik/Desktop/webserv_git/srcs/Response.hpp">
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response.hpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/merelmourik/Desktop/webserv_git/srcs/ResponseHeader.cpp">
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/ResponseHeader.cpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/merelmourik/Desktop/webserv_git/srcs/ResponseHeader.hpp">
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/ResponseHeader.hpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/merelmourik/Desktop/webserv_git/srcs/request.cpp">
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/location.cpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/merelmourik/Desktop/webserv_git/srcs/request.hpp">
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/location.hpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/merelmourik/Desktop/webserv_git/srcs/utils.cpp">
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/parser.cpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/merelmourik/Desktop/webserv_git/srcs/utils.hpp">
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/request.cpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/merelmourik/Desktop/webserv_git/CMakeLists.txt">
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/request.hpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/server.cpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/server.hpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/utils.cpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/utils.hpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

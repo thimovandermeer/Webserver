@@ -8,7 +8,8 @@
 #include <fstream>
 #include <unistd.h>
 #include <sys/stat.h>
-
+#include "utils.hpp"
+#include "server.hpp"
 
 Response::Response()
 {
@@ -33,9 +34,27 @@ Response &Response::operator=(const Response &src)
 	return (*this);
 }
 
-void Response::checkMethod(Request &request, RequestConfig &requestconfig)
+std::string Response::getPath(server &server, Request &request)
 {
-	_path = requestconfig.getpath();
+	// from the server side i need the root
+	std::string root = server.getRoot();
+
+	// from the request side i need the path
+	std::string path =	request.getUri();
+	std::string location = request.getHost();
+	// the return value will be root + alias + path.substr(locationName.length)
+	std::string ret;
+	if (location != "")
+		ret = root + path.substr(location.length());
+	else
+		ret = root + path;
+	std::string temp;
+	temp = removeAdjacentSlashes(ret);
+	return temp;
+}
+void Response::checkMethod(Request &request, server &server)
+{
+	_path = getPath(server, request);
 	_code = 200;
 	_contentType = request.getContentType();
 	if(request.getMethod() == 0)

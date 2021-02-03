@@ -68,10 +68,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/merelmourik/Desktop/webserv_git
+CMAKE_SOURCE_DIR = /Users/thimovandermeer/CLionProjects/Webserver
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/merelmourik/Desktop/webserv_git/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -100,9 +100,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/merelmourik/Desktop/webserv_git/cmake-build-debug/CMakeFiles /Users/merelmourik/Desktop/webserv_git/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles /Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/merelmourik/Desktop/webserv_git/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -224,6 +224,60 @@ srcs/ResponseHeader.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/ResponseHeader.cpp.s
 .PHONY : srcs/ResponseHeader.cpp.s
 
+srcs/location.o: srcs/location.cpp.o
+
+.PHONY : srcs/location.o
+
+# target to build an object file
+srcs/location.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/location.cpp.o
+.PHONY : srcs/location.cpp.o
+
+srcs/location.i: srcs/location.cpp.i
+
+.PHONY : srcs/location.i
+
+# target to preprocess a source file
+srcs/location.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/location.cpp.i
+.PHONY : srcs/location.cpp.i
+
+srcs/location.s: srcs/location.cpp.s
+
+.PHONY : srcs/location.s
+
+# target to generate assembly for a file
+srcs/location.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/location.cpp.s
+.PHONY : srcs/location.cpp.s
+
+srcs/parser.o: srcs/parser.cpp.o
+
+.PHONY : srcs/parser.o
+
+# target to build an object file
+srcs/parser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/parser.cpp.o
+.PHONY : srcs/parser.cpp.o
+
+srcs/parser.i: srcs/parser.cpp.i
+
+.PHONY : srcs/parser.i
+
+# target to preprocess a source file
+srcs/parser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/parser.cpp.i
+.PHONY : srcs/parser.cpp.i
+
+srcs/parser.s: srcs/parser.cpp.s
+
+.PHONY : srcs/parser.s
+
+# target to generate assembly for a file
+srcs/parser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/parser.cpp.s
+.PHONY : srcs/parser.cpp.s
+
 srcs/request.o: srcs/request.cpp.o
 
 .PHONY : srcs/request.o
@@ -250,6 +304,33 @@ srcs/request.s: srcs/request.cpp.s
 srcs/request.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/request.cpp.s
 .PHONY : srcs/request.cpp.s
+
+srcs/server.o: srcs/server.cpp.o
+
+.PHONY : srcs/server.o
+
+# target to build an object file
+srcs/server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/server.cpp.o
+.PHONY : srcs/server.cpp.o
+
+srcs/server.i: srcs/server.cpp.i
+
+.PHONY : srcs/server.i
+
+# target to preprocess a source file
+srcs/server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/server.cpp.i
+.PHONY : srcs/server.cpp.i
+
+srcs/server.s: srcs/server.cpp.s
+
+.PHONY : srcs/server.s
+
+# target to generate assembly for a file
+srcs/server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/server.cpp.s
+.PHONY : srcs/server.cpp.s
 
 srcs/utils.o: srcs/utils.cpp.o
 
@@ -296,9 +377,18 @@ help:
 	@echo "... srcs/ResponseHeader.o"
 	@echo "... srcs/ResponseHeader.i"
 	@echo "... srcs/ResponseHeader.s"
+	@echo "... srcs/location.o"
+	@echo "... srcs/location.i"
+	@echo "... srcs/location.s"
+	@echo "... srcs/parser.o"
+	@echo "... srcs/parser.i"
+	@echo "... srcs/parser.s"
 	@echo "... srcs/request.o"
 	@echo "... srcs/request.i"
 	@echo "... srcs/request.s"
+	@echo "... srcs/server.o"
+	@echo "... srcs/server.i"
+	@echo "... srcs/server.s"
 	@echo "... srcs/utils.o"
 	@echo "... srcs/utils.i"
 	@echo "... srcs/utils.s"

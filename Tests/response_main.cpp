@@ -13,7 +13,7 @@
 #include "../srcs/request.hpp"
 #include "../srcs/Response.hpp"
 #include "../srcs/utils.hpp"
-
+#include "../srcs/server.hpp"
 
 #include <stdio.h>
 // in here we put all our tests
@@ -70,11 +70,8 @@ void	testGetMethod()
 	);
 	request.parseRequest();
 	Response 		response;
-	RequestConfig	requestConfig;
-	std::string path;
-	path = "path.txt";
-	requestConfig.setpath(path);
-	response.checkMethod(request, requestConfig);
+	server 			server;
+	response.checkMethod(request, server);
 	// hier komen functies die goed gaan dus hier moeten specifieke teksten gereturnt worden
 	std::cout << response.getContent() << std::endl;
 	std::cout << response.getCode() << std::endl;
