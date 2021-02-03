@@ -1,9 +1,5 @@
 #include "request.hpp"
 
-//ik kan alle variables ook in een struct zetten en de struct returnen
-//in de hoofdfunctie (parseRequest oid), dan hoeven er daarna geen getters
-//meer gebruikt te worden
-
 std::string methods[8] = {
         "GET",
         "HEAD",
@@ -26,6 +22,7 @@ Request &Request::operator=(const Request &original) {
     this->_headerMap = original._headerMap;
     this->_defHeaders = original._defHeaders;
     this->_status = original._status;
+    this->_body_bool = original._body_bool;
     this->_body = original._body;
     return (*this);
 }
@@ -73,9 +70,9 @@ std::map<headerType, std::string> Request::getHeaders() const {
 }
 
 std::string Request::getBody() const {
-    if (_body == true)
-            return _request;
-    return ("NULL");            //error van maken
+    if (_body_bool == true)
+            return _body;
+    return ("NULL");
 }
 
 std::string Request::getContentType()  {
@@ -103,14 +100,12 @@ void Request::parseRequest() {
     parseBody();
 }
 
-//hoe gaan we om als het niet HTTP//1.1 is?
-// RFC checken --> tweede
 void Request::parseRequestLine(){
     size_t      pos1;
     size_t      pos2;
 
     if (_request[0] == ' ' || _request.find("\r\n") == std::string::npos)
-        _status = 400;          //error van maken
+        _status = 400;
     pos2 = _request.find(" ");
     _method = _request.substr(0, pos2);
     if (getMethod() == -1){
@@ -128,7 +123,7 @@ void Request::parseRequestLine(){
         _uri = _request.substr(pos2+1, pos1-pos2-1);
     pos1 = _request.find("\r\n");
     _version = _request.substr(pos2+1, pos1-pos2-1);
-    if (_version.compare("HTTP/1.1") != 0)         //error
+    if (_version.compare("HTTP/1.1") != 0)
         _status = 400;
     _request = _request.substr(pos1+2, std::string::npos);
 }
@@ -161,34 +156,33 @@ void Request::parseHeaders() {
         for (int i = 0; header[i]; i++)
             upperHeader += std::toupper(header[i]);
         std::map<std::string, headerType>::iterator it = _headerMap.find(upperHeader);
-        if (it == _headerMap.end()){        //als de header niet bestaat
+        if (it == _headerMap.end()){
             _status = 400;
             return ;
         }
         std::map<headerType, std::string>::iterator it_h = _defHeaders.find(it->second);
-        if (it_h != _defHeaders.end()){   //als er een dubbele header in zit
+        if (it_h != _defHeaders.end()){
             _status = 400;
             return ;
         }
         _defHeaders.insert(std::make_pair(it->second, value));
         pos = length+2;
     }
-    //om te laten zien dat hij goed parsed
-    for ( std::map<headerType, std::string>::iterator it = _defHeaders.begin(); it != _defHeaders.end(); it++) {
-        std::cout << "[" << it->first << "]" << "[" << it->second << "]" << std::endl;
-    }
     _request = _request.substr(pos+2, std::string::npos);
 }
 
-// nog checken wat nog meer geparsed moet worden bij de body
-// extra check inbouwen om voor de juiste headers te kijken?
-// content-length header?
-// wel een body zonder dat die nodig is, statuscode 400etc bekijken
 void Request::parseBody() {
-    if (_request.find("\r\n") == std::string::npos){
-        _body = false;
+    if (_request.find("\r\n") == std::string::npos) {
+        _body_bool = false;
         return ;
     }
-    _body = true;
+    _body_bool = true;
+    size_t begin = 0;
+    size_t end;
+    size_t last = _request.rfind("\r\n");
+    while (begin < last){
+        end = _request.find("\r\n", begin);
+        _body.append(_request, begin, end - begin);
+        begin = end + 2;
+    }
 }
-
