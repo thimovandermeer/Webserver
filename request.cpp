@@ -22,7 +22,6 @@ Request &Request::operator=(const Request &original) {
     this->_headerMap = original._headerMap;
     this->_defHeaders = original._defHeaders;
     this->_status = original._status;
-    this->_body_bool = original._body_bool;
     this->_body = original._body;
     return (*this);
 }
@@ -70,19 +69,16 @@ std::map<headerType, std::string> Request::getHeaders() const {
 }
 
 std::string Request::getBody() const {
-    if (_body_bool == true)
-            return _body;
-    return ("NULL");
+    return _body;
 }
 
 std::string Request::getContentType()  {
     if (_defHeaders.begin() == _defHeaders.end())
         return ("NULL");
-//    std::map<std::string, headerType>::iterator it = _headerMap.find("CONTENT_TYPE");
-    std::map<headerType, std::string>::iterator it_h = _defHeaders.find(CONTENT_TYPE);
-    if (it_h == _defHeaders.end())
+    std::map<headerType, std::string>::iterator it = _defHeaders.find(CONTENT_TYPE);
+    if (it == _defHeaders.end())
         return ("NULL");
-    return (it_h->second);
+    return (it->second);
 }
 
 std::string Request::getCgiEnv() const{
@@ -97,8 +93,11 @@ void Request::parseRequest() {
     //kan van ze allemaal ints maken om hier errors op te vangen
     parseRequestLine();
     parseHeaders();
-    if (_defHeaders.find(TRANSFER_ENCODING) != _defHeaders.end())
-        parseBody();
+    std::map<headerType, std::string>::iterator it = _defHeaders.find(TRANSFER_ENCODING);
+    if (it != _defHeaders.end()) {
+        if (it->second.compare("chunked") == 0)
+            parseBody();
+    }
     else
         _body = _request;
     _request.clear();
@@ -176,16 +175,12 @@ void Request::parseHeaders() {
 }
 
 void Request::parseBody() {
-    if (_request.find("\r\n") == std::string::npos) {
-        _body_bool = false;
-        return ;
-    }
-    _body_bool = true;
     size_t begin = 0;
     size_t end;
     size_t last = _request.rfind("\r\n");
     while (begin < last){
         end = _request.find("\r\n", begin);
+        std::cout << end << std::endl ;
         _body.append(_request, begin, end - begin);
         begin = end + 2;
     }
