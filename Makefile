@@ -15,19 +15,15 @@ NAME = webserv.out
 ifdef COMPILER
  CXX = $(COMPILER)
 endif
-INCLUDE = $(shell find srcs -type d | sed s/^/-I/)
-CXXFLAGS = -W -Wall -Wextra -Werror -pedantic -ansi -std=c++98
-ifdef DEBUG
- CXXFLAGS += -g -fsanitize=address #-fsanitize=undefined -fsanitize=alignment -fsanitize=bounds -fsanitize=null -fsanitize=return
-else
- CXXFLAGS += -Ofast
-endif
+INCLUDE = Response.hpp request.hpp
+CXXFLAGS = -W -Wall -Wextra -Werror -pedantic -std=c++98
+
 
 TESTDIR = tests
-FILES = main.cpp
-
+MAINFILES = main.cpp
+FILES = Response.cpp  request.cpp
 response request: fclean
-	$(CXX) $(CXXFLAGS) $(TESTDIR)/$@_$(FILES) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(TESTDIR)/$@_$(MAINFILES) $(FILES) -o $(NAME)
 
 clean:
 
