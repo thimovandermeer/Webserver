@@ -9,12 +9,12 @@ int main(void){
                                 "Content_type: .json\r\n"
                                 "TRANSFER_ENCODING: chunked\r\n"
                                 "User_Agent: The Imaginary Browser\r\n\r\n"
-                                "hoi"
-                                "\r\n4\r\n"
-                                "kaas"
+                                "ho"
+                                "\r\n3\r\n"
+                                "ek\r\n0\r\n"
     );
     test->parseRequest();
-    std::cout << test->getContentType() << std::endl ;
+//    std::cout << test->getContentType() << std::endl ;
 
 //    std::cout << test->getMethod() << "." << std::endl ;
 //    std::cout << test->getUri() << "." << std::endl ;

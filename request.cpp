@@ -178,10 +178,11 @@ void Request::parseBody() {
     size_t begin = 0;
     size_t end;
     size_t last = _request.rfind("\r\n");
+    _body = "";
     while (begin < last){
-        end = _request.find("\r\n", begin);
-        std::cout << end << std::endl ;
+        end = _request.find("\r\n", begin) + 2;
         _body.append(_request, begin, end - begin);
+//        std::cout << _body << std:: endl;
         begin = end + 2;
     }
 }
