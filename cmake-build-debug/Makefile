@@ -251,33 +251,6 @@ srcs/location.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/location.cpp.s
 .PHONY : srcs/location.cpp.s
 
-srcs/parser.o: srcs/parser.cpp.o
-
-.PHONY : srcs/parser.o
-
-# target to build an object file
-srcs/parser.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/parser.cpp.o
-.PHONY : srcs/parser.cpp.o
-
-srcs/parser.i: srcs/parser.cpp.i
-
-.PHONY : srcs/parser.i
-
-# target to preprocess a source file
-srcs/parser.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/parser.cpp.i
-.PHONY : srcs/parser.cpp.i
-
-srcs/parser.s: srcs/parser.cpp.s
-
-.PHONY : srcs/parser.s
-
-# target to generate assembly for a file
-srcs/parser.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/parser.cpp.s
-.PHONY : srcs/parser.cpp.s
-
 srcs/request.o: srcs/request.cpp.o
 
 .PHONY : srcs/request.o
@@ -353,9 +326,6 @@ help:
 	@echo "... srcs/location.o"
 	@echo "... srcs/location.i"
 	@echo "... srcs/location.s"
-	@echo "... srcs/parser.o"
-	@echo "... srcs/parser.i"
-	@echo "... srcs/parser.s"
 	@echo "... srcs/request.o"
 	@echo "... srcs/request.i"
 	@echo "... srcs/request.s"

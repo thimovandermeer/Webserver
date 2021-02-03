@@ -20,9 +20,6 @@ CMakeFiles/webserv.dir/srcs/ResponseHeader.cpp.o: ../srcs/request.hpp
 CMakeFiles/webserv.dir/srcs/location.cpp.o: ../srcs/location.cpp
 CMakeFiles/webserv.dir/srcs/location.cpp.o: ../srcs/location.hpp
 
-CMakeFiles/webserv.dir/srcs/parser.cpp.o: ../srcs/parser.cpp
-CMakeFiles/webserv.dir/srcs/parser.cpp.o: ../srcs/webserv.hpp
-
 CMakeFiles/webserv.dir/srcs/request.cpp.o: ../srcs/request.cpp
 CMakeFiles/webserv.dir/srcs/request.cpp.o: ../srcs/request.hpp
 

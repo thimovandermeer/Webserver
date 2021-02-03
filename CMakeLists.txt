@@ -6,5 +6,5 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -g3 -Werror -Wextra")
 #^^^ these are the compilation flags for cmake ^^^ can add '-fsanitize=address' for debugging
 set(CMAKE_LINKER_FLAGS)
 
-add_executable(webserv srcs/Response.cpp srcs/Response.hpp Tests/response_main.cpp srcs/request.cpp srcs/request.hpp srcs/ResponseHeader.cpp srcs/ResponseHeader.hpp srcs/utils.cpp srcs/utils.hpp srcs/parser.cpp srcs/location.cpp srcs/location.hpp)
+add_executable(webserv srcs/Response.cpp srcs/Response.hpp Tests/response_main.cpp srcs/request.cpp srcs/request.hpp srcs/ResponseHeader.cpp srcs/ResponseHeader.hpp srcs/utils.cpp srcs/utils.hpp srcs/location.cpp srcs/location.hpp)
 set_target_properties(webserv PROPERTIES LINKER_LANGUAGE CXX CXX_STANDARD 98)
