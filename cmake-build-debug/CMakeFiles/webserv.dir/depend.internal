@@ -4,39 +4,27 @@
 CMakeFiles/webserv.dir/Tests/response_main.cpp.o
  /Users/thimovandermeer/CLionProjects/Webserver/Tests/response_main.cpp
  /Users/thimovandermeer/CLionProjects/Webserver/srcs/Response.hpp
- /Users/thimovandermeer/CLionProjects/Webserver/srcs/location.hpp
  /Users/thimovandermeer/CLionProjects/Webserver/srcs/request.hpp
- /Users/thimovandermeer/CLionProjects/Webserver/srcs/server.hpp
  /Users/thimovandermeer/CLionProjects/Webserver/srcs/utils.hpp
 CMakeFiles/webserv.dir/srcs/Response.cpp.o
  /Users/thimovandermeer/CLionProjects/Webserver/srcs/Response.cpp
  /Users/thimovandermeer/CLionProjects/Webserver/srcs/Response.hpp
  /Users/thimovandermeer/CLionProjects/Webserver/srcs/ResponseHeader.hpp
- /Users/thimovandermeer/CLionProjects/Webserver/srcs/location.hpp
  /Users/thimovandermeer/CLionProjects/Webserver/srcs/request.hpp
- /Users/thimovandermeer/CLionProjects/Webserver/srcs/server.hpp
  /Users/thimovandermeer/CLionProjects/Webserver/srcs/utils.hpp
 CMakeFiles/webserv.dir/srcs/ResponseHeader.cpp.o
  /Users/thimovandermeer/CLionProjects/Webserver/srcs/Response.hpp
  /Users/thimovandermeer/CLionProjects/Webserver/srcs/ResponseHeader.cpp
  /Users/thimovandermeer/CLionProjects/Webserver/srcs/ResponseHeader.hpp
- /Users/thimovandermeer/CLionProjects/Webserver/srcs/location.hpp
  /Users/thimovandermeer/CLionProjects/Webserver/srcs/request.hpp
- /Users/thimovandermeer/CLionProjects/Webserver/srcs/server.hpp
 CMakeFiles/webserv.dir/srcs/location.cpp.o
  /Users/thimovandermeer/CLionProjects/Webserver/srcs/location.cpp
  /Users/thimovandermeer/CLionProjects/Webserver/srcs/location.hpp
 CMakeFiles/webserv.dir/srcs/parser.cpp.o
- /Users/thimovandermeer/CLionProjects/Webserver/srcs/location.hpp
  /Users/thimovandermeer/CLionProjects/Webserver/srcs/parser.cpp
- /Users/thimovandermeer/CLionProjects/Webserver/srcs/server.hpp
  /Users/thimovandermeer/CLionProjects/Webserver/srcs/webserv.hpp
 CMakeFiles/webserv.dir/srcs/request.cpp.o
  /Users/thimovandermeer/CLionProjects/Webserver/srcs/request.cpp
  /Users/thimovandermeer/CLionProjects/Webserver/srcs/request.hpp
-CMakeFiles/webserv.dir/srcs/server.cpp.o
- /Users/thimovandermeer/CLionProjects/Webserver/srcs/location.hpp
- /Users/thimovandermeer/CLionProjects/Webserver/srcs/server.cpp
- /Users/thimovandermeer/CLionProjects/Webserver/srcs/server.hpp
 CMakeFiles/webserv.dir/srcs/utils.cpp.o
  /Users/thimovandermeer/CLionProjects/Webserver/srcs/utils.cpp

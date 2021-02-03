@@ -9,9 +9,15 @@
 #include <string>
 #include <ostream>
 #include "request.hpp"
-#include "server.hpp"
+
 // this needs to be deleted when request is been made
 
+class Server {
+public:
+	std::string _root;
+	std::string 		getRoot() { return _root;};
+	void		 		setRoot(std::string &root) {_root = root;};
+};
 class Response {
 public:
 	Response(void);
@@ -37,7 +43,7 @@ private:
 private:
 	// functions for each different method
 	void 		getMethod();
-	std::string	getPath(server &server, Request &request);
+	std::string	getPath(Server &server, Request &request);
 	void 		headMethod();
 	void 		postMethod(std::string content);
 	void 		putMethod(std::string content);

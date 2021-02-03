@@ -10,7 +10,6 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/thimovandermeer/CLionProjects/Webserver/srcs/location.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/location.cpp.o"
   "/Users/thimovandermeer/CLionProjects/Webserver/srcs/parser.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/parser.cpp.o"
   "/Users/thimovandermeer/CLionProjects/Webserver/srcs/request.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/request.cpp.o"
-  "/Users/thimovandermeer/CLionProjects/Webserver/srcs/server.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/server.cpp.o"
   "/Users/thimovandermeer/CLionProjects/Webserver/srcs/utils.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/utils.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")

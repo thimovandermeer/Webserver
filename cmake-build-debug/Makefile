@@ -305,33 +305,6 @@ srcs/request.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/request.cpp.s
 .PHONY : srcs/request.cpp.s
 
-srcs/server.o: srcs/server.cpp.o
-
-.PHONY : srcs/server.o
-
-# target to build an object file
-srcs/server.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/server.cpp.o
-.PHONY : srcs/server.cpp.o
-
-srcs/server.i: srcs/server.cpp.i
-
-.PHONY : srcs/server.i
-
-# target to preprocess a source file
-srcs/server.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/server.cpp.i
-.PHONY : srcs/server.cpp.i
-
-srcs/server.s: srcs/server.cpp.s
-
-.PHONY : srcs/server.s
-
-# target to generate assembly for a file
-srcs/server.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/server.cpp.s
-.PHONY : srcs/server.cpp.s
-
 srcs/utils.o: srcs/utils.cpp.o
 
 .PHONY : srcs/utils.o
@@ -386,9 +359,6 @@ help:
 	@echo "... srcs/request.o"
 	@echo "... srcs/request.i"
 	@echo "... srcs/request.s"
-	@echo "... srcs/server.o"
-	@echo "... srcs/server.i"
-	@echo "... srcs/server.s"
 	@echo "... srcs/utils.o"
 	@echo "... srcs/utils.i"
 	@echo "... srcs/utils.s"
