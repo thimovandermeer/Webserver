@@ -76,32 +76,32 @@ void	location::setIndices(std::string &indices)
 		this->_indices.push_back(index);
 }
 
-bool						location::getAutoindex() const
+const bool						&location::getAutoindex() const
 {
 	return (this->_autoindex);
 }
 
-std::string					location::getMatch() const
+const std::string				&location::getMatch() const
 {
 	return (this->_match);
 }
 
-std::string					location::getRoot() const
+const std::string				&location::getRoot() const
 {
 	return (this->_root);
 }
 
-std::string					location::getMethod() const
+const std::string				&location::getMethod() const
 {
 	return (this->_method);
 }
 
-std::string					location::getErrorPage() const
+const std::string				&location::getErrorPage() const
 {
 	return (this->_errorPage);
 }
 
-std::vector<std::string>	location::getIndices() const
+const std::vector<std::string>	&location::getIndices() const
 {
 	return (this->_indices);
 }

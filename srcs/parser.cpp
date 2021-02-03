@@ -1,5 +1,6 @@
 #include "webserv.hpp"
 #include "server.hpp"
+#include "serverCluster.hpp"
 
 bool	isEmptyLine(std::string line)
 {
@@ -87,12 +88,13 @@ location	getLocation(std::string &startLine, std::fstream &configFile, int &line
 	return (newLoc);
 }
 
-std::vector<server> startParsing(std::fstream& configFile)
+void	startParsing(std::fstream& configFile, serverCluster &cluster)
 {
 	std::string			line;
-	std::vector<server>	serverColleciton;
+//	std::vector<server>	*serverCollection;
 	int					lineNr = 0;
 
+//	serverCollection = new std::vector<server>;
 	while (std::getline(configFile, line))
 	{
 		lineNr++;
@@ -132,6 +134,7 @@ std::vector<server> startParsing(std::fstream& configFile)
 					std::string value = firstword(line);
 					newServer.findValue(value,line);
 				}
+
 				catch (std::exception &e)
 				{
 					std::cerr << "Config file line " << lineNr << ", ";
@@ -142,15 +145,16 @@ std::vector<server> startParsing(std::fstream& configFile)
 		// check if all data set in server is correct
 		if (!newServer.valueCheck())
 			leaksExit("invalid values in server block", 1);
-		serverColleciton.push_back(newServer);
-		std::cout << newServer << std::endl << std::endl;
+		cluster.addServer(newServer);
 	}
-	return (serverColleciton);
+	if (cluster.isEmpty())
+		leaksExit("config file empty", 1);
 }
 
 void	openConfig(int ac, char **av)
 {
-	std::fstream configFile;
+	std::fstream		configFile;
+	serverCluster		cluster;
 
 	if (ac == 1 || (ac == 2 && g_leaks))
 	{
@@ -169,5 +173,13 @@ void	openConfig(int ac, char **av)
 			leaksExit(err, 1);
 		}
 	}
-	startParsing(configFile);
+	startParsing(configFile, cluster);
+	try
+	{
+		cluster.startup();
+	}
+	catch (std::exception &e)
+	{
+		leaksExit(e.what(), 1);
+	}
 }
