@@ -26,7 +26,7 @@ public:
 
 	Response &operator=(const Response &src);
 
-	void 		checkMethod(Request &request, server &server);
+	void 		checkMethod(Request &request, Server &server);
 
 	friend std::ostream &operator<<(std::ostream &os, const Response &response);
 

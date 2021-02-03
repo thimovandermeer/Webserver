@@ -15,6 +15,7 @@
 #include "../srcs/utils.hpp"
 
 #include <stdio.h>
+#include <fstream>
 // in here we put all our tests
 
 
@@ -56,21 +57,15 @@ void testHeaders(Response *response)
 
 void	testGetMethod()
 {
-	Request request("GET path.txt HTTP/1.1\r\n"
-					"Host: eloquentjavascript.net\r\n"
-					"Date:leukeserverdit\r\n"
-					"Allow: jajaja \r\n"
-					"Retry_After: waaromdoejijhetniet\r\n"
-				  	"Content_type: .json\r\n"
-					"User_Agent: The Imaginary Browser\r\n\r\n"
-
-					"EPICSICKE SHIUT OUWW\r\n"
-					"hoi\r\n"
-	);
+	std::ifstream example("../test_files/request/get/GET_example");
+	std::string string((std::istreambuf_iterator<char>(example)),
+					std::istreambuf_iterator<char>());
+	Request request(string);
 	request.parseRequest();
 	Response 		response;
 	Server 			server;
-	server.setRoot()
+	std::string root = "";
+	server.setRoot(root);
 	response.checkMethod(request, server);
 	// hier komen functies die goed gaan dus hier moeten specifieke teksten gereturnt worden
 	std::cout << response.getContent() << std::endl;
