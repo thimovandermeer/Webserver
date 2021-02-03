@@ -18,7 +18,7 @@ const char	*server::syscallErrorException::what() const throw()
 	return ("a syscall has returned an error");
 }
 
-server::server() : _portNr(0), _maxBodySize(1000000), _autoindex(false), _errorPage("default_error_page") //should change default error page
+server::server() : _portNr(0), _maxBodySize(1000000), _autoindex(false), _errorPage("default_error_page"), _socketFd(-1), _acceptFd(-1) //should change default error page
 {
 	this->_typeFunctionMap.insert(std::make_pair("listen", &server::setPort));
 	this->_typeFunctionMap.insert(std::make_pair("client_max_body_size", &server::setMaxBodySize));

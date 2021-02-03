@@ -1,5 +1,6 @@
 #include "serverCluster.hpp"
 #include <sys/select.h>
+#include <iostream>
 
 serverCluster::serverCluster() : _nrOfServers(0)
 {
@@ -55,8 +56,8 @@ void	serverCluster::startListening()
 	int n = 1; // this is just to get rid of clang-tidy for now
 	while (n > 0)
 	{
+		std::cout << "waiting for connection" << std::endl;
 		select(this->_nrOfServers * NR_OF_CONNECTIONS + 1, &this->readFds, NULL, NULL, &timeout);
-
 		std::vector<server>::iterator it = this->_servers->begin();
 		while (!this->_servers->empty() && it != this->_servers->end())
 		{

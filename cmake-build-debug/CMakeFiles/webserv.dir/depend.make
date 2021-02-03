@@ -19,6 +19,9 @@ CMakeFiles/webserv.dir/serverCluster.cpp.o: ../server.hpp
 CMakeFiles/webserv.dir/serverCluster.cpp.o: ../serverCluster.cpp
 CMakeFiles/webserv.dir/serverCluster.cpp.o: ../serverCluster.hpp
 
+CMakeFiles/webserv.dir/testmain.cpp.o: ../location.hpp
+CMakeFiles/webserv.dir/testmain.cpp.o: ../server.hpp
+CMakeFiles/webserv.dir/testmain.cpp.o: ../serverCluster.hpp
 CMakeFiles/webserv.dir/testmain.cpp.o: ../testmain.cpp
 CMakeFiles/webserv.dir/testmain.cpp.o: ../webserv.hpp
 

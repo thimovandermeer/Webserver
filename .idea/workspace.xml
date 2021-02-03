@@ -35,11 +35,18 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="cluster ready for use, is listening, is starting to run server if it's fd is  ready">
+    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="minor things">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/server.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/server.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/testmain.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/testmain.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/parseTestConfig.conf" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/parseTestConfig.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/webserv" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/webserv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/parser.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/serverCluster.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/serverCluster.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testmain.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/testmain.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webserv.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/webserv.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +127,7 @@
       <workItem from="1611835259883" duration="921000" />
       <workItem from="1611922813142" duration="1096000" />
       <workItem from="1612263996600" duration="7766000" />
-      <workItem from="1612342536030" duration="3457000" />
+      <workItem from="1612342536030" duration="4692000" />
     </task>
     <task id="LOCAL-00001" summary="finished server, fucked around a bit">
       <created>1611672178142</created>
@@ -157,7 +164,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612345571345</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="minor things">
+      <created>1612346343400</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1612346343400</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,62 +195,74 @@
     <MESSAGE value="changed error msg for wrong values in location block" />
     <MESSAGE value="added some things related to sockets to server class, made cluster class, mostly for ease of reading/writing code" />
     <MESSAGE value="cluster ready for use, is listening, is starting to run server if it's fd is  ready" />
-    <option name="LAST_COMMIT_MESSAGE" value="cluster ready for use, is listening, is starting to run server if it's fd is  ready" />
+    <MESSAGE value="minor things" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor things" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1106" y="353" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1611751811866">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="1106" y="353" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1611751811866" />
-    <state width="2155" height="195" key="GridCell.Tab.0.bottom" timestamp="1612346154832">
+    <state width="2155" height="591" key="GridCell.Tab.0.bottom" timestamp="1612347439833">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2155" height="195" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1612346154832" />
-    <state width="2155" height="195" key="GridCell.Tab.0.center" timestamp="1612346154830">
+    <state width="2155" height="591" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1612347439833" />
+    <state width="2155" height="591" key="GridCell.Tab.0.center" timestamp="1612347439832">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2155" height="195" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1612346154830" />
-    <state width="2155" height="195" key="GridCell.Tab.0.left" timestamp="1612346154830">
+    <state width="2155" height="591" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1612347439832" />
+    <state width="2155" height="591" key="GridCell.Tab.0.left" timestamp="1612347439831">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2155" height="195" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1612346154830" />
-    <state width="2155" height="195" key="GridCell.Tab.0.right" timestamp="1612346154831">
+    <state width="2155" height="591" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1612347439831" />
+    <state width="2155" height="591" key="GridCell.Tab.0.right" timestamp="1612347439832">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2155" height="195" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1612346154831" />
-    <state width="2155" height="279" key="GridCell.Tab.1.bottom" timestamp="1612276996527">
+    <state width="2155" height="591" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1612347439832" />
+    <state width="2155" height="591" key="GridCell.Tab.1.bottom" timestamp="1612347439833">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2155" height="279" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1612276996527" />
-    <state width="2155" height="279" key="GridCell.Tab.1.center" timestamp="1612276996527">
+    <state width="2155" height="591" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1612347439833" />
+    <state width="2155" height="591" key="GridCell.Tab.1.center" timestamp="1612347439833">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2155" height="279" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1612276996527" />
-    <state width="2155" height="279" key="GridCell.Tab.1.left" timestamp="1612276996526">
+    <state width="2155" height="591" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1612347439833" />
+    <state width="2155" height="591" key="GridCell.Tab.1.left" timestamp="1612347439833">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2155" height="279" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1612276996526" />
-    <state width="2155" height="279" key="GridCell.Tab.1.right" timestamp="1612276996527">
+    <state width="2155" height="591" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1612347439833" />
+    <state width="2155" height="591" key="GridCell.Tab.1.right" timestamp="1612347439833">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2155" height="279" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1612276996527" />
+    <state width="2155" height="591" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1612347439833" />
     <state x="393" y="155" key="SettingsEditor" timestamp="1611923553847">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="221" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1611145260616" />
     <state x="393" y="155" key="SettingsEditor/0.23.2560.1337@0.23.2560.1337" timestamp="1611923553847" />
-    <state x="1242" y="431" key="Vcs.Push.Dialog.v2" timestamp="1612345577626">
+    <state x="1242" y="431" key="Vcs.Push.Dialog.v2" timestamp="1612346347540">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="1242" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1612345577626" />
-    <state x="1426" y="489" key="refactoring.ChangeSignatureDialog" timestamp="1611837854393">
+    <state x="1242" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1612346347540" />
+    <state x="1426" y="489" key="refactoring.ChangeSignatureDialog" timestamp="1612346503655">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="1426" y="489" key="refactoring.ChangeSignatureDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1611837854393" />
+    <state x="1426" y="489" key="refactoring.ChangeSignatureDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1612346503655" />
     <state x="684" y="314" width="1192" height="1005" key="search.everywhere.popup" timestamp="1611751400222">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1611423518650" />
     <state x="684" y="314" width="1192" height="1005" key="search.everywhere.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1611751400222" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/serverCluster.cpp</url>
+          <line>58</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

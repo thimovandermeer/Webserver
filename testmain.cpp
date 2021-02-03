@@ -1,4 +1,5 @@
 #include "webserv.hpp"
+#include "serverCluster.hpp"
 
 #define PORT_NR 8080
 
@@ -111,12 +112,13 @@ void	serverStuff()
 
 int		main(int ac, char **av)
 {
+	serverCluster	cluster;
 	g_name = strrchr(av[0], '/') + 1;
 	g_leaks = false;
 	if (ac != 1)
 		setLeaks(ac, av);
 	std::cout << "sup ik ben een server :)" << std::endl;
-	openConfig(ac, av);
-//	serverStuff();
+	openConfig(ac, av, &cluster);
+	cluster.startListening();
 	leaksExit("", -5);
 }

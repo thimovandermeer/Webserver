@@ -88,7 +88,7 @@ location	getLocation(std::string &startLine, std::fstream &configFile, int &line
 	return (newLoc);
 }
 
-void	startParsing(std::fstream& configFile, serverCluster &cluster)
+void	startParsing(std::fstream& configFile, serverCluster *cluster)
 {
 	std::string			line;
 	int					lineNr = 0;
@@ -143,16 +143,16 @@ void	startParsing(std::fstream& configFile, serverCluster &cluster)
 		// check if all data set in server is correct
 		if (!newServer.valueCheck())
 			leaksExit("invalid values in server block", 1);
-		cluster.addServer(newServer);
+		cluster->addServer(newServer);
 	}
-	if (cluster.isEmpty())
+	if (cluster->isEmpty())
 		leaksExit("config file empty", 1);
 }
 
-void	openConfig(int ac, char **av)
+void openConfig(int ac, char **av, serverCluster *cluster)
 {
 	std::fstream		configFile;
-	serverCluster		cluster;
+//	serverCluster		cluster;
 
 	if (ac == 1 || (ac == 2 && g_leaks))
 	{
@@ -174,11 +174,11 @@ void	openConfig(int ac, char **av)
 	startParsing(configFile, cluster);
 	try
 	{
-		cluster.startup();
+		cluster->startup();
 	}
 	catch (std::exception &e)
 	{
 		leaksExit(e.what(), 1);
 	}
-	cluster.startListening();
+//	cluster->startListening();
 }
