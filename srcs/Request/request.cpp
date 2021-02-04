@@ -46,6 +46,7 @@ Request::Request(std::string request) : _request(request) {
     _headerMap["TRANSFER_ENCODING"] = TRANSFER_ENCODING;
     _headerMap["USER_AGENT"] = USER_AGENT;
     _headerMap["WWW_AUTHENTICATE"] = WWW_AUTHENTICATE;
+	parseRequest();
 }
 
 int Request::getMethod() const {
@@ -116,16 +117,17 @@ void Request::parseRequestLine(){
     }
     pos2+=1;
     pos1 = _request.find(" ", pos2);
-    if (_request.find("?", pos2, pos1) == std::string::npos){
+    if (_request.find("?", pos2, pos1) != std::string::npos){
         pos1 = _request.find("?");
         _uri = _request.substr(pos2, pos1-pos2);
         pos2 = _request.find(" ", pos1);
-        _cgiEnv = _request.substr(pos1+1, pos2-pos1-1);
+        _cgiEnv = _request.substr(pos1+1, pos2-pos1-1);		//ook checken
     }
     else
-        _uri = _request.substr(pos2+1, pos1-pos2-1);
+        _uri = _request.substr(pos2, pos1-pos2);
     pos1 = _request.find("\r\n");
-    _version = _request.substr(pos2+1, pos1-pos2-1);
+	pos2 += 2;
+    _version = _request.substr(pos2, pos1-pos2);
     if (_version.compare("HTTP/1.1") != 0)
         _status = 400;
     _request = _request.substr(pos1+2, std::string::npos);
