@@ -28,24 +28,25 @@ Request &Request::operator=(const Request &original) {
 
 Request::Request(std::string request) : _request(request) {
     _status = 200;
-    _headerMap["ACCEPT_CHARSET"] = ACCEPT_CHARSET;
-    _headerMap["ACCEPT_LANGUAGE"] = ACCEPT_LANGUAGE;
+    _headerMap["ACCEP-CHARSET"] = ACCEPT_CHARSET;
+    _headerMap["ACCEPT-LANGUAGE"] = ACCEPT_LANGUAGE;
     _headerMap["ALLOW"] = ALLOW;
     _headerMap["AUTHORIZATION"] = AUTHORIZATION;
-    _headerMap["CONTENT_LANGUAGE"] = CONTENT_LANGUAGE;
-    _headerMap["CONTENT_LENGTH"] = CONTENT_LENGTH;
-    _headerMap["CONTENT_LOCATION"] = CONTENT_LOCATION;
-    _headerMap["CONTENT_TYPE"] = CONTENT_TYPE;
+    _headerMap["CONTENT-LANGUAGE"] = CONTENT_LANGUAGE;
+    _headerMap["CONTENT-LENGTH"] = CONTENT_LENGTH;
+    _headerMap["CONTENT-LOCATION"] = CONTENT_LOCATION;
+    _headerMap["CONTENT-TYPE"] = CONTENT_TYPE;
     _headerMap["DATE"] = DATE;
     _headerMap["HOST"] = HOST;
-    _headerMap["LAST_MODIFIED"] = LAST_MODIFIED;
+    _headerMap["LAST-MODIFIED"] = LAST_MODIFIED;
     _headerMap["LOCATION"] = LOCATION;
     _headerMap["REFERER"] = REFERER;
-    _headerMap["RETRY_AFTER"] = RETRY_AFTER;
+    _headerMap["RETRY-AFTER"] = RETRY_AFTER;
     _headerMap["SERVER"] = SERVER;
-    _headerMap["TRANSFER_ENCODING"] = TRANSFER_ENCODING;
-    _headerMap["USER_AGENT"] = USER_AGENT;
-    _headerMap["WWW_AUTHENTICATE"] = WWW_AUTHENTICATE;
+    _headerMap["TRANSFER-ENCODING"] = TRANSFER_ENCODING;
+    _headerMap["USER-AGENT"] = USER_AGENT;
+    _headerMap["WWW-AUTHENTICATE"] = WWW_AUTHENTICATE;
+	parseRequest();
 }
 
 int Request::getMethod() const {
@@ -116,19 +117,20 @@ void Request::parseRequestLine(){
     }
     pos2+=1;
     pos1 = _request.find(" ", pos2);
-    if (_request.find("?", pos2, pos1) == std::string::npos){
+    if (_request.find("?", pos2, pos1) != std::string::npos){
         pos1 = _request.find("?");
         _uri = _request.substr(pos2, pos1-pos2);
         pos2 = _request.find(" ", pos1);
-        _cgiEnv = _request.substr(pos1+1, pos2-pos1-1);
+        _cgiEnv = _request.substr(pos1+1, pos2-pos1-1);		//ook checken
     }
     else
-        _uri = _request.substr(pos2+1, pos1-pos2-1);
+        _uri = _request.substr(pos2, pos1-pos2);
     pos1 = _request.find("\r\n");
-    _version = _request.substr(pos2+1, pos1-pos2-1);
+	pos2 += 2;
+    _version = _request.substr(pos2, pos1-pos2);
     if (_version.compare("HTTP/1.1") != 0)
         _status = 400;
-    _request = _request.substr(pos1+2, std::string::npos);
+    _request = _request.substr(pos1+2);
 }
 
 void Request::parseHeaders() {
@@ -137,11 +139,16 @@ void Request::parseHeaders() {
     std::string header;
     std::string upperHeader;
     std::string value;
+	bool loop = true;
 
-    while (_request[pos] != '\r' && _request[pos + 1] != '\n'){
+    while (loop == true){
         header.clear();
         value.clear();
         upperHeader.clear();
+        if (_request.find(":", pos) == std::string::npos) {
+            _status = 400;
+            return ;
+        }
         length = _request.find(":", pos);
         if (std::isspace(_request[length - 1])){       //spatie voor :
             _status = 400;
@@ -154,24 +161,20 @@ void Request::parseHeaders() {
             pos = length+1;
         length = _request.find("\r\n", pos);
         value = _request.substr(pos, length-pos);
-        if (std::isspace(value.length()))
-            _request.erase(value.length());
         for (int i = 0; header[i]; i++)
             upperHeader += std::toupper(header[i]);
         std::map<std::string, headerType>::iterator it = _headerMap.find(upperHeader);
-        if (it == _headerMap.end()){
+        if (it == _headerMap.end())
             _status = 400;
-            return ;
-        }
         std::map<headerType, std::string>::iterator it_h = _defHeaders.find(it->second);
-        if (it_h != _defHeaders.end()){
+        if (it_h != _defHeaders.end())
             _status = 400;
-            return ;
-        }
         _defHeaders.insert(std::make_pair(it->second, value));
         pos = length+2;
+		if (_request[pos] == '\r' && _request[pos + 1] == '\n')
+			loop = false ;
     }
-    _request = _request.substr(pos+2, std::string::npos);
+    _request = _request.substr(pos+2);
 }
 
 void Request::parseBody() {
