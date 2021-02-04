@@ -143,33 +143,6 @@ webserv/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/build
 .PHONY : webserv/fast
 
-Tests/response_main.o: Tests/response_main.cpp.o
-
-.PHONY : Tests/response_main.o
-
-# target to build an object file
-Tests/response_main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/Tests/response_main.cpp.o
-.PHONY : Tests/response_main.cpp.o
-
-Tests/response_main.i: Tests/response_main.cpp.i
-
-.PHONY : Tests/response_main.i
-
-# target to preprocess a source file
-Tests/response_main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/Tests/response_main.cpp.i
-.PHONY : Tests/response_main.cpp.i
-
-Tests/response_main.s: Tests/response_main.cpp.s
-
-.PHONY : Tests/response_main.s
-
-# target to generate assembly for a file
-Tests/response_main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/Tests/response_main.cpp.s
-.PHONY : Tests/response_main.cpp.s
-
 srcs/Cluster/serverCluster.o: srcs/Cluster/serverCluster.cpp.o
 
 .PHONY : srcs/Cluster/serverCluster.o
@@ -305,6 +278,33 @@ srcs/Server/location.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Server/location.cpp.s
 .PHONY : srcs/Server/location.cpp.s
 
+srcs/Server/parser.o: srcs/Server/parser.cpp.o
+
+.PHONY : srcs/Server/parser.o
+
+# target to build an object file
+srcs/Server/parser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Server/parser.cpp.o
+.PHONY : srcs/Server/parser.cpp.o
+
+srcs/Server/parser.i: srcs/Server/parser.cpp.i
+
+.PHONY : srcs/Server/parser.i
+
+# target to preprocess a source file
+srcs/Server/parser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Server/parser.cpp.i
+.PHONY : srcs/Server/parser.cpp.i
+
+srcs/Server/parser.s: srcs/Server/parser.cpp.s
+
+.PHONY : srcs/Server/parser.s
+
+# target to generate assembly for a file
+srcs/Server/parser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Server/parser.cpp.s
+.PHONY : srcs/Server/parser.cpp.s
+
 srcs/Server/server.o: srcs/Server/server.cpp.o
 
 .PHONY : srcs/Server/server.o
@@ -395,9 +395,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... webserv"
-	@echo "... Tests/response_main.o"
-	@echo "... Tests/response_main.i"
-	@echo "... Tests/response_main.s"
 	@echo "... srcs/Cluster/serverCluster.o"
 	@echo "... srcs/Cluster/serverCluster.i"
 	@echo "... srcs/Cluster/serverCluster.s"
@@ -413,6 +410,9 @@ help:
 	@echo "... srcs/Server/location.o"
 	@echo "... srcs/Server/location.i"
 	@echo "... srcs/Server/location.s"
+	@echo "... srcs/Server/parser.o"
+	@echo "... srcs/Server/parser.i"
+	@echo "... srcs/Server/parser.s"
 	@echo "... srcs/Server/server.o"
 	@echo "... srcs/Server/server.i"
 	@echo "... srcs/Server/server.s"

@@ -9,15 +9,9 @@
 #include <string>
 #include <ostream>
 #include "../Request/request.hpp"
-
+#include "../Server/server.hpp"
 // this needs to be deleted when request is been made
 
-class Server {
-public:
-	std::string _root;
-	std::string 		getRoot() { return _root;};
-	void		 		setRoot(std::string &root) {_root = root;};
-};
 class Response {
 public:
 	Response(void);
@@ -26,7 +20,7 @@ public:
 
 	Response &operator=(const Response &src);
 
-	void 		checkMethod(Request &request, Server &server);
+	void 		checkMethod(Request &request, server &server);
 
 	friend std::ostream &operator<<(std::ostream &os, const Response &response);
 
@@ -43,7 +37,7 @@ private:
 private:
 	// functions for each different method
 	void 		getMethod();
-	std::string	getPath(Server &server, Request &request);
+	std::string	getPath(server &server, Request &request);
 	void 		headMethod();
 	void 		postMethod(std::string content);
 	void 		putMethod(std::string content);

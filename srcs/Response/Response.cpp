@@ -34,7 +34,7 @@ Response &Response::operator=(const Response &src)
 	return (*this);
 }
 
-std::string Response::getPath(Server &server, Request &request)
+std::string Response::getPath(server &server, Request &request)
 {
 	// from the server side i need the root
 	std::string root = server.getRoot();
@@ -44,15 +44,16 @@ std::string Response::getPath(Server &server, Request &request)
 	std::string location = request.getHost();
 	// the return value will be root + alias + path.substr(locationName.length)
 	std::string ret;
-	if (location != "")
-		ret = root + path.substr(location.length());
-	else
-		ret = root + path;
+//	if (!location.empty())
+//		ret = root + path.substr(location.length());
+//	else
+	ret = root + path;
 	std::string temp;
 	temp = removeAdjacentSlashes(ret);
 	return temp;
 }
-void Response::checkMethod(Request &request, Server &server)
+
+void Response::checkMethod(Request &request, server &server)
 {
 	_path = getPath(server, request);
 	_code = 200;

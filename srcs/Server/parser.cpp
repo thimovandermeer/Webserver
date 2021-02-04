@@ -1,6 +1,8 @@
 #include "../webserv.hpp"
 #include "server.hpp"
-#include "../Cluster/serverCluster.hpp"
+#include <iostream>
+#include <sstream>
+#include <fstream>
 
 bool	isEmptyLine(std::string line)
 {
@@ -46,7 +48,7 @@ void	parseError(int lineNr) // not sure if we wanna exit in this case, can figur
 {
 	std::stringstream errStr;
 	errStr << "Parse error on line " << lineNr;
-	leaksExit(errStr.str(), 1);
+	errMsgAndExit(errStr.str(), 1);
 }
 
 location	getLocation(std::string &startLine, std::fstream &configFile, int &lineNr)
@@ -80,15 +82,15 @@ location	getLocation(std::string &startLine, std::fstream &configFile, int &line
 		catch (std::exception &e)
 		{
 			std::cerr << "Config file line " << lineNr << ", ";
-			leaksExit(e.what(), 1);
+			errMsgAndExit(e.what(), 1);
 		}
 	}
 	if (!newLoc.valueCheck())
-		leaksExit("invalid values in location block", 1);
+		errMsgAndExit("invalid values in location block", 1);
 	return (newLoc);
 }
 
-void	startParsing(std::fstream& configFile, serverCluster &cluster)
+void	startParsing(std::fstream& configFile, serverCluster *cluster)
 {
 	std::string			line;
 	int					lineNr = 0;
@@ -136,30 +138,29 @@ void	startParsing(std::fstream& configFile, serverCluster &cluster)
 				catch (std::exception &e)
 				{
 					std::cerr << "Config file line " << lineNr << ", ";
-					leaksExit(e.what(), 1);
+					errMsgAndExit(e.what(), 1);
 				}
 			}
 		}
 		// check if all data set in server is correct
 		if (!newServer.valueCheck())
-			leaksExit("invalid values in server block", 1);
-		cluster.addServer(newServer);
+			errMsgAndExit("invalid values in server block", 1);
+		cluster->addServer(newServer);
 	}
-	if (cluster.isEmpty())
-		leaksExit("config file empty", 1);
+	if (cluster->isEmpty())
+		errMsgAndExit("config file empty", 1);
 }
 
-void	openConfig(int ac, char **av)
+void	openConfig(int ac, char **av, serverCluster *cluster)
 {
 	std::fstream		configFile;
-	serverCluster		cluster;
 
-	if (ac == 1 || (ac == 2 && g_leaks))
+	if (ac == 1)
 	{
 		std::cout << "open default config" << std::endl;
 		configFile.open("parseTestConfig.conf");
 		if (!configFile)
-			leaksExit("default config missing", 1);
+			errMsgAndExit("default config missing", 1);
 	}
 	else
 	{
@@ -168,17 +169,16 @@ void	openConfig(int ac, char **av)
 		{
 			std::string err = "config file \"\" does not exist";
 			err.insert(13, av[1]);
-			leaksExit(err, 1);
+			errMsgAndExit(err, 1);
 		}
 	}
 	startParsing(configFile, cluster);
 	try
 	{
-		cluster.startup();
+		cluster->startup();
 	}
 	catch (std::exception &e)
 	{
-		leaksExit(e.what(), 1);
+		errMsgAndExit(e.what(), 1);
 	}
-	cluster.startListening();
 }

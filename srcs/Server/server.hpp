@@ -73,7 +73,10 @@ public:
 
 	void	addLocation(location &newLoc);
 	bool	valueCheck() const;
-
+	std::string recv();
+	void 		send(std::string response);
+	void 		serverClose();
+	void 		accept();
 	void	findValue(std::string &key, std::string line);
 
 	void	startListening();

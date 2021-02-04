@@ -80,9 +80,6 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/Tests/response_main.cpp">
-			<Option target="webserv"/>
-		</Unit>
 		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Cluster/serverCluster.cpp">
 			<Option target="webserv"/>
 		</Unit>
@@ -111,6 +108,9 @@
 			<Option target="webserv"/>
 		</Unit>
 		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Server/location.hpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Server/parser.cpp">
 			<Option target="webserv"/>
 		</Unit>
 		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Server/server.cpp">

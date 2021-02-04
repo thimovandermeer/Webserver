@@ -7,7 +7,8 @@
 #include <iomanip>
 #include <unistd.h>
 #include <sys/socket.h>
-#include "request.hpp"
+#include "../Request/request.hpp"
+#include "../Response/Response.hpp"
 
 const char	*server::inputErrorException::what() const throw()
 {
@@ -52,6 +53,9 @@ server&	server::operator=(server const &original)
 	this->_indices = original._indices;
 	this->_autoindex = original._autoindex;
 	this->_host = original._host;
+	this->_acceptFd = original._acceptFd;
+	this->_socketFd = original._socketFd;
+	this->_addr = original._addr;
 	return (*this);
 }
 
@@ -214,7 +218,7 @@ void	server::addLocation(location &newLoc)
 
 void	server::startListening()
 {
-	int	ret;
+
 
 	this->_socketFd = socket(PF_INET, SOCK_STREAM, 0);
 	if (this->_socketFd < 0)
@@ -227,7 +231,8 @@ void	server::startListening()
 	this->_addr.sin_port = htons(this->_portNr);
 	this->_addr.sin_addr.s_addr = htonl(INADDR_ANY); // this can be the IP address
 
-	// clear port if it is in use
+//	 clear port if it is in use
+	int	ret;
 	int options = 1;
 	ret = setsockopt(this->_socketFd, SOL_SOCKET, SO_REUSEADDR, &options, sizeof(options));
 	if (ret < 0)
@@ -250,17 +255,56 @@ void	server::startListening()
 	}
 }
 
-void	server::run()
+std::string 		server::recv()
+{
+	char		buffer[4096];
+	std::string request;
+	int 		read = 4095;
+
+	while( read == 4095)
+	{
+		memset(buffer, 0, 4096);
+		read = ::recv(_acceptFd, buffer, 4095, 0);
+		if (read == -1)
+			; // error
+		// try catch blok inbouwen
+
+		request += std::string(buffer);
+	}
+	return (request);
+}
+
+void 					server::send(std::string response)
+{
+	if(::send(_acceptFd, response.c_str(), response.size(), 0) == -1)
+		; // error message;
+}
+
+void 					server::serverClose()
+{
+	if(_acceptFd > 0)
+		::close(_acceptFd);
+	_acceptFd = -1;
+}
+
+void 	server::accept()
 {
 	struct sockaddr connectingAddr;
 	socklen_t		addressLen;
-	this->_acceptFd = accept(this->_socketFd, &connectingAddr, &addressLen);
-	if (this->_acceptFd < 0)
-	{
-		std::cerr << "accept error" << std::endl;
-		throw server::syscallErrorException();
-	}
-	request.
+	this->_acceptFd = ::accept(this->_socketFd, &connectingAddr, &addressLen);
+	if (_acceptFd == -1)
+		std::cerr << "Could not create fd" << std::endl; // dit zometeen aanpassen naar try catch
+}
+void	server::run()
+{
+	this->accept();
+	std::string receivedRequest = recv();
+	Request	request(receivedRequest);
+	Response response;
+
+	response.checkMethod(request, *this);
+	this->send(response.getResponse());
+	this->serverClose();
 }
 
 std::ostream&	operator<<(std::ostream &os, const server &serv)
@@ -300,3 +344,4 @@ std::ostream&	operator<<(std::ostream &os, const server &serv)
 		os << " >" << serv.getLocations()[i] << std::endl;
 	return (os);
 }
+
