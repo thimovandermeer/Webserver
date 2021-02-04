@@ -41,7 +41,7 @@ void	serverCluster::startup()
 	while (!this->_servers->empty() && it != this->_servers->end())
 	{
 		(*it).startListening();
-		FD_SET((*it).getListenFd(), &this->readFds);
+		FD_SET((*it).getSocketFd(), &this->readFds);
 		this->_nrOfServers++;
 		it++;
 	}
@@ -51,17 +51,14 @@ void	serverCluster::startListening()
 {
 	while (true)
 	{
-		struct timeval	timeout;
 		fd_set			workingSet;
 		int 			ret;
 
 		memcpy(&workingSet, &this->readFds, sizeof (this->readFds));
 		FD_SET(0, &workingSet); // adding stdin to readfds
-		timeout.tv_sec = 5;
-		timeout.tv_usec = 0; // timeout of 5 sec
 
-		std::cout << "waiting for connection" << std::endl;
-		ret = select(this->_nrOfServers * NR_OF_CONNECTIONS + 1, &workingSet, NULL, NULL, &timeout);
+		std::cout << "waiting for connection.." << std::endl;
+		ret = select(this->_nrOfServers * NR_OF_CONNECTIONS + 1, &workingSet, NULL, NULL, NULL);
 		if (FD_ISSET(0, &workingSet)) //input from stdin
 		{
 			std::string	line;
@@ -79,7 +76,7 @@ void	serverCluster::startListening()
 		std::vector<server>::iterator it = this->_servers->begin();
 		while (!this->_servers->empty() && it != this->_servers->end() && ret)
 		{
-			long fd  = it->getListenFd();
+			long fd  = it->getSocketFd();
 			if (workingSet.fds_bits[fd / 64] & (long)(1UL << fd % 64)) {
 				it->run();
 				ret--;

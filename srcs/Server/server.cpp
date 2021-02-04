@@ -1,7 +1,7 @@
+#include <map>
 #include "server.hpp"
 #include "location.hpp"
 #include <string>
-#include <map>
 #include <sstream>
 #include <iostream>
 #include <iomanip>
@@ -20,7 +20,7 @@ const char	*server::syscallErrorException::what() const throw()
 	return ("a syscall has returned an error");
 }
 
-server::server() : _portNr(0), _maxBodySize(1000000), _autoindex(false), _errorPage("default_error_page") //should change default error page
+server::server() : _portNr(0), _maxBodySize(1000000), _autoindex(false), _errorPage("default_error_page"), _socketFd(-1), _acceptFd(-1) //should change default error page
 {
 	this->_typeFunctionMap.insert(std::make_pair("listen", &server::setPort));
 	this->_typeFunctionMap.insert(std::make_pair("client_max_body_size", &server::setMaxBodySize));
@@ -117,7 +117,7 @@ void	server::setIndices(std::string &indices)
 		this->_indices.push_back(index);
 }
 
-void	server::setConnectFd(int fd)
+void	server::setAcceptFd(int fd)
 {
 	this->_acceptFd = fd;
 }
@@ -167,7 +167,7 @@ const std::vector<location>		&server::getLocations() const
 	return (this->_locations);
 }
 
-const int	&server::getListenFd() const
+const int	&server::getSocketFd() const
 {
 	return (this->_socketFd);
 }
@@ -177,7 +177,7 @@ const struct sockaddr_in	&server::getAddr() const
 	return (this->_addr);
 }
 
-const int	&server::getConnectFd() const
+const int	&server::getAcceptFd() const
 {
 	return(this->_acceptFd);
 }
@@ -255,7 +255,7 @@ void	server::startListening()
 	}
 }
 
-std::string 		server::recieve()
+std::string 		server::receive() const
 {
 	char		buffer[4096];
 	std::string request;
@@ -266,18 +266,22 @@ std::string 		server::recieve()
 		memset(buffer, 0, 4096);
 		read = recv(_acceptFd, buffer, 4095, 0);
 		if (read == -1)
-			; // error
-		// try catch blok inbouwen
-
+		{
+			std::cerr << "recv error" << std::endl;
+			throw server::syscallErrorException();
+		}
 		request += std::string(buffer);
 	}
 	return (request);
 }
 
-void 					server::send(std::string response)
+void 		server::sendData(const std::string &response) const
 {
-	if(::send(_acceptFd, response.c_str(), response.size(), 0) == -1)
-		; // error message;
+	if(send(_acceptFd, response.c_str(), response.size(), 0) == -1)
+	{
+		std::cerr << "send error" << std::endl;
+		throw server::syscallErrorException();
+	}
 }
 
 void 					server::serverClose()
@@ -297,13 +301,28 @@ void 	server::accept()
 }
 void	server::run()
 {
+	std::string receivedRequest;
 	this->accept();
-	std::string receivedRequest = recieve();
-	Request	request(receivedRequest);
+	try
+	{
+		receivedRequest = receive();
+	}
+	catch (std::exception &e)
+	{
+		// error
+	}
 	Response response;
 
+	Request	request(receivedRequest);
 	response.checkMethod(request, *this);
-	this->send(response.getResponse());
+	try
+	{
+		this->sendData(response.getResponse());
+	}
+	catch (std::exception &e)
+	{
+		// error
+	}
 	this->serverClose();
 }
 

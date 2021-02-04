@@ -4,15 +4,15 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/merelmourik/Desktop/webserv_git/srcs/Cluster/serverCluster.cpp" "/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Cluster/serverCluster.cpp.o"
-  "/Users/merelmourik/Desktop/webserv_git/srcs/Request/request.cpp" "/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Request/request.cpp.o"
-  "/Users/merelmourik/Desktop/webserv_git/srcs/Response/Response.cpp" "/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o"
-  "/Users/merelmourik/Desktop/webserv_git/srcs/Response/ResponseHeader.cpp" "/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/ResponseHeader.cpp.o"
-  "/Users/merelmourik/Desktop/webserv_git/srcs/Server/location.cpp" "/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/location.cpp.o"
-  "/Users/merelmourik/Desktop/webserv_git/srcs/Server/parser.cpp" "/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/parser.cpp.o"
-  "/Users/merelmourik/Desktop/webserv_git/srcs/Server/server.cpp" "/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/server.cpp.o"
-  "/Users/merelmourik/Desktop/webserv_git/srcs/Utils/utils.cpp" "/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Utils/utils.cpp.o"
-  "/Users/merelmourik/Desktop/webserv_git/srcs/webserv.cpp" "/Users/merelmourik/Desktop/webserv_git/cmake-build-debug/CMakeFiles/webserv.dir/srcs/webserv.cpp.o"
+  "/Users/jbennink/Documents/Projects/webserv/srcs/Cluster/serverCluster.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Cluster/serverCluster.cpp.o"
+  "/Users/jbennink/Documents/Projects/webserv/srcs/Request/request.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Request/request.cpp.o"
+  "/Users/jbennink/Documents/Projects/webserv/srcs/Response/Response.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o"
+  "/Users/jbennink/Documents/Projects/webserv/srcs/Response/ResponseHeader.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/ResponseHeader.cpp.o"
+  "/Users/jbennink/Documents/Projects/webserv/srcs/Server/location.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/location.cpp.o"
+  "/Users/jbennink/Documents/Projects/webserv/srcs/Server/parser.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/parser.cpp.o"
+  "/Users/jbennink/Documents/Projects/webserv/srcs/Server/server.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/server.cpp.o"
+  "/Users/jbennink/Documents/Projects/webserv/srcs/Utils/utils.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Utils/utils.cpp.o"
+  "/Users/jbennink/Documents/Projects/webserv/srcs/webserv.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/webserv.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

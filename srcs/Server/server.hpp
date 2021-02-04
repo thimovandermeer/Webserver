@@ -55,7 +55,7 @@ public:
 	void	setServerNames(std::string &names);
 	void	setIndices(std::string &indices);
 
-	void	setConnectFd(int fd);
+	void	setAcceptFd(int fd);
 
 	const int						&getPortNr() const;
 	const size_t					&getMaxBodySize() const;
@@ -67,14 +67,14 @@ public:
 	const std::vector<std::string>	&getIndices() const;
 	const std::vector<location>		&getLocations() const;
 
-	const int						&getListenFd() const;
+	const int						&getSocketFd() const;
 	const struct sockaddr_in		&getAddr() const;
-	const int						&getConnectFd() const;
+	const int						&getAcceptFd() const;
 
 	void		addLocation(location &newLoc);
 	bool		valueCheck() const;
-	std::string	recieve();
-	void 		send(std::string response);
+	std::string	receive() const;
+	void 		sendData(const std::string &response) const;
 	void 		serverClose();
 	void 		accept();
 	void		findValue(std::string &key, std::string line);

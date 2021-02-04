@@ -75,7 +75,7 @@ void 	Response::readContent()
 	const char *c = _path.c_str();
 	if(access(c, F_OK) != 0)
 		_code = 404;
-	file.open(_path, std::ifstream::in);
+	file.open(this->_path, std::ifstream::in);
 	if(!file.is_open())
 		_code = 403;
 	_content.assign((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
