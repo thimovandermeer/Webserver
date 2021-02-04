@@ -130,7 +130,7 @@ void Request::parseRequestLine(){
     _version = _request.substr(pos2, pos1-pos2);
     if (_version.compare("HTTP/1.1") != 0)
         _status = 400;
-    _request = _request.substr(pos1+2, std::string::npos);
+    _request = _request.substr(pos1+2);
 }
 
 void Request::parseHeaders() {
@@ -145,6 +145,10 @@ void Request::parseHeaders() {
         header.clear();
         value.clear();
         upperHeader.clear();
+        if (_request.find(":", pos) == std::string::npos) {
+            _status = 400;
+            return ;
+        }
         length = _request.find(":", pos);
         if (std::isspace(_request[length - 1])){       //spatie voor :
             _status = 400;
@@ -157,9 +161,6 @@ void Request::parseHeaders() {
             pos = length+1;
         length = _request.find("\r\n", pos);
         value = _request.substr(pos, length-pos);
-
-        if (std::isspace(value.length()))
-            _request.erase(value.length());
         for (int i = 0; header[i]; i++)
             upperHeader += std::toupper(header[i]);
         std::map<std::string, headerType>::iterator it = _headerMap.find(upperHeader);
@@ -173,8 +174,7 @@ void Request::parseHeaders() {
 		if (_request[pos] == '\r' && _request[pos + 1] == '\n')
 			loop = false ;
     }
-    _request = _request.substr(pos+2, std::string::npos);
-	// std::cout << _request << std::endl;
+    _request = _request.substr(pos+2);
 }
 
 void Request::parseBody() {
