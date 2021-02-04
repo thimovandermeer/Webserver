@@ -71,13 +71,13 @@ public:
 	const struct sockaddr_in		&getAddr() const;
 	const int						&getConnectFd() const;
 
-	void	addLocation(location &newLoc);
-	bool	valueCheck() const;
-	std::string recv();
+	void		addLocation(location &newLoc);
+	bool		valueCheck() const;
+	std::string	recieve();
 	void 		send(std::string response);
 	void 		serverClose();
 	void 		accept();
-	void	findValue(std::string &key, std::string line);
+	void		findValue(std::string &key, std::string line);
 
 	void	startListening();
 

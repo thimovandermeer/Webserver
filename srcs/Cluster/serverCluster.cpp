@@ -49,18 +49,31 @@ void	serverCluster::startup()
 
 void	serverCluster::startListening()
 {
-	int n = 1; // this is just to get rid of clang-tidy for now
-	while (n > 0)
+	while (true)
 	{
 		struct timeval	timeout;
 		fd_set			workingSet;
 		int 			ret;
+
 		memcpy(&workingSet, &this->readFds, sizeof (this->readFds));
+		FD_SET(0, &workingSet); // adding stdin to readfds
 		timeout.tv_sec = 5;
-		timeout.tv_usec = 0; // timeout of 1 sec
+		timeout.tv_usec = 0; // timeout of 5 sec
 
 		std::cout << "waiting for connection" << std::endl;
 		ret = select(this->_nrOfServers * NR_OF_CONNECTIONS + 1, &workingSet, NULL, NULL, &timeout);
+		if (FD_ISSET(0, &workingSet)) //input from stdin
+		{
+			std::string	line;
+			std::getline(std::cin, line);
+			if (line == "exit")
+			{
+				std::cout << "exiting..." << std::endl;
+				exit (0);
+			}
+			else
+				std::cout << "unknown input" << std::endl;
+		}
 		if (ret > 0)
 			std::cout << "Houston we have contact" << std::endl;
 		std::vector<server>::iterator it = this->_servers->begin();

@@ -255,7 +255,7 @@ void	server::startListening()
 	}
 }
 
-std::string 		server::recv()
+std::string 		server::recieve()
 {
 	char		buffer[4096];
 	std::string request;
@@ -264,7 +264,7 @@ std::string 		server::recv()
 	while( read == 4095)
 	{
 		memset(buffer, 0, 4096);
-		read = ::recv(_acceptFd, buffer, 4095, 0);
+		read = recv(_acceptFd, buffer, 4095, 0);
 		if (read == -1)
 			; // error
 		// try catch blok inbouwen
@@ -298,7 +298,7 @@ void 	server::accept()
 void	server::run()
 {
 	this->accept();
-	std::string receivedRequest = recv();
+	std::string receivedRequest = recieve();
 	Request	request(receivedRequest);
 	Response response;
 
