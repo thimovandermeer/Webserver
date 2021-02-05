@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+/Users/merelmourik/Desktop/webserv_git/srcs/Cluster/serverCluster.hpp
+../Server/server.hpp
+/Users/merelmourik/Desktop/webserv_git/srcs/Server/server.hpp
+
+/Users/merelmourik/Desktop/webserv_git/srcs/Request/request.cpp
+request.hpp
+/Users/merelmourik/Desktop/webserv_git/srcs/Request/request.hpp
+
 /Users/merelmourik/Desktop/webserv_git/srcs/Request/request.hpp
 iostream
 -
@@ -46,6 +54,16 @@ ostream
 ../Server/server.hpp
 /Users/merelmourik/Desktop/webserv_git/srcs/Server/server.hpp
 
+/Users/merelmourik/Desktop/webserv_git/srcs/Response/ResponseHeader.cpp
+ResponseHeader.hpp
+/Users/merelmourik/Desktop/webserv_git/srcs/Response/ResponseHeader.hpp
+Response.hpp
+/Users/merelmourik/Desktop/webserv_git/srcs/Response/Response.hpp
+sys/time.h
+-
+sys/stat.h
+-
+
 /Users/merelmourik/Desktop/webserv_git/srcs/Response/ResponseHeader.hpp
 string
 -
@@ -61,6 +79,30 @@ vector
 -
 map
 -
+
+/Users/merelmourik/Desktop/webserv_git/srcs/Server/server.cpp
+server.hpp
+/Users/merelmourik/Desktop/webserv_git/srcs/Server/server.hpp
+location.hpp
+/Users/merelmourik/Desktop/webserv_git/srcs/Server/location.hpp
+string
+-
+map
+-
+sstream
+-
+iostream
+-
+iomanip
+-
+unistd.h
+-
+sys/socket.h
+-
+../Request/request.hpp
+/Users/merelmourik/Desktop/webserv_git/srcs/Request/request.hpp
+../Response/Response.hpp
+/Users/merelmourik/Desktop/webserv_git/srcs/Response/Response.hpp
 
 /Users/merelmourik/Desktop/webserv_git/srcs/Server/server.hpp
 location.hpp
@@ -79,4 +121,24 @@ netdb.h
 -
 
 /Users/merelmourik/Desktop/webserv_git/srcs/Utils/utils.hpp
+
+/Users/merelmourik/Desktop/webserv_git/srcs/webserv.cpp
+../srcs/Cluster/serverCluster.hpp
+/Users/merelmourik/Desktop/webserv_git/srcs/Cluster/serverCluster.hpp
+../srcs/Request/request.hpp
+/Users/merelmourik/Desktop/webserv_git/srcs/Request/request.hpp
+../srcs/Response/ResponseHeader.hpp
+/Users/merelmourik/Desktop/webserv_git/srcs/Response/ResponseHeader.hpp
+../srcs/Response/Response.hpp
+/Users/merelmourik/Desktop/webserv_git/srcs/Response/Response.hpp
+../srcs/Server/server.hpp
+/Users/merelmourik/Desktop/webserv_git/srcs/Server/server.hpp
+../srcs/Server/location.hpp
+/Users/merelmourik/Desktop/webserv_git/srcs/Server/location.hpp
+../srcs/webserv.hpp
+/Users/merelmourik/Desktop/webserv_git/srcs/webserv.hpp
+
+/Users/merelmourik/Desktop/webserv_git/srcs/webserv.hpp
+Cluster/serverCluster.hpp
+/Users/merelmourik/Desktop/webserv_git/srcs/Cluster/serverCluster.hpp
 
