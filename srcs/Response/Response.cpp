@@ -17,7 +17,6 @@ Response::Response()
 	_content ="";
 	_path = "";
 	_contentType = "";
-	_code = 0;
 }
 
 Response::~Response()
@@ -56,7 +55,7 @@ std::string Response::getPath(server &server, Request &request)
 void Response::checkMethod(Request &request, server &server)
 {
 	_path = getPath(server, request);
-	_code = 200;
+	_code = request.getStatus();
 	_contentType = request.getContentType();
 	if(request.getMethod() == 0)
 		getMethod(); // done
@@ -73,10 +72,10 @@ void 	Response::readContent()
 	std::ifstream file;
 
 	const char *c = _path.c_str();
-	if(access(c, F_OK) != 0)
+	if(access(c, F_OK) != 0 && _code == 200)
 		_code = 404;
 	file.open(_path, std::ifstream::in);
-	if(!file.is_open())
+	if(!file.is_open() && _code == 200)
 		_code = 403;
 	_content.assign((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
 	file.close();
@@ -85,12 +84,13 @@ void 	Response::readContent()
 void 	Response::writeContent(std::string content)
 {
 	std::ofstream file;
-	_code = 204;
+	if (_code == 200)
+    	_code = 204;
 	const char *c = _path.c_str();
-	if(access(c, F_OK) == 0)
+	if(access(c, F_OK) == 0 && _code == 200)
 		_code = 201;
 	file.open(_path, std::ofstream::out | std::ofstream::trunc);
-	if(!file.is_open())
+	if(!file.is_open() && _code == 200)
 		_code = 403;
 	file << content;
 	file.close();
@@ -114,12 +114,13 @@ void Response::headMethod()
 void Response::postMethod(std::string content)
 {
 	std::ofstream file;
-	_code = 204;
+	if (_code == 200)
+    	_code = 204;
 	const char *c = _path.c_str();
-	if(access(c, F_OK) == 0)
+	if(access(c, F_OK) == 0 && _code == 200)
 		_code = 201;
 	file.open(_path, std::ios::out | std::ios::app);
-	if(!file.is_open())
+	if(!file.is_open() && _code == 200)
 		_code = 403;
 	file << content;
 	file.close();

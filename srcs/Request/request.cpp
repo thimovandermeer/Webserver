@@ -113,7 +113,7 @@ void Request::parseRequestLine(){
     pos2 = _request.find(" ");
     _method = _request.substr(0, pos2);
     if (getMethod() == -1){
-        _status = 405;
+        _status = 400;
     }
     pos2+=1;
     pos1 = _request.find(" ", pos2);

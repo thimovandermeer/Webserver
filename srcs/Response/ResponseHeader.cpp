@@ -90,10 +90,14 @@ std::string		ResponseHeader::createStatusMessage(int code)
 		return ("Created");
 	else if (code == 204)
 		return ("No Content");
-	else if (code == 403)
+	else if (code == 400)
+	        return ("Bad Request Error");
+	else if (code == 403)       //krijgen we deze ooit?
 		return ("Forbidden");
-	else if (code == 404)
+	else if (code == 404)       //en deze?
 		return ("Not found");
+	else if (code == 405)       //en deze?
+	    return ("Method Not Allowed");
 	else
 		return ("Zieke Error in onze code");
 }
