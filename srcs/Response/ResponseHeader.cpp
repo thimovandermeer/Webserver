@@ -19,7 +19,7 @@ ResponseHeader::ResponseHeader(std::string &content, std::string &path, int code
 	setLocation(path, code);
 	setRetryAfter(code, 10);
 	setServer();
-	setTransferEncoding();
+//	setTransferEncoding();
 	setWwwAuthenticate(code);
 }
 

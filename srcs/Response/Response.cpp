@@ -36,7 +36,12 @@ Response &Response::operator=(const Response &src)
 
 std::string Response::getPath(server &server, Request &request)
 {
-	// from the server side i need the root
+	// request kant
+		// vraagt om specifieke location
+	// server kant
+		// heeft location geconfigureerd
+	// dit moet gematcht worden
+
 	std::string root = server.getRoot();
 
 	// from the request side i need the path
@@ -47,6 +52,9 @@ std::string Response::getPath(server &server, Request &request)
 //	if (!location.empty())
 //		ret = root + path.substr(location.length());
 //	else
+	// functie jonas hier inzetten return location of leeg
+	// check if not empty en daarna kijken of het een match is
+	// geen match is goede exit code returnen
 	ret = root + path;
 	std::string temp;
 	temp = removeAdjacentSlashes(ret);
@@ -125,7 +133,6 @@ void Response::postMethod(std::string content)
 	file.close();
 	ResponseHeader header(content, _path, _code, _contentType);
 	_response = header.getHeader(_code); // here we got a potential bug
-	// need more knowledge about CGI
 }
 
 void Response::putMethod(std::string content)

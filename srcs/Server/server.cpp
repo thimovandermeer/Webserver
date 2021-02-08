@@ -272,11 +272,13 @@ std::string 		server::receive() const
 		}
 		request += std::string(buffer);
 	}
+	std::cout << request << std::endl;
 	return (request);
 }
 
 void 		server::sendData(const std::string &response) const
 {
+	std::cout << response << std::endl;
 	if(send(_acceptFd, response.c_str(), response.size(), 0) == -1)
 	{
 		std::cerr << "send error" << std::endl;
