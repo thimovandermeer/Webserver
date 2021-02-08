@@ -326,6 +326,19 @@ void	server::run()
 	this->serverClose();
 }
 
+location*		server::findLocation(std::string &match)
+{
+	std::vector<location>::iterator it;
+	it = this->_locations.begin();
+	while (!this->_locations.empty() && it != this->_locations.end())
+	{
+		if ((*it).getMatch() == match)
+			return &(*it);
+		it++;
+	}
+	return (NULL);
+}
+
 std::ostream&	operator<<(std::ostream &os, const server &serv)
 {
 	os << std::setw(15) << std::left << "portNr: " << serv.getPortNr() << std::endl;

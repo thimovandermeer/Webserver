@@ -82,6 +82,8 @@ public:
 	void	startListening();
 
 	void	run();
+
+	location*	findLocation(std::string &match);
 };
 
 std::ostream&	operator<<(std::ostream &os, const server &serv);
