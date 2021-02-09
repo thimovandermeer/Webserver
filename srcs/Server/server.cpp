@@ -167,7 +167,7 @@ const std::vector<location>		&server::getLocations() const
 	return (this->_locations);
 }
 
-const int	&server::getSocketFd() const
+const long	&server::getSocketFd() const
 {
 	return (this->_socketFd);
 }
@@ -177,7 +177,7 @@ const struct sockaddr_in	&server::getAddr() const
 	return (this->_addr);
 }
 
-const int	&server::getAcceptFd() const
+const long	&server::getAcceptFd() const
 {
 	return(this->_acceptFd);
 }
@@ -255,30 +255,42 @@ void	server::startListening()
 	}
 }
 
+#define BUFFSIZE 4095
 std::string 		server::receive() const
 {
-	char		buffer[4096];
+	char		buffer[BUFFSIZE + 1];
 	std::string request;
-	int 		read = 4095;
+	int 		ret = BUFFSIZE;
 
-	while( read == 4095)
+	while(ret > 1)
 	{
-		memset(buffer, 0, 4096);
-		read = recv(_acceptFd, buffer, 4095, 0);
-		if (read == -1)
+//		memset(buffer, 0, 4096);
+		std::cout << "reading..." << std::endl;
+		ret = read(_acceptFd, buffer, BUFFSIZE);
+		buffer[ret] = 0;
+		if (ret == -1)
 		{
 			std::cerr << "recv error" << std::endl;
 			throw server::syscallErrorException();
 		}
 		request += std::string(buffer);
+		int len = request.length();
+		if (request[len -1] == '\n' && request[len -2] == '\r' && request[len -3] == '\n' &&request[len -4] == '\r')
+		{
+			break;
+		}
 	}
-	std::cout << request << std::endl;
+	std::cout << "==REQUEST==" << std::endl;
+	std::cout << ret << request << std::endl;
+	std::cout << "==end==" << std::endl;
 	return (request);
 }
 
 void 		server::sendData(const std::string &response) const
 {
+	std::cout << "==RESPONSE==" << std::endl;
 	std::cout << response << std::endl;
+	std::cout << "==end==" << std::endl;
 	if(send(_acceptFd, response.c_str(), response.size(), 0) == -1)
 	{
 		std::cerr << "send error" << std::endl;
@@ -301,6 +313,7 @@ void 	server::accept()
 	if (_acceptFd == -1)
 		std::cerr << "Could not create fd" << std::endl; // dit zometeen aanpassen naar try catch
 }
+
 void	server::run()
 {
 	std::string receivedRequest;
