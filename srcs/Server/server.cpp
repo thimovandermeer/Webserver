@@ -313,9 +313,10 @@ void	server::run()
 	{
 		// error
 	}
-	Response response;
+
 
 	Request	request(receivedRequest);
+	Response response(request, *this);
 	response.checkMethod(request, *this);
 	try
 	{

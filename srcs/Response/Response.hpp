@@ -10,11 +10,13 @@
 #include <ostream>
 #include "../Request/request.hpp"
 #include "../Server/server.hpp"
+#include "../CGI/CGI.hpp"
 // this needs to be deleted when request is been made
 
 class Response {
 public:
-	Response(void);
+	Response();
+	Response(Request &request, server &server);
 	Response(const Response &src);
 	virtual ~Response();
 
@@ -33,7 +35,9 @@ private:
 	std::string _content;
 	std::string _path;
 	std::string _contentType;
-	int 		_status;
+	int 		_code;
+	CGI			_CGI;
+
 private:
 	// functions for each different method
 	void 		getMethod();

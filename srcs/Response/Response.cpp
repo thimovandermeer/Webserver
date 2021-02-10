@@ -11,12 +11,14 @@
 #include "../Utils/utils.hpp"
 
 
-Response::Response()
+Response::Response(Request &request, server &server) :
+	_CGI(request, server)
 {
 	_response = "";
 	_content ="";
 	_path = "";
 	_contentType = "";
+	_code = 0;
 }
 
 Response::~Response()
@@ -29,7 +31,7 @@ Response &Response::operator=(const Response &src)
 	_response = src._response;
 	_content = src._content;
 	_path = src._path;
-	_status = src._status;
+	_code = src._code;
 	return (*this);
 }
 
@@ -63,7 +65,7 @@ std::string Response::getPath(server &server, Request &request)
 void Response::checkMethod(Request &request, server &server)
 {
 	_path = getPath(server, request);
-	_status = request.getStatus();
+	_code = 200;
 	_contentType = request.getContentType();
 	if(request.getMethod() == 0)
 		getMethod(); // done
@@ -80,19 +82,11 @@ void 	Response::readContent()
 	std::ifstream file;
 
 	const char *c = _path.c_str();
-<<<<<<< HEAD
 	if(access(c, F_OK) != 0)
 		_code = 404;
 	file.open(this->_path, std::ifstream::in);
 	if(!file.is_open())
 		_code = 403;
-=======
-	if(access(c, F_OK) != 0 && _status == 200)
-		_status = 404;
-	file.open(_path, std::ifstream::in);
-	if(!file.is_open() && _status == 200)
-		_status = 403;
->>>>>>> status
 	_content.assign((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
 	file.close();
 }
@@ -100,14 +94,13 @@ void 	Response::readContent()
 void 	Response::writeContent(std::string content)
 {
 	std::ofstream file;
-	if (_status == 200)
-    	_status = 204;
+	_code = 204;
 	const char *c = _path.c_str();
-	if(access(c, F_OK) == 0 && _status == 200)
-		_status = 201;
+	if(access(c, F_OK) == 0)
+		_code = 201;
 	file.open(_path, std::ofstream::out | std::ofstream::trunc);
-	if(!file.is_open() && _status == 200)
-		_status = 403;
+	if(!file.is_open())
+		_code = 403;
 	file << content;
 	file.close();
 
@@ -115,41 +108,39 @@ void 	Response::writeContent(std::string content)
 void Response::getMethod()
 {
 	readContent();
-	ResponseHeader header(_content, _path, _status, _contentType);
-	_response = header.getHeader(_status) + _content;
+	ResponseHeader header(_content, _path, _code, _contentType);
+	_response = header.getHeader(_code) + _content;
 
 }
 
 void Response::headMethod()
 {
 	readContent();
-	ResponseHeader header(_content, _path, _status, _contentType);
-  	_response = header.getHeader(_status);
+	ResponseHeader header(_content, _path, _code, _contentType);
+  	_response = header.getHeader(_code);
 }
 
 void Response::postMethod(std::string content)
 {
 	std::ofstream file;
-	if (_status == 200)
-    	_status = 204;
+	_code = 204;
 	const char *c = _path.c_str();
-	if(access(c, F_OK) == 0 && _status == 200)
-		_status = 201;
+	if(access(c, F_OK) == 0)
+		_code = 201;
 	file.open(_path, std::ios::out | std::ios::app);
-	if(!file.is_open() && _status == 200)
-		_status = 403;
+	if(!file.is_open())
+		_code = 403;
 	file << content;
 	file.close();
-	ResponseHeader header(content, _path, _status, _contentType);
-	_response = header.getHeader(_status); // here we got a potential bug
-	// need more knowledge about CGI
+	ResponseHeader header(content, _path, _code, _contentType);
+	_response = header.getHeader(_code); // here we got a potential bug
 }
 
 void Response::putMethod(std::string content)
 {
 	writeContent(content);
-	ResponseHeader header(content, _path, _status, _contentType);
-	_response = header.getHeader(_status); // here we got a potential bug
+	ResponseHeader header(content, _path, _code, _contentType);
+	_response = header.getHeader(_code); // here we got a potential bug
 }
 
 // getters
@@ -165,13 +156,13 @@ const std::string 	&Response::getResponse() const
 
 int 				Response::getCode()
 {
-	return _status;
+	return _code;
 }
 
 std::ostream &operator<<(std::ostream &os, const Response &response)
 {
 	os << "_response: " << response._response << " _content: " << response._content << " _path: " << response._path
-	   << " _status: " << response._status;
+	   << " _code: " << response._code;
 	return os;
 }
 
