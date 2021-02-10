@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+/Users/merelmourik/Desktop/webserv_git/srcs/Cluster/serverCluster.cpp
+serverCluster.hpp
+/Users/merelmourik/Desktop/webserv_git/srcs/Cluster/serverCluster.hpp
+sys/select.h
+-
+../Request/request.hpp
+/Users/merelmourik/Desktop/webserv_git/srcs/Request/request.hpp
+
 /Users/merelmourik/Desktop/webserv_git/srcs/Cluster/serverCluster.hpp
 ../Server/server.hpp
 /Users/merelmourik/Desktop/webserv_git/srcs/Server/server.hpp
@@ -78,6 +86,18 @@ string
 vector
 -
 map
+-
+
+/Users/merelmourik/Desktop/webserv_git/srcs/Server/parser.cpp
+../webserv.hpp
+/Users/merelmourik/Desktop/webserv_git/srcs/webserv.hpp
+server.hpp
+/Users/merelmourik/Desktop/webserv_git/srcs/Server/server.hpp
+iostream
+-
+sstream
+-
+fstream
 -
 
 /Users/merelmourik/Desktop/webserv_git/srcs/Server/server.cpp

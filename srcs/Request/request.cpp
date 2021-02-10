@@ -28,6 +28,7 @@ Request &Request::operator=(const Request &original) {
 
 Request::Request(std::string request) : _request(request) {
     _status = 200;
+    _cgi = false;
     _headerMap["ACCEP-CHARSET"] = ACCEPT_CHARSET;
     _headerMap["ACCEPT-LANGUAGE"] = ACCEPT_LANGUAGE;
     _headerMap["ALLOW"] = ALLOW;
@@ -86,6 +87,10 @@ std::string Request::getCgiEnv() const{
     return _cgiEnv;
 }
 
+bool Request::getCgi() const {
+    return _cgi;
+}
+
 int Request::getStatus() const {
 	return _status;
 }
@@ -118,6 +123,7 @@ void Request::parseRequestLine(){
     pos2+=1;
     pos1 = _request.find(" ", pos2);
     if (_request.find("?", pos2, pos1) != std::string::npos){
+        _cgi = true;
         pos1 = _request.find("?");
         _uri = _request.substr(pos2, pos1-pos2);
         pos2 = _request.find(" ", pos1);
