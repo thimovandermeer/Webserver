@@ -92,12 +92,13 @@ std::string		ResponseHeader::createStatusMessage(int status)
 		return ("No Content");
 	else if (status == 400)
 	        return ("Bad Request Error");
-	else if (status == 403)       //krijgen we deze ooit?
+	else if (status == 403)
 		return ("Forbidden");
-	else if (status == 404)       //en deze?
+	else if (status == 404)
 		return ("Not found");
-	else if (status == 405)       //en deze?
+	else if (status == 405)         //GET and HEAD mogen deze nooit returnen
 	    return ("Method Not Allowed");
+	    //error 503 toevoegen (wordt genoemd op regel 223
 	else
 		return ("Zieke Error in onze code");
 }
