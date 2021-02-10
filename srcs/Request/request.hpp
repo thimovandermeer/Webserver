@@ -45,6 +45,7 @@ class Request{
         std::string getContentType();
 		std::string getHost();
         std::string getCgiEnv() const;
+        bool getCgi() const ;
 		int getStatus() const;
 
         void parseRequest();
@@ -63,6 +64,7 @@ class Request{
         std::map<std::string, headerType>	_headerMap;
         std::map<headerType, std::string>   _defHeaders;
         int         _status;
+        bool        _cgi;
 } ;
 
 #endif

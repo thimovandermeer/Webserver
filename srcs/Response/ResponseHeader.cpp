@@ -7,20 +7,20 @@
 #include <sys/time.h>
 #include <sys/stat.h>
 // canonical form functions
-ResponseHeader::ResponseHeader(std::string &content, std::string &path, int code, std::string &contentType)
+ResponseHeader::ResponseHeader(std::string &content, std::string &path, int status, std::string &contentType)
 {
-	setAllow(code);
+	setAllow(status);
 	setContentLanguage();
 	setContentLength(content.length());
-	setContentLocation(path, code);
+	setContentLocation(path, status);
 	setContentType(contentType);
 	setDate();
 	setLastModified(path);
-	setLocation(path, code);
-	setRetryAfter(code, 10);
+	setLocation(path, status);
+	setRetryAfter(status, 10);
 	setServer();
-//	setTransferEncoding();
-	setWwwAuthenticate(code);
+	setTransferEncoding();
+	setWwwAuthenticate(status);
 }
 
 ResponseHeader::ResponseHeader(const ResponseHeader &src)
@@ -70,30 +70,34 @@ ResponseHeader &ResponseHeader::operator=(const ResponseHeader &src)
 }
 
 // public member functions
-std::string ResponseHeader::getHeader(int code)
+std::string ResponseHeader::getHeader(int status)
 {
 	std::string header;
 	// set all headers to appropriate info
-//	setAllHeaders(content, path, code, contentType);
+//	setAllHeaders(content, path, status, contentType);
 	// write header
-	header = "HTTP/1.1 " + std::to_string(code) + " " + createStatusMessage(code) + "\r\n";
+	header = "HTTP/1.1 " + std::to_string(status) + " " + createStatusMessage(status) + "\r\n";
 	header += writeHeader();
 	return (header);
 }
 
-std::string		ResponseHeader::createStatusMessage(int code)
+std::string		ResponseHeader::createStatusMessage(int status)
 {
 	// trying to solve this with an enum or some other smart data type
-	if(code == 200)
+	if(status == 200)
 		return ("OK");
-	else if (code == 201)
+	else if (status == 201)
 		return ("Created");
-	else if (code == 204)
+	else if (status == 204)
 		return ("No Content");
-	else if (code == 403)
+	else if (status == 400)
+	        return ("Bad Request Error");
+	else if (status == 403)       //krijgen we deze ooit?
 		return ("Forbidden");
-	else if (code == 404)
+	else if (status == 404)       //en deze?
 		return ("Not found");
+	else if (status == 405)       //en deze?
+	    return ("Method Not Allowed");
 	else
 		return ("Zieke Error in onze code");
 }
@@ -132,15 +136,15 @@ std::string 		ResponseHeader::writeHeader()
 
 
 // setters
-void ResponseHeader::setContentLocation(const std::string &path, int code)
+void ResponseHeader::setContentLocation(const std::string &path, int status)
 {
-	if (code != 404)
+	if (status != 404)
 		_contentLocation = path;
 }
 
-void ResponseHeader::setAllow(const int &code)
+void ResponseHeader::setAllow(const int &status)
 {
-	if (code == 405)
+	if (status == 405)
 	{
 		_allow = "Get, Head, Post, Put";
 	}
@@ -186,9 +190,9 @@ void ResponseHeader::setLastModified(const std::string &path)
 	}
 }
 
-void ResponseHeader::setLocation(const std::string &path, int code)
+void ResponseHeader::setLocation(const std::string &path, int status)
 {
-	if (code == 201 || code / 100 == 3)
+	if (status == 201 || status / 100 == 3)
 	{
 		_location = path;
 	}
@@ -204,18 +208,18 @@ void ResponseHeader::setTransferEncoding()
 	_transferEncoding = "Chunked";
 }
 
-void ResponseHeader::setWwwAuthenticate(int code)
+void ResponseHeader::setWwwAuthenticate(int status)
 {
-	if (code == 401)
+	if (status == 401)
 	{
 		_wwwAuthenticate = "Newauth realm=\"apps\", type=1,\n title=\"Login to \\\"apps\\\"\", Basic realm=\"simple\"charset=\"UTF-8\"";
 	}
 }
 
 // create proper testers
-void ResponseHeader::setRetryAfter(int code, int number)
+void ResponseHeader::setRetryAfter(int status, int number)
 {
-	if (code == 503)
+	if (status == 503)
 	{
 		char buf[1000];
 		time_t now = time(0);
@@ -224,7 +228,7 @@ void ResponseHeader::setRetryAfter(int code, int number)
 		strftime(buf, sizeof buf, "%a, %d %b %Y %H:%M:%S %Z", &tm);
 		_retryAfter = buf; // might need to convert it to a string lets see later
 	}
-	else if (code / 100 == 3)
+	else if (status / 100 == 3)
 	{
 		_retryAfter = std::to_string(number);
 	}
