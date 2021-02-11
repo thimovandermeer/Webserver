@@ -14,7 +14,7 @@ class ResponseHeader
 {
 public:
 	// public functions
-	ResponseHeader(std::string &content, std::string &path, int code, std::string &contentType);
+	ResponseHeader(std::string &content, std::string &path, int status, std::string &contentType);
 	ResponseHeader(const ResponseHeader &src);
 	virtual ~ResponseHeader();
 
@@ -22,25 +22,25 @@ public:
 
 private:
 	// private setter functions
-	void 			setAllow(const int &code);
+	void 			setAllow(const int &status);
 	void 			setContentLanguage();
 	void 			setContentLength(int length);
-	void 			setContentLocation(const std::string &path, int code);
+	void 			setContentLocation(const std::string &path, int status);
 	void 			setContentType(const std::string &contentType);
 	void 			setDate();
 	void 			setLastModified(const std::string &path);
-	void 			setLocation(const std::string &path, int code);
+	void 			setLocation(const std::string &path, int status);
 	void 			setServer();
 	void 			setTransferEncoding();
-	void 			setRetryAfter(int code, int number);
-	void 			setWwwAuthenticate(int code);
+	void 			setRetryAfter(int status, int number);
+	void 			setWwwAuthenticate(int status);
 
 	// private member functions
-	std::string		createStatusMessage(int code);
+	std::string		createStatusMessage(int status);
 	std::string 	writeHeader();
 	// public members
 public:
-	std::string getHeader(int code);
+	std::string getHeader(int status);
 
 	const std::string &getAcceptCharsets() const;
 

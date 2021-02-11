@@ -125,9 +125,12 @@ void Request::parseRequestLine(){
         _cgiEnv = _request.substr(pos1+1, pos2-pos1-1);		//ook checken
     }
     else
-        _uri = _request.substr(pos2, pos1-pos2);
+	{
+		_uri = _request.substr(pos2, pos1-pos2);
+		pos2 = _request.find(" ", pos1);
+	}
     pos1 = _request.find("\r\n");
-	pos2 += 2;
+	pos2++;
     _version = _request.substr(pos2, pos1-pos2);
     if (_version.compare("HTTP/1.1") != 0)
         _status = 400;
@@ -167,6 +170,10 @@ void Request::parseHeaders() {
         std::map<std::string, headerType>::iterator it = _headerMap.find(upperHeader);
         if (it == _headerMap.end())
 		{
+			pos = length+2;
+			if (_request[pos] == '\r' && _request[pos + 1] == '\n')
+				loop = false;
+        	continue;
 			_status = 400;
 			return;
 		}
