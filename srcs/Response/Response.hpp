@@ -33,7 +33,7 @@ private:
 	std::string _content;
 	std::string _path;
 	std::string _contentType;
-	int 		_code;
+	int 		_status;
 private:
 	// functions for each different method
 	void 		getMethod();

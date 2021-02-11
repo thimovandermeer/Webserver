@@ -51,14 +51,14 @@ void	parseError(int lineNr) // not sure if we wanna exit in this case, can figur
 	errMsgAndExit(errStr.str(), 1);
 }
 
-location	getLocation(std::string &startLine, std::fstream &configFile, int &lineNr)
+location	*getLocation(std::string &startLine, std::fstream &configFile, int &lineNr)
 {
 	std::string	line;
 	std::string	match;
 
 	match = startLine.substr(9, startLine.length() - 11);
 	// 9 is length of "location ", 11 is that + the " {" at the end;
-	location	newLoc(match);
+	location	*newLoc = new location(match);
 
 	while (std::getline(configFile, line))
 	{
@@ -77,7 +77,7 @@ location	getLocation(std::string &startLine, std::fstream &configFile, int &line
 		try
 		{
 			std::string value = firstword(line);
-			newLoc.findValue(value,line);
+			newLoc->findValue(value,line);
 		}
 		catch (std::exception &e)
 		{
@@ -85,7 +85,7 @@ location	getLocation(std::string &startLine, std::fstream &configFile, int &line
 			errMsgAndExit(e.what(), 1);
 		}
 	}
-	if (!newLoc.valueCheck())
+	if (!newLoc->valueCheck())
 		errMsgAndExit("invalid values in location block", 1);
 	return (newLoc);
 }
@@ -121,7 +121,7 @@ void	startParsing(std::fstream& configFile, serverCluster *cluster)
 			line = trimEndSpaces(line);
 			if (firstword(line) == "location")
 			{
-				location newLoc = getLocation(line, configFile, lineNr);
+				location *newLoc = getLocation(line, configFile, lineNr);
 				newServer.addLocation(newLoc);
 			}
 			else if (line == "}") // end of server block

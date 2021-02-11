@@ -41,6 +41,13 @@ server::~server()
 {
 	close(this->_socketFd);
 	close(this->_acceptFd);
+	std::vector<location*>::iterator it;
+	it = this->_locations.begin();
+	while (!this->_locations.empty() && it != this->_locations.end())
+	{
+		delete (*it);
+		it++;
+	}
 }
 
 server&	server::operator=(server const &original)
@@ -162,7 +169,7 @@ const std::vector<std::string>	&server::getIndices() const
 	return (this->_indices);
 }
 
-const std::vector<location>		&server::getLocations() const
+const std::vector<location*>		&server::getLocations() const
 {
 	return (this->_locations);
 }
@@ -211,7 +218,7 @@ void	server::findValue(std::string &key, std::string line)
 	(this->*(this->_typeFunctionMap.at(key)))(line);
 }
 
-void	server::addLocation(location &newLoc)
+void	server::addLocation(location *newLoc)
 {
 	this->_locations.push_back(newLoc);
 }
@@ -281,7 +288,7 @@ std::string 		server::receive() const
 		}
 	}
 	std::cout << "==REQUEST==" << std::endl;
-	std::cout << ret << request << std::endl;
+	std::cout << request << std::endl;
 	std::cout << "==end==" << std::endl;
 	return (request);
 }
@@ -343,12 +350,12 @@ void	server::run()
 
 location*		server::findLocation(std::string &match)
 {
-	std::vector<location>::iterator it;
+	std::vector<location*>::iterator it;
 	it = this->_locations.begin();
 	while (!this->_locations.empty() && it != this->_locations.end())
 	{
-		if ((*it).getMatch() == match)
-			return &(*it);
+		if ((*it)->getMatch() == match)
+			return (*it);
 		it++;
 	}
 	return (NULL);
