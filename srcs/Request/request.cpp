@@ -117,7 +117,8 @@ void Request::parseRequestLine(){
     }
     pos2+=1;
     pos1 = _request.find(" ", pos2);
-    if (_request.find("?", pos2, pos1) != std::string::npos){
+	size_t qMarkLocation = _request.find("?", pos2); // is npos if no '?'
+    if (qMarkLocation <= pos1){
         pos1 = _request.find("?");
         _uri = _request.substr(pos2, pos1-pos2);
         pos2 = _request.find(" ", pos1);
@@ -165,10 +166,16 @@ void Request::parseHeaders() {
             upperHeader += std::toupper(header[i]);
         std::map<std::string, headerType>::iterator it = _headerMap.find(upperHeader);
         if (it == _headerMap.end())
-            _status = 400;
+		{
+			_status = 400;
+			return;
+		}
         std::map<headerType, std::string>::iterator it_h = _defHeaders.find(it->second);
         if (it_h != _defHeaders.end())
-            _status = 400;
+		{
+			_status = 400;
+			return;
+		}
         _defHeaders.insert(std::make_pair(it->second, value));
         pos = length+2;
 		if (_request[pos] == '\r' && _request[pos + 1] == '\n')

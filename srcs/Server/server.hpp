@@ -34,7 +34,7 @@ private:
 	std::vector<std::string>		_serverNames;
 	std::vector<std::string>		_indices;
 	std::map<std::string, setter>	_typeFunctionMap;
-	std::vector<location>			_locations;
+	std::vector<location*>			_locations;
 
 	long				_socketFd;
 	struct sockaddr_in	_addr;
@@ -65,13 +65,13 @@ public:
 	const std::string				&getHost() const;
 	const std::vector<std::string>	&getServerNames() const;
 	const std::vector<std::string>	&getIndices() const;
-	const std::vector<location>		&getLocations() const;
+	const std::vector<location*>	&getLocations() const;
 
 	const long						&getSocketFd() const;
 	const struct sockaddr_in		&getAddr() const;
 	const long						&getAcceptFd() const;
 
-	void		addLocation(location &newLoc);
+	void		addLocation(location *newLoc);
 	bool		valueCheck() const;
 	std::string	receive() const;
 	void 		sendData(const std::string &response) const;

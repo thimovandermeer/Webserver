@@ -66,7 +66,7 @@ void	serverCluster::startListening()
 			if (line == "exit")
 			{
 				std::cout << "exiting..." << std::endl;
-				exit (0);
+				exit(0);
 			}
 			else
 				std::cout << "unknown input" << std::endl;
