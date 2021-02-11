@@ -15,7 +15,11 @@
 
 Response::Response()
 {
-
+    _errorMessage[204] = "No Content";
+    _errorMessage[400] = "Bad Request";
+    _errorMessage[403] = "Forbidden";
+    _errorMessage[404] = "Not Found";
+    _errorMessage[405] = "Method Not Allowed";
 }
 
 Response::~Response()
@@ -61,10 +65,14 @@ std::string Response::getPath(server &server, Request &request)
 	return ret;
 }
 
-void Response::checkMethod(Request &request, server &server)
-{
+void Response::setupResponse(Request &request, server &server) {
 	_path = getPath(server, request);
 	_status = request.getStatus();
+	_status = 405;          //404 niet
+	if (this->_status >= 299)
+	{
+		this->errorPage(server);
+	}
 
 	_contentType = request.getContentType();
 	if(request.getMethod() == 0)
@@ -75,10 +83,6 @@ void Response::checkMethod(Request &request, server &server)
 		postMethod(request.getBody());
 	if(request.getMethod() == 3)
 		putMethod(request.getBody()); // done
-	if (this->_status >= 299)
-	{
-		this->errorPage(server);
-	}
 }
 
 void 	Response::readContent()
@@ -112,18 +116,44 @@ void 	Response::writeContent(std::string content)
 
 }
 
+void    Response::createErrorPage(std::string *pageData)
+{
+    size_t found = 1;
+	while (found != std::string::npos)
+	{
+		found = pageData->find("ERROR_CODE");
+		if (found == std::string::npos)
+			break;
+		std::stringstream stat;
+		stat << this->_status;
+		std::string statstr;
+		stat >> statstr;
+		pageData->replace(found, 10, statstr);
+	}
+	found = 1;
+    while (found != std::string::npos)      //snijdt niet goed af
+    {
+        found = pageData->find("MESSAGE");
+        if (found == std::string::npos)
+            break;
+        std::stringstream stat;
+        std::map<int, std::string>::iterator it = _errorMessage.find(_status);  //als niet gevonden?
+        pageData->replace(found, 10, it->second);
+    }
+}
+
 void	Response::errorPage(server &serv)
 {
-	int	fd;
-	std::string	pathToPage;
+	int	        fd;
+	int         ret = 4096;
+	char        buff[4096];
 	std::string	pageData;
+	std::string	pathToPage;
 
 	pathToPage = serv.getRoot() + serv.getErrorPage();
 	fd = open(pathToPage.c_str(), O_RDONLY);
 	if (fd < 0)
 		; // error in error
-	int ret = 4096;
-	char buff[4096];
 	while (ret == 4096)
 	{
 		ret = read(fd, buff, 4095);
@@ -131,19 +161,7 @@ void	Response::errorPage(server &serv)
 		pageData += buff;
 	}
 	close(fd);
-	size_t found = 1;
-	while (found != std::string::npos)
-	{
-		found = pageData.find("ERROR_CODE");
-		if (found == std::string::npos)
-			break;
-		std::stringstream stat;
-		stat << this->_status;
-		std::string statstr;
-		stat >> statstr;
-		pageData.replace(found, 10, statstr);
-	}
-	// replace data dynamically if we want to
+	createErrorPage(&pageData);
 	this->_content = pageData;
 	ResponseHeader header(_content, _path, _status, _contentType);
 	_response = header.getHeader(_status) + _content;

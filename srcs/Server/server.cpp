@@ -334,7 +334,7 @@ void	server::run()
 	Response response;
 
 	Request	request(receivedRequest);
-	response.checkMethod(request, *this);
+	response.setupResponse(request, *this);
 	try
 	{
 		this->sendData(response.getResponse());

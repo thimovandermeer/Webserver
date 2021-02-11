@@ -170,10 +170,10 @@ void Request::parseHeaders() {
         std::map<std::string, headerType>::iterator it = _headerMap.find(upperHeader);
         if (it == _headerMap.end())
 		{
-			pos = length+2;
+			pos = length+2;			//van hier tot 
 			if (_request[pos] == '\r' && _request[pos + 1] == '\n')
 				loop = false;
-        	continue;
+        	continue;				// hier eruithalen of beter behandelen
 			_status = 400;
 			return;
 		}
@@ -188,6 +188,11 @@ void Request::parseHeaders() {
 		if (_request[pos] == '\r' && _request[pos + 1] == '\n')
 			loop = false ;
     }
+	if (_defHeaders.empty())
+	{
+		_status = 400;			//als er helemaal geen geldige headers zijn binnengekomen
+		return ;
+	}	
     _request = _request.substr(pos+2);
 }
 

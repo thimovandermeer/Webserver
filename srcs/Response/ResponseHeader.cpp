@@ -81,7 +81,7 @@ std::string ResponseHeader::getHeader(int status)
 	return (header);
 }
 
-std::string		ResponseHeader::createStatusMessage(int status)
+std::string		ResponseHeader::createStatusMessage(int status)		//ik denk dat deze functie niet meer nodig is
 {
 	// trying to solve this with an enum or some other smart data type
 	if(status == 200)
