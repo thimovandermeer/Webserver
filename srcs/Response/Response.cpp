@@ -80,19 +80,11 @@ void 	Response::readContent()
 	std::ifstream file;
 
 	const char *c = _path.c_str();
-<<<<<<< HEAD
-	if(access(c, F_OK) != 0)
-		_code = 404;
-	file.open(this->_path, std::ifstream::in);
-	if(!file.is_open())
-		_code = 403;
-=======
 	if(access(c, F_OK) != 0 && _status == 200)
 		_status = 404;
 	file.open(_path, std::ifstream::in);
 	if(!file.is_open() && _status == 200)
 		_status = 403;
->>>>>>> status
 	_content.assign((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
 	file.close();
 }
