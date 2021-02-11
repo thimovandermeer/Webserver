@@ -11,13 +11,9 @@
 #include "../Utils/utils.hpp"
 
 
-Response::Response()
+Response::Response() : _code(0)
 {
-	_response = "";
-	_content ="";
-	_path = "";
-	_contentType = "";
-	_code = 0;
+
 }
 
 Response::~Response()
@@ -46,16 +42,15 @@ std::string Response::getPath(server &server, Request &request)
 
 	// from the request side i need the path
 	std::string path =	request.getUri();
-	std::string location = request.getHost();
-	// the return value will be root + alias + path.substr(locationName.length)
+	std::string locMatch = request.getHost();
+	location *loc = server.findLocation(locMatch);
 	std::string ret;
-//	if (!location.empty())
-//		ret = root + path.substr(location.length());
-//	else
-	// functie jonas hier inzetten return location of leeg
-	// check if not empty en daarna kijken of het een match is
-	// geen match is goede exit code returnen
-	ret = root + path;
+	if (!loc)
+		ret = root + path.substr(locMatch.length());
+	else
+	{
+		ret = root + path;
+	}
 	std::string temp;
 	temp = removeAdjacentSlashes(ret);
 	return temp;
