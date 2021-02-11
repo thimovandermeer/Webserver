@@ -22,7 +22,9 @@ private:
 	std::vector<std::string>		_indices;
 	std::map<std::string, setter>	_typeFunctionMap;
 
-// still gotta do something with CGI, but don't know what or how
+	std::string						_cgiPass;
+	std::vector<std::string>		_cgiParams;
+
 	location();
 public:
 	explicit location(std::string &match);
@@ -31,11 +33,12 @@ public:
 	location& operator=(location const &original);
 
 	void	setAutoindex(std::string &autoindex);
-//	void	setMatch(std::string &match);
 	void	setRoot(std::string &root);
 	void	setMethod(std::string &method);
 	void	setErrorPage(std::string &errorPage);
 	void	setIndices(std::string &indices);
+	void	setCgiPass(std::string &cgiPass);
+	void	setCgiParams(std::string &cgiParams);
 
 	const bool						&getAutoindex() const;
 	const std::string				&getMatch() const;
@@ -43,6 +46,8 @@ public:
 	const std::string				&getMethod() const;
 	const std::string				&getErrorPage() const;
 	const std::vector<std::string>	&getIndices() const;
+	const std::string				&getCgiPass() const;
+	const std::vector<std::string>	&getCgiParams() const;
 
 	void	findValue(std::string &key, std::string line);
 	bool	valueCheck() const;
