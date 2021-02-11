@@ -225,8 +225,6 @@ void	server::addLocation(location *newLoc)
 
 void	server::startListening()
 {
-
-
 	this->_socketFd = socket(PF_INET, SOCK_STREAM, 0);
 	if (this->_socketFd < 0)
 	{

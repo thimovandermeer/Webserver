@@ -8,10 +8,12 @@
 #include <fstream>
 #include <unistd.h>
 #include <sys/stat.h>
+#include <fcntl.h>
+#include <sstream>
 #include "../Utils/utils.hpp"
 
 
-Response::Response() : _status(0)
+Response::Response()
 {
 
 }
@@ -42,6 +44,7 @@ std::string Response::getPath(server &server, Request &request)
 
 	// from the request side i need the path
 	std::string path =	request.getUri();
+	path.erase(0, 1);
 	std::string locMatch = request.getHost();
 //	location *loc = server.findLocation(path);
 	std::string ret;
@@ -62,12 +65,7 @@ void Response::checkMethod(Request &request, server &server)
 {
 	_path = getPath(server, request);
 	_status = request.getStatus();
-	if (this->_status != 200)
-	{
-//		createErrorPage();
-		return;
 
-	}
 	_contentType = request.getContentType();
 	if(request.getMethod() == 0)
 		getMethod(); // done
@@ -77,6 +75,10 @@ void Response::checkMethod(Request &request, server &server)
 		postMethod(request.getBody());
 	if(request.getMethod() == 3)
 		putMethod(request.getBody()); // done
+	if (this->_status >= 299)
+	{
+		this->errorPage(server);
+	}
 }
 
 void 	Response::readContent()
@@ -89,6 +91,7 @@ void 	Response::readContent()
 	file.open(_path, std::ifstream::in);
 	if(!file.is_open() && _status == 200)
 		_status = 403;
+	if (this->_status == 200)
 	_content.assign((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
 	file.close();
 }
@@ -108,6 +111,44 @@ void 	Response::writeContent(std::string content)
 	file.close();
 
 }
+
+void	Response::errorPage(server &serv)
+{
+	int	fd;
+	std::string	pathToPage;
+	std::string	pageData;
+
+	pathToPage = serv.getRoot() + serv.getErrorPage();
+	fd = open(pathToPage.c_str(), O_RDONLY);
+	if (fd < 0)
+		; // error in error
+	int ret = 4096;
+	char buff[4096];
+	while (ret == 4096)
+	{
+		ret = read(fd, buff, 4095);
+		buff[ret] = 0;
+		pageData += buff;
+	}
+	close(fd);
+	size_t found = 1;
+	while (found != std::string::npos)
+	{
+		found = pageData.find("ERROR_CODE");
+		if (found == std::string::npos)
+			break;
+		std::stringstream stat;
+		stat << this->_status;
+		std::string statstr;
+		stat >> statstr;
+		pageData.replace(found, 10, statstr);
+	}
+	// replace data dynamically if we want to
+	this->_content = pageData;
+	ResponseHeader header(_content, _path, _status, _contentType);
+	_response = header.getHeader(_status) + _content;
+}
+
 void Response::getMethod()
 {
 	readContent();

@@ -42,6 +42,7 @@ private:
 	void 		postMethod(std::string content);
 	void 		putMethod(std::string content);
 
+	void		errorPage(server &serv);
 	// helper functions
 	void 	readContent();
 	void 	writeContent(std::string content);

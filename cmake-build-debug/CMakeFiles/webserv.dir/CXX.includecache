@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/merelmourik/Desktop/webserv_git/srcs/Request/request.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Request/request.hpp
 iostream
 -
 string
@@ -20,17 +20,45 @@ vector
 algorithm
 -
 
-/Users/merelmourik/Desktop/webserv_git/srcs/Response/Response.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.cpp
+Response.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.hpp
+../Request/request.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Request/request.hpp
+ResponseHeader.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/ResponseHeader.hpp
+fstream
+-
+unistd.h
+-
+sys/stat.h
+-
+fcntl.h
+-
+sstream
+-
+../Utils/utils.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Utils/utils.hpp
+
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.hpp
 string
 -
 ostream
 -
 ../Request/request.hpp
-/Users/merelmourik/Desktop/webserv_git/srcs/Request/request.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Request/request.hpp
 ../Server/server.hpp
-/Users/merelmourik/Desktop/webserv_git/srcs/Server/server.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/server.hpp
 
-/Users/merelmourik/Desktop/webserv_git/srcs/Server/location.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/ResponseHeader.hpp
+string
+-
+Response.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.hpp
+../Request/request.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Request/request.hpp
+
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/location.hpp
 string
 -
 vector
@@ -38,33 +66,9 @@ vector
 map
 -
 
-/Users/merelmourik/Desktop/webserv_git/srcs/Server/server.cpp
-map
--
-server.hpp
-/Users/merelmourik/Desktop/webserv_git/srcs/Server/server.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/server.hpp
 location.hpp
-/Users/merelmourik/Desktop/webserv_git/srcs/Server/location.hpp
-string
--
-sstream
--
-iostream
--
-iomanip
--
-unistd.h
--
-sys/socket.h
--
-../Request/request.hpp
-/Users/merelmourik/Desktop/webserv_git/srcs/Request/request.hpp
-../Response/Response.hpp
-/Users/merelmourik/Desktop/webserv_git/srcs/Response/Response.hpp
-
-/Users/merelmourik/Desktop/webserv_git/srcs/Server/server.hpp
-location.hpp
-/Users/merelmourik/Desktop/webserv_git/srcs/Server/location.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/location.hpp
 vector
 -
 map
@@ -77,4 +81,6 @@ sys/socket.h
 -
 netdb.h
 -
+
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Utils/utils.hpp
 
