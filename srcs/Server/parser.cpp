@@ -108,7 +108,7 @@ void	startParsing(std::fstream& configFile, serverCluster *cluster)
 		if (line != "server {")
 			parseError(lineNr);
 		// start reading in server block
-		server	newServer;
+		server	*newServer = new server;
 		while (std::getline(configFile, line))
 		{
 			lineNr++;
@@ -122,7 +122,7 @@ void	startParsing(std::fstream& configFile, serverCluster *cluster)
 			if (firstword(line) == "location")
 			{
 				location *newLoc = getLocation(line, configFile, lineNr);
-				newServer.addLocation(newLoc);
+				newServer->addLocation(newLoc);
 			}
 			else if (line == "}") // end of server block
 				break;
@@ -132,9 +132,8 @@ void	startParsing(std::fstream& configFile, serverCluster *cluster)
 				try
 				{
 					std::string value = firstword(line);
-					newServer.findValue(value,line);
+					newServer->findValue(value,line);
 				}
-
 				catch (std::exception &e)
 				{
 					std::cerr << "Config file line " << lineNr << ", ";
@@ -143,7 +142,7 @@ void	startParsing(std::fstream& configFile, serverCluster *cluster)
 			}
 		}
 		// check if all data set in server is correct
-		if (!newServer.valueCheck())
+		if (!newServer->valueCheck())
 			errMsgAndExit("invalid values in server block", 1);
 		cluster->addServer(newServer);
 	}

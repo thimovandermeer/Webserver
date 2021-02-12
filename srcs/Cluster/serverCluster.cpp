@@ -4,7 +4,6 @@
 
 serverCluster::serverCluster() : _nrOfServers(0)
 {
-	this->_servers = new std::vector<server>;
 	FD_ZERO(&this->readFds);
 	FD_ZERO(&this->writeFds);
 }
@@ -16,7 +15,13 @@ serverCluster::serverCluster(const serverCluster &original)
 
 serverCluster::~serverCluster()
 {
-	delete(this->_servers);
+	std::vector<server*>::iterator it;
+	it = this->_servers.begin();
+	while (!this->_servers.empty() && it != this->_servers.end())
+	{
+		delete (*it);
+		it++;
+	}
 }
 
 serverCluster	&serverCluster::operator=(const serverCluster &original)
@@ -25,23 +30,23 @@ serverCluster	&serverCluster::operator=(const serverCluster &original)
 	return (*this);
 }
 
-void	serverCluster::addServer(server &newServ)
+void	serverCluster::addServer(server *newServ)
 {
-	this->_servers->push_back(newServ);
+	this->_servers.push_back(newServ);
 }
 
 bool	serverCluster::isEmpty() const
 {
-	return (this->_servers->empty());
+	return (this->_servers.empty());
 }
 
 void	serverCluster::startup()
 {
-	std::vector<server>::iterator it = this->_servers->begin();
-	while (!this->_servers->empty() && it != this->_servers->end())
+	std::vector<server*>::iterator it = this->_servers.begin();
+	while (!this->_servers.empty() && it != this->_servers.end())
 	{
-		(*it).startListening();
-		FD_SET((*it).getSocketFd(), &this->readFds);
+		(*it)->startListening();
+		FD_SET((*it)->getSocketFd(), &this->readFds);
 		this->_nrOfServers++;
 		it++;
 	}
@@ -73,12 +78,12 @@ void	serverCluster::startListening()
 		}
 		if (ret > 0)
 			std::cout << "Houston we have contact" << std::endl;
-		std::vector<server>::iterator it = this->_servers->begin();
-		while (!this->_servers->empty() && it != this->_servers->end() && ret)
+		std::vector<server*>::iterator it = this->_servers.begin();
+		while (!this->_servers.empty() && it != this->_servers.end() && ret)
 		{
-			long fd  = it->getSocketFd();
+			long fd  = (*it)->getSocketFd();
 			if (workingSet.fds_bits[fd / 64] & (long)(1UL << fd % 64)) {
-				it->run();
+				(*it)->run();
 				ret--;
 			}
 			it++;

@@ -43,36 +43,44 @@ std::string Response::getPath(server &server, Request &request)
 	// server kant
 		// heeft location geconfigureerd
 	// dit moet gematcht worden
-
-	std::string root = server.getRoot();
-
-	// from the request side i need the path
-	std::string path =	request.getUri();
-	path.erase(0, 1);
-	std::string locMatch = request.getHost();
-//	location *loc = server.findLocation(path);
 	std::string ret;
-//	if (!loc)
-//		ret = root + path.substr(locMatch.length());
-//	else
+	std::string root;
+	std::string uri;
+	std::string locMatch;
+	size_t		found;
+
+	root = server.getRoot();
+	uri = request.getUri();
+//	if (uri.find("error_image.png"))
 //	{
-	ret = root + path;
+//		ret = root + "/error_image.png";
+//		removeAdjacentSlashes(ret);
+//		return (ret);
 //	}
-//	std::string temp;
-	if ((*ret.end() - 1) == '/')
-		ret.erase(ret.end() - 1);
-//	temp = removeAdjacentSlashes(ret);
+	found = uri.find_first_of("/", 1);
+	if (found == std::string::npos)
+		found = 1;
+	locMatch = uri.substr(0, found);
+	uri.erase(0, 1);
+	location *loc = server.findLocation(locMatch);
+	if (!loc)
+	{
+		this->_status = 404; // location not found
+	}
+	else
+	{
+		ret = root + uri;
+	}
+	removeAdjacentSlashes(ret);
+
 	return ret;
 }
 
 void Response::setupResponse(Request &request, server &server) {
 	_path = getPath(server, request);
 	_status = request.getStatus();
-	_status = 405;          //404 niet
-	if (this->_status >= 299)
-	{
-		this->errorPage(server);
-	}
+//	_status = 405;          //404 niet
+
 
 	_contentType = request.getContentType();
 	if(request.getMethod() == 0)
@@ -83,6 +91,10 @@ void Response::setupResponse(Request &request, server &server) {
 		postMethod(request.getBody());
 	if(request.getMethod() == 3)
 		putMethod(request.getBody()); // done
+	if (this->_status >= 299)
+	{
+		this->errorPage(server);
+	}
 }
 
 void 	Response::readContent()
@@ -131,14 +143,17 @@ void    Response::createErrorPage(std::string *pageData)
 		pageData->replace(found, 10, statstr);
 	}
 	found = 1;
-    while (found != std::string::npos)      //snijdt niet goed af
+    while (found != std::string::npos)
     {
         found = pageData->find("MESSAGE");
         if (found == std::string::npos)
             break;
         std::stringstream stat;
-        std::map<int, std::string>::iterator it = _errorMessage.find(_status);  //als niet gevonden?
-        pageData->replace(found, 10, it->second);
+        std::map<int, std::string>::iterator it = _errorMessage.find(_status);
+        if (it == this->_errorMessage.end())
+        	pageData->replace(found, 7, "unknown error");
+        else
+        	pageData->replace(found, 7, it->second);
     }
 }
 
@@ -153,15 +168,19 @@ void	Response::errorPage(server &serv)
 	pathToPage = serv.getRoot() + serv.getErrorPage();
 	fd = open(pathToPage.c_str(), O_RDONLY);
 	if (fd < 0)
-		; // error in error
-	while (ret == 4096)
+		pageData = "Problem serving error. Perhaps the error page was setup incorrectly.";
+	else
 	{
-		ret = read(fd, buff, 4095);
-		buff[ret] = 0;
-		pageData += buff;
+		while (ret == 4096)
+		{
+			ret = read(fd, buff, 4095);
+			buff[ret] = 0;
+			pageData += buff;
+		}
+		close(fd);
+		createErrorPage(&pageData);
 	}
-	close(fd);
-	createErrorPage(&pageData);
+	this->_content.clear();
 	this->_content = pageData;
 	ResponseHeader header(_content, _path, _status, _contentType);
 	_response = header.getHeader(_status) + _content;

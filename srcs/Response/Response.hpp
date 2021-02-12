@@ -1,15 +1,10 @@
-//
-// Created by Thimo Van der meer on 20/01/2021.
-//
-
 #ifndef WEBSERV_RESPONSE_HPP
-#define WEBSERV_RESPONSE_HPP
+# define WEBSERV_RESPONSE_HPP
 
-
-#include <string>
-#include <ostream>
-#include "../Request/request.hpp"
-#include "../Server/server.hpp"
+# include <string>
+# include <ostream>
+# include "../Request/request.hpp"
+# include "../Server/server.hpp"
 // this needs to be deleted when request is been made
 
 class Response {
