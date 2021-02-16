@@ -16,6 +16,8 @@ location::location(std::string &match) : _autoindex(false)
 	this->_typeFunctionMap.insert(std::make_pair("method", &location::setMethod));
 	this->_typeFunctionMap.insert(std::make_pair("error_page", &location::setErrorPage));
 	this->_typeFunctionMap.insert(std::make_pair("index", &location::setIndices));
+	this->_typeFunctionMap.insert(std::make_pair("cgi_pass", &location::setCgiPass));
+	this->_typeFunctionMap.insert(std::make_pair("cgi_params", &location::setCgiParams));
 }
 
 location::location(const location &original)
@@ -48,11 +50,6 @@ void	location::setAutoindex(std::string &autoindex)
 		;
 }
 
-//void	location::setMatch(std::string &match)
-//{
-//		this->_match = match;
-//}
-
 void	location::setRoot(std::string &root)
 {
 	this->_root = root;
@@ -74,6 +71,19 @@ void	location::setIndices(std::string &indices)
 	std::string			index;
 	while (ss >> index)
 		this->_indices.push_back(index);
+}
+
+void	location::setCgiPass(std::string &cgiPass)
+{
+	this->_cgiPass = cgiPass;
+}
+
+void	location::setCgiParams(std::string &cgiParams)
+{
+	std::stringstream	ss(cgiParams);
+	std::string			param;
+	while (ss >> param)
+		this->_cgiParams.push_back(param);
 }
 
 const bool						&location::getAutoindex() const
@@ -104,6 +114,16 @@ const std::string				&location::getErrorPage() const
 const std::vector<std::string>	&location::getIndices() const
 {
 	return (this->_indices);
+}
+
+const std::string				&location::getCgiPass() const
+{
+	return (this->_cgiPass);
+}
+
+const std::vector<std::string>	&location::getCgiParams() const
+{
+	return (this->_cgiParams);
 }
 
 void	location::findValue(std::string &key, std::string line)

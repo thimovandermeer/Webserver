@@ -41,6 +41,13 @@ server::~server()
 {
 	close(this->_socketFd);
 	close(this->_acceptFd);
+	std::vector<location*>::iterator it;
+	it = this->_locations.begin();
+	while (!this->_locations.empty() && it != this->_locations.end())
+	{
+		delete (*it);
+		it++;
+	}
 }
 
 server&	server::operator=(server const &original)
@@ -162,12 +169,12 @@ const std::vector<std::string>	&server::getIndices() const
 	return (this->_indices);
 }
 
-const std::vector<location>		&server::getLocations() const
+const std::vector<location*>		&server::getLocations() const
 {
 	return (this->_locations);
 }
 
-const int	&server::getSocketFd() const
+const long	&server::getSocketFd() const
 {
 	return (this->_socketFd);
 }
@@ -177,7 +184,7 @@ const struct sockaddr_in	&server::getAddr() const
 	return (this->_addr);
 }
 
-const int	&server::getAcceptFd() const
+const long	&server::getAcceptFd() const
 {
 	return(this->_acceptFd);
 }
@@ -211,15 +218,13 @@ void	server::findValue(std::string &key, std::string line)
 	(this->*(this->_typeFunctionMap.at(key)))(line);
 }
 
-void	server::addLocation(location &newLoc)
+void	server::addLocation(location *newLoc)
 {
 	this->_locations.push_back(newLoc);
 }
 
 void	server::startListening()
 {
-
-
 	this->_socketFd = socket(PF_INET, SOCK_STREAM, 0);
 	if (this->_socketFd < 0)
 	{
@@ -255,30 +260,42 @@ void	server::startListening()
 	}
 }
 
+#define BUFFSIZE 4095
 std::string 		server::receive() const
 {
-	char		buffer[4096];
+	char		buffer[BUFFSIZE + 1];
 	std::string request;
-	int 		read = 4095;
+	int 		ret = BUFFSIZE;
 
-	while( read == 4095)
+	while(ret > 1)
 	{
-		memset(buffer, 0, 4096);
-		read = recv(_acceptFd, buffer, 4095, 0);
-		if (read == -1)
+//		memset(buffer, 0, 4096);
+		std::cout << "reading..." << std::endl;
+		ret = read(_acceptFd, buffer, BUFFSIZE);
+		buffer[ret] = 0;
+		if (ret == -1)
 		{
 			std::cerr << "recv error" << std::endl;
 			throw server::syscallErrorException();
 		}
 		request += std::string(buffer);
+		int len = request.length();
+		if (request[len -1] == '\n' && request[len -2] == '\r' && request[len -3] == '\n' &&request[len -4] == '\r')
+		{
+			break;
+		}
 	}
+	std::cout << "==REQUEST==" << std::endl;
 	std::cout << request << std::endl;
+	std::cout << "==end==" << std::endl;
 	return (request);
 }
 
 void 		server::sendData(const std::string &response) const
 {
+	std::cout << "==RESPONSE==" << std::endl;
 	std::cout << response << std::endl;
+	std::cout << "==end==" << std::endl;
 	if(send(_acceptFd, response.c_str(), response.size(), 0) == -1)
 	{
 		std::cerr << "send error" << std::endl;
@@ -301,6 +318,7 @@ void 	server::accept()
 	if (_acceptFd == -1)
 		std::cerr << "Could not create fd" << std::endl; // dit zometeen aanpassen naar try catch
 }
+
 void	server::run()
 {
 	std::string receivedRequest;
@@ -313,11 +331,10 @@ void	server::run()
 	{
 		// error
 	}
-
+	Response response;
 
 	Request	request(receivedRequest);
-	Response response(request, *this);
-	response.checkMethod(request, *this);
+	response.setupResponse(request, *this);
 	try
 	{
 		this->sendData(response.getResponse());
@@ -331,12 +348,12 @@ void	server::run()
 
 location*		server::findLocation(std::string &match)
 {
-	std::vector<location>::iterator it;
+	std::vector<location*>::iterator it;
 	it = this->_locations.begin();
 	while (!this->_locations.empty() && it != this->_locations.end())
 	{
-		if ((*it).getMatch() == match)
-			return &(*it);
+		if ((*it)->getMatch() == match)
+			return (*it);
 		it++;
 	}
 	return (NULL);

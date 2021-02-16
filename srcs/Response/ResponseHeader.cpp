@@ -81,7 +81,7 @@ std::string ResponseHeader::getHeader(int status)
 	return (header);
 }
 
-std::string		ResponseHeader::createStatusMessage(int status)
+std::string		ResponseHeader::createStatusMessage(int status)		//ik denk dat deze functie niet meer nodig is
 {
 	// trying to solve this with an enum or some other smart data type
 	if(status == 200)
@@ -92,12 +92,13 @@ std::string		ResponseHeader::createStatusMessage(int status)
 		return ("No Content");
 	else if (status == 400)
 	        return ("Bad Request Error");
-	else if (status == 403)       //krijgen we deze ooit?
+	else if (status == 403)
 		return ("Forbidden");
-	else if (status == 404)       //en deze?
+	else if (status == 404)
 		return ("Not found");
-	else if (status == 405)       //en deze?
+	else if (status == 405)         //GET and HEAD mogen deze nooit returnen
 	    return ("Method Not Allowed");
+	    //error 503 toevoegen (wordt genoemd op regel 223
 	else
 		return ("Zieke Error in onze code");
 }
@@ -126,8 +127,8 @@ std::string 		ResponseHeader::writeHeader()
 		header += "Retry-After: " + _retryAfter + "\r\n";
 	if (_server != "")
 		header += "Server: " + _server + "\r\n";
-	if (_transferEncoding != "")
-		header += "Transfer-Encoding: " + _transferEncoding + "\r\n";
+//	if (_transferEncoding != "")
+//		header += "Transfer-Encoding: " + _transferEncoding + "\r\n";
 	if (_wwwAuthenticate != "")
 		header += "Www-Authenticate: " + _wwwAuthenticate + "\r\n";
 	header += "\r\n";

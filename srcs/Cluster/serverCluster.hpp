@@ -8,8 +8,8 @@ public:
 	fd_set	writeFds;
 
 private:
-	std::vector<server>	*_servers;
-	int					_nrOfServers;
+	std::vector<server*>	_servers;
+	int						_nrOfServers;
 
 public:
 	serverCluster();
@@ -17,7 +17,7 @@ public:
 	~serverCluster();
 	serverCluster&	operator=(const serverCluster &original);
 
-	void	addServer(server& newServ);
+	void	addServer(server *newServ);
 	bool	isEmpty() const;
 
 	void	startup();

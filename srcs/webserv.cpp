@@ -20,9 +20,8 @@ void	errMsgAndExit(const std::string &errMsg, int code)
 
 int main(int argc, char **argv)
 {
-		serverCluster cluster;
+	serverCluster cluster;
 
-		openConfig(argc, argv, &cluster);
-		cluster.startListening();
-
+	openConfig(argc, argv, &cluster);
+	cluster.startListening();
 }

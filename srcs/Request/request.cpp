@@ -28,7 +28,6 @@ Request &Request::operator=(const Request &original) {
 
 Request::Request(std::string request) : _request(request) {
     _status = 200;
-    _cgi = false;
     _headerMap["ACCEP-CHARSET"] = ACCEPT_CHARSET;
     _headerMap["ACCEPT-LANGUAGE"] = ACCEPT_LANGUAGE;
     _headerMap["ALLOW"] = ALLOW;
@@ -87,10 +86,6 @@ std::string Request::getCgiEnv() const{
     return _cgiEnv;
 }
 
-bool Request::getCgi() const {
-    return _cgi;
-}
-
 int Request::getStatus() const {
 	return _status;
 }
@@ -118,21 +113,24 @@ void Request::parseRequestLine(){
     pos2 = _request.find(" ");
     _method = _request.substr(0, pos2);
     if (getMethod() == -1){
-        _status = 400;
+        _status = 405;
     }
     pos2+=1;
     pos1 = _request.find(" ", pos2);
-    if (_request.find("?", pos2, pos1) != std::string::npos){
-        _cgi = true;
+	size_t qMarkLocation = _request.find("?", pos2); // is npos if no '?'
+    if (qMarkLocation <= pos1){
         pos1 = _request.find("?");
         _uri = _request.substr(pos2, pos1-pos2);
         pos2 = _request.find(" ", pos1);
         _cgiEnv = _request.substr(pos1+1, pos2-pos1-1);		//ook checken
     }
     else
-        _uri = _request.substr(pos2, pos1-pos2);
+	{
+		_uri = _request.substr(pos2, pos1-pos2);
+		pos2 = _request.find(" ", pos1);
+	}
     pos1 = _request.find("\r\n");
-	pos2 += 2;
+	pos2++;
     _version = _request.substr(pos2, pos1-pos2);
     if (_version.compare("HTTP/1.1") != 0)
         _status = 400;
@@ -171,15 +169,30 @@ void Request::parseHeaders() {
             upperHeader += std::toupper(header[i]);
         std::map<std::string, headerType>::iterator it = _headerMap.find(upperHeader);
         if (it == _headerMap.end())
-            _status = 400;
+		{
+			pos = length+2;			//van hier tot 
+			if (_request[pos] == '\r' && _request[pos + 1] == '\n')
+				loop = false;
+        	continue;				// hier eruithalen of beter behandelen
+			_status = 400;
+			return;
+		}
         std::map<headerType, std::string>::iterator it_h = _defHeaders.find(it->second);
         if (it_h != _defHeaders.end())
-            _status = 400;
+		{
+			_status = 400;
+			return;
+		}
         _defHeaders.insert(std::make_pair(it->second, value));
         pos = length+2;
 		if (_request[pos] == '\r' && _request[pos + 1] == '\n')
 			loop = false ;
     }
+	if (_defHeaders.empty())
+	{
+		_status = 400;			//als er helemaal geen geldige headers zijn binnengekomen
+		return ;
+	}	
     _request = _request.substr(pos+2);
 }
 
