@@ -35,25 +35,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="started on dynamic error page">
+    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="messed around with reading">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Cluster/serverCluster.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Cluster/serverCluster.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Request/request.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Request/request.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/location.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/location.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/parser.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/parser.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/server.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/server.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Utils/utils.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Utils/utils.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/webserv.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/webserv.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/webserv" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/webserv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Cluster/serverCluster.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Cluster/serverCluster.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Response/Response.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Response/Response.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/parser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/parser.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Utils/utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Utils/utils.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Utils/utils.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Utils/utils.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +85,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -113,15 +101,15 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.webserv">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Test" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv" TEST_CLASS="[List]" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="webserv" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="&quot;./test_mac/mac.conf&quot;" REDIRECT_INPUT="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv">
@@ -174,7 +162,8 @@
       <workItem from="1612780435961" duration="308000" />
       <workItem from="1612881729343" duration="348000" />
       <workItem from="1613121595605" duration="3015000" />
-      <workItem from="1613131727257" duration="3701000" />
+      <workItem from="1613131727257" duration="4006000" />
+      <workItem from="1613467439596" duration="12731000" />
     </task>
     <task id="LOCAL-00003" summary="nearly done all set functions of responseheader">
       <created>1611650661666</created>
@@ -246,7 +235,35 @@
       <option name="project" value="LOCAL" />
       <updated>1613053642479</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="fixed dynamic error page, put error msg in place in case of no error page, fixed locations in server class, messed around with getPath in response">
+      <created>1613141351685</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1613141351685</updated>
+    </task>
+    <task id="LOCAL-00014" summary="edited CGI in location to only have path">
+      <created>1613477763601</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1613477763601</updated>
+    </task>
+    <task id="LOCAL-00015" summary="fixed error page, added search for file extension">
+      <created>1613478429499</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1613478429499</updated>
+    </task>
+    <task id="LOCAL-00016" summary="messed around with reading">
+      <created>1613484375404</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1613484375404</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -339,53 +356,73 @@
     <MESSAGE value="Doe het pauperding" />
     <MESSAGE value="JAA?" />
     <MESSAGE value="started on dynamic error page" />
-    <option name="LAST_COMMIT_MESSAGE" value="started on dynamic error page" />
+    <MESSAGE value="fixed dynamic error page, put error msg in place in case of no error page, fixed locations in server class, messed around with getPath in response" />
+    <MESSAGE value="edited CGI in location to only have path" />
+    <MESSAGE value="fixed error page, added search for file extension" />
+    <MESSAGE value="messed around with reading" />
+    <option name="LAST_COMMIT_MESSAGE" value="messed around with reading" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="2490" height="434" key="GridCell.Tab.0.bottom" timestamp="1613140845104">
+    <state x="730" y="353" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1613481153935">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="730" y="353" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1613481153935" />
+    <state x="1004" y="445" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1613477643701">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="1004" y="445" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1613477643701" />
+    <state width="2490" height="325" key="GridCell.Tab.0.bottom" timestamp="1613486289033">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1398" height="403" key="GridCell.Tab.0.bottom/0.23.1440.798@0.23.1440.798" timestamp="1612879165339" />
-    <state width="2490" height="434" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1613140845104" />
-    <state width="2490" height="434" key="GridCell.Tab.0.center" timestamp="1613140845104">
+    <state width="2490" height="325" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1613486289033" />
+    <state width="2490" height="325" key="GridCell.Tab.0.center" timestamp="1613486289032">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1398" height="403" key="GridCell.Tab.0.center/0.23.1440.798@0.23.1440.798" timestamp="1612879165338" />
-    <state width="2490" height="434" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1613140845104" />
-    <state width="2490" height="434" key="GridCell.Tab.0.left" timestamp="1613140845103">
+    <state width="2490" height="325" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1613486289032" />
+    <state width="2490" height="325" key="GridCell.Tab.0.left" timestamp="1613486289031">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1398" height="403" key="GridCell.Tab.0.left/0.23.1440.798@0.23.1440.798" timestamp="1612879165338" />
-    <state width="2490" height="434" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1613140845103" />
-    <state width="2490" height="434" key="GridCell.Tab.0.right" timestamp="1613140845104">
+    <state width="2490" height="325" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1613486289031" />
+    <state width="2490" height="325" key="GridCell.Tab.0.right" timestamp="1613486289032">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1398" height="403" key="GridCell.Tab.0.right/0.23.1440.798@0.23.1440.798" timestamp="1612879165339" />
-    <state width="2490" height="434" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1613140845104" />
-    <state width="2490" height="434" key="GridCell.Tab.1.bottom" timestamp="1613141263461">
+    <state width="2490" height="325" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1613486289032" />
+    <state width="2490" height="325" key="GridCell.Tab.1.bottom" timestamp="1613486289034">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2490" height="434" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1613141263461" />
-    <state width="2490" height="434" key="GridCell.Tab.1.center" timestamp="1613141263461">
+    <state width="2490" height="325" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1613486289034" />
+    <state width="2490" height="325" key="GridCell.Tab.1.center" timestamp="1613486289033">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2490" height="434" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1613141263461" />
-    <state width="2490" height="434" key="GridCell.Tab.1.left" timestamp="1613141263460">
+    <state width="2490" height="325" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1613486289033" />
+    <state width="2490" height="325" key="GridCell.Tab.1.left" timestamp="1613486289033">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2490" height="434" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1613141263460" />
-    <state width="2490" height="434" key="GridCell.Tab.1.right" timestamp="1613141263461">
+    <state width="2490" height="325" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1613486289033" />
+    <state width="2490" height="325" key="GridCell.Tab.1.right" timestamp="1613486289034">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2490" height="434" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1613141263461" />
-    <state x="866" y="431" key="Vcs.Push.Dialog.v2" timestamp="1613053673848">
+    <state width="2490" height="325" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1613486289034" />
+    <state x="775" y="330" key="SettingsEditor" timestamp="1613480936973">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="866" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1613053673848" />
+    <state x="775" y="330" key="SettingsEditor/0.23.2560.1337@0.23.2560.1337" timestamp="1613480936973" />
+    <state x="866" y="431" key="Vcs.Push.Dialog.v2" timestamp="1613484377412">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="866" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1613484377412" />
     <state width="952" height="668" key="XDebugger.FullValuePopup" timestamp="1613124402162">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="952" height="668" key="XDebugger.FullValuePopup/0.23.2560.1337@0.23.2560.1337" timestamp="1613124402162" />
+    <state x="100" y="123" width="2332" height="1137" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1613478438032">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="100" y="123" width="2332" height="1137" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1613478438032" />
     <state x="1095" y="612" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1613123803799">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -404,9 +441,19 @@
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/srcs/Response/Response.cpp</url>
-          <line>52</line>
-          <option name="timeStamp" value="5" />
+          <url>file://$PROJECT_DIR$/srcs/Request/request.cpp</url>
+          <line>202</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/srcs/Request/request.cpp</url>
+          <line>93</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/srcs/Server/server.cpp</url>
+          <line>306</line>
+          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
