@@ -22,10 +22,11 @@ private:
 	std::vector<std::string>		_indices;
 	std::map<std::string, setter>	_typeFunctionMap;
 
-	std::string						_cgiPass;
-	std::vector<std::string>		_cgiParams;
+	std::string						_cgiPath;
 
+	bool							_isFileExtension;
 	location();
+
 public:
 	explicit location(std::string &match);
 	location(location const &original);
@@ -37,8 +38,7 @@ public:
 	void	setMethod(std::string &method);
 	void	setErrorPage(std::string &errorPage);
 	void	setIndices(std::string &indices);
-	void	setCgiPass(std::string &cgiPass);
-	void	setCgiParams(std::string &cgiParams);
+	void	setCgiPath(std::string &cgiPass);
 
 	const bool						&getAutoindex() const;
 	const std::string				&getMatch() const;
@@ -46,11 +46,12 @@ public:
 	const std::string				&getMethod() const;
 	const std::string				&getErrorPage() const;
 	const std::vector<std::string>	&getIndices() const;
-	const std::string				&getCgiPass() const;
-	const std::vector<std::string>	&getCgiParams() const;
+	const std::string				&getCgiPath() const;
 
 	void	findValue(std::string &key, std::string line);
 	bool	valueCheck() const;
+
+	bool	isFileExtension() const;
 
 };
 

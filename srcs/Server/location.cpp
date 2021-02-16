@@ -8,16 +8,17 @@ const char	*location::inputErrorException::what() const throw()
 	return ("error in location block in config file");
 }
 
-location::location(std::string &match) : _autoindex(false)
+location::location(std::string &match) : _autoindex(false), _isFileExtension(false)
 {
 	this->_match = match;
+	if (match[0] == '*' && match[1] == '.')
+		this->_isFileExtension = true;
 	this->_typeFunctionMap.insert(std::make_pair("autoindex", &location::setAutoindex));
 	this->_typeFunctionMap.insert(std::make_pair("root", &location::setRoot));
 	this->_typeFunctionMap.insert(std::make_pair("method", &location::setMethod));
 	this->_typeFunctionMap.insert(std::make_pair("error_page", &location::setErrorPage));
 	this->_typeFunctionMap.insert(std::make_pair("index", &location::setIndices));
-	this->_typeFunctionMap.insert(std::make_pair("cgi_pass", &location::setCgiPass));
-	this->_typeFunctionMap.insert(std::make_pair("cgi_params", &location::setCgiParams));
+	this->_typeFunctionMap.insert(std::make_pair("cgi_pass", &location::setCgiPath));
 }
 
 location::location(const location &original)
@@ -73,17 +74,9 @@ void	location::setIndices(std::string &indices)
 		this->_indices.push_back(index);
 }
 
-void	location::setCgiPass(std::string &cgiPass)
+void	location::setCgiPath(std::string &cgiPass)
 {
-	this->_cgiPass = cgiPass;
-}
-
-void	location::setCgiParams(std::string &cgiParams)
-{
-	std::stringstream	ss(cgiParams);
-	std::string			param;
-	while (ss >> param)
-		this->_cgiParams.push_back(param);
+	this->_cgiPath = cgiPass;
 }
 
 const bool						&location::getAutoindex() const
@@ -116,14 +109,9 @@ const std::vector<std::string>	&location::getIndices() const
 	return (this->_indices);
 }
 
-const std::string				&location::getCgiPass() const
+const std::string				&location::getCgiPath() const
 {
-	return (this->_cgiPass);
-}
-
-const std::vector<std::string>	&location::getCgiParams() const
-{
-	return (this->_cgiParams);
+	return (this->_cgiPath);
 }
 
 void	location::findValue(std::string &key, std::string line)
@@ -156,6 +144,11 @@ bool	location::valueCheck() const
 		return (ret);
 	// can test for more stuff here, don't know what though
 	return (true);
+}
+
+bool	location::isFileExtension() const
+{
+	return (this->_isFileExtension);
 }
 
 std::ostream&	operator<<(std::ostream &os, const location &loc)
