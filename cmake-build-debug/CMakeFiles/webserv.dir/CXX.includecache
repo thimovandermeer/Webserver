@@ -20,26 +20,6 @@ vector
 algorithm
 -
 
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.cpp
-Response.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.hpp
-../Request/request.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Request/request.hpp
-ResponseHeader.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/ResponseHeader.hpp
-fstream
--
-unistd.h
--
-sys/stat.h
--
-fcntl.h
--
-sstream
--
-../Utils/utils.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Utils/utils.hpp
-
 /Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.hpp
 string
 -
@@ -50,14 +30,6 @@ ostream
 ../Server/server.hpp
 /Users/jbennink/Documents/Projects/webserv_new/srcs/Server/server.hpp
 
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/ResponseHeader.hpp
-string
--
-Response.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.hpp
-../Request/request.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Request/request.hpp
-
 /Users/jbennink/Documents/Projects/webserv_new/srcs/Server/location.hpp
 string
 -
@@ -65,6 +37,30 @@ vector
 -
 map
 -
+
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/server.cpp
+map
+-
+server.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/server.hpp
+location.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/location.hpp
+string
+-
+sstream
+-
+iostream
+-
+iomanip
+-
+unistd.h
+-
+sys/socket.h
+-
+../Request/request.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Request/request.hpp
+../Response/Response.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.hpp
 
 /Users/jbennink/Documents/Projects/webserv_new/srcs/Server/server.hpp
 location.hpp
@@ -81,6 +77,4 @@ sys/socket.h
 -
 netdb.h
 -
-
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Utils/utils.hpp
 

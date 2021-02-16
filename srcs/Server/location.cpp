@@ -18,7 +18,7 @@ location::location(std::string &match) : _autoindex(false), _isFileExtension(fal
 	this->_typeFunctionMap.insert(std::make_pair("method", &location::setMethod));
 	this->_typeFunctionMap.insert(std::make_pair("error_page", &location::setErrorPage));
 	this->_typeFunctionMap.insert(std::make_pair("index", &location::setIndices));
-	this->_typeFunctionMap.insert(std::make_pair("cgi_pass", &location::setCgiPath));
+	this->_typeFunctionMap.insert(std::make_pair("cgi_exec", &location::setCgiPath));
 }
 
 location::location(const location &original)

@@ -19,7 +19,7 @@ void removeAdjacentSlashes(std::string &str)
 {
 	std::string::iterator it;
 
-	for (it = str.begin(); it < str.end(); it++)
+	for (it = str.begin(); it < str.end() - 1; it++)
 	{
 		if ((*it) == '/' && (*(it + 1)) == '/')
 			str.erase(it);

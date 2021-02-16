@@ -201,7 +201,7 @@ void Request::parseBody() {
     size_t end;
     size_t last = _request.rfind("\r\n");
     _body = "";
-    while (begin < last){
+    while (begin <= last){
         end = _request.find("\r\n", begin);
         _body.append(_request, begin, end - begin);
         begin = end + 5;
