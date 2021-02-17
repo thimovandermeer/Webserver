@@ -8,14 +8,17 @@ const char	*location::inputErrorException::what() const throw()
 	return ("error in location block in config file");
 }
 
-location::location(std::string &match) : _autoindex(false)
+location::location(std::string &match) : _autoindex(false), _isFileExtension(false)
 {
 	this->_match = match;
+	if (match[0] == '*' && match[1] == '.')
+		this->_isFileExtension = true;
 	this->_typeFunctionMap.insert(std::make_pair("autoindex", &location::setAutoindex));
 	this->_typeFunctionMap.insert(std::make_pair("root", &location::setRoot));
 	this->_typeFunctionMap.insert(std::make_pair("method", &location::setMethod));
 	this->_typeFunctionMap.insert(std::make_pair("error_page", &location::setErrorPage));
 	this->_typeFunctionMap.insert(std::make_pair("index", &location::setIndices));
+	this->_typeFunctionMap.insert(std::make_pair("cgi_exec", &location::setCgiPath));
 }
 
 location::location(const location &original)
@@ -48,11 +51,6 @@ void	location::setAutoindex(std::string &autoindex)
 		;
 }
 
-//void	location::setMatch(std::string &match)
-//{
-//		this->_match = match;
-//}
-
 void	location::setRoot(std::string &root)
 {
 	this->_root = root;
@@ -74,6 +72,11 @@ void	location::setIndices(std::string &indices)
 	std::string			index;
 	while (ss >> index)
 		this->_indices.push_back(index);
+}
+
+void	location::setCgiPath(std::string &cgiPass)
+{
+	this->_cgiPath = cgiPass;
 }
 
 const bool						&location::getAutoindex() const
@@ -106,6 +109,11 @@ const std::vector<std::string>	&location::getIndices() const
 	return (this->_indices);
 }
 
+const std::string				&location::getCgiPath() const
+{
+	return (this->_cgiPath);
+}
+
 void	location::findValue(std::string &key, std::string line)
 {
 	if (*(line.rbegin()) != ';') // line doesn't end with ';'
@@ -136,6 +144,11 @@ bool	location::valueCheck() const
 		return (ret);
 	// can test for more stuff here, don't know what though
 	return (true);
+}
+
+bool	location::isFileExtension() const
+{
+	return (this->_isFileExtension);
 }
 
 std::ostream&	operator<<(std::ostream &os, const location &loc)

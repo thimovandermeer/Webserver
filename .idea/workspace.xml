@@ -19,9 +19,8 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/main" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:tester" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
@@ -32,12 +31,11 @@
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
     <configurations>
-      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" ENABLED="true" />
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="Response and request part ready for first run" />
-    <list id="2df7a2c5-7ab3-4964-8b43-c3b51357b124" name="Jonas's changes" comment="" />
+    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="please work" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,7 +48,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -81,7 +78,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -97,13 +94,18 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.webserv">
-    <configuration name="Test" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv" TEST_CLASS="[List]" TEST_MODE="SUITE_TEST">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv" TEST_CLASS="[List]" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="webserv" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="&quot;../test_files/conf/webserv.conf&quot;" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv">
+    <configuration name="webserv" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="&quot;./test_mac/mac.conf&quot;" REDIRECT_INPUT="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -149,10 +151,12 @@
       <workItem from="1612162610041" duration="421000" />
       <workItem from="1612167453243" duration="3660000" />
       <workItem from="1612250057146" duration="2928000" />
-      <workItem from="1612438167672" duration="3670000" />
-      <workItem from="1612514649694" duration="45000" />
-      <workItem from="1612515799285" duration="994000" />
-      <workItem from="1612516983352" duration="725000" />
+      <workItem from="1612780091323" duration="327000" />
+      <workItem from="1612780435961" duration="308000" />
+      <workItem from="1612881729343" duration="348000" />
+      <workItem from="1613121595605" duration="3015000" />
+      <workItem from="1613131727257" duration="4006000" />
+      <workItem from="1613467439596" duration="12816000" />
     </task>
     <task id="LOCAL-00003" summary="nearly done all set functions of responseheader">
       <created>1611650661666</created>
@@ -217,7 +221,49 @@
       <option name="project" value="LOCAL" />
       <updated>1612531020307</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="started on dynamic error page">
+      <created>1613053642479</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1613053642479</updated>
+    </task>
+    <task id="LOCAL-00013" summary="fixed dynamic error page, put error msg in place in case of no error page, fixed locations in server class, messed around with getPath in response">
+      <created>1613141351685</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1613141351685</updated>
+    </task>
+    <task id="LOCAL-00014" summary="edited CGI in location to only have path">
+      <created>1613477763601</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1613477763601</updated>
+    </task>
+    <task id="LOCAL-00015" summary="fixed error page, added search for file extension">
+      <created>1613478429499</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1613478429499</updated>
+    </task>
+    <task id="LOCAL-00016" summary="messed around with reading">
+      <created>1613484375404</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1613484375404</updated>
+    </task>
+    <task id="LOCAL-00017" summary="please work">
+      <created>1613486480191</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1613486480191</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -234,7 +280,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/main" />
+                        <option value="tester" />
                       </list>
                     </value>
                   </entry>
@@ -304,99 +350,111 @@
     <MESSAGE value="Response and request part ready for first run" />
     <MESSAGE value="First full main to use from now" />
     <MESSAGE value="Nearly finished first pipeline" />
-    <option name="LAST_COMMIT_MESSAGE" value="Nearly finished first pipeline" />
+    <MESSAGE value="added exit option" />
+    <MESSAGE value="idfk anymore" />
+    <MESSAGE value="Push zodat jonas kan werken aan Server" />
+    <MESSAGE value="Doe het pauperding" />
+    <MESSAGE value="JAA?" />
+    <MESSAGE value="started on dynamic error page" />
+    <MESSAGE value="fixed dynamic error page, put error msg in place in case of no error page, fixed locations in server class, messed around with getPath in response" />
+    <MESSAGE value="edited CGI in location to only have path" />
+    <MESSAGE value="fixed error page, added search for file extension" />
+    <MESSAGE value="messed around with reading" />
+    <MESSAGE value="please work" />
+    <option name="LAST_COMMIT_MESSAGE" value="please work" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1398" height="212" key="GridCell.Tab.0.bottom" timestamp="1612520602159">
-      <screen x="0" y="23" width="1440" height="798" />
+    <state x="730" y="353" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1613481153935">
+      <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1398" height="244" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1612451349915" />
-    <state width="1398" height="212" key="GridCell.Tab.0.bottom/0.23.1440.798@0.23.1440.798" timestamp="1612520602159" />
-    <state width="1345" height="205" key="GridCell.Tab.0.bottom/0.23.1440.801@0.23.1440.801" timestamp="1612439833168" />
-    <state width="1345" height="255" key="GridCell.Tab.0.bottom/0.23.1440.804@0.23.1440.804" timestamp="1612439214711" />
-    <state width="1398" height="212" key="GridCell.Tab.0.center" timestamp="1612520602158">
-      <screen x="0" y="23" width="1440" height="798" />
+    <state x="730" y="353" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1613481153935" />
+    <state x="1004" y="445" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1613477643701">
+      <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1398" height="244" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1612451349913" />
-    <state width="1398" height="212" key="GridCell.Tab.0.center/0.23.1440.798@0.23.1440.798" timestamp="1612520602158" />
-    <state width="1345" height="205" key="GridCell.Tab.0.center/0.23.1440.801@0.23.1440.801" timestamp="1612439833167" />
-    <state width="1345" height="255" key="GridCell.Tab.0.center/0.23.1440.804@0.23.1440.804" timestamp="1612439214711" />
-    <state width="1398" height="212" key="GridCell.Tab.0.left" timestamp="1612520602158">
-      <screen x="0" y="23" width="1440" height="798" />
+    <state x="1004" y="445" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1613477643701" />
+    <state width="2490" height="342" key="GridCell.Tab.0.bottom" timestamp="1613486526229">
+      <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1398" height="244" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1612451349913" />
-    <state width="1398" height="212" key="GridCell.Tab.0.left/0.23.1440.798@0.23.1440.798" timestamp="1612520602158" />
-    <state width="1345" height="205" key="GridCell.Tab.0.left/0.23.1440.801@0.23.1440.801" timestamp="1612439833167" />
-    <state width="1345" height="255" key="GridCell.Tab.0.left/0.23.1440.804@0.23.1440.804" timestamp="1612439214710" />
-    <state width="1398" height="212" key="GridCell.Tab.0.right" timestamp="1612520602159">
-      <screen x="0" y="23" width="1440" height="798" />
+    <state width="1398" height="403" key="GridCell.Tab.0.bottom/0.23.1440.798@0.23.1440.798" timestamp="1612879165339" />
+    <state width="2490" height="342" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1613486526229" />
+    <state width="2490" height="342" key="GridCell.Tab.0.center" timestamp="1613486526228">
+      <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1398" height="244" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1612451349914" />
-    <state width="1398" height="212" key="GridCell.Tab.0.right/0.23.1440.798@0.23.1440.798" timestamp="1612520602159" />
-    <state width="1345" height="205" key="GridCell.Tab.0.right/0.23.1440.801@0.23.1440.801" timestamp="1612439833168" />
-    <state width="1345" height="255" key="GridCell.Tab.0.right/0.23.1440.804@0.23.1440.804" timestamp="1612439214711" />
-    <state width="1398" height="212" key="GridCell.Tab.1.bottom" timestamp="1612520602160">
-      <screen x="0" y="23" width="1440" height="798" />
+    <state width="1398" height="403" key="GridCell.Tab.0.center/0.23.1440.798@0.23.1440.798" timestamp="1612879165338" />
+    <state width="2490" height="342" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1613486526228" />
+    <state width="2490" height="342" key="GridCell.Tab.0.left" timestamp="1613486526228">
+      <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="959" height="205" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1612451349902" />
-    <state width="1398" height="212" key="GridCell.Tab.1.bottom/0.23.1440.798@0.23.1440.798" timestamp="1612520602160" />
-    <state width="1398" height="205" key="GridCell.Tab.1.bottom/0.23.1440.801@0.23.1440.801" timestamp="1612442700658" />
-    <state width="1345" height="255" key="GridCell.Tab.1.bottom/0.23.1440.804@0.23.1440.804" timestamp="1612439214567" />
-    <state width="1398" height="212" key="GridCell.Tab.1.center" timestamp="1612520602159">
-      <screen x="0" y="23" width="1440" height="798" />
+    <state width="1398" height="403" key="GridCell.Tab.0.left/0.23.1440.798@0.23.1440.798" timestamp="1612879165338" />
+    <state width="2490" height="342" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1613486526228" />
+    <state width="2490" height="342" key="GridCell.Tab.0.right" timestamp="1613486526228">
+      <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="959" height="205" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1612451349901" />
-    <state width="1398" height="212" key="GridCell.Tab.1.center/0.23.1440.798@0.23.1440.798" timestamp="1612520602159" />
-    <state width="1398" height="205" key="GridCell.Tab.1.center/0.23.1440.801@0.23.1440.801" timestamp="1612442700657" />
-    <state width="1345" height="255" key="GridCell.Tab.1.center/0.23.1440.804@0.23.1440.804" timestamp="1612439214566" />
-    <state width="1398" height="212" key="GridCell.Tab.1.left" timestamp="1612520602159">
-      <screen x="0" y="23" width="1440" height="798" />
+    <state width="1398" height="403" key="GridCell.Tab.0.right/0.23.1440.798@0.23.1440.798" timestamp="1612879165339" />
+    <state width="2490" height="342" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1613486526228" />
+    <state width="2490" height="342" key="GridCell.Tab.1.bottom" timestamp="1613486526229">
+      <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="959" height="205" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1612451349901" />
-    <state width="1398" height="212" key="GridCell.Tab.1.left/0.23.1440.798@0.23.1440.798" timestamp="1612520602159" />
-    <state width="1398" height="205" key="GridCell.Tab.1.left/0.23.1440.801@0.23.1440.801" timestamp="1612442700656" />
-    <state width="1345" height="255" key="GridCell.Tab.1.left/0.23.1440.804@0.23.1440.804" timestamp="1612439214566" />
-    <state width="1398" height="212" key="GridCell.Tab.1.right" timestamp="1612520602159">
-      <screen x="0" y="23" width="1440" height="798" />
+    <state width="2490" height="342" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1613486526229" />
+    <state width="2490" height="342" key="GridCell.Tab.1.center" timestamp="1613486526229">
+      <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="959" height="205" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1612451349901" />
-    <state width="1398" height="212" key="GridCell.Tab.1.right/0.23.1440.798@0.23.1440.798" timestamp="1612520602159" />
-    <state width="1398" height="205" key="GridCell.Tab.1.right/0.23.1440.801@0.23.1440.801" timestamp="1612442700657" />
-    <state width="1345" height="255" key="GridCell.Tab.1.right/0.23.1440.804@0.23.1440.804" timestamp="1612439214567" />
-    <state width="1088" height="255" key="GridCell.Tab.2.bottom" timestamp="1612438960212">
-      <screen x="0" y="23" width="1440" height="804" />
+    <state width="2490" height="342" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1613486526229" />
+    <state width="2490" height="342" key="GridCell.Tab.1.left" timestamp="1613486526229">
+      <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1088" height="255" key="GridCell.Tab.2.bottom/0.23.1440.804@0.23.1440.804" timestamp="1612438960212" />
-    <state width="1088" height="255" key="GridCell.Tab.2.center" timestamp="1612438960212">
-      <screen x="0" y="23" width="1440" height="804" />
+    <state width="2490" height="342" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1613486526229" />
+    <state width="2490" height="342" key="GridCell.Tab.1.right" timestamp="1613486526229">
+      <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1088" height="255" key="GridCell.Tab.2.center/0.23.1440.804@0.23.1440.804" timestamp="1612438960212" />
-    <state width="1088" height="255" key="GridCell.Tab.2.left" timestamp="1612438960211">
-      <screen x="0" y="23" width="1440" height="804" />
+    <state width="2490" height="342" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1613486526229" />
+    <state x="775" y="330" key="SettingsEditor" timestamp="1613480936973">
+      <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1088" height="255" key="GridCell.Tab.2.left/0.23.1440.804@0.23.1440.804" timestamp="1612438960211" />
-    <state width="1088" height="255" key="GridCell.Tab.2.right" timestamp="1612438960212">
-      <screen x="0" y="23" width="1440" height="804" />
+    <state x="775" y="330" key="SettingsEditor/0.23.2560.1337@0.23.2560.1337" timestamp="1613480936973" />
+    <state x="866" y="431" key="Vcs.Push.Dialog.v2" timestamp="1613486484270">
+      <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1088" height="255" key="GridCell.Tab.2.right/0.23.1440.804@0.23.1440.804" timestamp="1612438960212" />
+    <state x="866" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1613486484270" />
+    <state width="952" height="668" key="XDebugger.FullValuePopup" timestamp="1613124402162">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="952" height="668" key="XDebugger.FullValuePopup/0.23.2560.1337@0.23.2560.1337" timestamp="1613124402162" />
+    <state x="100" y="123" width="2332" height="1137" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1613478438032">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="100" y="123" width="2332" height="1137" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1613478438032" />
+    <state x="1095" y="612" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1613123803799">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="1095" y="612" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.2560.1337@0.23.2560.1337" timestamp="1613123803799" />
+    <state x="1050" y="489" key="refactoring.ChangeSignatureDialog" timestamp="1613138761663">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="1050" y="489" key="refactoring.ChangeSignatureDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1613138761663" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/srcs/Server/parser.cpp</url>
+          <line>147</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/srcs/Request/request.cpp</url>
-          <line>178</line>
-          <option name="timeStamp" value="37" />
+          <line>202</line>
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/srcs/Response/Response.cpp</url>
-          <line>15</line>
-          <option name="timeStamp" value="40" />
+          <url>file://$PROJECT_DIR$/srcs/Request/request.cpp</url>
+          <line>93</line>
+          <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/srcs/Response/Response.cpp</url>
-          <line>56</line>
-          <option name="timeStamp" value="41" />
+          <url>file://$PROJECT_DIR$/srcs/Server/server.cpp</url>
+          <line>306</line>
+          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

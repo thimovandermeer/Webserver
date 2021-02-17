@@ -15,21 +15,13 @@ int 	getTime()
 	return time;
 }
 
-std::string	removeAdjacentSlashes(std::string &str)
+void removeAdjacentSlashes(std::string &str)
 {
-	std::string	ret;
-	bool		lastIsSlash = false;
+	std::string::iterator it;
 
-	for (std::string::size_type i = 0; i < str.length(); i++) {
-		if (str[i] == '/') {
-			if (!lastIsSlash)
-				ret.push_back(str[i]);
-			lastIsSlash = true;
-		}
-		else {
-			lastIsSlash = false;
-			ret.push_back(str[i]);
-		}
+	for (it = str.begin(); it < str.end() - 1; it++)
+	{
+		if ((*it) == '/' && (*(it + 1)) == '/')
+			str.erase(it);
 	}
-	return ret;
 }

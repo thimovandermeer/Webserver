@@ -8,15 +8,18 @@
 #include <fstream>
 #include <unistd.h>
 #include <sys/stat.h>
+#include <fcntl.h>
+#include <sstream>
 #include "../Utils/utils.hpp"
 
 
 Response::Response()
 {
-	_response = "";
-	_content ="";
-	_path = "";
-	_contentType = "";
+    _errorMessage[204] = "No Content";
+    _errorMessage[400] = "Bad Request";
+    _errorMessage[403] = "Forbidden";
+    _errorMessage[404] = "Not Found";
+    _errorMessage[405] = "Method Not Allowed";
 }
 
 Response::~Response()
@@ -33,6 +36,31 @@ Response &Response::operator=(const Response &src)
 	return (*this);
 }
 
+location*	findFileExtension(server &server, std::string *uri)
+{
+	std::vector<location*> locs = server.getLocations();
+
+	for (std::vector<location*>::iterator it = locs.begin(); it < locs.end(); it++)
+	{
+		if ((*it)->isFileExtension())
+		{
+			std::string	extension = (*it)->getMatch();
+			if (extension == "*.error_image.png")
+				extension.erase(0, 2);
+			else
+				extension.erase(0, 1);
+			size_t len = extension.length();
+			if (uri->length() >= len && !uri->compare(uri->length() - len, len, extension))
+			{
+				if (extension == "error_image.png")
+					*uri = "/error_image.png";
+				return (*it);
+			}
+		}
+	}
+	return (NULL);
+}
+
 std::string Response::getPath(server &server, Request &request)
 {
 	// request kant
@@ -40,30 +68,44 @@ std::string Response::getPath(server &server, Request &request)
 	// server kant
 		// heeft location geconfigureerd
 	// dit moet gematcht worden
-
-	std::string root = server.getRoot();
-
-	// from the request side i need the path
-	std::string path =	request.getUri();
-	std::string location = request.getHost();
-	// the return value will be root + alias + path.substr(locationName.length)
 	std::string ret;
-//	if (!location.empty())
-//		ret = root + path.substr(location.length());
-//	else
-	// functie jonas hier inzetten return location of leeg
-	// check if not empty en daarna kijken of het een match is
-	// geen match is goede exit code returnen
-	ret = root + path;
-	std::string temp;
-	temp = removeAdjacentSlashes(ret);
-	return temp;
+	std::string root;
+	std::string uri;
+	std::string locMatch;
+	size_t		found;
+
+	uri = request.getUri();
+	location *loc = findFileExtension(server, &uri);
+	found = uri.find_first_of("/", 1);
+	if (found == std::string::npos)
+		found = 1;
+	locMatch = uri.substr(0, found);
+	uri.erase(0, 1);
+	if (!loc)
+		loc = server.findLocation(locMatch);
+	if (!loc)
+	{
+		this->_status = 404; // location not found
+	}
+	else
+	{
+		if (!loc->getRoot().empty())
+			root = loc->getRoot();
+		else
+			root = server.getRoot();
+		ret = root + uri;
+	}
+	removeAdjacentSlashes(ret);
+
+	return ret;
 }
 
-void Response::checkMethod(Request &request, server &server)
-{
+void Response::setupResponse(Request &request, server &server) {
 	_path = getPath(server, request);
 	_status = request.getStatus();
+//	_status = 405;          //404 niet
+
+
 	_contentType = request.getContentType();
 	if(request.getMethod() == 0)
 		getMethod(); // done
@@ -73,6 +115,10 @@ void Response::checkMethod(Request &request, server &server)
 		postMethod(request.getBody());
 	if(request.getMethod() == 3)
 		putMethod(request.getBody()); // done
+	if (this->_status >= 299)
+	{
+		this->errorPage(server);
+	}
 }
 
 void 	Response::readContent()
@@ -85,7 +131,8 @@ void 	Response::readContent()
 	file.open(_path, std::ifstream::in);
 	if(!file.is_open() && _status == 200)
 		_status = 403;
-	_content.assign((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+	if (this->_status == 200)		// is deze goed gemerged
+		_content.assign((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
 	file.close();
 }
 
@@ -104,6 +151,65 @@ void 	Response::writeContent(std::string content)
 	file.close();
 
 }
+
+void    Response::createErrorPage(std::string *pageData)
+{
+    size_t found = 1;
+	while (found != std::string::npos)
+	{
+		found = pageData->find("ERROR_CODE");
+		if (found == std::string::npos)
+			break;
+		std::stringstream stat;
+		stat << this->_status;
+		std::string statstr;
+		stat >> statstr;
+		pageData->replace(found, 10, statstr);
+	}
+	found = 1;
+    while (found != std::string::npos)
+    {
+        found = pageData->find("MESSAGE");
+        if (found == std::string::npos)
+            break;
+        std::stringstream stat;
+        std::map<int, std::string>::iterator it = _errorMessage.find(_status);
+        if (it == this->_errorMessage.end())
+        	pageData->replace(found, 7, "unknown error");
+        else
+        	pageData->replace(found, 7, it->second);
+    }
+}
+
+void	Response::errorPage(server &serv)
+{
+	int	        fd;
+	int         ret = 4096;
+	char        buff[4096];
+	std::string	pageData;
+	std::string	pathToPage;
+
+	pathToPage = serv.getRoot() + serv.getErrorPage();
+	fd = open(pathToPage.c_str(), O_RDONLY);
+	if (fd < 0)
+		pageData = "Problem serving error. Perhaps the error page was setup incorrectly.";
+	else
+	{
+		while (ret == 4096)
+		{
+			ret = read(fd, buff, 4095);
+			buff[ret] = 0;
+			pageData += buff;
+		}
+		close(fd);
+		createErrorPage(&pageData);
+	}
+	this->_content.clear();
+	this->_content = pageData;
+	ResponseHeader header(_content, _path, _status, _contentType);
+	_response = header.getHeader(_status) + _content;
+}
+
 void Response::getMethod()
 {
 	readContent();
