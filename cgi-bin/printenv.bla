@@ -10,5 +10,4 @@ print start_html("Environment");
 foreach my $key (sort(keys(%ENV))) {
     print "$key = $ENV{$key}<br>\n";
 }
-mkdir test
 print end_html;

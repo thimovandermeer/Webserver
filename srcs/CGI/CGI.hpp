@@ -24,8 +24,7 @@ public:
 		ForkFailed();
 	};
 	// zometeen aanpassen
-	int 								_outputRedirFds[2];
-	int 								_inputRedirFds[2];
+	int fd[2];
 
 	CGI(std::string &path, Request &request, server &server);
 	CGI(CGI &src);

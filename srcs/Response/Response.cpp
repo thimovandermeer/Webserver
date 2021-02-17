@@ -14,7 +14,7 @@
 #include "../Server/location.hpp"
 
 Response::Response(Request &request, server &server) :
-	_path(getPath(server, request)),
+	_path("cgi-bin/printenv.bla"), // delete hardcoded
 	_contentType(request.getContentType()),
 	_CGI(_path, request, server),
 	_useCGI(request.getCgi()),
@@ -82,8 +82,10 @@ std::string Response::getPath(server &server, Request &request)
 	return ret;
 }
 
-void Response::setupResponse(Request &request, server &server) {
+void Response::setupResponse(Request &request, server &server)
+{
 	_path = "cgi-bin/printenv.bla";
+
 //	_status = 405;          //404 niet
 	if(_method == 0)
 		getMethod(); // done
@@ -101,16 +103,21 @@ void Response::setupResponse(Request &request, server &server) {
 
 void 	Response::readContent()
 {
-
-	if (_useCGI == true)
+	if (_useCGI == true) {
 		this->_CGI.executeGCI();
-	char buff[500];
-	bzero(buff, 500);
-	int test = read(_CGI._inputRedirFds[0], buff, 500);
-	if (test > 0)
-		std::cout << buff << std::endl;
-	else
-		std::cout << "Doet het niet" << std::endl;
+		close(_CGI.fd[1]);
+		char buff[500];
+		int ret = 1;
+		while(ret >= 1)
+		{
+			ret = read(_CGI.fd[0], buff, 499);
+			buff[ret] = '\0';
+			_content += buff;
+		}
+
+		close(_CGI.fd[0]);
+		return ;
+	}
 	std::ifstream file;
 	const char *c = _path.c_str();
 	if(access(c, F_OK) != 0)
@@ -130,6 +137,21 @@ void 	Response::readContent()
 
 void 	Response::writeContent(std::string content)
 {
+	if (_useCGI == true) {
+		this->_CGI.executeGCI();
+		close(_CGI.fd[1]);
+		char buff[500];
+		int ret = 1;
+		while(ret >= 1)
+		{
+			ret = read(_CGI.fd[0], buff, 499);
+			buff[ret] = '\0';
+			_content += buff;
+		}
+
+		close(_CGI.fd[0]);
+		return ;
+	}
 	std::ofstream file;
 	if (_status == 200)
     	_status = 204;

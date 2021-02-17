@@ -48,89 +48,27 @@ CGI::~CGI()
 void 	CGI::executeGCI()
 {
 	_convertEnv();
-	_createPipe();
-	if (_forkProcess()) {
-		try
-		{
-			_setupRedir();
-			_switchProcess();
-		}
-		catch (...){
-			std::cout << "Failure in child proces" << std::endl;
-		}
-	}
-}
-void 	CGI::_createPipe()
-{
-	if (pipe(_outputRedirFds) < 0)
-		throw PipeSetupFailed();
-	if (pipe(_inputRedirFds) < 0)
-	{
-		close(_outputRedirFds[0]);
-		close(_inputRedirFds[0]);
-		close(_outputRedirFds[1]);
-		close(_inputRedirFds[1]);
-		throw PipeSetupFailed();
-	}
-}
-
-bool 	CGI::_forkProcess()
-{
+	std::cerr << _path << std::endl;
+	pipe(fd);
 	_pid = fork();
-	if (_pid < 0)
+	if (_pid == 0)
 	{
-		throw ForkFailed();
-	}
-	else if (_pid == 0)
-	{
-		return true;
-	}
-	else
-	{
-		close(_outputRedirFds[1]);
-		close(_inputRedirFds[0]);
-		return false;
-	}
-}
+		close(fd[0]);
+		dup2(fd[1], STDOUT_FILENO);
+		close(fd[1]);
+		long executableStart = _path.rfind('/') + 1;
+		std::string executable = _path.substr(executableStart);
+		const char *realArgv[2];
+		std::string pathStart = _path.substr(0, executableStart);
+		chdir(pathStart.c_str());
+		realArgv[0] = executable.c_str();
+		realArgv[1] = nullptr;
 
-void 	CGI::_setupRedir()
-{
-	long pathEnd = _path.find('/'); // set this value to the dir we have to work in
-
-	std::string path = _path.substr(0, pathEnd); // set this value to the path without the just found dir
-	if (chdir(path.c_str()) < 0)
-	{
-		throw std::exception();
+		char *const *argv = const_cast<char *const *>(realArgv);
+		int ret = execve(argv[0], reinterpret_cast<char* const*>(argv), _env);
+		if (ret < 0)
+			exit(1);
 	}
-	if (dup2(_outputRedirFds[1], STDOUT_FILENO) < 0)
-	{
-		throw ForkFailed();
-	}
-	if (dup2(_inputRedirFds[0], STDIN_FILENO) < 0)
-	{
-		throw ForkFailed();
-	}
-	close(_inputRedirFds[0]);
-	close(_inputRedirFds[1]);
-	close(_outputRedirFds[0]);
-	close(_outputRedirFds[1]);
-}
-
-void 		CGI::_switchProcess()
-{
-	// get the executable so the last part of the path
-	long executableStart = _path.rfind('/') + 1;
-	std::string executable = _path.substr(executableStart);
-
-	const char *realArgv[2];
-	realArgv[0] = executable.c_str();
-	realArgv[1] = nullptr;
-
-	char *const *argv = const_cast<char *const *>(realArgv);
-
-	int ret = execve(argv[0], reinterpret_cast<char* const*>(argv), _env);
-	if (ret < 0)
-		exit(1);
 }
 
 void CGI::_initEnvironment(Request &request, server &server)
