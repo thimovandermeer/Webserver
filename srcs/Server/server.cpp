@@ -293,9 +293,9 @@ std::string 		server::receive() const
 
 void 		server::sendData(const std::string &response) const
 {
-	std::cout << "==RESPONSE==" << std::endl;
-	std::cout << response << std::endl;
-	std::cout << "==end==" << std::endl;
+	std::cerr << "==RESPONSE==" << std::endl;
+	std::cerr << response << std::endl;
+	std::cerr << "==end==" << std::endl;
 	if(send(_acceptFd, response.c_str(), response.size(), 0) == -1)
 	{
 		std::cerr << "send error" << std::endl;
@@ -331,9 +331,10 @@ void	server::run()
 	{
 		// error
 	}
-	Response response;
+
 
 	Request	request(receivedRequest);
+	Response response(request, *this);
 	response.setupResponse(request, *this);
 	try
 	{

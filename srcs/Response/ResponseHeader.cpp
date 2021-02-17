@@ -206,7 +206,10 @@ void ResponseHeader::setServer()
 
 void ResponseHeader::setTransferEncoding()
 {
+	// if request asks for encoding put this in to it
 	_transferEncoding = "Chunked";
+	// with chunked encoding no content-length
+
 }
 
 void ResponseHeader::setWwwAuthenticate(int status)

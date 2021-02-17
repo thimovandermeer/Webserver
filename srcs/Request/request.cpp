@@ -26,7 +26,9 @@ Request &Request::operator=(const Request &original) {
     return (*this);
 }
 
-Request::Request(std::string request) : _request(request) {
+Request::Request(std::string request) : _request(request),
+	_cgi(false)
+{
     _status = 200;
     _headerMap["ACCEP-CHARSET"] = ACCEPT_CHARSET;
     _headerMap["ACCEPT-LANGUAGE"] = ACCEPT_LANGUAGE;
@@ -120,6 +122,7 @@ void Request::parseRequestLine(){
 	size_t qMarkLocation = _request.find("?", pos2); // is npos if no '?'
     if (qMarkLocation <= pos1){
         pos1 = _request.find("?");
+        _cgi = true;
         _uri = _request.substr(pos2, pos1-pos2);
         pos2 = _request.find(" ", pos1);
         _cgiEnv = _request.substr(pos1+1, pos2-pos1-1);		//ook checken
@@ -217,4 +220,8 @@ std::string Request::getHost()
 	if (it_h == _defHeaders.end())
 		return ("NULL");
 	return (it_h->second);
+}
+
+bool Request::getCgi() const {
+	return _cgi;
 }

@@ -11,19 +11,42 @@
 class CGI
 {
 public:
-	CGI(Request &request, server &server);
+	class CgiError : public std::runtime_error {
+	public:
+		explicit CgiError(const char* w);
+	};
+	class PipeSetupFailed : public CgiError {
+	public:
+		PipeSetupFailed();
+	};
+	class ForkFailed : public CgiError {
+	public:
+		ForkFailed();
+	};
+	// zometeen aanpassen
+	int 								_outputRedirFds[2];
+	int 								_inputRedirFds[2];
+
+	CGI(std::string &path, Request &request, server &server);
 	CGI(CGI &src);
 	~CGI();
-
-	std::string	executeCgi(std::string script) const;
-private:
 	CGI();
+	void								executeGCI();
+private:
 	void 								_initEnvironment(Request &request, server &server);
-	char 								**_convertEnv() const;
+	void 								_convertEnv();
+	void 								_createPipe();
+	bool 								_forkProcess();
+	void 								_setupRedir();
+	void 								_switchProcess();
 
 private:
+
 	std::map<std::string, std::string> 	_environment;
-	std::string 						_body;
+	char								**_env;
+	std::string 						_path;
+
+	pid_t 								_pid;
 };
 
 #endif //WEBSERV_CGI_HPP

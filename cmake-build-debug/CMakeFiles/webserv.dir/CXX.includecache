@@ -6,7 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Request/request.hpp
+/Users/thimovandermeer/CLionProjects/Webserver/srcs/CGI/CGI.hpp
+../Request/request.hpp
+/Users/thimovandermeer/CLionProjects/Webserver/srcs/Request/request.hpp
+../Server/server.hpp
+/Users/thimovandermeer/CLionProjects/Webserver/srcs/Server/server.hpp
+
+/Users/thimovandermeer/CLionProjects/Webserver/srcs/Request/request.hpp
 iostream
 -
 string
@@ -20,13 +26,13 @@ vector
 algorithm
 -
 
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.cpp
+/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response/Response.cpp
 Response.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.hpp
+/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response/Response.hpp
 ../Request/request.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Request/request.hpp
+/Users/thimovandermeer/CLionProjects/Webserver/srcs/Request/request.hpp
 ResponseHeader.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/ResponseHeader.hpp
+/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response/ResponseHeader.hpp
 fstream
 -
 unistd.h
@@ -38,27 +44,31 @@ fcntl.h
 sstream
 -
 ../Utils/utils.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Utils/utils.hpp
+/Users/thimovandermeer/CLionProjects/Webserver/srcs/Utils/utils.hpp
+../Server/location.hpp
+/Users/thimovandermeer/CLionProjects/Webserver/srcs/Server/location.hpp
 
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.hpp
+/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response/Response.hpp
 string
 -
 ostream
 -
 ../Request/request.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Request/request.hpp
+/Users/thimovandermeer/CLionProjects/Webserver/srcs/Request/request.hpp
 ../Server/server.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/server.hpp
+/Users/thimovandermeer/CLionProjects/Webserver/srcs/Server/server.hpp
+../CGI/CGI.hpp
+/Users/thimovandermeer/CLionProjects/Webserver/srcs/CGI/CGI.hpp
 
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/ResponseHeader.hpp
+/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response/ResponseHeader.hpp
 string
 -
 Response.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.hpp
+/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response/Response.hpp
 ../Request/request.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Request/request.hpp
+/Users/thimovandermeer/CLionProjects/Webserver/srcs/Request/request.hpp
 
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/location.hpp
+/Users/thimovandermeer/CLionProjects/Webserver/srcs/Server/location.hpp
 string
 -
 vector
@@ -66,9 +76,9 @@ vector
 map
 -
 
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/server.hpp
+/Users/thimovandermeer/CLionProjects/Webserver/srcs/Server/server.hpp
 location.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/location.hpp
+/Users/thimovandermeer/CLionProjects/Webserver/srcs/Server/location.hpp
 vector
 -
 map
@@ -82,5 +92,5 @@ sys/socket.h
 netdb.h
 -
 
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Utils/utils.hpp
+/Users/thimovandermeer/CLionProjects/Webserver/srcs/Utils/utils.hpp
 

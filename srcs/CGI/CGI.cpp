@@ -5,12 +5,32 @@
 #include <AppleEXR.h>
 #include "CGI.hpp"
 
-// default stuff
-CGI::CGI(Request &request, server &server)
+CGI::CgiError::CgiError(const char* w)
+		: std::runtime_error(w)
 {
-	this->_initEnvironment(request, server);
 }
 
+CGI::PipeSetupFailed::PipeSetupFailed()
+		: CgiError("CGI pipe setup failed")
+{
+}
+
+CGI::ForkFailed::ForkFailed()
+		: CgiError("CGI fork failed")
+{
+}
+
+// default stuff
+CGI::CGI(std::string &path, Request &request, server &server) :
+	_path(path)
+{
+	_initEnvironment(request, server);
+}
+
+CGI::CGI()
+{
+
+}
 CGI::CGI(CGI &src)
 {
 	if (this != &src)
@@ -23,52 +43,94 @@ CGI::~CGI()
 	;
 }
 
-CGI::CGI()
-{
-	// ERROR;
-}
-
 // public stuff
 
-std::string CGI::executeCgi(std::string script) const
+void 	CGI::executeGCI()
 {
-	// convert to char** for use in execve
-
-	char **env = this->_convertEnv(); // try catch blok van maken in de toekomst
-
-	int stdinSafe = dup(STDIN_FILENO);
-	int stdoutSafe = dup(STDOUT_FILENO);
-
-	int fds[2];
-	pipe(fds);
-	pid_t id = fork();
-	dup2(fds[0], STDIN_FILENO);
-	dup2(fds[1], STDOUT_FILENO);
-	if (!id) {
-		execve(script.c_str(), NULL, env);
-		close(fds[0]);
-		close(fds[1]);
-		return (NULL);
-	} else {
-		int status;
-		// here we wait for the child proces to finish
-		waitpid(id, &status, 0);
-		int ret = 1;
-		char buffer[500];
-		std::string outputStream;
-		while (ret > 0) {
-			ret = read(fds[0], buffer, 500);
-			for (int i = 0; i < ret; i++) {
-				outputStream += buffer[i];
-			}
+	_convertEnv();
+	_createPipe();
+	if (_forkProcess()) {
+		try
+		{
+			_setupRedir();
+			_switchProcess();
 		}
-		dup2(stdinSafe, STDIN_FILENO);
-		dup2(stdoutSafe, STDOUT_FILENO);
-		close(fds[0]);
-		close(fds[1]);
-		std::cout << outputStream << std::endl;
-		return NULL;
+		catch (...){
+			std::cout << "Failure in child proces" << std::endl;
+		}
 	}
+}
+void 	CGI::_createPipe()
+{
+	if (pipe(_outputRedirFds) < 0)
+		throw PipeSetupFailed();
+	if (pipe(_inputRedirFds) < 0)
+	{
+		close(_outputRedirFds[0]);
+		close(_inputRedirFds[0]);
+		close(_outputRedirFds[1]);
+		close(_inputRedirFds[1]);
+		throw PipeSetupFailed();
+	}
+}
+
+bool 	CGI::_forkProcess()
+{
+	_pid = fork();
+	if (_pid < 0)
+	{
+		throw ForkFailed();
+	}
+	else if (_pid == 0)
+	{
+		return true;
+	}
+	else
+	{
+		close(_outputRedirFds[1]);
+		close(_inputRedirFds[0]);
+		return false;
+	}
+}
+
+void 	CGI::_setupRedir()
+{
+	long pathEnd = _path.find('/'); // set this value to the dir we have to work in
+
+	std::string path = _path.substr(0, pathEnd); // set this value to the path without the just found dir
+	if (chdir(path.c_str()) < 0)
+	{
+		throw std::exception();
+	}
+	if (dup2(_outputRedirFds[1], STDOUT_FILENO) < 0)
+	{
+		throw ForkFailed();
+	}
+	if (dup2(_inputRedirFds[0], STDIN_FILENO) < 0)
+	{
+		throw ForkFailed();
+	}
+	close(_inputRedirFds[0]);
+	close(_inputRedirFds[1]);
+	close(_outputRedirFds[0]);
+	close(_outputRedirFds[1]);
+}
+
+void 		CGI::_switchProcess()
+{
+	// get the executable so the last part of the path
+	long executableStart = _path.rfind('/') + 1;
+	std::string executable = _path.substr(executableStart);
+
+	const char *realArgv[2];
+	realArgv[0] = executable.c_str();
+	realArgv[1] = nullptr;
+
+	char *const *argv = const_cast<char *const *>(realArgv);
+
+	int ret = execve(argv[0], reinterpret_cast<char* const*>(argv), _env);
+	if (ret < 0)
+		exit(1);
 }
 
 void CGI::_initEnvironment(Request &request, server &server)
@@ -100,27 +162,27 @@ void CGI::_initEnvironment(Request &request, server &server)
 	this->_environment["SERVER_SOFTWARE"] = "Merel Jonas Thimo Epic webserver huts"; // search app
 }
 
-
-
-
-char **CGI::_convertEnv() const
+void CGI::_convertEnv()
 {
-	char **env = new char*[this->_environment.size() + 1];
-	int j = 0;
-	if (!env)
+	this->_env = new char*[this->_environment.size() + 1];
+	if (!_env)
 	{
-		delete[] env;
-		return (NULL);
+		delete[] _env;
+		return ;
 	}
-	 std::map<std::string, std::string>::const_iterator i = this->_environment.begin();
-	while(i != this->_environment.end())
+	int j = 0;
+	std::map<std::string, std::string>::const_iterator it = this->_environment.begin();
+	while(it != this->_environment.end())
 	{
-		std::string temp = i->first + "=" + i->second;
-		env[j] = strdup(temp.c_str());
-		i++;
+		std::string temp = it->first + "=" + it->second;
+		this->_env[j] = strdup(temp.c_str());
+		if (!this->_env[j])
+		{
+			std::cout << "ERRORRR" << std::endl;
+			return ;
+		}
+		it++;
 		j++;
 	}
-	env[j] = NULL;
-	return (env);
+	_env[j] = NULL;
 }
-

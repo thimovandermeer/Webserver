@@ -11,9 +11,15 @@
 #include <fcntl.h>
 #include <sstream>
 #include "../Utils/utils.hpp"
+#include "../Server/location.hpp"
 
-
-Response::Response()
+Response::Response(Request &request, server &server) :
+	_path(getPath(server, request)),
+	_contentType(request.getContentType()),
+	_CGI(_path, request, server),
+	_useCGI(request.getCgi()),
+	_status(request.getStatus()),
+	_method(request.getMethod())
 {
     _errorMessage[204] = "No Content";
     _errorMessage[400] = "Bad Request";
@@ -36,31 +42,6 @@ Response &Response::operator=(const Response &src)
 	return (*this);
 }
 
-location*	findFileExtension(server &server, std::string *uri)
-{
-	std::vector<location*> locs = server.getLocations();
-
-	for (std::vector<location*>::iterator it = locs.begin(); it < locs.end(); it++)
-	{
-		if ((*it)->isFileExtension())
-		{
-			std::string	extension = (*it)->getMatch();
-			if (extension == "*.error_image.png")
-				extension.erase(0, 2);
-			else
-				extension.erase(0, 1);
-			size_t len = extension.length();
-			if (uri->length() >= len && !uri->compare(uri->length() - len, len, extension))
-			{
-				if (extension == "error_image.png")
-					*uri = "/error_image.png";
-				return (*it);
-			}
-		}
-	}
-	return (NULL);
-}
-
 std::string Response::getPath(server &server, Request &request)
 {
 	// request kant
@@ -74,25 +55,26 @@ std::string Response::getPath(server &server, Request &request)
 	std::string locMatch;
 	size_t		found;
 
+	root = server.getRoot();
 	uri = request.getUri();
-	location *loc = findFileExtension(server, &uri);
+//	if (uri.find("error_image.png"))
+//	{
+//		ret = root + "/error_image.png";
+//		removeAdjacentSlashes(ret);
+//		return (ret);
+//	}
 	found = uri.find_first_of("/", 1);
 	if (found == std::string::npos)
 		found = 1;
 	locMatch = uri.substr(0, found);
 	uri.erase(0, 1);
-	if (!loc)
-		loc = server.findLocation(locMatch);
+	location *loc = server.findLocation(locMatch);
 	if (!loc)
 	{
 		this->_status = 404; // location not found
 	}
 	else
 	{
-		if (!loc->getRoot().empty())
-			root = loc->getRoot();
-		else
-			root = server.getRoot();
 		ret = root + uri;
 	}
 	removeAdjacentSlashes(ret);
@@ -101,19 +83,15 @@ std::string Response::getPath(server &server, Request &request)
 }
 
 void Response::setupResponse(Request &request, server &server) {
-	_path = getPath(server, request);
-	_status = request.getStatus();
+	_path = "cgi-bin/printenv.bla";
 //	_status = 405;          //404 niet
-
-
-	_contentType = request.getContentType();
-	if(request.getMethod() == 0)
+	if(_method == 0)
 		getMethod(); // done
-	if(request.getMethod() == 1)
+	if(_method == 1)
 		headMethod(); // done
-	if(request.getMethod() == 2)
+	if(_method == 2)
 		postMethod(request.getBody());
-	if(request.getMethod() == 3)
+	if(_method == 3)
 		putMethod(request.getBody()); // done
 	if (this->_status >= 299)
 	{
@@ -123,9 +101,23 @@ void Response::setupResponse(Request &request, server &server) {
 
 void 	Response::readContent()
 {
-	std::ifstream file;
 
+	if (_useCGI == true)
+		this->_CGI.executeGCI();
+	char buff[500];
+	bzero(buff, 500);
+	int test = read(_CGI._inputRedirFds[0], buff, 500);
+	if (test > 0)
+		std::cout << buff << std::endl;
+	else
+		std::cout << "Doet het niet" << std::endl;
+	std::ifstream file;
 	const char *c = _path.c_str();
+	if(access(c, F_OK) != 0)
+		_status = 404;
+	file.open(this->_path, std::ifstream::in);
+	if(!file.is_open())
+		_status = 403;
 	if(access(c, F_OK) != 0 && _status == 200)
 		_status = 404;
 	file.open(_path, std::ifstream::in);

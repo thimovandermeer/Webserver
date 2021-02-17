@@ -68,10 +68,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/jbennink/Documents/Projects/webserv_new
+CMAKE_SOURCE_DIR = /Users/thimovandermeer/CLionProjects/Webserver
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -100,9 +100,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles /Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles /Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -142,6 +142,33 @@ webserv: cmake_check_build_system
 webserv/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/build
 .PHONY : webserv/fast
+
+srcs/CGI/CGI.o: srcs/CGI/CGI.cpp.o
+
+.PHONY : srcs/CGI/CGI.o
+
+# target to build an object file
+srcs/CGI/CGI.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/CGI/CGI.cpp.o
+.PHONY : srcs/CGI/CGI.cpp.o
+
+srcs/CGI/CGI.i: srcs/CGI/CGI.cpp.i
+
+.PHONY : srcs/CGI/CGI.i
+
+# target to preprocess a source file
+srcs/CGI/CGI.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/CGI/CGI.cpp.i
+.PHONY : srcs/CGI/CGI.cpp.i
+
+srcs/CGI/CGI.s: srcs/CGI/CGI.cpp.s
+
+.PHONY : srcs/CGI/CGI.s
+
+# target to generate assembly for a file
+srcs/CGI/CGI.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/CGI/CGI.cpp.s
+.PHONY : srcs/CGI/CGI.cpp.s
 
 srcs/Cluster/serverCluster.o: srcs/Cluster/serverCluster.cpp.o
 
@@ -395,6 +422,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... webserv"
+	@echo "... srcs/CGI/CGI.o"
+	@echo "... srcs/CGI/CGI.i"
+	@echo "... srcs/CGI/CGI.s"
 	@echo "... srcs/Cluster/serverCluster.o"
 	@echo "... srcs/Cluster/serverCluster.i"
 	@echo "... srcs/Cluster/serverCluster.s"

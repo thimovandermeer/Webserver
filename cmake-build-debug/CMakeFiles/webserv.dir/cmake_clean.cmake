@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/webserv.dir/srcs/CGI/CGI.cpp.o"
   "CMakeFiles/webserv.dir/srcs/Cluster/serverCluster.cpp.o"
   "CMakeFiles/webserv.dir/srcs/Request/request.cpp.o"
   "CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o"
