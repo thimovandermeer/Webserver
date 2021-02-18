@@ -52,7 +52,7 @@ class Request{
         void parseRequestLine();
         void parseHeaders();
         void parseBody();
-		void setMethod(std::string method);
+		void checkCGI();
      private:
         Request();
         std::string _request;
