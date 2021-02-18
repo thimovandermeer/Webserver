@@ -111,13 +111,13 @@ void Response::setupResponse(Request &request, server &server)
 	_path = "cgi-bin/printenv.bla";
 
 //	_status = 405;          //404 niet
-	if(_method == 0)
+	if(_method == "GET")
 		getMethod(); // done
-	if(_method == 1)
+	if(_method == "HEAD")
 		headMethod(); // done
-	if(_method == 2)
+	if(_method == "POST")
 		postMethod(request.getBody());
-	if(_method == 3)
+	if(_method == "PUT")
 		putMethod(request.getBody()); // done
 	if (this->_status >= 299)
 	{
@@ -266,9 +266,7 @@ void Response::postMethod(std::string content)
 			buff[ret] = '\0';
 			_content += buff;
 		}
-
 		close(_CGI.fd[0]);
-
 		return ;
 	}
 	if (_status == 200)

@@ -1,6 +1,6 @@
 #include "request.hpp"
 
-std::string methods[8] = {
+std::string methods[4] = {
         "GET",
         "HEAD",
         "POST",
@@ -51,12 +51,12 @@ Request::Request(std::string request) : _request(request),
 	parseRequest();
 }
 
-int Request::getMethod() const {
+std::string Request::getMethod() const {
     for (int i = 0; i < 7; i++){
         if (_method.compare(methods[i]) == 0)
-            return i;
+            return methods[i];
     }
-    return -1;
+    return NULL;
 }
 
 std::string Request::getUri() const {
@@ -114,7 +114,7 @@ void Request::parseRequestLine(){
         _status = 400;
     pos2 = _request.find(" ");
     _method = _request.substr(0, pos2);
-    if (getMethod() == -1){
+    if (getMethod().empty()){
         _status = 405;
     }
     pos2+=1;
