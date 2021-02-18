@@ -37,7 +37,7 @@ class Request{
         Request(const Request &original);
         Request &operator=(const Request &original);
 
-        int getMethod() const;
+        std::string getMethod() const;
         std::string getVersion() const;
         std::string getUri() const;
         std::map<headerType, std::string> getHeaders() const;

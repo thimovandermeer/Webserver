@@ -45,7 +45,7 @@ CGI::~CGI()
 
 // public stuff
 
-void 	CGI::executeGCI()
+std::string 	CGI::executeGCI()
 {
 	_convertEnv();
 	std::cerr << _path << std::endl;
@@ -69,6 +69,20 @@ void 	CGI::executeGCI()
 		if (ret < 0)
 			exit(1);
 	}
+	close(fd[1]);
+
+	char buff[500];
+	int ret = 1;
+	std::string content;
+	while(ret >= 1)
+	{
+		ret = read(fd[0], buff, 499);
+		buff[ret] = '\0';
+		content += buff;
+	}
+
+	close(fd[0]);
+	return content;
 }
 
 void CGI::_initEnvironment(Request &request, server &server)

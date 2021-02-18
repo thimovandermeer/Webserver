@@ -30,7 +30,7 @@ public:
 	CGI(CGI &src);
 	~CGI();
 	CGI();
-	void								executeGCI();
+	std::string								executeGCI();
 private:
 	void 								_initEnvironment(Request &request, server &server);
 	void 								_convertEnv();

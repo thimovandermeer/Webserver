@@ -32,7 +32,7 @@ private:
 	bool 						_useCGI;
 	int 						_status;
 	std::map<int, std::string>	_errorMessage;
-	int 						_method;
+	std::string					_method;
 private:
 	// functions for each different method
 	void 		getMethod();
@@ -40,7 +40,6 @@ private:
 	void 		headMethod();
 	void 		postMethod(std::string content);
 	void 		putMethod(std::string content);
-
 	void		errorPage(server &serv);
     void        createErrorPage(std::string *pageData);
 
