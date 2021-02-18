@@ -260,6 +260,29 @@ void	server::startListening()
 	}
 }
 
+bool	isEnd(std::string &request)
+{
+	int	len = request.length();
+	bool	needsBody = false;
+
+	if (request.find("Transfer-Encoding: chunked") != std::string::npos)
+		needsBody = true;
+	if (len < 4)
+		return (false);
+
+	if (needsBody)
+	{
+		size_t loc  = request.find("\r\n\r\n");
+		if (request.find("\r\n\r\n", loc + 1) != std::string::npos)
+			return (true);
+		return (false);
+	}
+
+	if (request[len - 4] == '\r' && request[len - 3] == '\n' &&request[len - 2] == '\r' &&request[len - 1] == '\n')
+		return (true);
+	return (false);
+}
+
 #define BUFFSIZE 4095
 std::string 		server::receive() const
 {
@@ -267,9 +290,8 @@ std::string 		server::receive() const
 	std::string request;
 	int 		ret = BUFFSIZE;
 
-	while(ret > 1)
+	while(ret > 0)
 	{
-//		memset(buffer, 0, 4096);
 		std::cout << "reading..." << std::endl;
 		ret = read(_acceptFd, buffer, BUFFSIZE);
 		buffer[ret] = 0;
@@ -279,11 +301,8 @@ std::string 		server::receive() const
 			throw server::syscallErrorException();
 		}
 		request += std::string(buffer);
-		int len = request.length();
-		if (request[len -1] == '\n' && request[len -2] == '\r' && request[len -3] == '\n' &&request[len -4] == '\r')
-		{
+		if (isEnd(request))
 			break;
-		}
 	}
 	std::cout << "==REQUEST==" << std::endl;
 	std::cout << request << std::endl;
