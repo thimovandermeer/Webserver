@@ -42,6 +42,31 @@ Response &Response::operator=(const Response &src)
 	return (*this);
 }
 
+location*	findFileExtension(server &server, std::string *uri)
+{
+	std::vector<location*> locs = server.getLocations();
+
+	for (std::vector<location*>::iterator it = locs.begin(); it < locs.end(); it++)
+	{
+		if ((*it)->isFileExtension())
+		{
+			std::string	extension = (*it)->getMatch();
+			if (extension == "*.error_image.png")
+				extension.erase(0, 2);
+			else
+				extension.erase(0, 1);
+			size_t len = extension.length();
+			if (uri->length() >= len && !uri->compare(uri->length() - len, len, extension))
+			{
+				if (extension == "error_image.png")
+					*uri = "/error_image.png";
+				return (*it);
+			}
+		}
+	}
+	return (NULL);
+}
+
 std::string Response::getPath(server &server, Request &request)
 {
 	// request kant
@@ -55,26 +80,25 @@ std::string Response::getPath(server &server, Request &request)
 	std::string locMatch;
 	size_t		found;
 
-	root = server.getRoot();
 	uri = request.getUri();
-//	if (uri.find("error_image.png"))
-//	{
-//		ret = root + "/error_image.png";
-//		removeAdjacentSlashes(ret);
-//		return (ret);
-//	}
+	location *loc = findFileExtension(server, &uri);
 	found = uri.find_first_of("/", 1);
 	if (found == std::string::npos)
 		found = 1;
 	locMatch = uri.substr(0, found);
 	uri.erase(0, 1);
-	location *loc = server.findLocation(locMatch);
+	if (!loc)
+		loc = server.findLocation(locMatch);
 	if (!loc)
 	{
 		this->_status = 404; // location not found
 	}
 	else
 	{
+		if (!loc->getRoot().empty())
+			root = loc->getRoot();
+		else
+			root = server.getRoot();
 		ret = root + uri;
 	}
 	removeAdjacentSlashes(ret);
@@ -119,6 +143,7 @@ void 	Response::readContent()
 		return ;
 	}
 	std::ifstream file;
+
 	const char *c = _path.c_str();
 	if(access(c, F_OK) != 0)
 		_status = 404;
