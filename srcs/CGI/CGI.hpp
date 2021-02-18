@@ -34,10 +34,6 @@ public:
 private:
 	void 								_initEnvironment(Request &request, server &server);
 	void 								_convertEnv();
-	void 								_createPipe();
-	bool 								_forkProcess();
-	void 								_setupRedir();
-	void 								_switchProcess();
 
 private:
 

@@ -14,7 +14,7 @@
 #include "../Server/location.hpp"
 
 Response::Response(Request &request, server &server) :
-	_path("cgi-bin/text.txt"), // delete hardcoded
+	_path("cgi-bin/printenv.bla"), // delete hardcoded
 	_contentType(request.getContentType()),
 	_CGI(_path, request, server),
 	_useCGI(request.getCgi()),
@@ -84,7 +84,7 @@ std::string Response::getPath(server &server, Request &request)
 
 void Response::setupResponse(Request &request, server &server)
 {
-	_path = "cgi-bin/text.txt";
+	_path = "cgi-bin/printenv.bla";
 
 //	_status = 405;          //404 niet
 	if(_method == 0)
@@ -226,6 +226,10 @@ void Response::headMethod()
 
 void Response::postMethod(std::string content)
 {
+	std::ofstream file;
+	file.open(_path, std::ios::out | std::ios::app);
+	if(!file.is_open() && _status == 200)
+		_status = 403;
 	if (_useCGI == true) {
 		this->_CGI.executeGCI();
 		close(_CGI.fd[1]);
@@ -239,17 +243,14 @@ void Response::postMethod(std::string content)
 		}
 
 		close(_CGI.fd[0]);
+
 		return ;
 	}
-	std::ofstream file;
 	if (_status == 200)
     	_status = 204;
 	const char *c = _path.c_str();
 	if(access(c, F_OK) == 0 && _status == 200)
 		_status = 201;
-	file.open(_path, std::ios::out | std::ios::app);
-	if(!file.is_open() && _status == 200)
-		_status = 403;
 	file << content;
 	file.close();
 	ResponseHeader header(content, _path, _status, _contentType);
