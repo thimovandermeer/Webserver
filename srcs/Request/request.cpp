@@ -26,8 +26,7 @@ Request &Request::operator=(const Request &original) {
     return (*this);
 }
 
-Request::Request(std::string request) : _request(request),
-	_cgi(false)
+Request::Request(std::string request) : _request(request)
 {
     _status = 200;
     _headerMap["ACCEP-CHARSET"] = ACCEPT_CHARSET;
@@ -93,7 +92,7 @@ int Request::getStatus() const {
 }
 
 void Request::parseRequest() {
-    //kan van ze allemaal ints maken om hier errors op te vangen
+    checkCGI();
     parseRequestLine();
     parseHeaders();
     std::map<headerType, std::string>::iterator it = _defHeaders.find(TRANSFER_ENCODING);
@@ -104,6 +103,21 @@ void Request::parseRequest() {
     else
         _body = _request;
     _request.clear();
+}
+
+void Request::checkCGI() {
+    if (_request.find(".py") != std::string::npos)
+        _cgi = true;
+    else if (_request.find(".php") != std::string::npos)
+        _cgi = true;
+    else if (_request.find(".bla") != std::string::npos)
+        _cgi = true;
+    else if(_request.find(".cgi") != std::string::npos)
+        _cgi = true;
+    else if (_request.find("cgi-bin") != std::string::npos)
+        _cgi = true;
+    else
+        _cgi = false;
 }
 
 void Request::parseRequestLine(){
