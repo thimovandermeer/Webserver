@@ -14,7 +14,7 @@
 #include "../Server/location.hpp"
 
 Response::Response(Request &request, server &server) :
-	_path("cgi-bin/printenv.bla"), // delete hardcoded
+	_path("cgi-bin/text.txt"), // delete hardcoded
 	_contentType(request.getContentType()),
 	_CGI(_path, request, server),
 	_useCGI(request.getCgi()),
@@ -84,7 +84,7 @@ std::string Response::getPath(server &server, Request &request)
 
 void Response::setupResponse(Request &request, server &server)
 {
-	_path = "cgi-bin/printenv.bla";
+	_path = "cgi-bin/text.txt";
 
 //	_status = 405;          //404 niet
 	if(_method == 0)
@@ -137,21 +137,6 @@ void 	Response::readContent()
 
 void 	Response::writeContent(std::string content)
 {
-	if (_useCGI == true) {
-		this->_CGI.executeGCI();
-		close(_CGI.fd[1]);
-		char buff[500];
-		int ret = 1;
-		while(ret >= 1)
-		{
-			ret = read(_CGI.fd[0], buff, 499);
-			buff[ret] = '\0';
-			_content += buff;
-		}
-
-		close(_CGI.fd[0]);
-		return ;
-	}
 	std::ofstream file;
 	if (_status == 200)
     	_status = 204;
@@ -241,6 +226,21 @@ void Response::headMethod()
 
 void Response::postMethod(std::string content)
 {
+	if (_useCGI == true) {
+		this->_CGI.executeGCI();
+		close(_CGI.fd[1]);
+		char buff[500];
+		int ret = 1;
+		while(ret >= 1)
+		{
+			ret = read(_CGI.fd[0], buff, 499);
+			buff[ret] = '\0';
+			_content += buff;
+		}
+
+		close(_CGI.fd[0]);
+		return ;
+	}
 	std::ofstream file;
 	if (_status == 200)
     	_status = 204;

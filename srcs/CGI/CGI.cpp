@@ -82,7 +82,7 @@ void CGI::_initEnvironment(Request &request, server &server)
 	else
 		this->_environment["CONTENT_TYPE"] = request.getMethod();
 	this->_environment["GATEWAY_INTERFACE"] = "EPIC CGI"; // search app
-	this->_environment["PATH_INFO"] = request.getUri(); // SEARCH APP
+	this->_environment["PATH_INFO"] = request.getUri() + request.getCgiEnv(); // SEARCH APP
 	this->_environment["PATH_TRANSLATED"] = request.getUri(); // SEARCH APP
 	this->_environment["QUERY_STRING"] = request.getCgiEnv(); // SEARCH APP
 	this->_environment["REMOTE_ADDR"] = server.getHost(); // SEARCH APP
