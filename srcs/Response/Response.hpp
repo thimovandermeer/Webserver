@@ -40,7 +40,6 @@ private:
 	void 		headMethod();
 	void 		postMethod(std::string content);
 	void 		putMethod(std::string content);
-
 	void		errorPage(server &serv);
     void        createErrorPage(std::string *pageData);
 

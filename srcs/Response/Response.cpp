@@ -125,25 +125,16 @@ void Response::setupResponse(Request &request, server &server)
 	}
 }
 
+
+
 void 	Response::readContent()
 {
-	if (_useCGI == true) {
-		this->_CGI.executeGCI();
-		close(_CGI.fd[1]);
-		char buff[500];
-		int ret = 1;
-		while(ret >= 1)
-		{
-			ret = read(_CGI.fd[0], buff, 499);
-			buff[ret] = '\0';
-			_content += buff;
-		}
-
-		close(_CGI.fd[0]);
+	if (_useCGI == true)
+	{
+		_content = _CGI.executeGCI();
 		return ;
 	}
 	std::ifstream file;
-
 	const char *c = _path.c_str();
 	if(access(c, F_OK) != 0)
 		_status = 404;
@@ -173,7 +164,6 @@ void 	Response::writeContent(std::string content)
 		_status = 403;
 	file << content;
 	file.close();
-
 }
 
 void    Response::createErrorPage(std::string *pageData)
@@ -251,24 +241,16 @@ void Response::headMethod()
 
 void Response::postMethod(std::string content)
 {
+	if(_useCGI == true) {
+		readContent();
+		ResponseHeader header(content, _path, _status, _contentType);
+		_response = header.getHeader(_status) + _content;
+		return;
+	}
 	std::ofstream file;
 	file.open(_path, std::ios::out | std::ios::app);
 	if(!file.is_open() && _status == 200)
 		_status = 403;
-	if (_useCGI == true) {
-		this->_CGI.executeGCI();
-		close(_CGI.fd[1]);
-		char buff[500];
-		int ret = 1;
-		while(ret >= 1)
-		{
-			ret = read(_CGI.fd[0], buff, 499);
-			buff[ret] = '\0';
-			_content += buff;
-		}
-		close(_CGI.fd[0]);
-		return ;
-	}
 	if (_status == 200)
     	_status = 204;
 	const char *c = _path.c_str();
