@@ -19,6 +19,8 @@ location::location(std::string &match) : _autoindex(false), _isFileExtension(fal
 	this->_typeFunctionMap.insert(std::make_pair("error_page", &location::setErrorPage));
 	this->_typeFunctionMap.insert(std::make_pair("index", &location::setIndices));
 	this->_typeFunctionMap.insert(std::make_pair("cgi_exec", &location::setCgiPath));
+	this->_typeFunctionMap.insert(std::make_pair("auth_basic", &location::setAuthBasic));
+	this->_typeFunctionMap.insert(std::make_pair("auth_basic_user_file", &location::setAuthUserFile));
 }
 
 location::location(const location &original)
@@ -79,6 +81,16 @@ void	location::setCgiPath(std::string &cgiPass)
 	this->_cgiPath = cgiPass;
 }
 
+void	location::setAuthBasic(std::string &authBasic)
+{
+	this->_authBasic = authBasic;
+}
+
+void	location::setAuthUserFile(std::string &userFile)
+{
+	this->_authBasicUserFile = userFile;
+}
+
 const bool						&location::getAutoindex() const
 {
 	return (this->_autoindex);
@@ -112,6 +124,16 @@ const std::vector<std::string>	&location::getIndices() const
 const std::string				&location::getCgiPath() const
 {
 	return (this->_cgiPath);
+}
+
+const std::string				&location::getAuthBasic() const
+{
+	return (this->_authBasic);
+}
+
+const std::string				&location::getAuthUserFile() const
+{
+	return (this->_authBasicUserFile);
 }
 
 void	location::findValue(std::string &key, std::string line)

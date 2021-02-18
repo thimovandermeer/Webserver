@@ -22,6 +22,8 @@ private:
 	std::vector<std::string>		_indices;
 	std::map<std::string, setter>	_typeFunctionMap;
 
+	std::string						_authBasic;
+	std::string						_authBasicUserFile;
 	std::string						_cgiPath;
 
 	bool							_isFileExtension;
@@ -39,6 +41,8 @@ public:
 	void	setErrorPage(std::string &errorPage);
 	void	setIndices(std::string &indices);
 	void	setCgiPath(std::string &cgiPass);
+	void	setAuthBasic(std::string &authBasic);
+	void	setAuthUserFile(std::string &userFile);
 
 	const bool						&getAutoindex() const;
 	const std::string				&getMatch() const;
@@ -47,6 +51,8 @@ public:
 	const std::string				&getErrorPage() const;
 	const std::vector<std::string>	&getIndices() const;
 	const std::string				&getCgiPath() const;
+	const std::string				&getAuthBasic() const;
+	const std::string				&getAuthUserFile() const;
 
 	void	findValue(std::string &key, std::string line);
 	bool	valueCheck() const;
