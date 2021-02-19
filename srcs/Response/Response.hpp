@@ -34,25 +34,27 @@ private:
 private:
 	// functions for each different method
 	void 		getMethod();
-	std::string	getPath(server &server, Request &request);
+//	std::string	getPath(server &server, Request &request);
 	void 		headMethod();
 	void 		postMethod(std::string content);
 	void 		putMethod(std::string content);
 
 	void		errorPage(server &serv);
     void        createErrorPage(std::string *pageData);
-
         // helper functions
 	void 	readContent();
 	void 	writeContent(std::string content);
 
 
 public:
+	void				setStatus(int status);
 	std::string 		getContent();
 	const std::string 	&getResponse() const;
 	int 				getCode();
 
 };
+
+std::string	getPath(server &server, Request &request, Response &response);
 
 
 #endif //WEBSERV_RESPONSE_HPP

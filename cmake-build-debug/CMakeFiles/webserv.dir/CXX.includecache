@@ -30,6 +30,22 @@ ostream
 ../Server/server.hpp
 /Users/jbennink/Documents/Projects/webserv_new/srcs/Server/server.hpp
 
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/getPath.cpp
+string
+-
+sys/stat.h
+-
+../Server/location.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/location.hpp
+../Server/server.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/server.hpp
+../Request/request.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Request/request.hpp
+Response.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.hpp
+../Utils/utils.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Utils/utils.hpp
+
 /Users/jbennink/Documents/Projects/webserv_new/srcs/Server/location.hpp
 string
 -
@@ -37,30 +53,6 @@ vector
 -
 map
 -
-
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/server.cpp
-map
--
-server.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/server.hpp
-location.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/location.hpp
-string
--
-sstream
--
-iostream
--
-iomanip
--
-unistd.h
--
-sys/socket.h
--
-../Request/request.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Request/request.hpp
-../Response/Response.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.hpp
 
 /Users/jbennink/Documents/Projects/webserv_new/srcs/Server/server.hpp
 location.hpp
@@ -77,4 +69,6 @@ sys/socket.h
 -
 netdb.h
 -
+
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Utils/utils.hpp
 

@@ -106,6 +106,9 @@
 		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/ResponseHeader.hpp">
 			<Option target="webserv"/>
 		</Unit>
+		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/getPath.cpp">
+			<Option target="webserv"/>
+		</Unit>
 		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/location.cpp">
 			<Option target="webserv"/>
 		</Unit>

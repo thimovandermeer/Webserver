@@ -25,6 +25,13 @@ CMakeFiles/webserv.dir/srcs/Response/ResponseHeader.cpp.o
  /Users/jbennink/Documents/Projects/webserv_new/srcs/Response/ResponseHeader.hpp
  /Users/jbennink/Documents/Projects/webserv_new/srcs/Server/location.hpp
  /Users/jbennink/Documents/Projects/webserv_new/srcs/Server/server.hpp
+CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.o
+ /Users/jbennink/Documents/Projects/webserv_new/srcs/Request/request.hpp
+ /Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.hpp
+ /Users/jbennink/Documents/Projects/webserv_new/srcs/Response/getPath.cpp
+ /Users/jbennink/Documents/Projects/webserv_new/srcs/Server/location.hpp
+ /Users/jbennink/Documents/Projects/webserv_new/srcs/Server/server.hpp
+ /Users/jbennink/Documents/Projects/webserv_new/srcs/Utils/utils.hpp
 CMakeFiles/webserv.dir/srcs/Server/location.cpp.o
  /Users/jbennink/Documents/Projects/webserv_new/srcs/Server/location.cpp
  /Users/jbennink/Documents/Projects/webserv_new/srcs/Server/location.hpp

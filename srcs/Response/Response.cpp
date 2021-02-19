@@ -36,72 +36,8 @@ Response &Response::operator=(const Response &src)
 	return (*this);
 }
 
-location*	findFileExtension(server &server, std::string *uri)
-{
-	std::vector<location*> locs = server.getLocations();
-
-	for (std::vector<location*>::iterator it = locs.begin(); it < locs.end(); it++)
-	{
-		if ((*it)->isFileExtension())
-		{
-			std::string	extension = (*it)->getMatch();
-			if (extension == "*.error_image.png")
-				extension.erase(0, 2);
-			else
-				extension.erase(0, 1);
-			size_t len = extension.length();
-			if (uri->length() >= len && !uri->compare(uri->length() - len, len, extension))
-			{
-				if (extension == "error_image.png")
-					*uri = "/error_image.png";
-				return (*it);
-			}
-		}
-	}
-	return (NULL);
-}
-
-std::string Response::getPath(server &server, Request &request)
-{
-	// request kant
-		// vraagt om specifieke location
-	// server kant
-		// heeft location geconfigureerd
-	// dit moet gematcht worden
-	std::string ret;
-	std::string root;
-	std::string uri;
-	std::string locMatch;
-	size_t		found;
-
-	uri = request.getUri();
-	location *loc = findFileExtension(server, &uri);
-	found = uri.find_first_of("/", 1);
-	if (found == std::string::npos)
-		found = 1;
-	locMatch = uri.substr(0, found);
-	uri.erase(0, 1);
-	if (!loc)
-		loc = server.findLocation(locMatch);
-	if (!loc)
-	{
-		this->_status = 404; // location not found
-	}
-	else
-	{
-		if (!loc->getRoot().empty())
-			root = loc->getRoot();
-		else
-			root = server.getRoot();
-		ret = root + uri;
-	}
-	removeAdjacentSlashes(ret);
-
-	return ret;
-}
-
 void Response::setupResponse(Request &request, server &server) {
-	_path = getPath(server, request);
+	_path = getPath(server, request, *this);
 	_status = request.getStatus();
 //	_status = 405;          //404 niet
 
@@ -264,6 +200,11 @@ const std::string 	&Response::getResponse() const
 int 				Response::getCode()
 {
 	return _status;
+}
+
+void				Response::setStatus(int status)
+{
+	this->_status = status;
 }
 
 std::ostream &operator<<(std::ostream &os, const Response &response)
