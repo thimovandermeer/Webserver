@@ -9,7 +9,7 @@
 #include <sys/socket.h>
 #include "../Request/request.hpp"
 #include "../Response/Response.hpp"
-#include "../Utils/utils.cpp"
+//#include "../Utils/utils.cpp"
 
 const char	*server::inputErrorException::what() const throw()
 {
@@ -270,6 +270,19 @@ int hasBody(std::string request)
     return 0;
 }
 
+void	ft_bzero(char *buf, size_t n)
+{
+    size_t	i;
+    char	*ptr;
+
+    ptr = buf;
+    i = 0;
+    while (i < n)
+    {
+        ptr[i] = 0;
+        i++;
+    }
+}
 
 int doneReading(std::string request, int type)
 {
