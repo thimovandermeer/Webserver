@@ -25,3 +25,17 @@ void removeAdjacentSlashes(std::string &str)
 			str.erase(it);
 	}
 }
+
+void	ft_bzero(char *buf, size_t n)
+{
+    size_t	i;
+    char	*ptr;
+
+    ptr = buf;
+    i = 0;
+    while (i < n)
+    {
+        ptr[i] = 0;
+        i++;
+    }
+}

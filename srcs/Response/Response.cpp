@@ -75,8 +75,8 @@ void 	Response::readContent()
 void 	Response::writeContent(std::string content)
 {
 	std::ofstream file;
-	if (_status == 200)
-    	_status = 204;
+//	if (_status == 200)
+//    	_status = 204;
 	const char *c = _path.c_str();
 	if(access(c, F_OK) == 0 && _status == 200)
 		_status = 201;
@@ -164,11 +164,12 @@ void Response::headMethod()
 void Response::postMethod(std::string content)
 {
 	std::ofstream file;
-	if (_status == 200)
-    	_status = 204;
+//	if (_status == 200)
+//    	_status = 204;
 	const char *c = _path.c_str();
+
 	if(access(c, F_OK) == 0 && _status == 200)
-		_status = 201;
+		_status = 303;
 	file.open(_path, std::ios::out | std::ios::app);
 	if(!file.is_open() && _status == 200)
 		_status = 403;

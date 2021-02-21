@@ -91,7 +91,6 @@ int Request::getStatus() const {
 }
 
 void Request::parseRequest() {
-    //kan van ze allemaal ints maken om hier errors op te vangen
     parseRequestLine();
     parseHeaders();
     std::map<headerType, std::string>::iterator it = _defHeaders.find(TRANSFER_ENCODING);
@@ -100,7 +99,7 @@ void Request::parseRequest() {
             parseBody();
     }
     else
-        _body = _request;
+        _body = _request.substr(0, _request.length() - 2);
     _request.clear();
 }
 

@@ -9,6 +9,7 @@
 #include <sys/socket.h>
 #include "../Request/request.hpp"
 #include "../Response/Response.hpp"
+#include "../Utils/utils.cpp"
 
 const char	*server::inputErrorException::what() const throw()
 {
@@ -279,7 +280,7 @@ int doneReading(std::string request, int type)
     int         contentLen;
     char        *end;
 
-    if (type == 1 && request.find("\r\n0\r\n") != std::string::npos)
+    if (type == 1 && request.find("\r\n\r\n0\r\n\r\n") != std::string::npos)        //of is dit too much
         return 1;
     else if (type == 2) {
         pos1 = request.find("Content-Length");      //opzoeken waar de lengte staat
@@ -297,21 +298,6 @@ int doneReading(std::string request, int type)
     }
         return 0;
 }
-
-void	ft_bzero(char *buf, size_t n)
-{
-    size_t	i;
-    char	*ptr;
-
-    ptr = buf;
-    i = 0;
-    while (i < n)
-    {
-        ptr[i] = 0;
-        i++;
-    }
-}
-
 
 #define BUFFSIZE 4095
 std::string 		server::receive() const
