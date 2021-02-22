@@ -278,6 +278,33 @@ srcs/Response/ResponseHeader.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Response/ResponseHeader.cpp.s
 .PHONY : srcs/Response/ResponseHeader.cpp.s
 
+srcs/Response/getPath.o: srcs/Response/getPath.cpp.o
+
+.PHONY : srcs/Response/getPath.o
+
+# target to build an object file
+srcs/Response/getPath.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.o
+.PHONY : srcs/Response/getPath.cpp.o
+
+srcs/Response/getPath.i: srcs/Response/getPath.cpp.i
+
+.PHONY : srcs/Response/getPath.i
+
+# target to preprocess a source file
+srcs/Response/getPath.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.i
+.PHONY : srcs/Response/getPath.cpp.i
+
+srcs/Response/getPath.s: srcs/Response/getPath.cpp.s
+
+.PHONY : srcs/Response/getPath.s
+
+# target to generate assembly for a file
+srcs/Response/getPath.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.s
+.PHONY : srcs/Response/getPath.cpp.s
+
 srcs/Server/location.o: srcs/Server/location.cpp.o
 
 .PHONY : srcs/Server/location.o
@@ -437,6 +464,9 @@ help:
 	@echo "... srcs/Response/ResponseHeader.o"
 	@echo "... srcs/Response/ResponseHeader.i"
 	@echo "... srcs/Response/ResponseHeader.s"
+	@echo "... srcs/Response/getPath.o"
+	@echo "... srcs/Response/getPath.i"
+	@echo "... srcs/Response/getPath.s"
 	@echo "... srcs/Server/location.o"
 	@echo "... srcs/Server/location.i"
 	@echo "... srcs/Server/location.s"
