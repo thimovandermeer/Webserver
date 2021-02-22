@@ -68,10 +68,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/thimovandermeer/CLionProjects/Webserver
+CMAKE_SOURCE_DIR = /Users/jbennink/Documents/Projects/webserv_new
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -100,9 +100,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles /Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles /Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -251,32 +251,59 @@ srcs/Response/Response.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Response/Response.cpp.s
 .PHONY : srcs/Response/Response.cpp.s
 
-srcs/Response/ResponseHeader.o: srcs/Response/ResponseHeader.cpp.o
+srcs/Response/getPath.o: srcs/Response/getPath.cpp.o
 
-.PHONY : srcs/Response/ResponseHeader.o
+.PHONY : srcs/Response/getPath.o
 
 # target to build an object file
-srcs/Response/ResponseHeader.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Response/ResponseHeader.cpp.o
-.PHONY : srcs/Response/ResponseHeader.cpp.o
+srcs/Response/getPath.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.o
+.PHONY : srcs/Response/getPath.cpp.o
 
-srcs/Response/ResponseHeader.i: srcs/Response/ResponseHeader.cpp.i
+srcs/Response/getPath.i: srcs/Response/getPath.cpp.i
 
-.PHONY : srcs/Response/ResponseHeader.i
+.PHONY : srcs/Response/getPath.i
 
 # target to preprocess a source file
-srcs/Response/ResponseHeader.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Response/ResponseHeader.cpp.i
-.PHONY : srcs/Response/ResponseHeader.cpp.i
+srcs/Response/getPath.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.i
+.PHONY : srcs/Response/getPath.cpp.i
 
-srcs/Response/ResponseHeader.s: srcs/Response/ResponseHeader.cpp.s
+srcs/Response/getPath.s: srcs/Response/getPath.cpp.s
 
-.PHONY : srcs/Response/ResponseHeader.s
+.PHONY : srcs/Response/getPath.s
 
 # target to generate assembly for a file
-srcs/Response/ResponseHeader.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Response/ResponseHeader.cpp.s
-.PHONY : srcs/Response/ResponseHeader.cpp.s
+srcs/Response/getPath.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.s
+.PHONY : srcs/Response/getPath.cpp.s
+
+srcs/Response/responseHeader.o: srcs/Response/responseHeader.cpp.o
+
+.PHONY : srcs/Response/responseHeader.o
+
+# target to build an object file
+srcs/Response/responseHeader.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Response/responseHeader.cpp.o
+.PHONY : srcs/Response/responseHeader.cpp.o
+
+srcs/Response/responseHeader.i: srcs/Response/responseHeader.cpp.i
+
+.PHONY : srcs/Response/responseHeader.i
+
+# target to preprocess a source file
+srcs/Response/responseHeader.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Response/responseHeader.cpp.i
+.PHONY : srcs/Response/responseHeader.cpp.i
+
+srcs/Response/responseHeader.s: srcs/Response/responseHeader.cpp.s
+
+.PHONY : srcs/Response/responseHeader.s
+
+# target to generate assembly for a file
+srcs/Response/responseHeader.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Response/responseHeader.cpp.s
+.PHONY : srcs/Response/responseHeader.cpp.s
 
 srcs/Server/location.o: srcs/Server/location.cpp.o
 
@@ -332,32 +359,59 @@ srcs/Server/parser.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Server/parser.cpp.s
 .PHONY : srcs/Server/parser.cpp.s
 
-srcs/Server/server.o: srcs/Server/server.cpp.o
+srcs/Server/serverBasic.o: srcs/Server/serverBasic.cpp.o
 
-.PHONY : srcs/Server/server.o
+.PHONY : srcs/Server/serverBasic.o
 
 # target to build an object file
-srcs/Server/server.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Server/server.cpp.o
-.PHONY : srcs/Server/server.cpp.o
+srcs/Server/serverBasic.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Server/serverBasic.cpp.o
+.PHONY : srcs/Server/serverBasic.cpp.o
 
-srcs/Server/server.i: srcs/Server/server.cpp.i
+srcs/Server/serverBasic.i: srcs/Server/serverBasic.cpp.i
 
-.PHONY : srcs/Server/server.i
+.PHONY : srcs/Server/serverBasic.i
 
 # target to preprocess a source file
-srcs/Server/server.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Server/server.cpp.i
-.PHONY : srcs/Server/server.cpp.i
+srcs/Server/serverBasic.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Server/serverBasic.cpp.i
+.PHONY : srcs/Server/serverBasic.cpp.i
 
-srcs/Server/server.s: srcs/Server/server.cpp.s
+srcs/Server/serverBasic.s: srcs/Server/serverBasic.cpp.s
 
-.PHONY : srcs/Server/server.s
+.PHONY : srcs/Server/serverBasic.s
 
 # target to generate assembly for a file
-srcs/Server/server.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Server/server.cpp.s
-.PHONY : srcs/Server/server.cpp.s
+srcs/Server/serverBasic.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Server/serverBasic.cpp.s
+.PHONY : srcs/Server/serverBasic.cpp.s
+
+srcs/Server/serverUtility.o: srcs/Server/serverUtility.cpp.o
+
+.PHONY : srcs/Server/serverUtility.o
+
+# target to build an object file
+srcs/Server/serverUtility.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Server/serverUtility.cpp.o
+.PHONY : srcs/Server/serverUtility.cpp.o
+
+srcs/Server/serverUtility.i: srcs/Server/serverUtility.cpp.i
+
+.PHONY : srcs/Server/serverUtility.i
+
+# target to preprocess a source file
+srcs/Server/serverUtility.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Server/serverUtility.cpp.i
+.PHONY : srcs/Server/serverUtility.cpp.i
+
+srcs/Server/serverUtility.s: srcs/Server/serverUtility.cpp.s
+
+.PHONY : srcs/Server/serverUtility.s
+
+# target to generate assembly for a file
+srcs/Server/serverUtility.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Server/serverUtility.cpp.s
+.PHONY : srcs/Server/serverUtility.cpp.s
 
 srcs/Utils/utils.o: srcs/Utils/utils.cpp.o
 
@@ -434,18 +488,24 @@ help:
 	@echo "... srcs/Response/Response.o"
 	@echo "... srcs/Response/Response.i"
 	@echo "... srcs/Response/Response.s"
-	@echo "... srcs/Response/ResponseHeader.o"
-	@echo "... srcs/Response/ResponseHeader.i"
-	@echo "... srcs/Response/ResponseHeader.s"
+	@echo "... srcs/Response/getPath.o"
+	@echo "... srcs/Response/getPath.i"
+	@echo "... srcs/Response/getPath.s"
+	@echo "... srcs/Response/responseHeader.o"
+	@echo "... srcs/Response/responseHeader.i"
+	@echo "... srcs/Response/responseHeader.s"
 	@echo "... srcs/Server/location.o"
 	@echo "... srcs/Server/location.i"
 	@echo "... srcs/Server/location.s"
 	@echo "... srcs/Server/parser.o"
 	@echo "... srcs/Server/parser.i"
 	@echo "... srcs/Server/parser.s"
-	@echo "... srcs/Server/server.o"
-	@echo "... srcs/Server/server.i"
-	@echo "... srcs/Server/server.s"
+	@echo "... srcs/Server/serverBasic.o"
+	@echo "... srcs/Server/serverBasic.i"
+	@echo "... srcs/Server/serverBasic.s"
+	@echo "... srcs/Server/serverUtility.o"
+	@echo "... srcs/Server/serverUtility.i"
+	@echo "... srcs/Server/serverUtility.s"
 	@echo "... srcs/Utils/utils.o"
 	@echo "... srcs/Utils/utils.i"
 	@echo "... srcs/Utils/utils.s"

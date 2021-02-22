@@ -4,9 +4,9 @@
 #include <fstream>
 #include "../srcs/Cluster/serverCluster.hpp"
 #include "../srcs/Request/request.hpp"
-#include "../srcs/Response/ResponseHeader.hpp"
+#include "../srcs/Response/responseHeader.hpp"
 #include "../srcs/Response/Response.hpp"
-#include "../srcs/Server/server.hpp"
+#include "Server/server.hpp"
 #include "../srcs/Server/location.hpp"
 #include "../srcs/webserv.hpp"
 #include "../srcs/CGI/CGI.hpp"

@@ -3,29 +3,34 @@
 //
 
 #include "Response.hpp"
-#include "../Request/request.hpp"
-#include "ResponseHeader.hpp"
+#include "responseHeader.hpp"
 #include <fstream>
 #include <unistd.h>
-#include <sys/stat.h>
 #include <fcntl.h>
 #include <sstream>
-#include "../Utils/utils.hpp"
-#include "../Server/location.hpp"
 
-Response::Response(Request &request, server &server) :
-	_path("cgi-bin/printenv.bla"), // delete hardcoded
-	_contentType(request.getContentType()),
-	_CGI(_path, request, server),
-	_useCGI(request.getCgi()),
-	_status(request.getStatus()),
-	_method(request.getMethod())
+Response::Response()
 {
     _errorMessage[204] = "No Content";
     _errorMessage[400] = "Bad Request";
     _errorMessage[403] = "Forbidden";
     _errorMessage[404] = "Not Found";
     _errorMessage[405] = "Method Not Allowed";
+}
+
+Response::Response(Request &request, server &server)
+{
+	_errorMessage[204] = "No Content";
+	_errorMessage[400] = "Bad Request";
+	_errorMessage[403] = "Forbidden";
+	_errorMessage[404] = "Not Found";
+	_errorMessage[405] = "Method Not Allowed";
+	this->setupResponse(request, server);
+}
+
+Response::Response(const Response &src)
+{
+	*this = src;
 }
 
 Response::~Response()
@@ -38,86 +43,29 @@ Response &Response::operator=(const Response &src)
 	_response = src._response;
 	_content = src._content;
 	_path = src._path;
+	_contentType = src._contentType;
+	_CGI = src._CGI;
+	_useCGI = src._useCGI;
 	_status = src._status;
+	_errorMessage = src._errorMessage;
+	_method = src._method;
 	return (*this);
 }
 
-location*	findFileExtension(server &server, std::string *uri)
-{
-	std::vector<location*> locs = server.getLocations();
-
-	for (std::vector<location*>::iterator it = locs.begin(); it < locs.end(); it++)
-	{
-		if ((*it)->isFileExtension())
-		{
-			std::string	extension = (*it)->getMatch();
-			if (extension == "*.error_image.png")
-				extension.erase(0, 2);
-			else
-				extension.erase(0, 1);
-			size_t len = extension.length();
-			if (uri->length() >= len && !uri->compare(uri->length() - len, len, extension))
-			{
-				if (extension == "error_image.png")
-					*uri = "/error_image.png";
-				return (*it);
-			}
-		}
-	}
-	return (NULL);
-}
-
-std::string Response::getPath(server &server, Request &request)
-{
-	// request kant
-		// vraagt om specifieke location
-	// server kant
-		// heeft location geconfigureerd
-	// dit moet gematcht worden
-	std::string ret;
-	std::string root;
-	std::string uri;
-	std::string locMatch;
-	size_t		found;
-
-	uri = request.getUri();
-	location *loc = findFileExtension(server, &uri);
-	found = uri.find_first_of("/", 1);
-	if (found == std::string::npos)
-		found = 1;
-	locMatch = uri.substr(0, found);
-	uri.erase(0, 1);
-	if (!loc)
-		loc = server.findLocation(locMatch);
-	if (!loc)
-	{
-		this->_status = 404; // location not found
-	}
-	else
-	{
-		if (!loc->getRoot().empty())
-			root = loc->getRoot();
-		else
-			root = server.getRoot();
-		ret = root + uri;
-	}
-	removeAdjacentSlashes(ret);
-
-	return ret;
-}
-
-void Response::setupResponse(Request &request, server &server)
-{
-	_path = "cgi-bin/printenv.bla";
-
+void Response::setupResponse(Request &request, server &server) {
+	_path = getPath(server, request, *this);
+	_status = request.getStatus();
 //	_status = 405;          //404 niet
-	if(_method == "GET")
+
+
+	_contentType = request.getContentType();
+	if(request.getMethod() == "GET")
 		getMethod(); // done
-	if(_method == "HEAD")
+	if(request.getMethod() == "HEAD")
 		headMethod(); // done
-	if(_method == "POST")
+	if(request.getMethod() == "POST")
 		postMethod(request.getBody());
-	if(_method == "PUT")
+	if(request.getMethod() == "PUT")
 		putMethod(request.getBody()); // done
 	if (this->_status >= 299)
 	{
@@ -125,22 +73,11 @@ void Response::setupResponse(Request &request, server &server)
 	}
 }
 
-
-
 void 	Response::readContent()
 {
-	if (_useCGI == true)
-	{
-		_content = _CGI.executeGCI();
-		return ;
-	}
 	std::ifstream file;
+
 	const char *c = _path.c_str();
-	if(access(c, F_OK) != 0)
-		_status = 404;
-	file.open(this->_path, std::ifstream::in);
-	if(!file.is_open())
-		_status = 403;
 	if(access(c, F_OK) != 0 && _status == 200)
 		_status = 404;
 	file.open(_path, std::ifstream::in);
@@ -164,6 +101,7 @@ void 	Response::writeContent(std::string content)
 		_status = 403;
 	file << content;
 	file.close();
+
 }
 
 void    Response::createErrorPage(std::string *pageData)
@@ -220,14 +158,14 @@ void	Response::errorPage(server &serv)
 	}
 	this->_content.clear();
 	this->_content = pageData;
-	ResponseHeader header(_content, _path, _status, _contentType);
+	responseHeader header(_content, _path, _status, _contentType);
 	_response = header.getHeader(_status) + _content;
 }
 
 void Response::getMethod()
 {
 	readContent();
-	ResponseHeader header(_content, _path, _status, _contentType);
+	responseHeader header(_content, _path, _status, _contentType);
 	_response = header.getHeader(_status) + _content;
 
 }
@@ -235,30 +173,24 @@ void Response::getMethod()
 void Response::headMethod()
 {
 	readContent();
-	ResponseHeader header(_content, _path, _status, _contentType);
+	responseHeader header(_content, _path, _status, _contentType);
   	_response = header.getHeader(_status);
 }
 
 void Response::postMethod(std::string content)
 {
-	if(_useCGI == true) {
-		readContent();
-		ResponseHeader header(content, _path, _status, _contentType);
-		_response = header.getHeader(_status) + _content;
-		return;
-	}
 	std::ofstream file;
-	file.open(_path, std::ios::out | std::ios::app);
-	if(!file.is_open() && _status == 200)
-		_status = 403;
 	if (_status == 200)
     	_status = 204;
 	const char *c = _path.c_str();
 	if(access(c, F_OK) == 0 && _status == 200)
 		_status = 201;
+	file.open(_path, std::ios::out | std::ios::app);
+	if(!file.is_open() && _status == 200)
+		_status = 403;
 	file << content;
 	file.close();
-	ResponseHeader header(content, _path, _status, _contentType);
+	responseHeader header(content, _path, _status, _contentType);
 	_response = header.getHeader(_status); // here we got a potential bug
 	// need more knowledge about CGI
 }
@@ -266,7 +198,7 @@ void Response::postMethod(std::string content)
 void Response::putMethod(std::string content)
 {
 	writeContent(content);
-	ResponseHeader header(content, _path, _status, _contentType);
+	responseHeader header(content, _path, _status, _contentType);
 	_response = header.getHeader(_status); // here we got a potential bug
 }
 
@@ -281,9 +213,14 @@ const std::string 	&Response::getResponse() const
 	return _response;
 }
 
-int 				Response::getCode()
+int 				Response::getStatus() const
 {
 	return _status;
+}
+
+void				Response::setStatus(int status)
+{
+	this->_status = status;
 }
 
 std::ostream &operator<<(std::ostream &os, const Response &response)

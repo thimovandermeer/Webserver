@@ -10,15 +10,15 @@
 #include "Response.hpp"
 #include "../Request/request.hpp"
 
-class ResponseHeader
+class responseHeader
 {
 public:
 	// public functions
-	ResponseHeader(std::string &content, std::string &path, int status, std::string &contentType);
-	ResponseHeader(const ResponseHeader &src);
-	virtual ~ResponseHeader();
+	responseHeader(std::string &content, std::string &path, int status, std::string &contentType);
+	responseHeader(const responseHeader &src);
+	virtual ~responseHeader();
 
-	ResponseHeader &operator=(const ResponseHeader &src);
+	responseHeader &operator=(const responseHeader &src);
 
 private:
 	// private setter functions

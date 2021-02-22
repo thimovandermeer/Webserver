@@ -19,10 +19,12 @@ Request &Request::operator=(const Request &original) {
     this->_method = original._method;
     this->_uri = original._uri;
     this->_version = original._version;
-    this->_headerMap = original._headerMap;
-    this->_defHeaders = original._defHeaders;
-    this->_status = original._status;
-    this->_body = original._body;
+	this->_cgiEnv = original._cgiEnv;
+	this->_body = original._body;
+	this->_headerMap = original._headerMap;
+	this->_defHeaders = original._defHeaders;
+	this->_status = original._status;
+	this->_cgi = original._cgi;
     return (*this);
 }
 

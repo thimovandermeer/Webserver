@@ -9,19 +9,15 @@
 
 class Response {
 public:
+	Response();
 	Response(Request &request, server &server);
 	Response(const Response &src);
 	virtual ~Response();
-
 	Response &operator=(const Response &src);
 
 	void 	setupResponse(Request &request, server &server);
 
 	friend std::ostream &operator<<(std::ostream &os, const Response &response);
-
-	bool operator==(const Response &rhs) const;
-
-	bool operator!=(const Response &rhs) const;
 
 private:
 	std::string 				_response;
@@ -36,24 +32,26 @@ private:
 private:
 	// functions for each different method
 	void 		getMethod();
-	std::string	getPath(server &server, Request &request);
+//	std::string	getPath(server &server, Request &request);
 	void 		headMethod();
 	void 		postMethod(std::string content);
 	void 		putMethod(std::string content);
 	void		errorPage(server &serv);
     void        createErrorPage(std::string *pageData);
-
-        // helper functions
+		// helper functions
 	void 	readContent();
 	void 	writeContent(std::string content);
 
 
 public:
+	void				setStatus(int status);
 	std::string 		getContent();
 	const std::string 	&getResponse() const;
-	int 				getCode();
+	int 				getStatus() const;
 
 };
+
+std::string	getPath(server &server, Request &request, Response &response);
 
 
 #endif //WEBSERV_RESPONSE_HPP

@@ -19,8 +19,9 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:tester" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/CGI_handler" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
@@ -31,23 +32,69 @@
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
     <configurations>
-      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" ENABLED="true" />
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="started on dynamic error page">
+    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="added auth_basic and auth_basic_user_file to location vars">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cgi-bin/printenv.bla" beforeDir="false" afterPath="$PROJECT_DIR$/cgi-bin/printenv.bla" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/CGI/CGI.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/CGI/CGI.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/server.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/server.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catch/test_response.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/catch/test_response.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.17.5/CMakeCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.17.5/CMakeCXXCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.17.5/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.17.5/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.17.5/CMakeSystem.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.17.5/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.17.5/CompilerIdC/CMakeCCompilerId.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.17.5/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.17.5/CompilerIdCXX/CMakeCXXCompilerId.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeError.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/CXX.includecache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.internal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/CGI/CGI.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Cluster/serverCluster.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Request/request.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/ResponseHeader.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/location.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/parser.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/server.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Utils/utils.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/webserv.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/webserv" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/webserv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/webserv.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/webserv.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/CGI/CGI.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/CGI/CGI.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/CGI/CGI.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/CGI/CGI.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Request/request.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Request/request.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Response/Response.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/server.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/server.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Response/Response.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Response/ResponseHeader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/responseHeader.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Response/ResponseHeader.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/responseHeader.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Response/getPath.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/getPath.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Server/location.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/location.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Server/server.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Server/server.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/webserv.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/webserv.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_mac/mac.conf" beforeDir="false" afterPath="$PROJECT_DIR$/test_mac/mac.conf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +106,11 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="getPath" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
   </component>
@@ -83,7 +135,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/cgi-bin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
@@ -91,40 +143,39 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="PERL5_MAIN_SETTINGS" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/cgi-bin" />
-      <recent name="$PROJECT_DIR$/tests" />
-      <recent name="$PROJECT_DIR$" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/html_pages" />
       <recent name="$PROJECT_DIR$/test_mac" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/test_files" />
       <recent name="$PROJECT_DIR$/srcs/Utils" />
-      <recent name="$PROJECT_DIR$/srcs/Cluster" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests" />
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.webserv">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Test" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv" TEST_CLASS="[List]" TEST_MODE="SUITE_TEST">
+    <configuration name="Test" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv" TEST_CLASS="[List]" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="webserv" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="&quot;./test_mac/mac.conf&quot;" REDIRECT_INPUT="false" ELEVATE="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="webserv" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="&quot;./test_mac/mac.conf&quot;" REDIRECT_INPUT="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -169,8 +220,13 @@
       <workItem from="1612780435961" duration="308000" />
       <workItem from="1612881729343" duration="348000" />
       <workItem from="1613121595605" duration="3015000" />
-      <workItem from="1613131727257" duration="3701000" />
-      <workItem from="1613548137104" duration="18343000" />
+      <workItem from="1613131727257" duration="4006000" />
+      <workItem from="1613467439596" duration="12816000" />
+      <workItem from="1613553528422" duration="2839000" />
+      <workItem from="1613564111559" duration="445000" />
+      <workItem from="1613639762201" duration="4867000" />
+      <workItem from="1613728849996" duration="6661000" />
+      <workItem from="1613998229610" duration="2849000" />
     </task>
     <task id="LOCAL-00003" summary="nearly done all set functions of responseheader">
       <created>1611650661666</created>
@@ -242,14 +298,56 @@
       <option name="project" value="LOCAL" />
       <updated>1613053642479</updated>
     </task>
-    <task id="LOCAL-00013" summary="opnieuw bouwen met Jonas">
-      <created>1613566786099</created>
+    <task id="LOCAL-00013" summary="fixed dynamic error page, put error msg in place in case of no error page, fixed locations in server class, messed around with getPath in response">
+      <created>1613141351685</created>
       <option name="number" value="00013" />
       <option name="presentableId" value="LOCAL-00013" />
       <option name="project" value="LOCAL" />
-      <updated>1613566786099</updated>
+      <updated>1613141351685</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="edited CGI in location to only have path">
+      <created>1613477763601</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1613477763601</updated>
+    </task>
+    <task id="LOCAL-00015" summary="fixed error page, added search for file extension">
+      <created>1613478429499</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1613478429499</updated>
+    </task>
+    <task id="LOCAL-00016" summary="messed around with reading">
+      <created>1613484375404</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1613484375404</updated>
+    </task>
+    <task id="LOCAL-00017" summary="please work">
+      <created>1613486480191</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1613486480191</updated>
+    </task>
+    <task id="LOCAL-00018" summary="again">
+      <created>1613553775549</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1613553775549</updated>
+    </task>
+    <task id="LOCAL-00019" summary="added auth_basic and auth_basic_user_file to location vars">
+      <created>1613656186527</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1613656186527</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -260,7 +358,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/CGI_handler" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -270,11 +380,6 @@
         <entry key="Branch">
           <value>
             <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="CGI_parsing" />
-                </option>
-              </RecentGroup>
               <RecentGroup>
                 <option name="FILTER_VALUES">
                   <option value="jo" />
@@ -335,8 +440,100 @@
     <MESSAGE value="Doe het pauperding" />
     <MESSAGE value="JAA?" />
     <MESSAGE value="started on dynamic error page" />
-    <MESSAGE value="opnieuw bouwen met Jonas" />
-    <option name="LAST_COMMIT_MESSAGE" value="opnieuw bouwen met Jonas" />
+    <MESSAGE value="fixed dynamic error page, put error msg in place in case of no error page, fixed locations in server class, messed around with getPath in response" />
+    <MESSAGE value="edited CGI in location to only have path" />
+    <MESSAGE value="fixed error page, added search for file extension" />
+    <MESSAGE value="messed around with reading" />
+    <MESSAGE value="please work" />
+    <MESSAGE value="again" />
+    <MESSAGE value="added auth_basic and auth_basic_user_file to location vars" />
+    <option name="LAST_COMMIT_MESSAGE" value="added auth_basic and auth_basic_user_file to location vars" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="730" y="353" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1613737642955">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="730" y="353" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1613737642955" />
+    <state x="994" y="500" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1613742278881">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="994" y="500" key="#com.intellij.fileTypes.FileTypeChooser/0.23.2560.1337@0.23.2560.1337" timestamp="1613742278881" />
+    <state x="1004" y="445" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1613477643701">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="1004" y="445" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1613477643701" />
+    <state x="164" y="89" width="2332" height="1137" key="DiffContextDialog" timestamp="1614001178060">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="164" y="89" width="2332" height="1137" key="DiffContextDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1614001178060" />
+    <state width="2490" height="195" key="GridCell.Tab.0.bottom" timestamp="1614001173585">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="1398" height="403" key="GridCell.Tab.0.bottom/0.23.1440.798@0.23.1440.798" timestamp="1612879165339" />
+    <state width="2490" height="195" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1614001173585" />
+    <state width="2490" height="195" key="GridCell.Tab.0.center" timestamp="1614001173584">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="1398" height="403" key="GridCell.Tab.0.center/0.23.1440.798@0.23.1440.798" timestamp="1612879165338" />
+    <state width="2490" height="195" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1614001173584" />
+    <state width="2490" height="195" key="GridCell.Tab.0.left" timestamp="1614001173584">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="1398" height="403" key="GridCell.Tab.0.left/0.23.1440.798@0.23.1440.798" timestamp="1612879165338" />
+    <state width="2490" height="195" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1614001173584" />
+    <state width="2490" height="195" key="GridCell.Tab.0.right" timestamp="1614001173585">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="1398" height="403" key="GridCell.Tab.0.right/0.23.1440.798@0.23.1440.798" timestamp="1612879165339" />
+    <state width="2490" height="195" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1614001173585" />
+    <state width="2490" height="195" key="GridCell.Tab.1.bottom" timestamp="1614001173587">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2490" height="195" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1614001173587" />
+    <state width="2490" height="195" key="GridCell.Tab.1.center" timestamp="1614001173586">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2490" height="195" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1614001173586" />
+    <state width="2490" height="195" key="GridCell.Tab.1.left" timestamp="1614001173586">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2490" height="195" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1614001173586" />
+    <state width="2490" height="195" key="GridCell.Tab.1.right" timestamp="1614001173587">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2490" height="195" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1614001173587" />
+    <state x="242" y="146" key="MergeDialog" timestamp="1613993204771">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="242" y="146" key="MergeDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1613993204771" />
+    <state x="775" y="330" key="SettingsEditor" timestamp="1613480936973">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="775" y="330" key="SettingsEditor/0.23.2560.1337@0.23.2560.1337" timestamp="1613480936973" />
+    <state x="866" y="431" key="Vcs.Push.Dialog.v2" timestamp="1613656190224">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="866" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1613656190224" />
+    <state x="1042" y="432" key="VcsDiffUtil.ChangesDialog" timestamp="1613643882372">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="1042" y="432" key="VcsDiffUtil.ChangesDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1613643882372" />
+    <state width="952" height="668" key="XDebugger.FullValuePopup" timestamp="1613124402162">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="952" height="668" key="XDebugger.FullValuePopup/0.23.2560.1337@0.23.2560.1337" timestamp="1613124402162" />
+    <state x="100" y="123" width="2332" height="1137" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1613478438032">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="100" y="123" width="2332" height="1137" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1613478438032" />
+    <state x="1095" y="612" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1613123803799">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="1095" y="612" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.2560.1337@0.23.2560.1337" timestamp="1613123803799" />
+    <state x="1050" y="489" key="refactoring.ChangeSignatureDialog" timestamp="1613138761663">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="1050" y="489" key="refactoring.ChangeSignatureDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1613138761663" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -347,15 +544,11 @@
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/srcs/Response/Response.cpp</url>
-          <line>213</line>
-          <option name="timeStamp" value="71" />
+          <url>file://$PROJECT_DIR$/srcs/Request/request.cpp</url>
+          <line>221</line>
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>
