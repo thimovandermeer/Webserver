@@ -2,7 +2,8 @@
 // Created by Thimo Van der meer on 09/02/2021.
 //
 
-#include <AppleEXR.h>
+//#include <AppleEXR.h>
+#include <unistd.h>
 #include "CGI.hpp"
 
 CGI::CgiError::CgiError(const char* w)

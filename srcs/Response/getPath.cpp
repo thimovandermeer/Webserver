@@ -49,9 +49,7 @@ std::string	getPath(server &server, Request &request, Response &response)
 	if (!loc)
 		loc = server.findLocation(locMatch);
 	if (!loc)
-	{
 		response.setStatus(404); // location not found
-	}
 	else
 	{
 		// location exists

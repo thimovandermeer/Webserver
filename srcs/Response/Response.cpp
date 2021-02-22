@@ -3,15 +3,11 @@
 //
 
 #include "Response.hpp"
-#include "../Request/request.hpp"
-#include "ResponseHeader.hpp"
+#include "responseHeader.hpp"
 #include <fstream>
 #include <unistd.h>
-#include <sys/stat.h>
 #include <fcntl.h>
 #include <sstream>
-#include "../Utils/utils.hpp"
-
 
 Response::Response()
 {
@@ -20,6 +16,21 @@ Response::Response()
     _errorMessage[403] = "Forbidden";
     _errorMessage[404] = "Not Found";
     _errorMessage[405] = "Method Not Allowed";
+}
+
+Response::Response(Request &request, server &server)
+{
+	_errorMessage[204] = "No Content";
+	_errorMessage[400] = "Bad Request";
+	_errorMessage[403] = "Forbidden";
+	_errorMessage[404] = "Not Found";
+	_errorMessage[405] = "Method Not Allowed";
+	this->setupResponse(request, server);
+}
+
+Response::Response(const Response &src)
+{
+	*this = src;
 }
 
 Response::~Response()
@@ -32,7 +43,12 @@ Response &Response::operator=(const Response &src)
 	_response = src._response;
 	_content = src._content;
 	_path = src._path;
+	_contentType = src._contentType;
+	_CGI = src._CGI;
+	_useCGI = src._useCGI;
 	_status = src._status;
+	_errorMessage = src._errorMessage;
+	_method = src._method;
 	return (*this);
 }
 
@@ -43,13 +59,13 @@ void Response::setupResponse(Request &request, server &server) {
 
 
 	_contentType = request.getContentType();
-	if(request.getMethod() == 0)
+	if(request.getMethod() == "GET")
 		getMethod(); // done
-	if(request.getMethod() == 1)
+	if(request.getMethod() == "HEAD")
 		headMethod(); // done
-	if(request.getMethod() == 2)
+	if(request.getMethod() == "POST")
 		postMethod(request.getBody());
-	if(request.getMethod() == 3)
+	if(request.getMethod() == "PUT")
 		putMethod(request.getBody()); // done
 	if (this->_status >= 299)
 	{
@@ -142,14 +158,14 @@ void	Response::errorPage(server &serv)
 	}
 	this->_content.clear();
 	this->_content = pageData;
-	ResponseHeader header(_content, _path, _status, _contentType);
+	responseHeader header(_content, _path, _status, _contentType);
 	_response = header.getHeader(_status) + _content;
 }
 
 void Response::getMethod()
 {
 	readContent();
-	ResponseHeader header(_content, _path, _status, _contentType);
+	responseHeader header(_content, _path, _status, _contentType);
 	_response = header.getHeader(_status) + _content;
 
 }
@@ -157,7 +173,7 @@ void Response::getMethod()
 void Response::headMethod()
 {
 	readContent();
-	ResponseHeader header(_content, _path, _status, _contentType);
+	responseHeader header(_content, _path, _status, _contentType);
   	_response = header.getHeader(_status);
 }
 
@@ -174,7 +190,7 @@ void Response::postMethod(std::string content)
 		_status = 403;
 	file << content;
 	file.close();
-	ResponseHeader header(content, _path, _status, _contentType);
+	responseHeader header(content, _path, _status, _contentType);
 	_response = header.getHeader(_status); // here we got a potential bug
 	// need more knowledge about CGI
 }
@@ -182,7 +198,7 @@ void Response::postMethod(std::string content)
 void Response::putMethod(std::string content)
 {
 	writeContent(content);
-	ResponseHeader header(content, _path, _status, _contentType);
+	responseHeader header(content, _path, _status, _contentType);
 	_response = header.getHeader(_status); // here we got a potential bug
 }
 
@@ -197,7 +213,7 @@ const std::string 	&Response::getResponse() const
 	return _response;
 }
 
-int 				Response::getCode()
+int 				Response::getStatus() const
 {
 	return _status;
 }

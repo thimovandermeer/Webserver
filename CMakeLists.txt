@@ -6,7 +6,43 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -g3 -Werror -Wextra -fsanitize=add
 #^^^ these are the compilation flags for cmake ^^^ can add '-fsanitize=address' for debugging
 set(CMAKE_LINKER_FLAGS)
 
-add_executable(webserv srcs/Response/Response.cpp srcs/Response/Response.hpp srcs/Request/request.cpp srcs/Request/request.hpp srcs/Response/ResponseHeader.cpp srcs/Response/ResponseHeader.hpp
-        srcs/Utils/utils.cpp srcs/Utils/utils.hpp srcs/Server/location.cpp srcs/Server/location.hpp srcs/Server/server.cpp srcs/Cluster/serverCluster.cpp
-        srcs/Server/parser.cpp srcs/webserv.cpp srcs/webserv.hpp srcs/Response/getPath.cpp)
+add_executable(
+		# executable name
+		webserv
+
+		# CGI
+		srcs/CGI/CGI.cpp
+		srcs/CGI/CGI.hpp
+
+		# Cluster
+		srcs/Cluster/serverCluster.cpp
+		srcs/Cluster/serverCluster.hpp
+
+		# Request
+		srcs/Request/request.cpp
+		srcs/Request/request.hpp
+
+		# Response
+		srcs/Response/getPath.cpp
+		srcs/Response/Response.cpp
+		srcs/Response/Response.hpp
+		srcs/Response/responseHeader.cpp
+		srcs/Response/responseHeader.hpp
+
+		# Server
+		srcs/Server/location.cpp
+		srcs/Server/location.hpp
+		srcs/Server/parser.cpp
+		srcs/Server/server.hpp
+		srcs/Server/serverBasic.cpp
+		srcs/Server/serverUtility.cpp
+
+		# Utils
+		srcs/Utils/utils.cpp
+		srcs/Utils/utils.hpp
+
+		# main
+		srcs/webserv.cpp
+		srcs/webserv.hpp
+		srcs/Server/serverBasic.cpp)
 set_target_properties(webserv PROPERTIES LINKER_LANGUAGE CXX CXX_STANDARD 98)

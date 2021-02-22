@@ -1,7 +1,7 @@
 #include "catch.hpp"
 #include "../srcs/Request/request.hpp"
 #include "../srcs/Response/Response.hpp"
-#include "../srcs/Response/ResponseHeader.hpp"
+#include "../srcs/Response/responseHeader.hpp"
 #include <ctime>
 #include <sys/stat.h>
 

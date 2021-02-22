@@ -9,19 +9,15 @@
 
 class Response {
 public:
+	Response();
 	Response(Request &request, server &server);
 	Response(const Response &src);
 	virtual ~Response();
-
 	Response &operator=(const Response &src);
 
 	void 	setupResponse(Request &request, server &server);
 
 	friend std::ostream &operator<<(std::ostream &os, const Response &response);
-
-	bool operator==(const Response &rhs) const;
-
-	bool operator!=(const Response &rhs) const;
 
 private:
 	std::string 				_response;
@@ -42,7 +38,7 @@ private:
 	void 		putMethod(std::string content);
 	void		errorPage(server &serv);
     void        createErrorPage(std::string *pageData);
-        // helper functions
+		// helper functions
 	void 	readContent();
 	void 	writeContent(std::string content);
 
@@ -51,7 +47,7 @@ public:
 	void				setStatus(int status);
 	std::string 		getContent();
 	const std::string 	&getResponse() const;
-	int 				getCode();
+	int 				getStatus() const;
 
 };
 

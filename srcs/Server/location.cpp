@@ -39,6 +39,11 @@ location	&location::operator=(const location &original)
 	this->_method = original._method;
 	this->_errorPage = original._errorPage;
 	this->_indices = original._indices;
+	this->_typeFunctionMap = original._typeFunctionMap;
+	this->_authBasic = original._authBasic;
+	this->_authBasicUserFile = original._authBasicUserFile;
+	this->_cgiPath = original._cgiPath;
+	this->_isFileExtension = original._isFileExtension;
 	return (*this);
 }
 

@@ -27,6 +27,7 @@ serverCluster::~serverCluster()
 serverCluster	&serverCluster::operator=(const serverCluster &original)
 {
 	this->_servers = original._servers;
+	this->_nrOfServers = original._nrOfServers;
 	return (*this);
 }
 

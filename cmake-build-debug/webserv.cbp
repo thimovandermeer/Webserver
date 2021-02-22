@@ -82,6 +82,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/CGI/CGI.cpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/CGI/CGI.hpp">
+			<Option target="webserv"/>
+		</Unit>
 		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/Cluster/serverCluster.cpp">
 			<Option target="webserv"/>
 		</Unit>
@@ -100,13 +106,13 @@
 		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.hpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/ResponseHeader.cpp">
-			<Option target="webserv"/>
-		</Unit>
-		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/ResponseHeader.hpp">
-			<Option target="webserv"/>
-		</Unit>
 		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/getPath.cpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/responseHeader.cpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/responseHeader.hpp">
 			<Option target="webserv"/>
 		</Unit>
 		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/location.cpp">
@@ -118,10 +124,13 @@
 		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/parser.cpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/server.cpp">
+		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/server.hpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/server.hpp">
+		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/serverBasic.cpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/serverUtility.cpp">
 			<Option target="webserv"/>
 		</Unit>
 		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/Utils/utils.cpp">
