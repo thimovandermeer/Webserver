@@ -103,7 +103,7 @@ void Request::parseRequest() {
             parseBody();
     }
     else
-        _body = _request;
+        _body = _request.substr(0, _request.length() - 2);
     _request.clear();
 }
 

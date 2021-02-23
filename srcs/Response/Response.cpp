@@ -9,28 +9,19 @@
 #include <fcntl.h>
 #include <sstream>
 
-Response::Response()
+Response::Response(Request &request, server &server) :
+	_path(getPath(server, request, *this)), // delete hardcoded
+	_contentType(request.getContentType()),
+	_CGI(_path, request, server),
+	_useCGI(request.getCgi()),
+	_status(request.getStatus()),
+	_method(request.getMethod())
 {
     _errorMessage[204] = "No Content";
     _errorMessage[400] = "Bad Request";
     _errorMessage[403] = "Forbidden";
     _errorMessage[404] = "Not Found";
     _errorMessage[405] = "Method Not Allowed";
-}
-
-Response::Response(Request &request, server &server)
-{
-	_errorMessage[204] = "No Content";
-	_errorMessage[400] = "Bad Request";
-	_errorMessage[403] = "Forbidden";
-	_errorMessage[404] = "Not Found";
-	_errorMessage[405] = "Method Not Allowed";
-	this->setupResponse(request, server);
-}
-
-Response::Response(const Response &src)
-{
-	*this = src;
 }
 
 Response::~Response()
@@ -56,16 +47,13 @@ void Response::setupResponse(Request &request, server &server) {
 	_path = getPath(server, request, *this);
 	_status = request.getStatus();
 //	_status = 405;          //404 niet
-
-
-	_contentType = request.getContentType();
-	if(request.getMethod() == "GET")
+	if(_method == "GET")
 		getMethod(); // done
-	if(request.getMethod() == "HEAD")
+	if(_method == "HEAD")
 		headMethod(); // done
-	if(request.getMethod() == "POST")
+	if(_method == "POST")
 		postMethod(request.getBody());
-	if(request.getMethod() == "PUT")
+	if(_method == "PUT")
 		putMethod(request.getBody()); // done
 	if (this->_status >= 299)
 	{
@@ -75,9 +63,18 @@ void Response::setupResponse(Request &request, server &server) {
 
 void 	Response::readContent()
 {
+	if (_useCGI == true)
+	{
+		_content = _CGI.executeGCI();
+		return ;
+	}
 	std::ifstream file;
-
 	const char *c = _path.c_str();
+	if(access(c, F_OK) != 0)
+		_status = 404;
+	file.open(this->_path, std::ifstream::in);
+	if(!file.is_open())
+		_status = 403;
 	if(access(c, F_OK) != 0 && _status == 200)
 		_status = 404;
 	file.open(_path, std::ifstream::in);
@@ -179,15 +176,21 @@ void Response::headMethod()
 
 void Response::postMethod(std::string content)
 {
+	if(_useCGI == true) {
+		readContent();
+		responseHeader header(content, _path, _status, _contentType);
+		_response = header.getHeader(_status) + _content;
+		return;
+	}
 	std::ofstream file;
-	if (_status == 200)
-    	_status = 204;
-	const char *c = _path.c_str();
-	if(access(c, F_OK) == 0 && _status == 200)
-		_status = 201;
 	file.open(_path, std::ios::out | std::ios::app);
 	if(!file.is_open() && _status == 200)
 		_status = 403;
+	if (_status == 200)
+		_status = 204;
+	const char *c = _path.c_str();
+	if(access(c, F_OK) == 0 && _status == 200)
+		_status = 201;
 	file << content;
 	file.close();
 	responseHeader header(content, _path, _status, _contentType);
