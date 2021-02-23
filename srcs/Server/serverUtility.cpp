@@ -45,27 +45,55 @@ void	server::startListening()
 	}
 }
 
-bool	isEnd(std::string &request)
+int hasBody(std::string request)
 {
-	int	len = request.length();
-	bool	needsBody = false;
-
 	if (request.find("Transfer-Encoding: chunked") != std::string::npos)
-		needsBody = true;
-	if (len < 4)
-		return (false);
+		return 1;
+	else if (request.find("Content-Length") != std::string::npos)
+		return 2;
+	return 0;
+}
 
-	if (needsBody)
+void	ft_bzero(char *buf, size_t n)
+{
+	size_t	i;
+	char	*ptr;
+
+	ptr = buf;
+	i = 0;
+	while (i < n)
 	{
-		size_t loc  = request.find("\r\n\r\n");
-		if (request.find("\r\n\r\n", loc + 1) != std::string::npos)
-			return (true);
-		return (false);
+		ptr[i] = 0;
+		i++;
 	}
+}
 
-	if (request[len - 4] == '\r' && request[len - 3] == '\n' &&request[len - 2] == '\r' &&request[len - 1] == '\n')
-		return (true);
-	return (false);
+int doneReading(std::string request, int type)
+{
+	int         pos1;
+	int         pos2;
+	std::string length;
+	char*        subStr;
+	int         contentLen;
+	char        *end;
+
+	if (type == 1 && request.find("\r\n\r\n0\r\n\r\n") != std::string::npos)        //of is dit too much
+		return 1;
+	else if (type == 2) {
+		pos1 = request.find("Content-Length");      //opzoeken waar de lengte staat
+		pos2 = request.find(":", pos1);             //waar de lengte begint
+//        pos1 = request.find("\r\n", pos2);          //kijken tot waar de index van de lengte loopt
+//        subStr = (char*)request.substr(pos1);
+
+		contentLen = std::strtol(subStr, &end ,10);
+//        length = request.substr(pos2, pos1 - pos2);     // de lengte eruit halen
+//        contentLen = std::strtol(length.c_str());           //de lengte ophalen //mag je strol gebruiken?
+		pos1 = request.find("\r\n\r\n");            //zoeken naar het einde van alle headers
+		pos2 = request.length();                //kijken hoe lang de gehele request is
+		if (contentLen == pos2 - pos1)      //als dit gelijk is, is alles dus gelezen
+			return 1;
+	}
+	return 0;
 }
 
 #define BUFFSIZE 4095
@@ -73,11 +101,13 @@ std::string 		server::receive() const
 {
 	char		buffer[BUFFSIZE + 1];
 	std::string request;
-	int 		ret = BUFFSIZE;
+	int 		ret = 0;
+	int         type;
 
-	while(ret > 0)
+	while(true)
 	{
 		std::cout << "reading..." << std::endl;
+		ft_bzero(buffer, ret);
 		ret = read(_acceptFd, buffer, BUFFSIZE);
 		buffer[ret] = 0;
 		if (ret == -1)
@@ -86,13 +116,20 @@ std::string 		server::receive() const
 			throw server::syscallErrorException();
 		}
 		request += std::string(buffer);
-		if (isEnd(request))
+		// als hij geen body heeft en \r\n\r\n heeft gevonden is hij klaar met lezen
+		if(!(type = hasBody(request)) && request.find("\r\n\r\n") != std::string::npos)
 			break;
+		// als er wel een body is, gaan we checken of alles daaruit is gelezen
+		if (doneReading(request, type))
+			break;
+		else
+			continue;
 	}
 	std::cout << "==REQUEST==" << std::endl;
 	std::cout << request << std::endl;
 	std::cout << "==end==" << std::endl;
 	return (request);
+
 }
 
 void 		server::sendData(const std::string &response) const
@@ -107,7 +144,7 @@ void 		server::sendData(const std::string &response) const
 	}
 }
 
-void 					server::serverClose()
+void 		server::serverClose()
 {
 	if(_acceptFd > 0)
 		::close(_acceptFd);

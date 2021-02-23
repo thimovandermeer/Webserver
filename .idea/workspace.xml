@@ -21,7 +21,7 @@
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/main" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/request" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
@@ -36,21 +36,12 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="updated assignment operators, split server code in 2 files">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="fixed shit that was fucked up because of merges">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Request/request.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Request/request.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/serverUtility.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/serverUtility.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/webserv" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/webserv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Request/request.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Request/request.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Response/Response.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Response/Response.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/serverBasic.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/serverBasic.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Utils/utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Utils/utils.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Utils/utils.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Utils/utils.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +174,7 @@
       <workItem from="1613639762201" duration="4867000" />
       <workItem from="1613728849996" duration="6661000" />
       <workItem from="1613998229610" duration="3810000" />
-      <workItem from="1614069498896" duration="3374000" />
+      <workItem from="1614069498896" duration="4329000" />
     </task>
     <task id="LOCAL-00003" summary="nearly done all set functions of responseheader">
       <created>1611650661666</created>
@@ -318,7 +309,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614069812738</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="fixed shit that was fucked up because of merges">
+      <created>1614077032839</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1614077032839</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -335,7 +333,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/main" />
+                        <option value="origin/request" />
                       </list>
                     </value>
                   </entry>
@@ -395,8 +393,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Testing environment set up" />
-    <MESSAGE value="Added responseheader" />
     <MESSAGE value="nearly done all set functions of responseheader" />
     <MESSAGE value="push before pull merel's work" />
     <MESSAGE value="first Merge met Request" />
@@ -420,7 +416,9 @@
     <MESSAGE value="added auth_basic and auth_basic_user_file to location vars" />
     <MESSAGE value="updated assignment operators, split server code in 2 files" />
     <MESSAGE value="new server files were missing" />
-    <option name="LAST_COMMIT_MESSAGE" value="new server files were missing" />
+    <MESSAGE value="fixed shit that was fucked up becuase of merges" />
+    <MESSAGE value="fixed shit that was fucked up because of merges" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed shit that was fucked up because of merges" />
   </component>
   <component name="WindowStateProjectService">
     <state x="730" y="353" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1613737642955">
@@ -435,46 +433,46 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="1004" y="445" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1613477643701" />
-    <state x="164" y="89" width="2332" height="1137" key="DiffContextDialog" timestamp="1614076864920">
+    <state x="164" y="89" width="2332" height="1137" key="DiffContextDialog" timestamp="1614082370724">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="164" y="89" width="2332" height="1137" key="DiffContextDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1614076864920" />
-    <state width="2490" height="308" key="GridCell.Tab.0.bottom" timestamp="1614076864623">
+    <state x="164" y="89" width="2332" height="1137" key="DiffContextDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1614082370724" />
+    <state width="2490" height="308" key="GridCell.Tab.0.bottom" timestamp="1614082368520">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1398" height="403" key="GridCell.Tab.0.bottom/0.23.1440.798@0.23.1440.798" timestamp="1612879165339" />
-    <state width="2490" height="308" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1614076864623" />
-    <state width="2490" height="308" key="GridCell.Tab.0.center" timestamp="1614076864622">
+    <state width="2490" height="308" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1614082368520" />
+    <state width="2490" height="308" key="GridCell.Tab.0.center" timestamp="1614082368519">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1398" height="403" key="GridCell.Tab.0.center/0.23.1440.798@0.23.1440.798" timestamp="1612879165338" />
-    <state width="2490" height="308" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1614076864622" />
-    <state width="2490" height="308" key="GridCell.Tab.0.left" timestamp="1614076864621">
+    <state width="2490" height="308" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1614082368519" />
+    <state width="2490" height="308" key="GridCell.Tab.0.left" timestamp="1614082368519">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1398" height="403" key="GridCell.Tab.0.left/0.23.1440.798@0.23.1440.798" timestamp="1612879165338" />
-    <state width="2490" height="308" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1614076864621" />
-    <state width="2490" height="308" key="GridCell.Tab.0.right" timestamp="1614076864623">
+    <state width="2490" height="308" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1614082368519" />
+    <state width="2490" height="308" key="GridCell.Tab.0.right" timestamp="1614082368520">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1398" height="403" key="GridCell.Tab.0.right/0.23.1440.798@0.23.1440.798" timestamp="1612879165339" />
-    <state width="2490" height="308" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1614076864623" />
-    <state width="2490" height="308" key="GridCell.Tab.1.bottom" timestamp="1614076864625">
+    <state width="2490" height="308" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1614082368520" />
+    <state width="2490" height="308" key="GridCell.Tab.1.bottom" timestamp="1614082368521">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2490" height="308" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1614076864625" />
-    <state width="2490" height="308" key="GridCell.Tab.1.center" timestamp="1614076864625">
+    <state width="2490" height="308" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1614082368521" />
+    <state width="2490" height="308" key="GridCell.Tab.1.center" timestamp="1614082368520">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2490" height="308" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1614076864625" />
-    <state width="2490" height="308" key="GridCell.Tab.1.left" timestamp="1614076864624">
+    <state width="2490" height="308" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1614082368520" />
+    <state width="2490" height="308" key="GridCell.Tab.1.left" timestamp="1614082368520">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2490" height="308" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1614076864624" />
-    <state width="2490" height="308" key="GridCell.Tab.1.right" timestamp="1614076864625">
+    <state width="2490" height="308" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1614082368520" />
+    <state width="2490" height="308" key="GridCell.Tab.1.right" timestamp="1614082368521">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2490" height="308" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1614076864625" />
+    <state width="2490" height="308" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1614082368521" />
     <state x="242" y="146" key="MergeDialog" timestamp="1613993204771">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -487,10 +485,10 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="775" y="330" key="SettingsEditor/0.23.2560.1337@0.23.2560.1337" timestamp="1613480936973" />
-    <state x="866" y="431" key="Vcs.Push.Dialog.v2" timestamp="1614069822516">
+    <state x="866" y="431" key="Vcs.Push.Dialog.v2" timestamp="1614077036081">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="866" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1614069822516" />
+    <state x="866" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1614077036081" />
     <state x="1042" y="432" key="VcsDiffUtil.ChangesDialog" timestamp="1613643882372">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
