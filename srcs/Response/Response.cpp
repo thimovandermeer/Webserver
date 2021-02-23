@@ -45,8 +45,7 @@ Response &Response::operator=(const Response &src)
 
 void Response::setupResponse(Request &request, server &server) {
 	_path = getPath(server, request, *this);
-	_status = request.getStatus();
-//	_status = 405;          //404 niet
+	this->setStatus(request.getStatus());
 	if(_method == "GET")
 		getMethod(); // done
 	if(_method == "HEAD")
@@ -71,15 +70,15 @@ void 	Response::readContent()
 	std::ifstream file;
 	const char *c = _path.c_str();
 	if(access(c, F_OK) != 0)
-		_status = 404;
+		return (this->setStatus(404));
 	file.open(this->_path, std::ifstream::in);
 	if(!file.is_open())
-		_status = 403;
+		return (this->setStatus(403));
 	if(access(c, F_OK) != 0 && _status == 200)
-		_status = 404;
+		return (this->setStatus(404));
 	file.open(_path, std::ifstream::in);
 	if(!file.is_open() && _status == 200)
-		_status = 403;
+		return (this->setStatus(403));
 	if (this->_status == 200)
 	_content.assign((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
 	file.close();
@@ -88,14 +87,14 @@ void 	Response::readContent()
 void 	Response::writeContent(std::string content)
 {
 	std::ofstream file;
-	if (_status == 200)
-    	_status = 204;
+//	if (_status == 200)
+//    	_status = 204;
 	const char *c = _path.c_str();
 	if(access(c, F_OK) == 0 && _status == 200)
-		_status = 201;
+		this->setStatus(201);
 	file.open(_path, std::ofstream::out | std::ofstream::trunc);
 	if(!file.is_open() && _status == 200)
-		_status = 403;
+		return (this->setStatus(403));
 	file << content;
 	file.close();
 
@@ -185,12 +184,11 @@ void Response::postMethod(std::string content)
 	std::ofstream file;
 	file.open(_path, std::ios::out | std::ios::app);
 	if(!file.is_open() && _status == 200)
-		_status = 403;
-	if (_status == 200)
-		_status = 204;
+		this->setStatus(403);
+//	this->setStatus(204);
 	const char *c = _path.c_str();
 	if(access(c, F_OK) == 0 && _status == 200)
-		_status = 201;
+		this->setStatus(201);
 	file << content;
 	file.close();
 	responseHeader header(content, _path, _status, _contentType);
@@ -223,6 +221,8 @@ int 				Response::getStatus() const
 
 void				Response::setStatus(int status)
 {
+	if (this->_status != 200)
+		return;
 	this->_status = status;
 }
 

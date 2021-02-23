@@ -77,6 +77,8 @@ unistd.h
 -
 sys/socket.h
 -
+fcntl.h
+-
 ../Request/request.hpp
 /Users/jbennink/Documents/Projects/webserv_new/srcs/Request/request.hpp
 ../Response/Response.hpp

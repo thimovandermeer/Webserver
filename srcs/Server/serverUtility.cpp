@@ -5,6 +5,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <sys/socket.h>
+#include <fcntl.h>
 #include "../Request/request.hpp"
 #include "../Response/Response.hpp"
 
@@ -109,12 +110,12 @@ std::string 		server::receive() const
 		std::cout << "reading..." << std::endl;
 		ft_bzero(buffer, ret);
 		ret = read(_acceptFd, buffer, BUFFSIZE);
-		buffer[ret] = 0;
 		if (ret == -1)
 		{
 			std::cerr << "recv error" << std::endl;
 			throw server::syscallErrorException();
 		}
+		buffer[ret] = 0;
 		request += std::string(buffer);
 		// als hij geen body heeft en \r\n\r\n heeft gevonden is hij klaar met lezen
 		if(!(type = hasBody(request)) && request.find("\r\n\r\n") != std::string::npos)
@@ -158,6 +159,7 @@ void 	server::accept()
 	this->_acceptFd = ::accept(this->_socketFd, &connectingAddr, &addressLen);
 	if (_acceptFd == -1)
 		std::cerr << "Could not create fd" << std::endl; // dit zometeen aanpassen naar try catch
+	//	fcntl(this->_acceptFd, F_SETFL, O_NONBLOCK);
 }
 
 void	server::run()
@@ -170,7 +172,7 @@ void	server::run()
 	}
 	catch (std::exception &e)
 	{
-		// error
+		return;
 	}
 
 	Request	request(receivedRequest);

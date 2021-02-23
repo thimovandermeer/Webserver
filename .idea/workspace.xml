@@ -21,7 +21,7 @@
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/request" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/reading_2" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
@@ -36,12 +36,16 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="fixed shit that was fucked up because of merges">
+    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="added new reading in server">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/serverUtility.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/serverUtility.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/webserv" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/webserv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html_pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/html_pages/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Response/Response.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_mac/mac.conf" beforeDir="false" afterPath="$PROJECT_DIR$/test_mac/mac.conf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +178,7 @@
       <workItem from="1613639762201" duration="4867000" />
       <workItem from="1613728849996" duration="6661000" />
       <workItem from="1613998229610" duration="3810000" />
-      <workItem from="1614069498896" duration="4329000" />
+      <workItem from="1614069498896" duration="7756000" />
     </task>
     <task id="LOCAL-00003" summary="nearly done all set functions of responseheader">
       <created>1611650661666</created>
@@ -316,7 +320,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614077032839</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="added new reading in server">
+      <created>1614082442938</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1614082442939</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -333,7 +344,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/request" />
+                        <option value="origin/reading_2" />
                       </list>
                     </value>
                   </entry>
@@ -393,7 +404,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="nearly done all set functions of responseheader" />
     <MESSAGE value="push before pull merel's work" />
     <MESSAGE value="first Merge met Request" />
     <MESSAGE value="First attempt on changing the path" />
@@ -418,7 +428,8 @@
     <MESSAGE value="new server files were missing" />
     <MESSAGE value="fixed shit that was fucked up becuase of merges" />
     <MESSAGE value="fixed shit that was fucked up because of merges" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed shit that was fucked up because of merges" />
+    <MESSAGE value="added new reading in server" />
+    <option name="LAST_COMMIT_MESSAGE" value="added new reading in server" />
   </component>
   <component name="WindowStateProjectService">
     <state x="730" y="353" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1613737642955">
@@ -433,46 +444,46 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="1004" y="445" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1613477643701" />
-    <state x="164" y="89" width="2332" height="1137" key="DiffContextDialog" timestamp="1614082370724">
+    <state x="164" y="89" width="2332" height="1137" key="DiffContextDialog" timestamp="1614085543537">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="164" y="89" width="2332" height="1137" key="DiffContextDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1614082370724" />
-    <state width="2490" height="308" key="GridCell.Tab.0.bottom" timestamp="1614082368520">
+    <state x="164" y="89" width="2332" height="1137" key="DiffContextDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1614085543537" />
+    <state width="2490" height="340" key="GridCell.Tab.0.bottom" timestamp="1614085842801">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1398" height="403" key="GridCell.Tab.0.bottom/0.23.1440.798@0.23.1440.798" timestamp="1612879165339" />
-    <state width="2490" height="308" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1614082368520" />
-    <state width="2490" height="308" key="GridCell.Tab.0.center" timestamp="1614082368519">
+    <state width="2490" height="340" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1614085842801" />
+    <state width="2490" height="340" key="GridCell.Tab.0.center" timestamp="1614085842800">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1398" height="403" key="GridCell.Tab.0.center/0.23.1440.798@0.23.1440.798" timestamp="1612879165338" />
-    <state width="2490" height="308" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1614082368519" />
-    <state width="2490" height="308" key="GridCell.Tab.0.left" timestamp="1614082368519">
+    <state width="2490" height="340" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1614085842800" />
+    <state width="2490" height="340" key="GridCell.Tab.0.left" timestamp="1614085842800">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1398" height="403" key="GridCell.Tab.0.left/0.23.1440.798@0.23.1440.798" timestamp="1612879165338" />
-    <state width="2490" height="308" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1614082368519" />
-    <state width="2490" height="308" key="GridCell.Tab.0.right" timestamp="1614082368520">
+    <state width="2490" height="340" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1614085842800" />
+    <state width="2490" height="340" key="GridCell.Tab.0.right" timestamp="1614085842801">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1398" height="403" key="GridCell.Tab.0.right/0.23.1440.798@0.23.1440.798" timestamp="1612879165339" />
-    <state width="2490" height="308" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1614082368520" />
-    <state width="2490" height="308" key="GridCell.Tab.1.bottom" timestamp="1614082368521">
+    <state width="2490" height="340" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1614085842801" />
+    <state width="2490" height="340" key="GridCell.Tab.1.bottom" timestamp="1614085842708">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2490" height="308" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1614082368521" />
-    <state width="2490" height="308" key="GridCell.Tab.1.center" timestamp="1614082368520">
+    <state width="2490" height="340" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1614085842708" />
+    <state width="2490" height="340" key="GridCell.Tab.1.center" timestamp="1614085842707">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2490" height="308" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1614082368520" />
-    <state width="2490" height="308" key="GridCell.Tab.1.left" timestamp="1614082368520">
+    <state width="2490" height="340" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1614085842707" />
+    <state width="2490" height="340" key="GridCell.Tab.1.left" timestamp="1614085842707">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2490" height="308" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1614082368520" />
-    <state width="2490" height="308" key="GridCell.Tab.1.right" timestamp="1614082368521">
+    <state width="2490" height="340" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1614085842707" />
+    <state width="2490" height="340" key="GridCell.Tab.1.right" timestamp="1614085842707">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2490" height="308" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1614082368521" />
+    <state width="2490" height="340" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1614085842707" />
     <state x="242" y="146" key="MergeDialog" timestamp="1613993204771">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -485,18 +496,18 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="775" y="330" key="SettingsEditor/0.23.2560.1337@0.23.2560.1337" timestamp="1613480936973" />
-    <state x="866" y="431" key="Vcs.Push.Dialog.v2" timestamp="1614077036081">
+    <state x="866" y="431" key="Vcs.Push.Dialog.v2" timestamp="1614082446170">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="866" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1614077036081" />
+    <state x="866" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1614082446170" />
     <state x="1042" y="432" key="VcsDiffUtil.ChangesDialog" timestamp="1613643882372">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="1042" y="432" key="VcsDiffUtil.ChangesDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1613643882372" />
-    <state width="952" height="668" key="XDebugger.FullValuePopup" timestamp="1613124402162">
+    <state width="952" height="668" key="XDebugger.FullValuePopup" timestamp="1614085722337">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="952" height="668" key="XDebugger.FullValuePopup/0.23.2560.1337@0.23.2560.1337" timestamp="1613124402162" />
+    <state width="952" height="668" key="XDebugger.FullValuePopup/0.23.2560.1337@0.23.2560.1337" timestamp="1614085722337" />
     <state x="100" y="123" width="2332" height="1137" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1613478438032">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -517,16 +528,6 @@
           <url>file://$PROJECT_DIR$/srcs/Server/parser.cpp</url>
           <line>147</line>
           <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/srcs/Request/request.cpp</url>
-          <line>221</line>
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/srcs/Response/Response.cpp</url>
-          <line>12</line>
-          <option name="timeStamp" value="31" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
