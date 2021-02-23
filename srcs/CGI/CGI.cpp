@@ -78,7 +78,8 @@ std::string 	CGI::executeGCI()
 	while(ret >= 1)
 	{
 		ret = read(fd[0], buff, 499);
-		buff[ret] = '\0';
+		if (ret != -1)
+			buff[ret] = '\0';
 		content += buff;
 	}
 
