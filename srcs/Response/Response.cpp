@@ -9,19 +9,24 @@
 #include <fcntl.h>
 #include <sstream>
 
-Response::Response(Request &request, server &server) :
-	_path(getPath(server, request, *this)), // delete hardcoded
-	_contentType(request.getContentType()),
-	_CGI(_path, request, server),
-	_useCGI(request.getCgi()),
-	_status(request.getStatus()),
-	_method(request.getMethod())
+Response::Response(Request &req, server &serv) :
+	_path(getPath(serv, req, *this)), // delete hardcoded
+	_contentType(req.getContentType()),
+	_CGI(_path, req, serv),
+	_useCGI(req.getCgi()),
+	_status(req.getStatus()),
+	_method(req.getMethod())
 {
     _errorMessage[204] = "No Content";
     _errorMessage[400] = "Bad Request";
     _errorMessage[403] = "Forbidden";
     _errorMessage[404] = "Not Found";
     _errorMessage[405] = "Method Not Allowed";
+}
+
+Response::Response(const Response &src)
+{
+	*this = src;
 }
 
 Response::~Response()
@@ -43,20 +48,48 @@ Response &Response::operator=(const Response &src)
 	return (*this);
 }
 
-void Response::setupResponse(Request &request, server &server) {
-	_path = getPath(server, request, *this);
+bool	Response::isMethodAllowed()
+{
+	std::cerr << "loc is " << *this->currentLoc << std::endl;
+	if (!this->currentLoc)
+		return (false);
+	std::vector<std::string>::iterator it;
+	std::vector<std::string> vc = this->currentLoc->getMethods();
+	for (it = vc.begin(); it < vc.end(); it++)
+	{
+		if ((*it) == this->_method)
+			return (true);
+	}
+	this->_status = 405;
+	return (false);
+}
+
+void	Response::setupResponse(Request &request, server &serv) {
+	_path = getPath(serv, request, *this);
 	this->setStatus(request.getStatus());
 	if(_method == "GET")
-		getMethod(); // done
+	{
+		if (this->isMethodAllowed())
+			getMethod(); // done
+	}
 	if(_method == "HEAD")
-		headMethod(); // done
+	{
+		if (this->isMethodAllowed())
+			headMethod(); // done
+	}
 	if(_method == "POST")
-		postMethod(request.getBody());
+	{
+		if (this->isMethodAllowed())
+			postMethod(request.getBody());
+	}
 	if(_method == "PUT")
-		putMethod(request.getBody()); // done
+	{
+		if (this->isMethodAllowed())
+			putMethod(request.getBody()); // done
+	}
 	if (this->_status >= 299)
 	{
-		this->errorPage(server);
+		this->errorPage(serv);
 	}
 }
 

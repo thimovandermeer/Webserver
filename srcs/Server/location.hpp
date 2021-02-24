@@ -17,7 +17,7 @@ private:
 	bool							_autoindex;
 	std::string						_match;
 	std::string						_root;
-	std::string						_method;
+	std::vector<std::string>		_methods;
 	std::string						_errorPage;
 	std::vector<std::string>		_indices;
 	std::map<std::string, setter>	_typeFunctionMap;
@@ -47,7 +47,7 @@ public:
 	const bool						&getAutoindex() const;
 	const std::string				&getMatch() const;
 	const std::string				&getRoot() const;
-	const std::string				&getMethod() const;
+	const std::vector<std::string>	&getMethods() const;
 	const std::string				&getErrorPage() const;
 	const std::vector<std::string>	&getIndices() const;
 	const std::string				&getCgiPath() const;

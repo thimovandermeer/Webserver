@@ -6,12 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/Users/jbennink/Documents/Projects/webserv_new/srcs/CGI/CGI.cpp
-unistd.h
--
-CGI.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/CGI/CGI.hpp
-
 /Users/jbennink/Documents/Projects/webserv_new/srcs/CGI/CGI.hpp
 ../Request/request.hpp
 /Users/jbennink/Documents/Projects/webserv_new/srcs/Request/request.hpp
@@ -32,6 +26,20 @@ vector
 algorithm
 -
 
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.cpp
+Response.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.hpp
+responseHeader.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/responseHeader.hpp
+fstream
+-
+unistd.h
+-
+fcntl.h
+-
+sstream
+-
+
 /Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.hpp
 string
 -
@@ -43,6 +51,14 @@ ostream
 /Users/jbennink/Documents/Projects/webserv_new/srcs/Server/server.hpp
 ../CGI/CGI.hpp
 /Users/jbennink/Documents/Projects/webserv_new/srcs/CGI/CGI.hpp
+
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/responseHeader.hpp
+string
+-
+Response.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.hpp
+../Request/request.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Request/request.hpp
 
 /Users/jbennink/Documents/Projects/webserv_new/srcs/Server/location.hpp
 string
@@ -67,26 +83,4 @@ sys/socket.h
 -
 netdb.h
 -
-
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/serverUtility.cpp
-map
--
-server.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/server.hpp
-string
--
-sstream
--
-iostream
--
-unistd.h
--
-sys/socket.h
--
-fcntl.h
--
-../Request/request.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Request/request.hpp
-../Response/Response.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.hpp
 

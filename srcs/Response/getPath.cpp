@@ -30,7 +30,7 @@ location*	findFileExtension(server &server, std::string *uri)
 	return (NULL);
 }
 
-std::string	getPath(server &server, Request &request, Response &response)
+std::string	getPath(server &serv, Request &req, Response &resp)
 {
 	std::string filePath;
 	std::string rootDir;
@@ -38,8 +38,8 @@ std::string	getPath(server &server, Request &request, Response &response)
 	std::string locMatch;
 	size_t		found;
 
-	uri = request.getUri();
-	location *loc = findFileExtension(server, &uri);
+	uri = req.getUri();
+	location *loc = findFileExtension(serv, &uri);
 	found = uri.find_first_of("/", 1);
 	if (found == std::string::npos)
 		found = 1;
@@ -47,16 +47,17 @@ std::string	getPath(server &server, Request &request, Response &response)
 	if (uri.length() > 1)
 		uri.erase(0, 1);
 	if (!loc)
-		loc = server.findLocation(locMatch);
+		loc = serv.findLocation(locMatch);
 	if (!loc)
-		response.setStatus(404); // location not found
+		resp.setStatus(404); // location not found
 	else
 	{
+		resp.currentLoc = loc;
 		// location exists
 		if (!loc->getRoot().empty()) // location has no own root, so we use the server root
 			rootDir = loc->getRoot();
 		else
-			rootDir = server.getRoot();
+			rootDir = serv.getRoot();
 
 		std::vector<std::string>	indices;
 		if (uri[uri.length() - 1] == '/') // uri ends in '/', so a directory is requested, meaning we have to fetch an index page
@@ -64,7 +65,7 @@ std::string	getPath(server &server, Request &request, Response &response)
 			if (!loc->getIndices().empty())
 				indices = loc->getIndices(); // if location has no index specifications, we use the server's
 			else
-				indices = server.getIndices();
+				indices = serv.getIndices();
 			std::vector<std::string>::iterator it;
 			for (it = indices.begin(); it < indices.end(); it++) // test from front to back to find the first existing index page at requested root
 			{
@@ -74,14 +75,14 @@ std::string	getPath(server &server, Request &request, Response &response)
 					break;
 			}
 			if (it == indices.end()) // all index pages don't exist at requested root
-				response.setStatus(404);
+				resp.setStatus(404);
 		}
 		else // uri does not end in '/', so a specific file is requested
 		{
 			filePath = rootDir + uri;
 			struct stat statBuf;
 			if (stat(filePath.c_str(), &statBuf) != 0)
-				response.setStatus(404);
+				resp.setStatus(404);
 		}
 	}
 	return (filePath);
