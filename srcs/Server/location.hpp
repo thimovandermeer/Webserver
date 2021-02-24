@@ -14,17 +14,19 @@ public:
 	};
 
 private:
-	bool							_autoindex;
-	std::string						_match;
-	std::string						_root;
-	std::string						_method;
-	std::string						_errorPage;
-	std::vector<std::string>		_indices;
-	std::map<std::string, setter>	_typeFunctionMap;
+	bool								_autoindex;
+	std::string							_match;
+	std::string							_root;
+	std::string							_method;
+	std::string							_errorPage;
+	std::vector<std::string>			_indices;
+	std::map<std::string, setter>		_typeFunctionMap;
 
-	std::string						_authBasic;
-	std::string						_authBasicUserFile;
-	std::string						_cgiPath;
+	std::string							_authBasic;
+	std::string							_authBasicUserFile;
+	std::string							_cgiPath;
+	std::string 						_htpasswd_path;
+	std::map<std::string, std::string>	_loginfo;
 
 	bool							_isFileExtension;
 	location();
@@ -43,6 +45,8 @@ public:
 	void	setCgiPath(std::string &cgiPass);
 	void	setAuthBasic(std::string &authBasic);
 	void	setAuthUserFile(std::string &userFile);
+	void 	sethtpasswdpath(std::string &path);
+
 
 	const bool						&getAutoindex() const;
 	const std::string				&getMatch() const;
@@ -56,7 +60,7 @@ public:
 
 	void	findValue(std::string &key, std::string line);
 	bool	valueCheck() const;
-
+	bool 	getMatch(const std::string& username, const std::string& passwd);
 	bool	isFileExtension() const;
 
 };

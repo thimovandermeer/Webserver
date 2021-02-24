@@ -9,6 +9,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/webserv.dir/srcs/Server/parser.cpp.o"
   "CMakeFiles/webserv.dir/srcs/Server/serverBasic.cpp.o"
   "CMakeFiles/webserv.dir/srcs/Server/serverUtility.cpp.o"
+  "CMakeFiles/webserv.dir/srcs/Utils/Base64.cpp.o"
   "CMakeFiles/webserv.dir/srcs/Utils/utils.cpp.o"
   "CMakeFiles/webserv.dir/srcs/webserv.cpp.o"
   "webserv"

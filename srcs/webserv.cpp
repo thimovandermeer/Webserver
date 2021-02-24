@@ -18,6 +18,8 @@ void	errMsgAndExit(const std::string &errMsg, int code)
 	exit(code);
 }
 
+
+
 int main(int argc, char **argv)
 {
 	serverCluster cluster;
