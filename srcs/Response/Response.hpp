@@ -9,7 +9,6 @@
 
 class Response {
 public:
-	Response();
 	Response(Request &request, server &server);
 	Response(const Response &src);
 	virtual ~Response();
@@ -30,6 +29,7 @@ private:
 	std::map<int, std::string>	_errorMessage;
 	std::string					_method;
 private:
+	Response();
 	// functions for each different method
 	void 		getMethod();
 //	std::string	getPath(server &server, Request &request);

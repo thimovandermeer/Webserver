@@ -6,6 +6,6 @@
 #define WEBSERV_UTILS_HPP
 
 int 	getTime();
-void removeAdjacentSlashes(std::string &str);
+void    removeAdjacentSlashes(std::string &str);
 
 #endif //WEBSERV_UTILS_HPP

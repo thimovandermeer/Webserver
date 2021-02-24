@@ -44,5 +44,5 @@ add_executable(
 		# main
 		srcs/webserv.cpp
 		srcs/webserv.hpp
-		srcs/Server/serverBasic.cpp)
+		)
 set_target_properties(webserv PROPERTIES LINKER_LANGUAGE CXX CXX_STANDARD 98)
