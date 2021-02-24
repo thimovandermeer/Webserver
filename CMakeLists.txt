@@ -40,6 +40,8 @@ add_executable(
 		# Utils
 		srcs/Utils/utils.cpp
 		srcs/Utils/utils.hpp
+		srcs/Utils/Base64.cpp
+		srcs/Utils/Base64.hpp
 
 		# main
 		srcs/webserv.cpp

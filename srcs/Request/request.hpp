@@ -43,7 +43,7 @@ class Request{
         std::map<headerType, std::string> getHeaders() const;
         std::string getBody() const;
         std::string getContentType();
-		std::string getHost();
+		std::string getAuthorization();
         std::string getCgiEnv() const;
         bool getCgi() const ;
 		int getStatus() const;

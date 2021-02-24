@@ -227,12 +227,9 @@ void Request::parseBody() {
     }
 }
 
-std::string Request::getHost()
+std::string Request::getAuthorization()
 {
-	if (_defHeaders.begin() == _defHeaders.end())
-		return ("NULL");
-	std::map<std::string, headerType>::iterator it = _headerMap.find("HOST");
-	std::map<headerType, std::string>::iterator it_h = _defHeaders.find(it->second);
+	std::map<headerType, std::string>::iterator it_h = _defHeaders.find(AUTHORIZATION);
 	if (it_h == _defHeaders.end())
 		return ("NULL");
 	return (it_h->second);

@@ -8,6 +8,8 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <sstream>
+#include "../Utils/utils.hpp"
+#include "../Utils/Base64.hpp"
 
 Response::Response(Request &request, server &server) :
 	_path(getPath(server, request, *this)), // delete hardcoded
@@ -45,7 +47,10 @@ Response &Response::operator=(const Response &src)
 
 void Response::setupResponse(Request &request, server &server) {
 	_path = getPath(server, request, *this);
-	this->setStatus(request.getStatus());
+	_status = request.getStatus();
+//	_status = 405;          //404 niet
+	if (this->authenticate(request, server))
+		std::cerr << "Authentication failed";
 	if(_method == "GET")
 		getMethod(); // done
 	if(_method == "HEAD")
@@ -70,15 +75,15 @@ void 	Response::readContent()
 	std::ifstream file;
 	const char *c = _path.c_str();
 	if(access(c, F_OK) != 0)
-		return (this->setStatus(404));
+		_status = 404;
 	file.open(this->_path, std::ifstream::in);
 	if(!file.is_open())
-		return (this->setStatus(403));
+		_status = 403;
 	if(access(c, F_OK) != 0 && _status == 200)
-		return (this->setStatus(404));
+		_status = 404;
 	file.open(_path, std::ifstream::in);
 	if(!file.is_open() && _status == 200)
-		return (this->setStatus(403));
+		_status = 403;
 	if (this->_status == 200)
 	_content.assign((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
 	file.close();
@@ -87,14 +92,15 @@ void 	Response::readContent()
 void 	Response::writeContent(std::string content)
 {
 	std::ofstream file;
-//	if (_status == 200)
-//    	_status = 204;
+
+	if (_status == 200)
+    	_status = 204;
 	const char *c = _path.c_str();
 	if(access(c, F_OK) == 0 && _status == 200)
-		this->setStatus(201);
+		_status = 201;
 	file.open(_path, std::ofstream::out | std::ofstream::trunc);
 	if(!file.is_open() && _status == 200)
-		return (this->setStatus(403));
+		_status = 403;
 	file << content;
 	file.close();
 
@@ -184,11 +190,12 @@ void Response::postMethod(std::string content)
 	std::ofstream file;
 	file.open(_path, std::ios::out | std::ios::app);
 	if(!file.is_open() && _status == 200)
-		this->setStatus(403);
-//	this->setStatus(204);
+		_status = 403;
+	if (_status == 200)
+		_status = 204;
 	const char *c = _path.c_str();
 	if(access(c, F_OK) == 0 && _status == 200)
-		this->setStatus(201);
+		_status = 201;
 	file << content;
 	file.close();
 	responseHeader header(content, _path, _status, _contentType);
@@ -221,9 +228,36 @@ int 				Response::getStatus() const
 
 void				Response::setStatus(int status)
 {
-	if (this->_status != 200)
-		return;
 	this->_status = status;
+}
+
+int					Response::authenticate(Request &request, server &server)
+{
+	location *temp;
+	std::string input = "auth_basic";
+	temp = server.findLocation(input);
+	std::string username;
+	std::string passwd;
+	std::string auth = request.getAuthorization();
+	std::string type;
+	std::string credentials;
+	get_key_value(auth, type, credentials, ":", "\n\r#;");
+	credentials = base64_decode(credentials);
+	get_key_value(credentials, username, passwd, ":", "\n\r#;");
+	if (temp->getMatch(username, passwd))
+	{
+		std::cout << "Authorization successful!" << std::endl;
+		return 0;
+	}
+
+	_status = 401;
+	_response += "401 Unauthorized\r\n";
+	this->_response +=	"Server: Webserv/1.1\r\n"
+						  "Content-Type: text/html\r\n"
+						  "WWW-Authenticate: Basic realm=";
+	this->_response += temp->getAuthBasic();
+	this->_response += ", charset=\"UTF-8\"\r\n";
+	return 1;
 }
 
 std::ostream &operator<<(std::ostream &os, const Response &response)

@@ -12,13 +12,11 @@ unistd.h
 CGI.hpp
 /Users/jbennink/Documents/Projects/webserv_new/srcs/CGI/CGI.hpp
 
-/Users/jbennink/Documents/Projects/webserv_new/srcs/CGI/CGI.hpp
-../Request/request.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Request/request.hpp
-../Server/server.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/server.hpp
+/Users/thimovandermeer/CLionProjects/Webserver/srcs/Request/request.cpp
+request.hpp
+/Users/thimovandermeer/CLionProjects/Webserver/srcs/Request/request.hpp
 
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Request/request.hpp
+/Users/thimovandermeer/CLionProjects/Webserver/srcs/Request/request.hpp
 iostream
 -
 string

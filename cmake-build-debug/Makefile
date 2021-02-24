@@ -68,10 +68,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/jbennink/Documents/Projects/webserv_new
+CMAKE_SOURCE_DIR = /Users/thimovandermeer/CLionProjects/Webserver
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -100,9 +100,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles /Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles /Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -413,6 +413,33 @@ srcs/Server/serverUtility.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Server/serverUtility.cpp.s
 .PHONY : srcs/Server/serverUtility.cpp.s
 
+srcs/Utils/Base64.o: srcs/Utils/Base64.cpp.o
+
+.PHONY : srcs/Utils/Base64.o
+
+# target to build an object file
+srcs/Utils/Base64.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Utils/Base64.cpp.o
+.PHONY : srcs/Utils/Base64.cpp.o
+
+srcs/Utils/Base64.i: srcs/Utils/Base64.cpp.i
+
+.PHONY : srcs/Utils/Base64.i
+
+# target to preprocess a source file
+srcs/Utils/Base64.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Utils/Base64.cpp.i
+.PHONY : srcs/Utils/Base64.cpp.i
+
+srcs/Utils/Base64.s: srcs/Utils/Base64.cpp.s
+
+.PHONY : srcs/Utils/Base64.s
+
+# target to generate assembly for a file
+srcs/Utils/Base64.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Utils/Base64.cpp.s
+.PHONY : srcs/Utils/Base64.cpp.s
+
 srcs/Utils/utils.o: srcs/Utils/utils.cpp.o
 
 .PHONY : srcs/Utils/utils.o
@@ -506,6 +533,9 @@ help:
 	@echo "... srcs/Server/serverUtility.o"
 	@echo "... srcs/Server/serverUtility.i"
 	@echo "... srcs/Server/serverUtility.s"
+	@echo "... srcs/Utils/Base64.o"
+	@echo "... srcs/Utils/Base64.i"
+	@echo "... srcs/Utils/Base64.s"
 	@echo "... srcs/Utils/utils.o"
 	@echo "... srcs/Utils/utils.i"
 	@echo "... srcs/Utils/utils.s"
