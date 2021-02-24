@@ -73,6 +73,7 @@ responseHeader &responseHeader::operator=(const responseHeader &src)
 std::string responseHeader::getHeader(int status)
 {
 	std::string header;
+
 	// set all headers to appropriate info
 //	setAllHeaders(content, path, status, contentType);
 	// write header

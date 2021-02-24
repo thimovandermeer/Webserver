@@ -40,6 +40,7 @@ private:
     void        createErrorPage(std::string *pageData);
 		// helper functions
 	void 	readContent();
+	int		authenticate(Request &request, server &server);
 	void 	writeContent(std::string content);
 
 
