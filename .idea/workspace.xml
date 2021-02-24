@@ -21,7 +21,7 @@
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/reading_2" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/ci-cd_pipeline" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
@@ -36,13 +36,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="actually added icon file">
+    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="edited conf file for use 8080 again">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/CGI/CGI.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/CGI/CGI.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/webserv" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/webserv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/CGI/CGI.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/CGI/CGI.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_mac/mac.conf" beforeDir="false" afterPath="$PROJECT_DIR$/test_mac/mac.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/icons/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/icons/favicon.ico" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +52,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="getPath" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -107,15 +103,15 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.webserv">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Test" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv" TEST_CLASS="[List]" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="webserv" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="&quot;./test_mac/mac.conf&quot;" REDIRECT_INPUT="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv">
@@ -175,7 +171,8 @@
       <workItem from="1613639762201" duration="4867000" />
       <workItem from="1613728849996" duration="6661000" />
       <workItem from="1613998229610" duration="3810000" />
-      <workItem from="1614069498896" duration="10067000" />
+      <workItem from="1614069498896" duration="10196000" />
+      <workItem from="1614158205656" duration="2033000" />
     </task>
     <task id="LOCAL-00003" summary="nearly done all set functions of responseheader">
       <created>1611650661666</created>
@@ -338,7 +335,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614086032787</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="edited conf file for use 8080 again">
+      <created>1614088576515</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1614088576515</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -355,7 +359,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/reading_2" />
+                        <option value="origin/ci-cd_pipeline" />
                       </list>
                     </value>
                   </entry>
@@ -415,7 +419,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="First attempt on changing the path" />
     <MESSAGE value="doe het" />
     <MESSAGE value="Response and request part ready for first run" />
     <MESSAGE value="First full main to use from now" />
@@ -440,7 +443,8 @@
     <MESSAGE value="added new reading in server" />
     <MESSAGE value="added icon, messed with reading a bit" />
     <MESSAGE value="actually added icon file" />
-    <option name="LAST_COMMIT_MESSAGE" value="actually added icon file" />
+    <MESSAGE value="edited conf file for use 8080 again" />
+    <option name="LAST_COMMIT_MESSAGE" value="edited conf file for use 8080 again" />
   </component>
   <component name="WindowStateProjectService">
     <state x="730" y="353" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1613737642955">
@@ -459,42 +463,42 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="164" y="89" width="2332" height="1137" key="DiffContextDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1614085543537" />
-    <state width="2490" height="308" key="GridCell.Tab.0.bottom" timestamp="1614086688480">
+    <state width="2517" height="633" key="GridCell.Tab.0.bottom" timestamp="1614160228871">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1398" height="403" key="GridCell.Tab.0.bottom/0.23.1440.798@0.23.1440.798" timestamp="1612879165339" />
-    <state width="2490" height="308" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1614086688480" />
-    <state width="2490" height="308" key="GridCell.Tab.0.center" timestamp="1614086688479">
+    <state width="2517" height="633" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1614160228871" />
+    <state width="2517" height="633" key="GridCell.Tab.0.center" timestamp="1614160228870">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1398" height="403" key="GridCell.Tab.0.center/0.23.1440.798@0.23.1440.798" timestamp="1612879165338" />
-    <state width="2490" height="308" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1614086688479" />
-    <state width="2490" height="308" key="GridCell.Tab.0.left" timestamp="1614086688478">
+    <state width="2517" height="633" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1614160228870" />
+    <state width="2517" height="633" key="GridCell.Tab.0.left" timestamp="1614160228869">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1398" height="403" key="GridCell.Tab.0.left/0.23.1440.798@0.23.1440.798" timestamp="1612879165338" />
-    <state width="2490" height="308" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1614086688478" />
-    <state width="2490" height="308" key="GridCell.Tab.0.right" timestamp="1614086688479">
+    <state width="2517" height="633" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1614160228869" />
+    <state width="2517" height="633" key="GridCell.Tab.0.right" timestamp="1614160228871">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1398" height="403" key="GridCell.Tab.0.right/0.23.1440.798@0.23.1440.798" timestamp="1612879165339" />
-    <state width="2490" height="308" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1614086688479" />
-    <state width="2490" height="308" key="GridCell.Tab.1.bottom" timestamp="1614086688480">
+    <state width="2517" height="633" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1614160228871" />
+    <state width="2517" height="633" key="GridCell.Tab.1.bottom" timestamp="1614160228872">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2490" height="308" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1614086688480" />
-    <state width="2490" height="308" key="GridCell.Tab.1.center" timestamp="1614086688480">
+    <state width="2517" height="633" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1614160228872" />
+    <state width="2517" height="633" key="GridCell.Tab.1.center" timestamp="1614160228872">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2490" height="308" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1614086688480" />
-    <state width="2490" height="308" key="GridCell.Tab.1.left" timestamp="1614086688480">
+    <state width="2517" height="633" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1614160228872" />
+    <state width="2517" height="633" key="GridCell.Tab.1.left" timestamp="1614160228871">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2490" height="308" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1614086688480" />
-    <state width="2490" height="308" key="GridCell.Tab.1.right" timestamp="1614086688480">
+    <state width="2517" height="633" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1614160228871" />
+    <state width="2517" height="633" key="GridCell.Tab.1.right" timestamp="1614160228872">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2490" height="308" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1614086688480" />
+    <state width="2517" height="633" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1614160228872" />
     <state x="242" y="146" key="MergeDialog" timestamp="1613993204771">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -507,10 +511,10 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="775" y="330" key="SettingsEditor/0.23.2560.1337@0.23.2560.1337" timestamp="1614087746123" />
-    <state x="866" y="431" key="Vcs.Push.Dialog.v2" timestamp="1614082446170">
+    <state x="866" y="431" key="Vcs.Push.Dialog.v2" timestamp="1614088578187">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="866" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1614082446170" />
+    <state x="866" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1614088578187" />
     <state x="1042" y="432" key="VcsDiffUtil.ChangesDialog" timestamp="1613643882372">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
