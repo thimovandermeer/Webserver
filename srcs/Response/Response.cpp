@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <sstream>
+#include <sys/stat.h>
 
 Response::Response(Request &req, server &serv) :
 	_path(getPath(serv, req, *this)), // delete hardcoded
@@ -50,7 +51,6 @@ Response &Response::operator=(const Response &src)
 
 bool	Response::isMethodAllowed()
 {
-	std::cerr << "loc is " << *this->currentLoc << std::endl;
 	if (!this->currentLoc)
 		return (false);
 	std::vector<std::string>::iterator it;
@@ -101,13 +101,14 @@ void 	Response::readContent()
 		return ;
 	}
 	std::ifstream file;
-	const char *c = _path.c_str();
-	if(access(c, F_OK) != 0)
+	struct stat statBuf;
+
+	if(stat(_path.c_str(), &statBuf) != 0)
 		return (this->setStatus(404));
 	file.open(this->_path, std::ifstream::in);
 	if(!file.is_open())
 		return (this->setStatus(403));
-	if(access(c, F_OK) != 0 && _status == 200)
+	if(stat(_path.c_str(), &statBuf) != 0 && _status == 200)
 		return (this->setStatus(404));
 	file.open(_path, std::ifstream::in);
 	if(!file.is_open() && _status == 200)
@@ -122,8 +123,8 @@ void 	Response::writeContent(std::string content)
 	std::ofstream file;
 //	if (_status == 200)
 //    	_status = 204;
-	const char *c = _path.c_str();
-	if(access(c, F_OK) == 0 && _status == 200)
+	struct stat statBuf;
+	if(stat(_path.c_str(), &statBuf) == 0 && _status == 200)
 		this->setStatus(201);
 	file.open(_path, std::ofstream::out | std::ofstream::trunc);
 	if(!file.is_open() && _status == 200)
@@ -219,8 +220,8 @@ void Response::postMethod(std::string content)
 	if(!file.is_open() && _status == 200)
 		this->setStatus(403);
 //	this->setStatus(204);
-	const char *c = _path.c_str();
-	if(access(c, F_OK) == 0 && _status == 200)
+	struct stat statBuf;
+	if(stat(_path.c_str(), &statBuf) == 0 && _status == 200)
 		this->setStatus(201);
 	file << content;
 	file.close();
@@ -254,7 +255,7 @@ int 				Response::getStatus() const
 
 void				Response::setStatus(int status)
 {
-	if (this->_status != 200)
+	if (this->_status >= 400)
 		return;
 	this->_status = status;
 }

@@ -19,9 +19,7 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/ci-cd_pipeline" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
@@ -36,25 +34,17 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="updated favicon.ico">
+    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="added location in response to check allowed methods, made methods in location into vector to allow for more than 1 method per location, updated &lt;&lt; overloads for location and server">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/CGI/CGI.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/CGI/CGI.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Cluster/serverCluster.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Cluster/serverCluster.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/location.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/location.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/parser.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/parser.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/serverBasic.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/serverBasic.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/serverUtility.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/serverUtility.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/webserv.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/webserv.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/webserv" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/webserv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Response/Response.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Response/Response.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Response/getPath.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/getPath.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/location.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/location.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/location.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/location.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/serverBasic.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/serverBasic.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +179,7 @@
       <workItem from="1613998229610" duration="3810000" />
       <workItem from="1614069498896" duration="10196000" />
       <workItem from="1614158205656" duration="5547000" />
-      <workItem from="1614169027758" duration="530000" />
+      <workItem from="1614169027758" duration="4178000" />
     </task>
     <task id="LOCAL-00003" summary="nearly done all set functions of responseheader">
       <created>1611650661666</created>
@@ -366,7 +356,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614160642944</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="added location in response to check allowed methods, made methods in location into vector to allow for more than 1 method per location, updated &lt;&lt; overloads for location and server">
+      <created>1614170940896</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1614170940896</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -377,19 +374,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/ci-cd_pipeline" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -443,7 +428,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Response and request part ready for first run" />
     <MESSAGE value="First full main to use from now" />
     <MESSAGE value="Nearly finished first pipeline" />
     <MESSAGE value="added exit option" />
@@ -468,7 +452,8 @@
     <MESSAGE value="actually added icon file" />
     <MESSAGE value="edited conf file for use 8080 again" />
     <MESSAGE value="updated favicon.ico" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated favicon.ico" />
+    <MESSAGE value="added location in response to check allowed methods, made methods in location into vector to allow for more than 1 method per location, updated &lt;&lt; overloads for location and server" />
+    <option name="LAST_COMMIT_MESSAGE" value="added location in response to check allowed methods, made methods in location into vector to allow for more than 1 method per location, updated &lt;&lt; overloads for location and server" />
   </component>
   <component name="WindowStateProjectService">
     <state x="730" y="353" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1613737642955">
@@ -487,42 +472,42 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="164" y="89" width="2332" height="1137" key="DiffContextDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1614085543537" />
-    <state width="2517" height="305" key="GridCell.Tab.0.bottom" timestamp="1614164380044">
+    <state width="2517" height="305" key="GridCell.Tab.0.bottom" timestamp="1614177590895">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1398" height="403" key="GridCell.Tab.0.bottom/0.23.1440.798@0.23.1440.798" timestamp="1612879165339" />
-    <state width="2517" height="305" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1614164380044" />
-    <state width="2517" height="305" key="GridCell.Tab.0.center" timestamp="1614164380043">
+    <state width="2517" height="305" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1614177590895" />
+    <state width="2517" height="305" key="GridCell.Tab.0.center" timestamp="1614177590894">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1398" height="403" key="GridCell.Tab.0.center/0.23.1440.798@0.23.1440.798" timestamp="1612879165338" />
-    <state width="2517" height="305" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1614164380043" />
-    <state width="2517" height="305" key="GridCell.Tab.0.left" timestamp="1614164380042">
+    <state width="2517" height="305" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1614177590894" />
+    <state width="2517" height="305" key="GridCell.Tab.0.left" timestamp="1614177590893">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1398" height="403" key="GridCell.Tab.0.left/0.23.1440.798@0.23.1440.798" timestamp="1612879165338" />
-    <state width="2517" height="305" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1614164380042" />
-    <state width="2517" height="305" key="GridCell.Tab.0.right" timestamp="1614164380043">
+    <state width="2517" height="305" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1614177590893" />
+    <state width="2517" height="305" key="GridCell.Tab.0.right" timestamp="1614177590894">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1398" height="403" key="GridCell.Tab.0.right/0.23.1440.798@0.23.1440.798" timestamp="1612879165339" />
-    <state width="2517" height="305" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1614164380043" />
-    <state width="2517" height="305" key="GridCell.Tab.1.bottom" timestamp="1614164380045">
+    <state width="2517" height="305" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1614177590894" />
+    <state width="2517" height="305" key="GridCell.Tab.1.bottom" timestamp="1614177590895">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2517" height="305" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1614164380045" />
-    <state width="2517" height="305" key="GridCell.Tab.1.center" timestamp="1614164380045">
+    <state width="2517" height="305" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1614177590895" />
+    <state width="2517" height="305" key="GridCell.Tab.1.center" timestamp="1614177590895">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2517" height="305" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1614164380045" />
-    <state width="2517" height="305" key="GridCell.Tab.1.left" timestamp="1614164380044">
+    <state width="2517" height="305" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1614177590895" />
+    <state width="2517" height="305" key="GridCell.Tab.1.left" timestamp="1614177590895">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2517" height="305" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1614164380044" />
-    <state width="2517" height="305" key="GridCell.Tab.1.right" timestamp="1614164380045">
+    <state width="2517" height="305" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1614177590895" />
+    <state width="2517" height="305" key="GridCell.Tab.1.right" timestamp="1614177590895">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2517" height="305" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1614164380045" />
+    <state width="2517" height="305" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1614177590895" />
     <state x="242" y="146" key="MergeDialog" timestamp="1613993204771">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -535,10 +520,10 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="775" y="330" key="SettingsEditor/0.23.2560.1337@0.23.2560.1337" timestamp="1614087746123" />
-    <state x="866" y="431" key="Vcs.Push.Dialog.v2" timestamp="1614160644922">
+    <state x="866" y="431" key="Vcs.Push.Dialog.v2" timestamp="1614171213765">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="866" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1614160644922" />
+    <state x="866" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1614171213765" />
     <state x="1042" y="432" key="VcsDiffUtil.ChangesDialog" timestamp="1613643882372">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -555,6 +540,10 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="1095" y="612" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.2560.1337@0.23.2560.1337" timestamp="1613123803799" />
+    <state x="1033" y="411" key="git4idea.branch.GitSmartOperationDialog" timestamp="1614174945126">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="1033" y="411" key="git4idea.branch.GitSmartOperationDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1614174945126" />
     <state x="1050" y="489" key="refactoring.ChangeSignatureDialog" timestamp="1613138761663">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>

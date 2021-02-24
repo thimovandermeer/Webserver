@@ -52,7 +52,6 @@ std::string	getPath(server &serv, Request &req, Response &resp)
 		resp.setStatus(404); // location not found
 	else
 	{
-		resp.currentLoc = loc;
 		// location exists
 		if (!loc->getRoot().empty()) // location has no own root, so we use the server root
 			rootDir = loc->getRoot();
@@ -85,5 +84,6 @@ std::string	getPath(server &serv, Request &req, Response &resp)
 				resp.setStatus(404);
 		}
 	}
+	resp.currentLoc = loc;
 	return (filePath);
 }

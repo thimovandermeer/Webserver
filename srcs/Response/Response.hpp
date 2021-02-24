@@ -42,6 +42,9 @@ private:
 	void 	readContent();
 	void 	writeContent(std::string content);
 
+	location			*currentLoc;
+
+
 public:
 	void				setStatus(int status);
 	std::string 		getContent();
@@ -50,11 +53,10 @@ public:
 
 	bool				isMethodAllowed();
 
-	location			*currentLoc;
+	friend std::string	getPath(server &serv, Request &req, Response &resp);
 
 };
 
-std::string	getPath(server &serv, Request &req, Response &resp);
 
 
 #endif //WEBSERV_RESPONSE_HPP
