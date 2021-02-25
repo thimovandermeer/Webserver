@@ -11,11 +11,11 @@
 #include <sys/stat.h>
 
 Response::Response(Request &req, server &serv) :
+	_status(req.getStatus()),
 	_path(getPath(serv, req, *this)), // delete hardcoded
 	_contentType(req.getContentType()),
 	_CGI(_path, req, serv),
 	_useCGI(req.getCgi()),
-	_status(req.getStatus()),
 	_method(req.getMethod())
 {
     _errorMessage[204] = "No Content";

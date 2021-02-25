@@ -21,11 +21,11 @@ public:
 private:
 	std::string 				_response;
 	std::string 				_content;
+	int 						_status;
 	std::string 				_path;
 	std::string 				_contentType;
 	CGI							_CGI;
 	bool 						_useCGI;
-	int 						_status;
 	std::map<int, std::string>	_errorMessage;
 	std::string					_method;
 private:

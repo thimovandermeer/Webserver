@@ -40,15 +40,24 @@ std::string	getPath(server &serv, Request &req, Response &resp)
 
 	uri = req.getUri();
 	location *loc = findFileExtension(serv, &uri);
-	found = uri.find_first_of("/", 1);
-	if (uri == "/")
-		locMatch = "/";
-	else
-		locMatch = uri.substr(0, found);
-	if (uri.length() > 1)
-		uri.erase(0, found);
 	if (!loc)
+	{
+		found = uri.find_first_of("/", 1);
+		if (uri == "/")
+			locMatch = "/";
+		else
+			locMatch = uri.substr(0, found);
+		if (uri.length() > 1)
+		{
+			if (found != std::string::npos)
+				uri.erase(0, found + 1);
+			else
+				uri.erase(0, found);
+		}
 		loc = serv.findLocation(locMatch);
+	}
+	else
+		uri.erase(0, 1);
 	if (!loc)
 		resp.setStatus(404); // location not found
 	else
@@ -63,7 +72,7 @@ std::string	getPath(server &serv, Request &req, Response &resp)
 		if (uri[uri.length() - 1] == '/') // uri ends in '/', so a directory is requested, meaning we have to fetch an index page
 		{
 			if (!loc->getIndices().empty())
-				indices = loc->getIndices(); // if location has no index specifications, we use the server's
+				indices = loc->getIndices(); // if locationz has no index specifications, we use the server's
 			else
 				indices = serv.getIndices();
 			std::vector<std::string>::iterator it;
