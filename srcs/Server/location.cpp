@@ -166,6 +166,10 @@ const std::string				&location::getAuthUserFile() const
 	return (this->_authBasicUserFile);
 }
 
+std::string	location::gethtpasswdpath() const {
+	return _htpasswd_path;
+}
+
 void	location::findValue(std::string &key, std::string line)
 {
 	if (*(line.rbegin()) != ';') // line doesn't end with ';'
@@ -203,9 +207,10 @@ bool	location::isFileExtension() const
 	return (this->_isFileExtension);
 }
 
-bool location::getMatch(const std::string& username, const std::string& passwd)
+bool location::getAuthMatch(const std::string& username, const std::string& passwd)
 {
-	std::map<std::string, std::string>::const_iterator it = this->_loginfo.find(username);
+
+	std::map<std::string, std::string>::iterator it = this->_loginfo.find(username);
 
 	return ( it != _loginfo.end() && passwd == base64_decode(it->second) );
 }

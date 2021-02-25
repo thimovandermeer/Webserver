@@ -11,8 +11,20 @@
 #include "../Utils/utils.hpp"
 #include "../Utils/Base64.hpp"
 
+# define _RED			"\x1b[31m"
+# define _GREEN			"\x1b[32m"
+# define _YELLOW		"\x1b[33m"
+# define _BLUE			"\x1b[34m"
+# define _PURPLE		"\x1b[35m"
+# define _CYAN			"\x1b[36m"
+# define _WHITE			"\x1b[37m"
+
+# define _END			"\x1b[0m"
+# define _BOLD			"\x1b[1m"
+# define _UNDER			"\x1b[4m"
+# define _REV			"\x1b[7m"
+
 Response::Response(Request &request, server &server) :
-	_path(getPath(server, request, *this)), // delete hardcoded
 	_contentType(request.getContentType()),
 	_CGI(_path, request, server),
 	_useCGI(request.getCgi()),
@@ -49,15 +61,18 @@ void Response::setupResponse(Request &request, server &server) {
 	_path = getPath(server, request, *this);
 	_status = request.getStatus();
 //	_status = 405;          //404 niet
-	if (this->authenticate(request, server))
+	if (this->authenticate(request))
+	{
 		std::cerr << "Authentication failed";
-	if(_method == "GET")
+		return;
+	}
+	else if(_method == "GET")
 		getMethod(); // done
-	if(_method == "HEAD")
+	else if(_method == "HEAD")
 		headMethod(); // done
-	if(_method == "POST")
+	else if(_method == "POST")
 		postMethod(request.getBody());
-	if(_method == "PUT")
+	else if(_method == "PUT")
 		putMethod(request.getBody()); // done
 	if (this->_status >= 299)
 	{
@@ -231,32 +246,38 @@ void				Response::setStatus(int status)
 	this->_status = status;
 }
 
-int					Response::authenticate(Request &request, server &server)
+int					Response::authenticate(Request &request)
 {
-	location *temp;
-	std::string input = "auth_basic";
-	temp = server.findLocation(input);
-	std::string username;
-	std::string passwd;
-	std::string auth = request.getAuthorization();
-	std::string type;
-	std::string credentials;
-	get_key_value(auth, type, credentials, ":", "\n\r#;");
-	credentials = base64_decode(credentials);
-	get_key_value(credentials, username, passwd, ":", "\n\r#;");
-	if (temp->getMatch(username, passwd))
-	{
-		std::cout << "Authorization successful!" << std::endl;
+	if (this->currentLoc == NULL) {
+		std::cout << _RED "Location does not exist" _END << std::endl;
+		return -1;
+	}
+	if (this->currentLoc->gethtpasswdpath().empty()) {
+		request._defHeaders[AUTHORIZATION].clear();
+		return 0;
+	}
+	std::string username, passwd, str;
+	try {
+		std::string auth = request._defHeaders.at(AUTHORIZATION);
+		std::string type, credentials;
+		get_key_value(auth, type, credentials, " ", "\n\r#;");
+		credentials = base64_decode(credentials);
+		get_key_value(credentials, username, passwd, ":", "\n\r#;");
+	}
+	catch (std::exception& e) {
+		std::cerr << e.what() << std::endl;
+		std::cerr <<_RED "No credentials provided by client" _END << std::endl;
+	}
+	request._defHeaders[AUTHORIZATION] = request._defHeaders[AUTHORIZATION].substr(0, request._defHeaders[AUTHORIZATION].find_first_of(' '));
+	request._defHeaders[REMOTE_USER] = username;
+	if (this->currentLoc->getAuthMatch(username, passwd)) {
+		std::cout << _GREEN _BOLD "Authorization successful!" _END << std::endl;
 		return 0;
 	}
 
 	_status = 401;
-	_response += "401 Unauthorized\r\n";
-	this->_response +=	"Server: Webserv/1.1\r\n"
-						  "Content-Type: text/html\r\n"
-						  "WWW-Authenticate: Basic realm=";
-	this->_response += temp->getAuthBasic();
-	this->_response += ", charset=\"UTF-8\"\r\n";
+	responseHeader header(_content, _path, _status, _contentType);
+	_response = header.getHeader(_status);
 	return 1;
 }
 

@@ -40,8 +40,10 @@ private:
     void        createErrorPage(std::string *pageData);
 		// helper functions
 	void 	readContent();
-	int		authenticate(Request &request, server &server);
+	int		authenticate(Request &request);
 	void 	writeContent(std::string content);
+
+	location			*currentLoc;
 
 
 public:
@@ -50,9 +52,10 @@ public:
 	const std::string 	&getResponse() const;
 	int 				getStatus() const;
 
+	bool				isMethodAllowed();
+
+	friend std::string	getPath(server &serv, Request &req, Response &resp);
+
 };
-
-std::string	getPath(server &server, Request &request, Response &response);
-
 
 #endif //WEBSERV_RESPONSE_HPP

@@ -57,7 +57,8 @@ public:
 	const std::string				&getCgiPath() const;
 	const std::string				&getAuthBasic() const;
 	const std::string				&getAuthUserFile() const;
-
+	bool 							getAuthMatch(const std::string& username, const std::string& passwd);
+	std::string						gethtpasswdpath() const;
 	void	findValue(std::string &key, std::string line);
 	bool	valueCheck() const;
 	bool 	getMatch(const std::string& username, const std::string& passwd);

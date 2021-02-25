@@ -100,6 +100,8 @@ std::string		responseHeader::createStatusMessage(int status)		//ik denk dat deze
 	else if (status == 405)         //GET and HEAD mogen deze nooit returnen
 	    return ("Method Not Allowed");
 	    //error 503 toevoegen (wordt genoemd op regel 223
+	else if (status == 401)
+		return ("Unauthorized");
 	else
 		return ("Zieke Error in onze code");
 }
@@ -217,7 +219,7 @@ void responseHeader::setWwwAuthenticate(int status)
 {
 	if (status == 401)
 	{
-		_wwwAuthenticate = "Newauth realm=\"apps\", type=1,\n title=\"Login to \\\"apps\\\"\", Basic realm=\"simple\"charset=\"UTF-8\"";
+		_wwwAuthenticate = "Basic realm=\"Access requires authentification\" charset=\"UTF-8\"";
 	}
 }
 

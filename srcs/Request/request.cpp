@@ -49,6 +49,7 @@ Request::Request(std::string request) : _request(request)
     _headerMap["TRANSFER-ENCODING"] = TRANSFER_ENCODING;
     _headerMap["USER-AGENT"] = USER_AGENT;
     _headerMap["WWW-AUTHENTICATE"] = WWW_AUTHENTICATE;
+    _headerMap["REMOTE_USER"] = REMOTE_USER;
 	parseRequest();
 }
 
