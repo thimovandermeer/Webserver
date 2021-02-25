@@ -41,11 +41,12 @@ std::string	getPath(server &serv, Request &req, Response &resp)
 	uri = req.getUri();
 	location *loc = findFileExtension(serv, &uri);
 	found = uri.find_first_of("/", 1);
-	if (found == std::string::npos)
-		found = 1;
-	locMatch = uri.substr(0, found);
+	if (uri == "/")
+		locMatch = "/";
+	else
+		locMatch = uri.substr(0, found);
 	if (uri.length() > 1)
-		uri.erase(0, 1);
+		uri.erase(0, found);
 	if (!loc)
 		loc = serv.findLocation(locMatch);
 	if (!loc)

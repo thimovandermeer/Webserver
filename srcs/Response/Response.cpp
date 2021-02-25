@@ -65,7 +65,6 @@ bool	Response::isMethodAllowed()
 }
 
 void	Response::setupResponse(Request &request, server &serv) {
-	_path = getPath(serv, request, *this);
 	this->setStatus(request.getStatus());
 	if(_method == "GET")
 	{
