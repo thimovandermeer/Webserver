@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <sys/stat.h>
 #include <dns_sd.h>
+#include <fstream>
 #include "../Utils/utils.hpp"
 #include "../Utils/Base64.hpp"
 
@@ -102,23 +103,24 @@ void	location::setAuthUserFile(std::string &userFile)
 
 void 	location::sethtpasswdpath(std::string &path)
 {
-	struct stat statstruct = {};
+	struct stat	statstruct = {};
 	if (stat(path.c_str(), &statstruct) == -1)
 		return ;
 
 	this->_htpasswd_path = path;
-	int htpasswd_fd = open(this->_htpasswd_path.c_str(), O_RDONLY);
-	if (htpasswd_fd < 0)
-		return;
+	std::fstream	configfile;
 	std::string line;
-	while (get_next_line(htpasswd_fd, line)) {
+
+	configfile.open(this->_htpasswd_path);
+	if (!configfile)
+		return;
+	while (std::getline(configfile, line)) {
 		std::string user;
 		std::string pass;
 		get_key_value(line, user, pass, ":", "\n\r#;");
 		this->_loginfo[user] = pass;
 	}
-	if (close(htpasswd_fd) == -1)
-		throw std::runtime_error("Failed to close .htpasswd file");
+	configfile.close();
 }
 
 const bool						&location::getAutoindex() const
@@ -209,10 +211,15 @@ bool	location::isFileExtension() const
 
 bool location::getAuthMatch(const std::string& username, const std::string& passwd)
 {
-
 	std::map<std::string, std::string>::iterator it = this->_loginfo.find(username);
 
-	return ( it != _loginfo.end() && passwd == base64_decode(it->second) );
+//	return ( it != _loginfo.end() && passwd == base64_decode(it->second) );
+	if (it == this->_loginfo.end())
+		return (false);
+	if (passwd != it->second)
+		return (false);
+	return (true);
+
 }
 
 std::ostream&	operator<<(std::ostream &os, const location &loc)

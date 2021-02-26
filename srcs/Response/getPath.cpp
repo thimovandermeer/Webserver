@@ -69,12 +69,16 @@ std::string	getPath(server &serv, Request &req, Response &resp)
 			rootDir = serv.getRoot();
 
 		std::vector<std::string>	indices;
-		if (uri[uri.length() - 1] == '/') // uri ends in '/', so a directory is requested, meaning we have to fetch an index page
+		if (!loc->getIndices().empty())
+			indices = loc->getIndices();
+		else if (loc->getMatch() == "/")
+			indices = serv.getIndices();
+		if (!indices.empty())
 		{
-			if (!loc->getIndices().empty())
-				indices = loc->getIndices(); // if locationz has no index specifications, we use the server's
-			else
-				indices = serv.getIndices();
+//			if (!loc->getIndices().empty())
+//				indices = loc->getIndices(); // if locationz has no index specifications, we use the server's
+//			else
+//				indices = serv.getIndices();
 			std::vector<std::string>::iterator it;
 			for (it = indices.begin(); it < indices.end(); it++) // test from front to back to find the first existing index page at requested root
 			{

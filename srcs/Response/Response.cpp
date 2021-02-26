@@ -63,7 +63,7 @@ void Response::setupResponse(Request &request, server &server) {
 //	_status = 405;          //404 niet
 	if (this->authenticate(request))
 	{
-		std::cerr << "Authentication failed";
+		std::cerr << "Authentication failed" << std::endl;
 		return;
 	}
 	else if(_method == "GET")

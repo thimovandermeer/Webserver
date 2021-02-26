@@ -175,8 +175,9 @@ void	server::run()
 		return;
 	}
 
-	Request	request(receivedRequest);
-	Response resp(request, *this);
+	Request		request(receivedRequest);
+	Response	resp(request, *this);
+
 	resp.setupResponse(request, *this);
 	try
 	{
