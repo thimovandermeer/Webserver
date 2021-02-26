@@ -186,7 +186,8 @@ void	Response::errorPage(server &serv)
 		createErrorPage(&pageData);
 	}
 	this->_content.clear();
-	this->_content = pageData;
+	if (this->_method != "HEAD")
+		this->_content = pageData;
 	responseHeader header(_content, _path, _status, _contentType);
 	_response = header.getHeader(_status) + _content;
 }
@@ -204,6 +205,7 @@ void Response::headMethod()
 	readContent();
 	responseHeader header(_content, _path, _status, _contentType);
   	_response = header.getHeader(_status);
+  	this->_content.clear();
 }
 
 void Response::postMethod(std::string content)
