@@ -66,7 +66,7 @@ std::string	getPath(server &serv, Request &req, Response &resp)
 		if (!loc->getRoot().empty()) // location has no own root, so we use the server root
 			rootDir = loc->getRoot();
 		else
-			rootDir = serv.getRoot();
+			rootDir = serv.getRoot();       //hier haalt hij die html op als root
 
 		std::vector<std::string>	indices;
 		if (!loc->getIndices().empty())
@@ -84,7 +84,8 @@ std::string	getPath(server &serv, Request &req, Response &resp)
 			{
 				filePath = rootDir + (*it);
 				struct stat statBuf;
-				if (stat(filePath.c_str(), &statBuf) == 0)
+				int i = stat(filePath.c_str(), &statBuf);
+				if (i == 0)
 					break;
 			}
 			if (it == indices.end()) // all index pages don't exist at requested root
