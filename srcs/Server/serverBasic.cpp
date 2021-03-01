@@ -244,6 +244,9 @@ std::ostream&	operator<<(std::ostream &os, const server &serv)
 	os << std::setw(15) << std::left << "root: " << serv.getRoot() << std::endl;
 	os << std::setw(15) << std::left << "errorpage: " << serv.getErrorPage() << std::endl;
 	os << std::setw(15) << std::left << "host: " << serv.getHost() << std::endl;
+	os << std::setw(15) << std::left << "socket fd: " << serv.getSocketFd() << std::endl;
+	os << std::setw(15) << std::left << "accept fd: " << serv.getAcceptFd() << std::endl;
+
 
 	std::vector<std::string> vc;
 	std::vector<std::string>::iterator it;

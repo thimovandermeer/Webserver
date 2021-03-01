@@ -9,23 +9,23 @@
 
 class Response {
 public:
-	Response(Request &request, server &server);
+	Response(Request &req, server &serv);
 	Response(const Response &src);
 	virtual ~Response();
 	Response &operator=(const Response &src);
 
-	void 	setupResponse(Request &request, server &server);
+	void 	setupResponse(Request &req, server &serv);
 
 	friend std::ostream &operator<<(std::ostream &os, const Response &response);
 
 private:
 	std::string 				_response;
 	std::string 				_content;
+	int 						_status;
 	std::string 				_path;
 	std::string 				_contentType;
 	CGI							_CGI;
 	bool 						_useCGI;
-	int 						_status;
 	std::map<int, std::string>	_errorMessage;
 	std::string					_method;
 private:
@@ -40,7 +40,7 @@ private:
     void        createErrorPage(std::string *pageData);
 		// helper functions
 	void 	readContent();
-	int		authenticate(Request &request);
+	int		authenticate(Request &req);
 	void 	writeContent(std::string content);
 
 	location			*currentLoc;

@@ -41,7 +41,7 @@ location	&location::operator=(const location &original)
 	this->_autoindex = original._autoindex;
 	this->_match = original._match;
 	this->_root = original._root;
-	this->_method = original._method;
+	this->_methods = original._methods;
 	this->_errorPage = original._errorPage;
 	this->_indices = original._indices;
 	this->_typeFunctionMap = original._typeFunctionMap;
@@ -70,7 +70,10 @@ void	location::setRoot(std::string &root)
 
 void	location::setMethod(std::string &method)
 {
-	this->_method = method;
+	std::stringstream	ss(method);
+	std::string			meth;
+	while (ss >> meth)
+		this->_methods.push_back(meth);
 }
 
 void	location::setErrorPage(std::string &errorPage)
@@ -138,9 +141,9 @@ const std::string				&location::getRoot() const
 	return (this->_root);
 }
 
-const std::string				&location::getMethod() const
+const std::vector<std::string>				&location::getMethods() const
 {
-	return (this->_method);
+	return (this->_methods);
 }
 
 const std::string				&location::getErrorPage() const
@@ -192,11 +195,14 @@ void	location::findValue(std::string &key, std::string line)
 bool	location::valueCheck() const
 {
 	std::string	allowedMethods[5] = {"", "HEAD", "GET", "POST", "PUT"};
-	bool	ret = false;
-	for (int i = 0; i < 5; i++)
+	bool	ret = true;
+
+	std::vector<std::string>::const_iterator it;
+	std::vector<std::string> vc = this->_methods;
+	for (it = this->_methods.begin(); it < this->_methods.end(); it++)
 	{
-		if (this->_method == allowedMethods[i])
-			ret = true;
+		if ((*it) != allowedMethods[0] && (*it) != allowedMethods[1] && (*it) != allowedMethods[2] && (*it) != allowedMethods[3] && (*it) != allowedMethods[4])
+			ret = false;
 	}
 	if (!ret)
 		return (ret);
@@ -224,26 +230,41 @@ bool location::getAuthMatch(const std::string& username, const std::string& pass
 
 std::ostream&	operator<<(std::ostream &os, const location &loc)
 {
+	std::vector<std::string> vc;
+	std::vector<std::string>::iterator it;
+
 	os << std::setw(13) << std::left << "\tmatch: " << loc.getMatch() << std::endl;
 	os << std::setw(13) << std::left << "\tautoindex: ";
 	if (loc.getAutoindex())
 		os << "on" << std::endl;
 	else
 		os << "off" << std::endl;
-	os << std::setw(13) << std::left << "\troot: " << loc.getRoot() <<std::endl;
-	os << std::setw(13) << std::left << "\tmethod: " << loc.getMethod() <<std::endl;
-	os << std::setw(13) << std::left << "\terror page: " << loc.getErrorPage() <<std::endl;
+	os << std::setw(13) << std::left << "\troot: " << loc.getRoot() << std::endl;
 
-	std::vector<std::string> vc;
-	std::vector<std::string>::iterator it;
-	vc = loc.getIndices();
+	vc = loc.getMethods();
 	it = vc.begin();
 
-	os << std::setw(13) << std::left << "\tindices: " <<std::endl;
+	os << std::setw(13) << std::left << "\tmethods: " << std::endl;
 	while (!vc.empty() && it != vc.end())
 	{
 		os << "\t\t- " << *it << std::endl;
 		it++;
 	}
+
+	os << std::setw(13) << std::left << "\terror page: " << loc.getErrorPage() << std::endl;
+
+	vc = loc.getIndices();
+	it = vc.begin();
+
+	os << std::setw(13) << std::left << "\tindices: " << std::endl;
+	while (!vc.empty() && it != vc.end())
+	{
+		os << "\t\t- " << *it << std::endl;
+		it++;
+	}
+
+	os << std::setw(13) << std::left << "\tauthBasic: " << loc.getAuthBasic() << std::endl;
+	os << std::setw(13) << std::left << "\tauthFile: " << loc.getAuthUserFile() << std::endl;
+	os << std::setw(13) << std::left << "\tcgi path: " << loc.getCgiPath() << std::endl;
 	return (os);
 }

@@ -20,6 +20,7 @@ void	server::startListening()
 	bzero(&this->_addr, sizeof(this->_addr));
 	this->_addr.sin_family = AF_INET;
 	this->_addr.sin_port = htons(this->_portNr);
+	// do something with host
 	this->_addr.sin_addr.s_addr = htonl(INADDR_ANY); // this can be the IP address
 
 //	 clear port if it is in use
@@ -44,6 +45,16 @@ void	server::startListening()
 		std::cerr << "listen error" << std::endl;
 		throw server::syscallErrorException();
 	}
+}
+
+void 	server::accept()
+{
+	struct sockaddr connectingAddr;
+	socklen_t		addressLen;
+	this->_acceptFd = ::accept(this->_socketFd, &connectingAddr, &addressLen);
+	if (_acceptFd == -1)
+		std::cerr << "Could not create fd" << std::endl; // dit zometeen aanpassen naar try catch
+	//	fcntl(this->_acceptFd, F_SETFL, O_NONBLOCK);
 }
 
 int hasBody(std::string request)
@@ -152,16 +163,6 @@ void 		server::serverClose()
 	_acceptFd = -1;
 }
 
-void 	server::accept()
-{
-	struct sockaddr connectingAddr;
-	socklen_t		addressLen;
-	this->_acceptFd = ::accept(this->_socketFd, &connectingAddr, &addressLen);
-	if (_acceptFd == -1)
-		std::cerr << "Could not create fd" << std::endl; // dit zometeen aanpassen naar try catch
-	//	fcntl(this->_acceptFd, F_SETFL, O_NONBLOCK);
-}
-
 void	server::run()
 {
 	std::string receivedRequest;
@@ -175,9 +176,8 @@ void	server::run()
 		return;
 	}
 
-	Request		request(receivedRequest);
-	Response	resp(request, *this);
-
+	Request	request(receivedRequest);
+	Response resp(request, *this);
 	resp.setupResponse(request, *this);
 	try
 	{

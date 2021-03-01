@@ -26,6 +26,26 @@ vector
 algorithm
 -
 
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.cpp
+Response.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.hpp
+responseHeader.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/responseHeader.hpp
+fstream
+-
+unistd.h
+-
+fcntl.h
+-
+sstream
+-
+sys/stat.h
+-
+../Utils/utils.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Utils/utils.hpp
+../Utils/Base64.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Utils/Base64.hpp
+
 /Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.hpp
 string
 -
@@ -38,19 +58,13 @@ ostream
 ../CGI/CGI.hpp
 /Users/jbennink/Documents/Projects/webserv_new/srcs/CGI/CGI.hpp
 
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/getPath.cpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/responseHeader.hpp
 string
 -
-sys/stat.h
--
-../Server/location.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/location.hpp
-../Server/server.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/server.hpp
-../Request/request.hpp
-/Users/jbennink/Documents/Projects/webserv_new/srcs/Request/request.hpp
 Response.hpp
 /Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.hpp
+../Request/request.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Request/request.hpp
 
 /Users/jbennink/Documents/Projects/webserv_new/srcs/Server/location.hpp
 string
@@ -75,4 +89,10 @@ sys/socket.h
 -
 netdb.h
 -
+
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Utils/Base64.hpp
+string
+-
+
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Utils/utils.hpp
 
