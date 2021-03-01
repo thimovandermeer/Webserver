@@ -2,6 +2,11 @@
 #include <sstream>
 #include <iostream>
 #include <iomanip>
+#include <sys/stat.h>
+#include <dns_sd.h>
+#include <fstream>
+#include "../Utils/utils.hpp"
+#include "../Utils/Base64.hpp"
 
 const char	*location::inputErrorException::what() const throw()
 {
@@ -20,7 +25,7 @@ location::location(std::string &match) : _autoindex(false), _isFileExtension(fal
 	this->_typeFunctionMap.insert(std::make_pair("index", &location::setIndices));
 	this->_typeFunctionMap.insert(std::make_pair("cgi_exec", &location::setCgiPath));
 	this->_typeFunctionMap.insert(std::make_pair("auth_basic", &location::setAuthBasic));
-	this->_typeFunctionMap.insert(std::make_pair("auth_basic_user_file", &location::setAuthUserFile));
+	this->_typeFunctionMap.insert(std::make_pair("auth_basic_user_file", &location::sethtpasswdpath));
 }
 
 location::location(const location &original)
@@ -99,6 +104,28 @@ void	location::setAuthUserFile(std::string &userFile)
 	this->_authBasicUserFile = userFile;
 }
 
+void 	location::sethtpasswdpath(std::string &path)
+{
+	struct stat	statstruct = {};
+	if (stat(path.c_str(), &statstruct) == -1)
+		return ;
+
+	this->_htpasswd_path = path;
+	std::fstream	configfile;
+	std::string line;
+
+	configfile.open(this->_htpasswd_path);
+	if (!configfile)
+		return;
+	while (std::getline(configfile, line)) {
+		std::string user;
+		std::string pass;
+		get_key_value(line, user, pass, ":", "\n\r#;");
+		this->_loginfo[user] = pass;
+	}
+	configfile.close();
+}
+
 const bool						&location::getAutoindex() const
 {
 	return (this->_autoindex);
@@ -144,6 +171,10 @@ const std::string				&location::getAuthUserFile() const
 	return (this->_authBasicUserFile);
 }
 
+std::string	location::gethtpasswdpath() const {
+	return _htpasswd_path;
+}
+
 void	location::findValue(std::string &key, std::string line)
 {
 	if (*(line.rbegin()) != ';') // line doesn't end with ';'
@@ -182,6 +213,19 @@ bool	location::valueCheck() const
 bool	location::isFileExtension() const
 {
 	return (this->_isFileExtension);
+}
+
+bool location::getAuthMatch(const std::string& username, const std::string& passwd)
+{
+	std::map<std::string, std::string>::iterator it = this->_loginfo.find(username);
+
+//	return ( it != _loginfo.end() && passwd == base64_decode(it->second) );
+	if (it == this->_loginfo.end())
+		return (false);
+	if (passwd != it->second)
+		return (false);
+	return (true);
+
 }
 
 std::ostream&	operator<<(std::ostream &os, const location &loc)

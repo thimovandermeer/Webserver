@@ -41,6 +41,10 @@ sstream
 -
 sys/stat.h
 -
+../Utils/utils.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Utils/utils.hpp
+../Utils/Base64.hpp
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Utils/Base64.hpp
 
 /Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.hpp
 string
@@ -85,4 +89,10 @@ sys/socket.h
 -
 netdb.h
 -
+
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Utils/Base64.hpp
+string
+-
+
+/Users/jbennink/Documents/Projects/webserv_new/srcs/Utils/utils.hpp
 

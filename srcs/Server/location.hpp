@@ -22,9 +22,11 @@ private:
 	std::vector<std::string>		_indices;
 	std::map<std::string, setter>	_typeFunctionMap;
 
-	std::string						_authBasic;
-	std::string						_authBasicUserFile;
-	std::string						_cgiPath;
+	std::string							_authBasic;
+	std::string							_authBasicUserFile;
+	std::string							_cgiPath;
+	std::string 						_htpasswd_path;
+	std::map<std::string, std::string>	_loginfo;
 
 	bool							_isFileExtension;
 	location();
@@ -43,6 +45,8 @@ public:
 	void	setCgiPath(std::string &cgiPass);
 	void	setAuthBasic(std::string &authBasic);
 	void	setAuthUserFile(std::string &userFile);
+	void 	sethtpasswdpath(std::string &path);
+
 
 	const bool						&getAutoindex() const;
 	const std::string				&getMatch() const;
@@ -53,10 +57,11 @@ public:
 	const std::string				&getCgiPath() const;
 	const std::string				&getAuthBasic() const;
 	const std::string				&getAuthUserFile() const;
-
+	bool 							getAuthMatch(const std::string& username, const std::string& passwd);
+	std::string						gethtpasswdpath() const;
 	void	findValue(std::string &key, std::string line);
 	bool	valueCheck() const;
-
+	bool 	getUser(const std::string& username, const std::string& passwd);
 	bool	isFileExtension() const;
 
 };

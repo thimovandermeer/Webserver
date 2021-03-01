@@ -27,11 +27,13 @@ enum headerType {
     SERVER,
     TRANSFER_ENCODING,
     USER_AGENT,
-    WWW_AUTHENTICATE
+    WWW_AUTHENTICATE,
+    REMOTE_USER
 };
 
 class Request{
     public:
+		friend class Response;
         ~Request();
         Request(std::string request);
         Request(const Request &original);
@@ -43,7 +45,7 @@ class Request{
         std::map<headerType, std::string> getHeaders() const;
         std::string getBody() const;
         std::string getContentType();
-		std::string getHost();
+		std::string getAuthorization();
         std::string getCgiEnv() const;
         bool getCgi() const ;
 		int getStatus() const;

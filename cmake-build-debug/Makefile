@@ -413,6 +413,33 @@ srcs/Server/serverUtility.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Server/serverUtility.cpp.s
 .PHONY : srcs/Server/serverUtility.cpp.s
 
+srcs/Utils/Base64.o: srcs/Utils/Base64.cpp.o
+
+.PHONY : srcs/Utils/Base64.o
+
+# target to build an object file
+srcs/Utils/Base64.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Utils/Base64.cpp.o
+.PHONY : srcs/Utils/Base64.cpp.o
+
+srcs/Utils/Base64.i: srcs/Utils/Base64.cpp.i
+
+.PHONY : srcs/Utils/Base64.i
+
+# target to preprocess a source file
+srcs/Utils/Base64.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Utils/Base64.cpp.i
+.PHONY : srcs/Utils/Base64.cpp.i
+
+srcs/Utils/Base64.s: srcs/Utils/Base64.cpp.s
+
+.PHONY : srcs/Utils/Base64.s
+
+# target to generate assembly for a file
+srcs/Utils/Base64.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Utils/Base64.cpp.s
+.PHONY : srcs/Utils/Base64.cpp.s
+
 srcs/Utils/utils.o: srcs/Utils/utils.cpp.o
 
 .PHONY : srcs/Utils/utils.o
@@ -506,6 +533,9 @@ help:
 	@echo "... srcs/Server/serverUtility.o"
 	@echo "... srcs/Server/serverUtility.i"
 	@echo "... srcs/Server/serverUtility.s"
+	@echo "... srcs/Utils/Base64.o"
+	@echo "... srcs/Utils/Base64.i"
+	@echo "... srcs/Utils/Base64.s"
 	@echo "... srcs/Utils/utils.o"
 	@echo "... srcs/Utils/utils.i"
 	@echo "... srcs/Utils/utils.s"

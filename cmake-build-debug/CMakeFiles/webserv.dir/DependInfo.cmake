@@ -14,6 +14,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/parser.cpp" "/Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/parser.cpp.o"
   "/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/serverBasic.cpp" "/Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/serverBasic.cpp.o"
   "/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/serverUtility.cpp" "/Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/serverUtility.cpp.o"
+  "/Users/jbennink/Documents/Projects/webserv_new/srcs/Utils/Base64.cpp" "/Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Utils/Base64.cpp.o"
   "/Users/jbennink/Documents/Projects/webserv_new/srcs/Utils/utils.cpp" "/Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Utils/utils.cpp.o"
   "/Users/jbennink/Documents/Projects/webserv_new/srcs/webserv.cpp" "/Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles/webserv.dir/srcs/webserv.cpp.o"
   )

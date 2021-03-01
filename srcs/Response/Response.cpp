@@ -9,14 +9,29 @@
 #include <fcntl.h>
 #include <sstream>
 #include <sys/stat.h>
+#include "../Utils/utils.hpp"
+#include "../Utils/Base64.hpp"
+
+# define _RED			"\x1b[31m"
+# define _GREEN			"\x1b[32m"
+# define _YELLOW		"\x1b[33m"
+# define _BLUE			"\x1b[34m"
+# define _PURPLE		"\x1b[35m"
+# define _CYAN			"\x1b[36m"
+# define _WHITE			"\x1b[37m"
+
+# define _END			"\x1b[0m"
+# define _BOLD			"\x1b[1m"
+# define _UNDER			"\x1b[4m"
+# define _REV			"\x1b[7m"
 
 Response::Response(Request &req, server &serv) :
-	_status(req.getStatus()),
-	_path(getPath(serv, req, *this)), // delete hardcoded
-	_contentType(req.getContentType()),
-	_CGI(_path, req, serv),
-	_useCGI(req.getCgi()),
-	_method(req.getMethod())
+		_status(req.getStatus()),
+		_path(getPath(serv, req, *this)), // delete hardcoded
+		_contentType(req.getContentType()),
+		_CGI(_path, req, serv),
+		_useCGI(req.getCgi()),
+		_method(req.getMethod())
 {
     _errorMessage[204] = "No Content";
     _errorMessage[400] = "Bad Request";
@@ -64,8 +79,14 @@ bool	Response::isMethodAllowed()
 	return (false);
 }
 
-void	Response::setupResponse(Request &request, server &serv) {
-	this->setStatus(request.getStatus());
+void Response::setupResponse(Request &req, server &serv) {
+//	_path = getPath(server, request, *this);
+//	_status = req.getStatus();
+	if (this->authenticate(req))
+	{
+		std::cerr << "Authentication failed" << std::endl;
+		return;
+	}
 	if(_method == "GET")
 	{
 		if (this->isMethodAllowed())
@@ -79,12 +100,12 @@ void	Response::setupResponse(Request &request, server &serv) {
 	if(_method == "POST")
 	{
 		if (this->isMethodAllowed())
-			postMethod(request.getBody());
+			postMethod(req.getBody());
 	}
 	if(_method == "PUT")
 	{
 		if (this->isMethodAllowed())
-			putMethod(request.getBody()); // done
+			putMethod(req.getBody()); // done
 	}
 	if (this->_status >= 299)
 	{
@@ -259,6 +280,41 @@ void				Response::setStatus(int status)
 	if (this->_status >= 400)
 		return;
 	this->_status = status;
+}
+
+int					Response::authenticate(Request &req)
+{
+	if (this->currentLoc == NULL) {
+		std::cout << _RED "Location does not exist" _END << std::endl;
+		return -1;
+	}
+	if (this->currentLoc->gethtpasswdpath().empty()) {
+		req._defHeaders[AUTHORIZATION].clear();
+		return 0;
+	}
+	std::string username, passwd, str;
+	try {
+		std::string auth = req._defHeaders.at(AUTHORIZATION);
+		std::string type, credentials;
+		get_key_value(auth, type, credentials, " ", "\n\r#;");
+		credentials = base64_decode(credentials);
+		get_key_value(credentials, username, passwd, ":", "\n\r#;");
+	}
+	catch (std::exception& e) {
+		std::cerr << e.what() << std::endl;
+		std::cerr <<_RED "No credentials provided by client" _END << std::endl;
+	}
+	req._defHeaders[AUTHORIZATION] = req._defHeaders[AUTHORIZATION].substr(0, req._defHeaders[AUTHORIZATION].find_first_of(' '));
+	req._defHeaders[REMOTE_USER] = username;
+	if (this->currentLoc->getAuthMatch(username, passwd)) {
+		std::cout << _GREEN _BOLD "Authorization successful!" _END << std::endl;
+		return 0;
+	}
+
+	_status = 401;
+	responseHeader header(_content, _path, _status, _contentType);
+	_response = header.getHeader(_status);
+	return 1;
 }
 
 std::ostream &operator<<(std::ostream &os, const Response &response)

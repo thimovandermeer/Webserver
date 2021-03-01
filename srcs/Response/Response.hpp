@@ -14,7 +14,7 @@ public:
 	virtual ~Response();
 	Response &operator=(const Response &src);
 
-	void 	setupResponse(Request &request, server &serv);
+	void 	setupResponse(Request &req, server &serv);
 
 	friend std::ostream &operator<<(std::ostream &os, const Response &response);
 
@@ -40,6 +40,7 @@ private:
     void        createErrorPage(std::string *pageData);
 		// helper functions
 	void 	readContent();
+	int		authenticate(Request &req);
 	void 	writeContent(std::string content);
 
 	location			*currentLoc;
@@ -56,7 +57,5 @@ public:
 	friend std::string	getPath(server &serv, Request &req, Response &resp);
 
 };
-
-
 
 #endif //WEBSERV_RESPONSE_HPP

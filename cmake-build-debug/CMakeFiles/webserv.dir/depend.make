@@ -23,6 +23,8 @@ CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o: ../srcs/Response/Response.h
 CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o: ../srcs/Response/responseHeader.hpp
 CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o: ../srcs/Server/location.hpp
 CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o: ../srcs/Server/server.hpp
+CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o: ../srcs/Utils/Base64.hpp
+CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o: ../srcs/Utils/utils.hpp
 
 CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.o: ../srcs/CGI/CGI.hpp
 CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.o: ../srcs/Request/request.hpp
@@ -41,6 +43,8 @@ CMakeFiles/webserv.dir/srcs/Response/responseHeader.cpp.o: ../srcs/Server/server
 
 CMakeFiles/webserv.dir/srcs/Server/location.cpp.o: ../srcs/Server/location.cpp
 CMakeFiles/webserv.dir/srcs/Server/location.cpp.o: ../srcs/Server/location.hpp
+CMakeFiles/webserv.dir/srcs/Server/location.cpp.o: ../srcs/Utils/Base64.hpp
+CMakeFiles/webserv.dir/srcs/Server/location.cpp.o: ../srcs/Utils/utils.hpp
 
 CMakeFiles/webserv.dir/srcs/Server/parser.cpp.o: ../srcs/Cluster/serverCluster.hpp
 CMakeFiles/webserv.dir/srcs/Server/parser.cpp.o: ../srcs/Server/location.hpp
@@ -58,6 +62,8 @@ CMakeFiles/webserv.dir/srcs/Server/serverUtility.cpp.o: ../srcs/Response/Respons
 CMakeFiles/webserv.dir/srcs/Server/serverUtility.cpp.o: ../srcs/Server/location.hpp
 CMakeFiles/webserv.dir/srcs/Server/serverUtility.cpp.o: ../srcs/Server/server.hpp
 CMakeFiles/webserv.dir/srcs/Server/serverUtility.cpp.o: ../srcs/Server/serverUtility.cpp
+
+CMakeFiles/webserv.dir/srcs/Utils/Base64.cpp.o: ../srcs/Utils/Base64.cpp
 
 CMakeFiles/webserv.dir/srcs/Utils/utils.cpp.o: ../srcs/Utils/utils.cpp
 

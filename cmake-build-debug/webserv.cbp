@@ -133,6 +133,12 @@
 		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/serverUtility.cpp">
 			<Option target="webserv"/>
 		</Unit>
+		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/Utils/Base64.cpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/Utils/Base64.hpp">
+			<Option target="webserv"/>
+		</Unit>
 		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/Utils/utils.cpp">
 			<Option target="webserv"/>
 		</Unit>
