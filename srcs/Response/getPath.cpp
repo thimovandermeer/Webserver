@@ -37,10 +37,11 @@ std::string	getPath(server &serv, Request &req, Response &resp)
 	std::string uri;
 	std::string locMatch;
 	size_t		found;
+	location	*loc = NULL;
 	bool		needIndex = false;
 
 	uri = req.getUri();
-	location *loc = findFileExtension(serv, &uri);
+	loc = findFileExtension(serv, &uri);
 	if (!loc)
 	{
 		if (uri.find('.') != std::string::npos) // file requested
@@ -65,10 +66,25 @@ std::string	getPath(server &serv, Request &req, Response &resp)
 		{
 			needIndex = true;
 			if (uri == "/")
+			{
 				locMatch = "/";
-			else if (uri[uri.length() - 1] == '/') // remove '/' at the end
-				uri.erase(uri.length() - 1);
-			locMatch = uri;
+			}
+			else
+			{
+				found = uri.find_first_of("/", 1);
+
+				locMatch = uri.substr(0, found);
+
+				if (found != std::string::npos)
+					uri.erase(0, found + 1);
+				else
+					uri.erase(0, found);
+
+
+				if (uri.length() && uri[uri.length() - 1] != '/' && uri != "/") // add '/' at end
+					uri += "/";
+			}
+
 		}
 		loc = serv.findLocation(locMatch);
 	}
@@ -84,9 +100,10 @@ std::string	getPath(server &serv, Request &req, Response &resp)
 		else
 			rootDir = serv.getRoot();
 
+
 		if (!loc->getCgiPath().empty()) // cgi regel die we gister bedacht hadden?
 		{
-			filePath = rootDir + loc->getCgiPath();
+			filePath = rootDir + uri + loc->getCgiPath();
 			resp.currentLoc = loc;
 			return (filePath);
 		}
@@ -99,10 +116,10 @@ std::string	getPath(server &serv, Request &req, Response &resp)
 			else
 				indices = serv.getIndices();
 
-			std::vector<std::string>::iterator it; // if empty, it will never loop and it == indices.end() will be true
+			std::vector<std::string>::iterator it; // if empty, it will never loop and (it == indices.end()) will be true
 			for (it = indices.begin(); it < indices.end(); it++) // test from front to back to find the first existing index page at requested root
 			{
-				filePath = rootDir + (*it);
+				filePath = rootDir + uri + (*it);
 				struct stat statBuf;
 				if (stat(filePath.c_str(), &statBuf) == 0)
 					break;
