@@ -13,7 +13,7 @@ const char	*location::inputErrorException::what() const throw()
 	return ("error in location block in config file");
 }
 
-location::location(std::string &match) : _autoindex(false), _isFileExtension(false)
+location::location(std::string &match) : _autoindex(false), _ownAutoindex(false), _isFileExtension(false)
 {
 	this->_match = match;
 	if (match[0] == '*' && match[1] == '.')
@@ -52,8 +52,9 @@ location	&location::operator=(const location &original)
 	return (*this);
 }
 
-void	location::setAutoindex(std::string &autoindex)
+void	location::setAutoindex(const std::string &autoindex)
 {
+	this->_ownAutoindex = true;
 	if (autoindex == "on")
 	{
 		this->_autoindex = true;
@@ -63,12 +64,12 @@ void	location::setAutoindex(std::string &autoindex)
 		;
 }
 
-void	location::setRoot(std::string &root)
+void	location::setRoot(const std::string &root)
 {
 	this->_root = root;
 }
 
-void	location::setMethod(std::string &method)
+void	location::setMethod(const std::string &method)
 {
 	std::stringstream	ss(method);
 	std::string			meth;
@@ -76,12 +77,12 @@ void	location::setMethod(std::string &method)
 		this->_methods.push_back(meth);
 }
 
-void	location::setErrorPage(std::string &errorPage)
+void	location::setErrorPage(const std::string &errorPage)
 {
 	this->_errorPage = errorPage;
 }
 
-void	location::setIndices(std::string &indices)
+void	location::setIndices(const std::string &indices)
 {
 	std::stringstream	ss(indices);
 	std::string			index;
@@ -89,22 +90,17 @@ void	location::setIndices(std::string &indices)
 		this->_indices.push_back(index);
 }
 
-void	location::setCgiPath(std::string &cgiPass)
+void	location::setCgiPath(const std::string &cgiPass)
 {
 	this->_cgiPath = cgiPass;
 }
 
-void	location::setAuthBasic(std::string &authBasic)
+void	location::setAuthBasic(const std::string &authBasic)
 {
 	this->_authBasic = authBasic;
 }
 
-void	location::setAuthUserFile(std::string &userFile)
-{
-	this->_authBasicUserFile = userFile;
-}
-
-void 	location::sethtpasswdpath(std::string &path)
+void 	location::sethtpasswdpath(const std::string &path)
 {
 	struct stat	statstruct = {};
 	if (stat(path.c_str(), &statstruct) == -1)
@@ -126,6 +122,11 @@ void 	location::sethtpasswdpath(std::string &path)
 	configfile.close();
 }
 
+const bool						&location::hasOwnAutoindex() const
+{
+	return (this->_ownAutoindex);
+}
+
 const bool						&location::getAutoindex() const
 {
 	return (this->_autoindex);
@@ -141,7 +142,7 @@ const std::string				&location::getRoot() const
 	return (this->_root);
 }
 
-const std::vector<std::string>				&location::getMethods() const
+const std::vector<std::string>	&location::getMethods() const
 {
 	return (this->_methods);
 }

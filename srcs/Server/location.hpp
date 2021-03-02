@@ -6,7 +6,7 @@
 
 class location {
 public:
-	typedef void	(location::*setter)(std::string&);
+	typedef void	(location::*setter)(const std::string&);
 
 	class	inputErrorException : public std::exception {
 	public:
@@ -15,6 +15,7 @@ public:
 
 private:
 	bool							_autoindex;
+	bool							_ownAutoindex;
 	std::string						_match;
 	std::string						_root;
 	std::vector<std::string>		_methods;
@@ -37,17 +38,17 @@ public:
 	~location();
 	location& operator=(location const &original);
 
-	void	setAutoindex(std::string &autoindex);
-	void	setRoot(std::string &root);
-	void	setMethod(std::string &method);
-	void	setErrorPage(std::string &errorPage);
-	void	setIndices(std::string &indices);
-	void	setCgiPath(std::string &cgiPass);
-	void	setAuthBasic(std::string &authBasic);
-	void	setAuthUserFile(std::string &userFile);
-	void 	sethtpasswdpath(std::string &path);
+	void	setAutoindex(const std::string &autoindex);
+	void	setRoot(const std::string &root);
+	void	setMethod(const std::string &method);
+	void	setErrorPage(const std::string &errorPage);
+	void	setIndices(const std::string &indices);
+	void	setCgiPath(const std::string &cgiPass);
+	void	setAuthBasic(const std::string &authBasic);
+	void 	sethtpasswdpath(const std::string &path);
 
 
+	const bool						&hasOwnAutoindex() const;
 	const bool						&getAutoindex() const;
 	const std::string				&getMatch() const;
 	const std::string				&getRoot() const;

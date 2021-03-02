@@ -27,7 +27,7 @@ location*	findFileExtension(server &server, std::string *uri)
 			}
 		}
 	}
-	return (NULL);
+	return (nullptr);
 }
 
 std::string	getPath(server &serv, Request &req, Response &resp)
@@ -46,8 +46,8 @@ std::string	getPath(server &serv, Request &req, Response &resp)
 	{
 		if (uri.find('.') != std::string::npos) // file requested
 		{
-			found = uri.find_first_of("/", 1);
-			if (uri.find_last_of("/") == 0)
+			found = uri.find_first_of('/', 1);
+			if (uri.find_last_of('/') == 0)
 			{
 				locMatch = "/";
 				uri.erase(0, 1);
@@ -66,21 +66,15 @@ std::string	getPath(server &serv, Request &req, Response &resp)
 		{
 			needIndex = true;
 			if (uri == "/")
-			{
 				locMatch = "/";
-			}
 			else
 			{
-				found = uri.find_first_of("/", 1);
-
+				found = uri.find_first_of('/', 1);
 				locMatch = uri.substr(0, found);
-
 				if (found != std::string::npos)
 					uri.erase(0, found + 1);
 				else
 					uri.erase(0, found);
-
-
 				if (uri.length() && uri[uri.length() - 1] != '/' && uri != "/") // add '/' at end
 					uri += "/";
 			}
@@ -95,11 +89,11 @@ std::string	getPath(server &serv, Request &req, Response &resp)
 	else
 	{
 		// location exists
+		struct stat statBuf = {};
 		if (!loc->getRoot().empty()) // location has no own root, so we use the server root
 			rootDir = loc->getRoot();
 		else
 			rootDir = serv.getRoot();
-
 
 		if (!loc->getCgiPath().empty()) // cgi regel die we gister bedacht hadden?
 		{
@@ -120,7 +114,6 @@ std::string	getPath(server &serv, Request &req, Response &resp)
 			for (it = indices.begin(); it < indices.end(); it++) // test from front to back to find the first existing index page at requested root
 			{
 				filePath = rootDir + uri + (*it);
-				struct stat statBuf;
 				if (stat(filePath.c_str(), &statBuf) == 0)
 					break;
 			}
@@ -130,7 +123,6 @@ std::string	getPath(server &serv, Request &req, Response &resp)
 		else
 		{
 			filePath = rootDir + uri;
-			struct stat statBuf;
 			if (stat(filePath.c_str(), &statBuf) != 0)
 				resp.setStatus(404);
 		}
