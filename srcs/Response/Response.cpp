@@ -26,12 +26,12 @@
 # define _REV			"\x1b[7m"
 
 Response::Response(Request &req, server &serv) :
-		_status(req.getStatus()),
-		_path(getPath(serv, req, *this)), // delete hardcoded
-		_contentType(req.getContentType()),
-		_CGI(_path, req, serv),
-		_useCGI(req.getCgi()),
-		_method(req.getMethod())
+	_status(req.getStatus()),
+	_path(getPath(serv, req, *this)), // delete hardcoded
+	_contentType(req.getContentType()),
+	_CGI(_path, req, serv),
+	_useCGI(req.getCgi()),
+	_method(req.getMethod())
 {
     _errorMessage[204] = "No Content";
     _errorMessage[400] = "Bad Request";
@@ -259,7 +259,6 @@ void Response::putMethod(std::string content)
 	_response = header.getHeader(_status); // here we got a potential bug
 }
 
-// getters
 std::string 		Response::getContent()
 {
 	return _content;
@@ -286,7 +285,7 @@ int					Response::authenticate(Request &req)
 {
 	if (this->currentLoc == NULL) {
 		std::cout << _RED "Location does not exist" _END << std::endl;
-		return -1;
+		return 0;
 	}
 	if (this->currentLoc->gethtpasswdpath().empty()) {
 		req._defHeaders[AUTHORIZATION].clear();

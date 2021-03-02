@@ -37,22 +37,38 @@ std::string	getPath(server &serv, Request &req, Response &resp)
 	std::string uri;
 	std::string locMatch;
 	size_t		found;
+	bool		needIndex = false;
 
 	uri = req.getUri();
 	location *loc = findFileExtension(serv, &uri);
 	if (!loc)
 	{
-		found = uri.find_first_of("/", 1);
-		if (uri == "/")
-			locMatch = "/";
-		else
-			locMatch = uri.substr(0, found);
-		if (uri.length() > 1)
+		if (uri.find('.') != std::string::npos) // file requested
 		{
-			if (found != std::string::npos)
-				uri.erase(0, found + 1);
+			found = uri.find_first_of("/", 1);
+			if (uri.find_last_of("/") == 0)
+			{
+				locMatch = "/";
+				uri.erase(0, 1);
+			}
 			else
-				uri.erase(0, found);
+				locMatch = uri.substr(0, found);
+			if (uri.length() > 1 && locMatch != "/")
+			{
+				if (found != std::string::npos)
+					uri.erase(0, found + 1);
+				else
+					uri.erase(0, found);
+			}
+		}
+		else // location index requested
+		{
+			needIndex = true;
+			if (uri == "/")
+				locMatch = "/";
+			else if (uri[uri.length() - 1] == '/') // remove '/' at the end
+				uri.erase(uri.length() - 1);
+			locMatch = uri;
 		}
 		loc = serv.findLocation(locMatch);
 	}
@@ -68,18 +84,22 @@ std::string	getPath(server &serv, Request &req, Response &resp)
 		else
 			rootDir = serv.getRoot();
 
-		std::vector<std::string>	indices;
-		if (!loc->getIndices().empty())
-			indices = loc->getIndices();
-		else if (loc->getMatch() == "/")
-			indices = serv.getIndices();
-		if (!indices.empty())
+		if (!loc->getCgiPath().empty()) // cgi regel die we gister bedacht hadden?
 		{
-//			if (!loc->getIndices().empty())
-//				indices = loc->getIndices(); // if locationz has no index specifications, we use the server's
-//			else
-//				indices = serv.getIndices();
-			std::vector<std::string>::iterator it;
+			filePath = rootDir + loc->getCgiPath();
+			resp.currentLoc = loc;
+			return (filePath);
+		}
+		if (needIndex)
+		{
+			std::vector<std::string>	indices;
+
+			if (!loc->getIndices().empty())
+				indices = loc->getIndices();
+			else
+				indices = serv.getIndices();
+
+			std::vector<std::string>::iterator it; // if empty, it will never loop and it == indices.end() will be true
 			for (it = indices.begin(); it < indices.end(); it++) // test from front to back to find the first existing index page at requested root
 			{
 				filePath = rootDir + (*it);
@@ -90,7 +110,7 @@ std::string	getPath(server &serv, Request &req, Response &resp)
 			if (it == indices.end()) // all index pages don't exist at requested root
 				resp.setStatus(404);
 		}
-		else // uri does not end in '/', so a specific file is requested
+		else
 		{
 			filePath = rootDir + uri;
 			struct stat statBuf;
