@@ -119,6 +119,7 @@ std::string	getPath(server &serv, Request &req, Response &resp)
 			}
 			if (it == indices.end()) // all index pages don't exist at requested root
 				resp.setStatus(404);
+			// if 404 and loc.getAutoindex == true, do the autoindex thing
 		}
 		else
 		{

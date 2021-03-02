@@ -3,7 +3,6 @@
 #include <iostream>
 #include <iomanip>
 #include <sys/stat.h>
-#include <dns_sd.h>
 #include <fstream>
 #include "../Utils/utils.hpp"
 #include "../Utils/Base64.hpp"
