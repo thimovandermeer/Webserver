@@ -38,7 +38,7 @@ private:
 
 	long				_socketFd;
 	struct sockaddr_in	_addr;
-	long				_acceptFd;
+	std::vector<long>	_acceptFds;
 
 public:
 	server();
@@ -76,7 +76,7 @@ public:
 	std::string	receive() const;
 	void 		sendData(const std::string &response) const;
 	void 		serverClose();
-	void 		accept();
+	void 		acpt();
 	void		findValue(std::string &key, std::string line);
 
 	void	startListening();

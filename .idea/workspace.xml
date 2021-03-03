@@ -36,24 +36,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="fucked some shit up since a rebase was still pending and I aborted it. I think it's working now">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/CGI/CGI.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/CGI/CGI.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Cluster/serverCluster.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Cluster/serverCluster.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/location.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/location.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/parser.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/parser.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/serverBasic.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/serverBasic.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/serverUtility.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/serverUtility.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/webserv.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/srcs/webserv.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/webserv" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/webserv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Response/getPath.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/getPath.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/location.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/location.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/location.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/location.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/parser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/parser.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Server/server.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/server.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,15 +107,15 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.webserv">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Test" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv" TEST_CLASS="[List]" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="webserv" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="&quot;./test_mac/mac.conf&quot;" REDIRECT_INPUT="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv">
@@ -196,7 +183,9 @@
       <workItem from="1614600712584" duration="5954000" />
       <workItem from="1614667077961" duration="1499000" />
       <workItem from="1614685918933" duration="2550000" />
-      <workItem from="1614694668284" duration="1726000" />
+      <workItem from="1614694668284" duration="2302000" />
+      <workItem from="1614767084004" duration="1706000" />
+      <workItem from="1614774002639" duration="26000" />
     </task>
     <task id="LOCAL-00003" summary="nearly done all set functions of responseheader">
       <created>1611650661666</created>
@@ -352,7 +341,21 @@
       <option name="project" value="LOCAL" />
       <updated>1614687200223</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="made locations take autoindex from server if none was set specifically, in such a way that you can put the server's autoindex anywhere in the config">
+      <created>1614696885174</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1614696885174</updated>
+    </task>
+    <task id="LOCAL-00026" summary="clarification comment in getpath to specify where we need to implement autoindexing">
+      <created>1614697078474</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1614697078474</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -434,8 +437,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="push before pull merel's work" />
-    <MESSAGE value="first Merge met Request" />
     <MESSAGE value="First attempt on changing the path" />
     <MESSAGE value="doe het" />
     <MESSAGE value="Response and request part ready for first run" />
@@ -459,7 +460,9 @@
     <MESSAGE value="copied getPath fix from other branch; edited reading auth file in location to use std::getline instead of GNL, so it reads the last line; rewrote getAuthMatch in location for clarity (and removed base64_decode() to make it work)" />
     <MESSAGE value="hmmmmst" />
     <MESSAGE value="fucked some shit up since a rebase was still pending and I aborted it. I think it's working now" />
-    <option name="LAST_COMMIT_MESSAGE" value="fucked some shit up since a rebase was still pending and I aborted it. I think it's working now" />
+    <MESSAGE value="made locations take autoindex from server if none was set specifically, in such a way that you can put the server's autoindex anywhere in the config" />
+    <MESSAGE value="clarification comment in getpath to specify where we need to implement autoindexing" />
+    <option name="LAST_COMMIT_MESSAGE" value="clarification comment in getpath to specify where we need to implement autoindexing" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1022" y="500" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1614347794408">
@@ -486,50 +489,50 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="2518" height="421" key="GridCell.Tab.-1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1614348932708" />
-    <state width="2518" height="393" key="GridCell.Tab.0.bottom" timestamp="1614682159801">
+    <state width="2518" height="384" key="GridCell.Tab.0.bottom" timestamp="1614698893509">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="393" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1614682159801" />
-    <state width="2518" height="393" key="GridCell.Tab.0.center" timestamp="1614682159800">
+    <state width="2518" height="384" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1614698893509" />
+    <state width="2518" height="384" key="GridCell.Tab.0.center" timestamp="1614698893509">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="393" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1614682159800" />
-    <state width="2518" height="393" key="GridCell.Tab.0.left" timestamp="1614682159800">
+    <state width="2518" height="384" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1614698893509" />
+    <state width="2518" height="384" key="GridCell.Tab.0.left" timestamp="1614698893508">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="393" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1614682159800" />
-    <state width="2518" height="393" key="GridCell.Tab.0.right" timestamp="1614682159801">
+    <state width="2518" height="384" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1614698893508" />
+    <state width="2518" height="384" key="GridCell.Tab.0.right" timestamp="1614698893509">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="393" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1614682159801" />
-    <state width="2518" height="384" key="GridCell.Tab.1.bottom" timestamp="1614681873846">
+    <state width="2518" height="384" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1614698893509" />
+    <state width="2518" height="384" key="GridCell.Tab.1.bottom" timestamp="1614698893510">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="384" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1614681873846" />
-    <state width="2518" height="384" key="GridCell.Tab.1.center" timestamp="1614681873844">
+    <state width="2518" height="384" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1614698893510" />
+    <state width="2518" height="384" key="GridCell.Tab.1.center" timestamp="1614698893510">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="384" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1614681873844" />
-    <state width="2518" height="384" key="GridCell.Tab.1.left" timestamp="1614681873844">
+    <state width="2518" height="384" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1614698893510" />
+    <state width="2518" height="384" key="GridCell.Tab.1.left" timestamp="1614698893510">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="384" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1614681873844" />
-    <state width="2518" height="384" key="GridCell.Tab.1.right" timestamp="1614681873846">
+    <state width="2518" height="384" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1614698893510" />
+    <state width="2518" height="384" key="GridCell.Tab.1.right" timestamp="1614698893510">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="384" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1614681873846" />
-    <state x="880" y="431" key="Vcs.Push.Dialog.v2" timestamp="1614696843862">
+    <state width="2518" height="384" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1614698893510" />
+    <state x="880" y="431" key="Vcs.Push.Dialog.v2" timestamp="1614697080857">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="880" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1614696843862" />
+    <state x="880" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1614697080857" />
     <state x="1034" y="411" key="git4idea.branch.GitSmartOperationDialog" timestamp="1614594672607">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="1034" y="411" key="git4idea.branch.GitSmartOperationDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1614594672607" />
-    <state x="1064" y="489" key="refactoring.ChangeSignatureDialog" timestamp="1614696715184">
+    <state x="1064" y="489" key="refactoring.ChangeSignatureDialog" timestamp="1614767902944">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="1064" y="489" key="refactoring.ChangeSignatureDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1614696715184" />
+    <state x="1064" y="489" key="refactoring.ChangeSignatureDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1614767902944" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -538,11 +541,6 @@
           <url>file://$PROJECT_DIR$/srcs/Response/getPath.cpp</url>
           <line>44</line>
           <option name="timeStamp" value="63" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/srcs/Response/getPath.cpp</url>
-          <line>125</line>
-          <option name="timeStamp" value="64" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

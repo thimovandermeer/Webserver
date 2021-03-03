@@ -61,9 +61,13 @@ void	serverCluster::startListening()
 		int 			ret;
 
 		memcpy(&workingSet, &this->readFds, sizeof (this->readFds));
+		// check voor elke server wat read en write fds zijn
+		// read zijn openstaande, geaccepte fds
+		// write zijn openstaande, geaccepte fds waar we of een hele request hebben binnengekregen
+		// of een timeout op heeft plaatsgevonden
 		FD_SET(0, &workingSet); // adding stdin to readfds
 
-		std::cout << "waiting for connection.." << std::endl;
+//		std::cout << "waiting for connection.." << std::endl;
 		ret = select(this->_nrOfServers * NR_OF_CONNECTIONS + 1, &workingSet, NULL, NULL, NULL);
 		if (FD_ISSET(0, &workingSet)) //input from stdin
 		{
@@ -80,11 +84,12 @@ void	serverCluster::startListening()
 		if (ret > 0)
 			std::cout << "Houston we have contact" << std::endl;
 		std::vector<server*>::iterator it = this->_servers.begin();
-		while (!this->_servers.empty() && it != this->_servers.end() && ret)
+		while (it != this->_servers.end() && ret)
 		{
 			long fd  = (*it)->getSocketFd();
-			if (workingSet.fds_bits[fd / 64] & (long)(1UL << fd % 64)) {
-				(*it)->run();
+			if (workingSet.fds_bits[fd / 64] & (long)(1UL << fd % 64))
+			{
+				(*it)->acpt();
 				ret--;
 			}
 			it++;

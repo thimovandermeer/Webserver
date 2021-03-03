@@ -47,12 +47,12 @@ void	server::startListening()
 	}
 }
 
-void 	server::accept()
+void 	server::acpt()
 {
 	struct sockaddr connectingAddr;
 	socklen_t		addressLen;
-	this->_acceptFd = ::accept(this->_socketFd, &connectingAddr, &addressLen);
-	if (_acceptFd == -1)
+	this->_acceptFds.push_back((accept(this->_socketFd, &connectingAddr, &addressLen)));
+	if (*this->_acceptFds.rbegin() == -1)
 		std::cerr << "Could not create fd" << std::endl; // dit zometeen aanpassen naar try catch
 	//	fcntl(this->_acceptFd, F_SETFL, O_NONBLOCK);
 }
@@ -166,7 +166,7 @@ void 		server::serverClose()
 void	server::run()
 {
 	std::string receivedRequest;
-	this->accept();
+	this->acpt();
 	try
 	{
 		receivedRequest = receive();
