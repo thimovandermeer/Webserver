@@ -1,5 +1,11 @@
 #include "request.hpp"
 
+#include <stdexcept>
+#include <sstream>
+#include <iomanip>
+#include <string>
+#include <cstdint>
+
 std::string methods[4] = {
         "GET",
         "HEAD",
@@ -31,6 +37,7 @@ Request &Request::operator=(const Request &original) {
 Request::Request(std::string request) : _request(request)
 {
     _status = 200;
+    _chunkedLength = 0;
     _headerMap["ACCEP-CHARSET"] = ACCEPT_CHARSET;
     _headerMap["ACCEPT-LANGUAGE"] = ACCEPT_LANGUAGE;
     _headerMap["ALLOW"] = ALLOW;
@@ -63,10 +70,6 @@ std::string Request::getMethod() const {
 
 std::string Request::getUri() const {
     return _uri;
-}
-
-std::string Request::getVersion() const {
-    return _version;
 }
 
 std::map<headerType, std::string> Request::getHeaders() const {
@@ -220,22 +223,24 @@ void Request::parseBody() {
     size_t begin = 0;
     size_t end;
     size_t last = _request.rfind("\r\n");
+    std::string hex;
     _body = "";
-    while (begin <= last){
+    while (begin != last - 2){          //voor tester -0 ?
+        end = _request.find("\r\n", begin);
+        hex = _request.substr(begin, end - begin);
+        _chunkedLength += stoi(hex, 0, 16);
+        hex.clear();
+        begin = end + 2;
         end = _request.find("\r\n", begin);
         _body.append(_request, begin, end - begin);
-        begin = end + 5;
+        begin = _request.find("\r\n", end + 2);
     }
-}
-
-std::string Request::getAuthorization()
-{
-	std::map<headerType, std::string>::iterator it_h = _defHeaders.find(AUTHORIZATION);
-	if (it_h == _defHeaders.end())
-		return ("NULL");
-	return (it_h->second);
 }
 
 bool Request::getCgi() const {
 	return _cgi;
+}
+
+size_t Request::getChunkedLength() const {
+    return _chunkedLength;
 }
