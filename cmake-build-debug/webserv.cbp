@@ -115,6 +115,12 @@
 		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/responseHeader.hpp">
 			<Option target="webserv"/>
 		</Unit>
+		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/connection.cpp">
+			<Option target="webserv"/>
+		</Unit>
+		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/connection.hpp">
+			<Option target="webserv"/>
+		</Unit>
 		<Unit filename="/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/location.cpp">
 			<Option target="webserv"/>
 		</Unit>

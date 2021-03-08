@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/Response.cpp" "/Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o"
   "/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/getPath.cpp" "/Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.o"
   "/Users/jbennink/Documents/Projects/webserv_new/srcs/Response/responseHeader.cpp" "/Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/responseHeader.cpp.o"
+  "/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/connection.cpp" "/Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/connection.cpp.o"
   "/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/location.cpp" "/Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/location.cpp.o"
   "/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/parser.cpp" "/Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/parser.cpp.o"
   "/Users/jbennink/Documents/Projects/webserv_new/srcs/Server/serverBasic.cpp" "/Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/serverBasic.cpp.o"

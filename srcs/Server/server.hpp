@@ -1,6 +1,7 @@
 #ifndef SERVER_HPP
 # define SERVER_HPP
 # include "location.hpp"
+# include "connection.hpp"
 # include <vector>
 # include <map>
 # include <stdexcept>
@@ -9,6 +10,13 @@
 # include <netdb.h>
 
 # define NR_OF_CONNECTIONS 10
+
+//typedef struct s_connection {
+//	unsigned long	timeLastRead;
+//	long 			acceptFd;
+//	std::string 	acceptBuffer;
+//	bool			hasFullRequest;
+//}				t_connection;
 
 class server {
 public:
@@ -38,9 +46,14 @@ private:
 
 	long				_socketFd;
 	struct sockaddr_in	_addr;
-	std::vector<long>	_acceptFds;
+
+
 
 public:
+
+	std::string			_response;
+
+
 	server();
 	server(server const &original);
 	~server();
@@ -55,7 +68,9 @@ public:
 	void	setServerNames(std::string &names);
 	void	setIndices(std::string &indices);
 
-	void	setAcceptFd(int fd);
+//	t_connection		connections[NR_OF_CONNECTIONS];
+	connection			connections[NR_OF_CONNECTIONS];
+//	void	setAcceptFd(int fd);
 
 	const int						&getPortNr() const;
 	const size_t					&getMaxBodySize() const;
@@ -69,21 +84,23 @@ public:
 
 	const long						&getSocketFd() const;
 	const struct sockaddr_in		&getAddr() const;
-	const long						&getAcceptFd() const;
+//	const t_connection				*getConnections() const;
 
 	void		addLocation(location *newLoc);
 	bool		valueCheck() const;
-	std::string	receive() const;
-	void 		sendData(const std::string &response) const;
-	void 		serverClose();
+//	std::string receive(int index) const;
+//	void sendData(int index);
+//	void closeConnection(int index);
 	void 		acpt();
 	void		findValue(std::string &key, std::string line);
 
 	void	startListening();
 
-	void	run();
+//	void startReading(int index);
 
 	location*	findLocation(std::string &match);
+
+	void generateResponse(int index);
 };
 
 std::ostream&	operator<<(std::ostream &os, const server &serv);

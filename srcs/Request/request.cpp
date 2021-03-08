@@ -54,11 +54,12 @@ Request::Request(std::string request) : _request(request)
 }
 
 std::string Request::getMethod() const {
-    for (int i = 0; i < 7; i++){
+    for (int i = 0; i < 4; i++){
         if (_method.compare(methods[i]) == 0)
             return methods[i];
     }
-    return NULL;
+    std::string s;
+    return s;
 }
 
 std::string Request::getUri() const {
@@ -132,7 +133,7 @@ void Request::parseRequestLine(){
     pos2 = _request.find(" ");
     _method = _request.substr(0, pos2);
     if (getMethod().empty()){
-        _status = 405;
+        _status = 400;
     }
     pos2+=1;
     pos1 = _request.find(" ", pos2);

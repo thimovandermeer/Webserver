@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <sys/socket.h>
 #include <fcntl.h>
+#include "../Utils/utils.hpp"
 #include "../Request/request.hpp"
 #include "../Response/Response.hpp"
 
@@ -51,9 +52,22 @@ void 	server::acpt()
 {
 	struct sockaddr connectingAddr;
 	socklen_t		addressLen;
-	this->_acceptFds.push_back((accept(this->_socketFd, &connectingAddr, &addressLen)));
-	if (*this->_acceptFds.rbegin() == -1)
-		std::cerr << "Could not create fd" << std::endl; // dit zometeen aanpassen naar try catch
+	int				i;
+
+	for (i = 0; i < NR_OF_CONNECTIONS; i++)
+	{
+		if (this->connections[i].acceptFd == -1)
+			break;
+	}
+	if (i == NR_OF_CONNECTIONS)
+		; // too many connections, should never happen
+	this->connections[i].acceptFd = accept(this->_socketFd, &connectingAddr, &addressLen);
+	if (this->connections[i].acceptFd == -1)
+		std::cerr << "Could not create fd" << std::endl;
+	this->connections[i].timeLastRead = getTime();
+//	this->_acceptFds.push_back((accept(this->_socketFd, &connectingAddr, &addressLen)));
+//	if (*this->_acceptFds.rbegin() == -1)
+//		std::cerr << "Could not create fd" << std::ençdl; // dit zometeen aanpassen naar try catch
 	//	fcntl(this->_acceptFd, F_SETFL, O_NONBLOCK);
 }
 
@@ -80,112 +94,101 @@ void	ft_bzero(char *buf, size_t n)
 	}
 }
 
-int doneReading(std::string request, int type)
+//#define BUFFSIZE 4095
+//
+//std::string server::receive(int index) const
+//{
+//	char 	buffer[BUFFSIZE + 1];
+//	int 	ret;
+//
+//	bzero(buffer, BUFFSIZE + 1);
+//	ret = recv(this->connections[index].acceptFd, buffer, BUFFSIZE, 0);
+//	if (ret == -1)
+//	{
+//		std::cerr << "recv error" << std::endl;
+//		throw syscallErrorException();
+//	}
+//	// make requests bad
+////	for (int i = 0; i < 100; i++)
+////	{
+////		int random = rand() % strlen(buffer);
+////		buffer[random] = rand() % 128;
+////	}
+//	return (buffer);
+//}
+//
+//void server::sendData(int index)
+//{
+//	std::cout << "==RESPONSE==" << std::endl;
+//	std::cout << this->_response << std::endl;
+//	std::cout << "==end==" << std::endl;
+//	if(send(this->connections[index].acceptFd, this->_response.c_str(), this->_response.size(), 0) == -1)
+//	{
+//		std::cerr << "send error" << std::endl;
+//		throw server::syscallErrorException();
+//	}
+//	this->closeConnection(index);
+//}
+//
+//void server::closeConnection(int index)
+//{
+//	close(this->connections[index].acceptFd);
+//	this->connections[index].acceptFd = -1;
+//	this->connections[index].acceptBuffer.clear();
+//	this->connections[index].hasFullRequest = false;
+//	this->connections[index].timeLastRead = 0;
+//}
+//
+//bool	isFullRequest(std::string currentRequest)
+//{
+//	size_t pos;
+//
+//	pos = currentRequest.find("\r\n\r\n");
+//	if (pos == std::string::npos)
+//		return (false);
+//
+//	if (currentRequest.find("POST") == 0 || currentRequest.find("PUT") == 0)
+//	{
+//		pos = currentRequest.find("\r\n\r\n");
+//		if (currentRequest.find("\r\n\r\n", pos + 4) != std::string::npos)
+//			return (true);
+//	}
+//	else
+//		return (true);
+//	return (false);
+//}
+
+void server::generateResponse(int index)
 {
-	int         pos1;
-	int         pos2;
-	std::string length;
-	char*        subStr;
-	int         contentLen;
-	char        *end;
-
-	if (type == 1 && request.find("\r\n\r\n0\r\n\r\n") != std::string::npos)        //of is dit too much
-		return 1;
-	else if (type == 2) {
-		pos1 = request.find("Content-Length");      //opzoeken waar de lengte staat
-		pos2 = request.find(":", pos1);             //waar de lengte begint
-//        pos1 = request.find("\r\n", pos2);          //kijken tot waar de index van de lengte loopt
-//        subStr = (char*)request.substr(pos1);
-
-		contentLen = std::strtol(subStr, &end ,10);
-//        length = request.substr(pos2, pos1 - pos2);     // de lengte eruit halen
-//        contentLen = std::strtol(length.c_str());           //de lengte ophalen //mag je strol gebruiken?
-		pos1 = request.find("\r\n\r\n");            //zoeken naar het einde van alle headers
-		pos2 = request.length();                //kijken hoe lang de gehele request is
-		if (contentLen == pos2 - pos1)      //als dit gelijk is, is alles dus gelezen
-			return 1;
-	}
-	return 0;
-}
-#define BUFFSIZE 4095
-
-std::string 		server::receive() const
-{
-	char		buffer[BUFFSIZE + 1];
-	std::string request;
-	int 		ret = 0;
-	int         type;
-
-	while(true)
-	{
-		std::cout << "reading..." << std::endl;
-		ft_bzero(buffer, ret);
-		ret = read(_acceptFd, buffer, BUFFSIZE);
-		if (ret == -1)
-		{
-			std::cerr << "recv error" << std::endl;
-			throw server::syscallErrorException();
-		}
-		buffer[ret] = 0;
-		request += std::string(buffer);
-		// als hij geen body heeft en \r\n\r\n heeft gevonden is hij klaar met lezen
-		if(!(type = hasBody(request)) && request.find("\r\n\r\n") != std::string::npos)
-			break;
-		// als er wel een body is, gaan we checken of alles daaruit is gelezen
-		if (doneReading(request, type))
-			break;
-		else
-			continue;
-	}
 	std::cout << "==REQUEST==" << std::endl;
-	std::cout << request << std::endl;
+	std::cout << connections[index].acceptBuffer << std::endl;
 	std::cout << "==end==" << std::endl;
-	return (request);
-
-}
-
-void 		server::sendData(const std::string &response) const
-{
-	std::cout << "==RESPONSE==" << std::endl;
-	std::cout << response << std::endl;
-	std::cout << "==end==" << std::endl;
-	if(send(_acceptFd, response.c_str(), response.size(), 0) == -1)
-	{
-		std::cerr << "send error" << std::endl;
-		throw server::syscallErrorException();
-	}
-}
-
-void 		server::serverClose()
-{
-	if(_acceptFd > 0)
-		::close(_acceptFd);
-	_acceptFd = -1;
-}
-
-void	server::run()
-{
-	std::string receivedRequest;
-	this->acpt();
-	try
-	{
-		receivedRequest = receive();
-	}
-	catch (std::exception &e)
-	{
-		return;
-	}
-
-	Request	request(receivedRequest);
+	Request	request(connections[index].acceptBuffer);
 	Response resp(request, *this);
 	resp.setupResponse(request, *this);
-	try
-	{
-		this->sendData(resp.getResponse());
-	}
-	catch (std::exception &e)
-	{
-		// error
-	}
-	this->serverClose();
+	_response = resp.getResponse();
 }
+
+//void server::startReading(int index)
+//{
+//	std::string receivedRequest;
+////	this->acpt();
+//	try
+//	{
+//		receivedRequest = receive(index);
+//		this->connections[index].timeLastRead = getTime();
+//		this->connections[index].acceptBuffer += receivedRequest;
+//	}
+//	catch (std::exception &e)
+//	{
+//		return;
+//	}
+//
+//	// kijk of request is af op this->connections[index].acceptbuffer
+//	if (isFullRequest(this->connections[index].acceptBuffer))
+//		this->connections[index].hasFullRequest = true;
+//	else
+//		return;
+//
+//	generateResponse(index);
+//}

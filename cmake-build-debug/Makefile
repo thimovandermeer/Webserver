@@ -305,6 +305,33 @@ srcs/Response/responseHeader.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Response/responseHeader.cpp.s
 .PHONY : srcs/Response/responseHeader.cpp.s
 
+srcs/Server/connection.o: srcs/Server/connection.cpp.o
+
+.PHONY : srcs/Server/connection.o
+
+# target to build an object file
+srcs/Server/connection.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Server/connection.cpp.o
+.PHONY : srcs/Server/connection.cpp.o
+
+srcs/Server/connection.i: srcs/Server/connection.cpp.i
+
+.PHONY : srcs/Server/connection.i
+
+# target to preprocess a source file
+srcs/Server/connection.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Server/connection.cpp.i
+.PHONY : srcs/Server/connection.cpp.i
+
+srcs/Server/connection.s: srcs/Server/connection.cpp.s
+
+.PHONY : srcs/Server/connection.s
+
+# target to generate assembly for a file
+srcs/Server/connection.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Server/connection.cpp.s
+.PHONY : srcs/Server/connection.cpp.s
+
 srcs/Server/location.o: srcs/Server/location.cpp.o
 
 .PHONY : srcs/Server/location.o
@@ -521,6 +548,9 @@ help:
 	@echo "... srcs/Response/responseHeader.o"
 	@echo "... srcs/Response/responseHeader.i"
 	@echo "... srcs/Response/responseHeader.s"
+	@echo "... srcs/Server/connection.o"
+	@echo "... srcs/Server/connection.i"
+	@echo "... srcs/Server/connection.s"
 	@echo "... srcs/Server/location.o"
 	@echo "... srcs/Server/location.i"
 	@echo "... srcs/Server/location.s"
