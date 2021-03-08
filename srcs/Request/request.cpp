@@ -61,7 +61,7 @@ Request::Request(std::string request) : _request(request)
 }
 
 std::string Request::getMethod() const {
-    for (int i = 0; i < 7; i++){
+    for (int i = 0; i < 4; i++){
         if (_method.compare(methods[i]) == 0)
             return methods[i];
     }
@@ -225,6 +225,8 @@ void Request::parseBody() {
     size_t last = _request.rfind("\r\n");
     std::string hex;
     _body = "";
+    if (_request.compare("0\r\n\r") == 0)
+        return ;
     while (begin != last - 2){          //voor tester -0 ?
         end = _request.find("\r\n", begin);
         hex = _request.substr(begin, end - begin);

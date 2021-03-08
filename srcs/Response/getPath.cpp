@@ -84,7 +84,7 @@ std::string	getPath(server &serv, Request &req, Response &resp)
 	}
 	else
 		uri.erase(0, 1);
-	if (!loc)
+	if (!loc && req.getMethod().compare("PUT") != 0)
 		resp.setStatus(404); // location not found
 	else
 	{
@@ -101,30 +101,33 @@ std::string	getPath(server &serv, Request &req, Response &resp)
 			resp.currentLoc = loc;
 			return (filePath);
 		}
-		if (needIndex)
-		{
-			std::vector<std::string>	indices;
+        if (req.getMethod().compare("PUT") != 0) {
+            if (needIndex) {
+                std::vector<std::string> indices;
 
-			if (!loc->getIndices().empty())
-				indices = loc->getIndices();
-			else
-				indices = serv.getIndices();
+                if (!loc->getIndices().empty())
+                    indices = loc->getIndices();
+                else
+                    indices = serv.getIndices();
 
-			std::vector<std::string>::iterator it; // if empty, it will never loop and (it == indices.end()) will be true
-			for (it = indices.begin(); it < indices.end(); it++) // test from front to back to find the first existing index page at requested root
-			{
-				filePath = rootDir + uri + (*it);
-				if (stat(filePath.c_str(), &statBuf) == 0)
-					break;
-			}
-			if (it == indices.end()) // all index pages don't exist at requested root
-				resp.setStatus(404);
-			// if 404 and loc.getAutoindex == true, do the autoindex thing
-		}
+                std::vector<std::string>::iterator it; // if empty, it will never loop and (it == indices.end()) will be true
+                for (it = indices.begin(); it <
+                                           indices.end(); it++) // test from front to back to find the first existing index page at requested root
+                {
+                    filePath = rootDir + uri + (*it);
+                    if (stat(filePath.c_str(), &statBuf) == 0)
+                        break;
+                }
+                if (it == indices.end() &&
+                    req.getMethod().compare("PUT") != 0) // all index pages don't exist at requested root
+                    resp.setStatus(404);
+                // if 404 and loc.getAutoindex == true, do the autoindex thing
+            }
+        }
 		else
 		{
 			filePath = rootDir + uri;
-			if (stat(filePath.c_str(), &statBuf) != 0)
+			if (stat(filePath.c_str(), &statBuf) != 0 && req.getMethod().compare("PUT") != 0)
 				resp.setStatus(404);
 		}
 	}

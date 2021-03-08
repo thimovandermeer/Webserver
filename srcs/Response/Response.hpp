@@ -4,7 +4,9 @@
 # include <ostream>
 # include "../Request/request.hpp"
 # include "../Server/server.hpp"
-#include "../CGI/CGI.hpp"
+# include "../CGI/CGI.hpp"
+# include <cstdio>
+
 // this needs to be deleted when request is been made
 
 class Response {

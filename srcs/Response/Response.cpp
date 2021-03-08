@@ -80,8 +80,7 @@ bool	Response::isMethodAllowed()
 }
 
 void Response::setupResponse(Request &req, server &serv) {
-//	_path = getPath(server, request, *this);
-//	_status = req.getStatus();
+    std::string content = req.getBody();
 	if (this->authenticate(req))
 	{
 		std::cerr << "Authentication failed" << std::endl;
@@ -92,20 +91,20 @@ void Response::setupResponse(Request &req, server &serv) {
 		if (this->isMethodAllowed())
 			getMethod(); // done
 	}
-	if(_method == "HEAD")
+	else if(_method == "HEAD")
 	{
 		if (this->isMethodAllowed())
 			headMethod(); // done
 	}
-	if(_method == "POST")
+	else if(_method == "POST")
 	{
 		if (this->isMethodAllowed())
 			postMethod(req.getBody());
 	}
-	if(_method == "PUT")
+	else if(_method == "PUT")
 	{
 		if (this->isMethodAllowed())
-			putMethod(req.getBody()); // done
+			putMethod(content); // done
 	}
 	if (this->_status >= 299)
 	{
@@ -138,21 +137,6 @@ void 	Response::readContent()
 	file.close();
 }
 
-void 	Response::writeContent(std::string content)
-{
-	std::ofstream file;
-//	if (_status == 200)
-//    	_status = 204;
-	struct stat statBuf;
-	if(stat(_path.c_str(), &statBuf) == 0 && _status == 200)
-		this->setStatus(201);
-	file.open(_path, std::ofstream::out | std::ofstream::trunc);
-	if(!file.is_open() && _status == 200)
-		return (this->setStatus(403));
-	file << content;
-	file.close();
-
-}
 
 void    Response::createErrorPage(std::string *pageData)
 {
@@ -241,9 +225,8 @@ void Response::postMethod(std::string content)
 	file.open(_path, std::ios::out | std::ios::app);
 	if(!file.is_open() && _status == 200)
 		this->setStatus(403);
-//	this->setStatus(204);
 	struct stat statBuf;
-	if(stat(_path.c_str(), &statBuf) == 0 && _status == 200)
+	if(stat(_path.c_str(), &statBuf) < 0 && _status == 200)
 		this->setStatus(201);
 	file << content;
 	file.close();
@@ -252,8 +235,31 @@ void Response::postMethod(std::string content)
 	// need more knowledge about CGI
 }
 
+void 	Response::writeContent(std::string content)
+{
+    std::ofstream file;
+	struct stat statBuf;
+
+	if(stat(_path.c_str(), &statBuf) < 0 && _status == 200)
+		this->setStatus(201);
+    file.open(_path, std::ios::in | std::ios::trunc);
+
+
+//	file.open(_path, std::ofstream::out | std::ofstream::trunc);
+//	if(!file.is_open() && _status == 200)
+//		return (this->setStatus(403));
+	file << content;
+	file.close();
+
+}
+
 void Response::putMethod(std::string content)
 {
+    std::string::iterator it;
+
+    it = _path.end() - 1;
+    if ((*it) == '/')
+            _path.erase(it);
 	writeContent(content);
 	responseHeader header(content, _path, _status, _contentType);
 	_response = header.getHeader(_status); // here we got a potential bug

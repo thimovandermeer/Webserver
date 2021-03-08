@@ -89,7 +89,7 @@ int doneReading(std::string request, int type)
 	int         contentLen;
 	char        *end;
 
-	if (type == 1 && request.find("\r\n0\r\n") != std::string::npos)        //of is dit too much
+	if (type == 1 && request.find("\r\n0\r\n") != std::string::npos)
 		return 1;
 	else if (type == 2) {
 		pos1 = request.find("Content-Length");      //opzoeken waar de lengte staat
