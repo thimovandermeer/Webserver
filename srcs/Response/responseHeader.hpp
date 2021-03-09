@@ -34,6 +34,7 @@ private:
 	void 			setTransferEncoding();
 	void 			setRetryAfter(int status, int number);
 	void 			setWwwAuthenticate(int status);
+	void 			resetValues(void);
 
 	// private member functions
 	std::string		createStatusMessage(int status);

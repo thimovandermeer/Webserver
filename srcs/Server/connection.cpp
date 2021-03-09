@@ -7,6 +7,7 @@
 
 connection::connection() : timeLastRead(0), acceptFd(-1), hasFullRequest(false)
 {
+
 }
 
 connection::~connection()
@@ -36,17 +37,17 @@ void	connection::closeThisConnection()
 	this->hasFullRequest = false;
 	this->timeLastRead = 0;
 }
-
+#include <iomanip>
 void	connection::sendData(std::string &response)
 {
 	std::cout << "==RESPONSE==" << std::endl;
+//	std::cout << std::setw(500) << response << std::endl;
 	int len = response.length() > 500 ? 500 : response.length();
-	int ret = write(1, response.c_str(), len);
-	if (ret == -1){;}
-//	std::cout << response << std::endl;
-	std::cout << "==end==" << std::endl;
-	if(send(this->acceptFd, response.c_str(), response.size(), 0) == -1)
+	write(1, response.c_str(), len);
+	std::cout << "\n==end==" << std::endl;
+	if(send(this->acceptFd, response.c_str(), response.size(), MSG_NOSIGNAL) == -1)
 	{
+		std::cerr << response.size() << std::endl;
 		std::cerr << "send error" << std::endl;
 	}
 	this->closeThisConnection();

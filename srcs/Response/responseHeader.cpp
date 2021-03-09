@@ -44,6 +44,22 @@ responseHeader::responseHeader(const responseHeader &src)
 	_wwwAuthenticate = src._wwwAuthenticate;
 }
 
+void			responseHeader::resetValues(void)
+{
+	_allow = "";
+	_contentLanguage = "";
+	_contentLength = "";
+	_contentLocation = "";
+	_contentType = "";
+	_date = "";
+	_lastModified = "";
+	_location = "";
+	_retryAfter = "";
+	_server = "";
+	_transferEncoding = "";
+	_wwwAuthenticate = "";
+}
+
 responseHeader::~responseHeader()
 {
 
@@ -75,12 +91,10 @@ std::string responseHeader::getHeader(int status)
 {
 	std::string header;
 
+//	resetValues();
 	// set all headers to appropriate info
-//	setAllHeaders(content, path, status, contentType);
 	// write header
-	std::stringstream ss;
-	ss << status;
-	header = "HTTP/1.1 " + ss.str() + " " + createStatusMessage(status) + "\r\n";
+	header = "HTTP/1.1 " + std::to_string(status) + " " + createStatusMessage(status) + "\r\n";
 	header += writeHeader();
 	return (header);
 }
@@ -113,29 +127,29 @@ std::string 		responseHeader::writeHeader()
 {
 	std::string header;
 
-	if (!_allow.empty())
+	if (_allow != "")
 		header += "Allow: " + _allow + "\r\n";
-	if (!_contentLanguage.empty())
+	if (_contentLanguage != "")
 		header += "Content-Language: " + _contentLanguage + "\r\n";
-	if (!_contentLength.empty())
+	if (_contentLength != "")
 		header += "Content-Length: " + _contentLength + "\r\n";
-	if (!_contentLocation.empty())
+	if (_contentLocation != "")
 		header += "Content-Location: " + _contentLocation + "\r\n";
-	if (!_contentType.empty())
+	if (_contentType != "")
 		header += "Content-Type: " + _contentType + "\r\n";
-	if (!_date.empty())
+	if (_date != "")
 		header += "Date: " + _date + "\r\n";
-	if (!_lastModified.empty())
+	if (_lastModified != "")
 		header += "Last-Modified: " + _lastModified + "\r\n";
-	if (!_location.empty())
+	if (_location != "")
 		header += "Location: " + _location + "\r\n";
-	if (!_retryAfter.empty())
+	if (_retryAfter != "")
 		header += "Retry-After: " + _retryAfter + "\r\n";
-	if (!_server.empty())
+	if (_server != "")
 		header += "Server: " + _server + "\r\n";
-//	if (!_transferEncoding.empty())
+//	if (_transferEncoding != "")
 //		header += "Transfer-Encoding: " + _transferEncoding + "\r\n";
-	if (!_wwwAuthenticate.empty())
+	if (_wwwAuthenticate != "")
 		header += "Www-Authenticate: " + _wwwAuthenticate + "\r\n";
 	header += "\r\n";
 	return (header);
@@ -166,9 +180,7 @@ void responseHeader::setContentLanguage()
 
 void responseHeader::setContentLength(int length)
 {
-	std::stringstream ss;
-	ss << length;
-	_contentLength = ss.str();
+	_contentLength = std::to_string(length);
 }
 
 void responseHeader::setContentType(const std::string &contentType)
@@ -242,9 +254,7 @@ void responseHeader::setRetryAfter(int status, int number)
 	}
 	else if (status / 100 == 3)
 	{
-		std::stringstream ss;
-		ss << number;
-		_retryAfter = ss.str();
+		_retryAfter = std::to_string(number);
 	}
 	else
 		_retryAfter = "";

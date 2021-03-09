@@ -99,9 +99,9 @@ void server::generateResponse(int index)
 {
 	std::cout << "==REQUEST==" << std::endl;
 //	std::cout << connections[index].acceptBuffer << std::endl;
-	int len = connections[index].acceptBuffer.length() > 500 ? 500 : connections[index].acceptBuffer.length();
-	int ret = write(1, connections[index].acceptBuffer.c_str(), len);
-	if (ret == -1){;}
+	int len1 = connections[index].acceptBuffer.length();
+	int len2 = len1 > 500 ? 500 : len1;
+	write(1, connections[index].acceptBuffer.c_str(), len2);
 	std::cout << "==end==" << std::endl;
 	Request	request(connections[index].acceptBuffer);
 	Response resp(request, *this);

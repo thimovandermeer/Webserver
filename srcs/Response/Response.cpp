@@ -116,7 +116,9 @@ void 	Response::readContent()
 {
 	if (_useCGI == true)
 	{
+		std::cerr << _content << std::endl;
 		_content = _CGI.executeGCI(_body);
+		std::cerr << _content.length() << std::endl;
 		return ;
 	}
 	std::ifstream file;
@@ -136,22 +138,6 @@ void 	Response::readContent()
 	_content.assign((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
 	file.close();
 }
-
-//void 	Response::writeContent(std::string content)
-//{
-//	std::ofstream file;
-////	if (_status == 200)
-////    	_status = 204;
-//	struct stat statBuf;
-//	if(stat(_path.c_str(), &statBuf) == 0 && _status == 200)
-//		this->setStatus(201);
-//	file.open(_path.c_str(), std::ofstream::out | std::ofstream::trunc);
-//	if(!file.is_open() && _status == 200)
-//		return (this->setStatus(403));
-//	file << content;
-//	file.close();
-//
-//}
 
 void    Response::createErrorPage(std::string *pageData)
 {
@@ -232,7 +218,7 @@ void Response::postMethod(std::string content)
 {
 	if(_useCGI == true) {
 		readContent();
-		responseHeader header(content, _path, _status, _contentType);
+		responseHeader header(_content, _path, _status, _contentType);
 		_response = header.getHeader(_status) + _content;
 		return;
 	}
@@ -251,6 +237,19 @@ void Response::postMethod(std::string content)
 	// need more knowledge about CGI
 }
 
+void Response::putMethod(std::string content)
+{
+	std::string::iterator it;
+
+	it = _path.end() - 1;
+	if ((*it) == '/')
+		_path.erase(it);
+	writeContent(content);
+	content.clear();
+	responseHeader header(content, _path, _status, _contentType);
+	_response = header.getHeader(_status); // here we got a potential bug
+}
+
 void 	Response::writeContent(std::string content)
 {
     std::ofstream file;
@@ -259,28 +258,11 @@ void 	Response::writeContent(std::string content)
 	if(stat(_path.c_str(), &statBuf) < 0 && _status == 200)
 		this->setStatus(201);
     file.open(_path.c_str(), std::ios::in | std::ios::trunc);
-
-
-//	file.open(_path, std::ofstream::out | std::ofstream::trunc);
-//	if(!file.is_open() && _status == 200)
-//		return (this->setStatus(403));
 	file << content;
 	file.close();
-
 }
 
-void Response::putMethod(std::string content)
-{
-    std::string::iterator it;
 
-    it = _path.end() - 1;
-    if ((*it) == '/')
-            _path.erase(it);
-	writeContent(content);
-	content.clear();
-	responseHeader header(content, _path, _status, _contentType);
-	_response = header.getHeader(_status); // here we got a potential bug
-}
 
 std::string 		Response::getContent()
 {
