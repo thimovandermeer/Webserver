@@ -30,6 +30,7 @@ private:
 	bool 						_useCGI;
 	std::map<int, std::string>	_errorMessage;
 	std::string					_method;
+	std::string 				_body;
 private:
 	Response();
 	// functions for each different method
