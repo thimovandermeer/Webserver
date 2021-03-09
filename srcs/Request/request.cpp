@@ -4,7 +4,7 @@
 #include <sstream>
 #include <iomanip>
 #include <string>
-#include <cstdint>
+//#include <cstdint>
 
 std::string methods[4] = {
         "GET",
@@ -226,12 +226,13 @@ void Request::parseBody() {
     size_t last = _request.rfind("\r\n");
     std::string hex;
     _body = "";
-    if (_request.compare("0\r\n\r") == 0)
+    if (_request.compare("0\r\n\r\n") == 0)
         return ;
     while (begin != last - 2){          //voor tester -0 ?
         end = _request.find("\r\n", begin);
         hex = _request.substr(begin, end - begin);
-        _chunkedLength += stoi(hex, 0, 16);
+
+        _chunkedLength += stoi(hex, NULL, 16);
         hex.clear();
         begin = end + 2;
         end = _request.find("\r\n", begin);

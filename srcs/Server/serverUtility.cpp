@@ -95,8 +95,6 @@ void	ft_bzero(char *buf, size_t n)
 	}
 }
 
-
-
 void server::generateResponse(int index)
 {
 	std::cout << "==REQUEST==" << std::endl;
