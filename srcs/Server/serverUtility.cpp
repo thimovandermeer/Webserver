@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <sys/socket.h>
 #include <fcntl.h>
+#include <cstring>
 #include "../Utils/utils.hpp"
 #include "../Request/request.hpp"
 #include "../Response/Response.hpp"
@@ -60,7 +61,7 @@ void 	server::acpt()
 			break;
 	}
 	if (i == NR_OF_CONNECTIONS)
-		; // too many connections, should never happen
+	{ ; } // too many connections, should never happen
 	this->connections[i].acceptFd = accept(this->_socketFd, &connectingAddr, &addressLen);
 	if (this->connections[i].acceptFd == -1)
 		std::cerr << "Could not create fd" << std::endl;

@@ -2,6 +2,7 @@
 #include <sys/select.h>
 #include "../Request/request.hpp"
 #include "../Utils/utils.hpp"
+#include <string.h>
 
 serverCluster::serverCluster() : _nrOfServers(0)
 {

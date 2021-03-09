@@ -60,7 +60,7 @@ void	location::setAutoindex(const std::string &autoindex)
 		return;
 	}
 	if (autoindex != "off") // input is neither 'on' nor 'off', so wrong
-		;
+	{;}
 }
 
 void	location::setRoot(const std::string &root)
@@ -109,7 +109,7 @@ void 	location::sethtpasswdpath(const std::string &path)
 	std::fstream	configfile;
 	std::string line;
 
-	configfile.open(this->_htpasswd_path);
+	configfile.open(this->_htpasswd_path.c_str());
 	if (!configfile)
 		return;
 	while (std::getline(configfile, line)) {

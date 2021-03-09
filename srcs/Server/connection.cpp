@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <iostream>
 #include <sys/socket.h>
+#include <cstring>
 
 connection::connection() : timeLastRead(0), acceptFd(-1), hasFullRequest(false)
 {

@@ -5,6 +5,7 @@
 #include <sys/time.h>
 #include <iostream>
 #include <unistd.h>
+#include <stdlib.h>
 #include <map>
 
 #define BUFFER_SIZE 42

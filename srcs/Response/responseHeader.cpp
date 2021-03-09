@@ -3,9 +3,10 @@
 //
 
 #include "responseHeader.hpp"
-#include "Response.hpp"
 #include <sys/time.h>
 #include <sys/stat.h>
+#include <string>
+#include <sstream>
 // canonical form functions
 responseHeader::responseHeader(std::string &content, std::string &path, int status, std::string &contentType)
 {
@@ -77,7 +78,9 @@ std::string responseHeader::getHeader(int status)
 	// set all headers to appropriate info
 //	setAllHeaders(content, path, status, contentType);
 	// write header
-	header = "HTTP/1.1 " + std::to_string(status) + " " + createStatusMessage(status) + "\r\n";
+	std::stringstream ss;
+	ss << status;
+	header = "HTTP/1.1 " + ss.str() + " " + createStatusMessage(status) + "\r\n";
 	header += writeHeader();
 	return (header);
 }
@@ -110,29 +113,29 @@ std::string 		responseHeader::writeHeader()
 {
 	std::string header;
 
-	if (_allow != "")
+	if (_allow.empty())
 		header += "Allow: " + _allow + "\r\n";
-	if (_contentLanguage != "")
+	if (_contentLanguage.empty())
 		header += "Content-Language: " + _contentLanguage + "\r\n";
-	if (_contentLength != "")
+	if (_contentLength.empty())
 		header += "Content-Length: " + _contentLength + "\r\n";
-	if (_contentLocation != "")
+	if (_contentLocation.empty())
 		header += "Content-Location: " + _contentLocation + "\r\n";
-	if (_contentType != "")
+	if (_contentType.empty())
 		header += "Content-Type: " + _contentType + "\r\n";
-	if (_date != "")
+	if (_date.empty())
 		header += "Date: " + _date + "\r\n";
-	if (_lastModified != "")
+	if (_lastModified.empty())
 		header += "Last-Modified: " + _lastModified + "\r\n";
-	if (_location != "")
+	if (_location.empty())
 		header += "Location: " + _location + "\r\n";
-	if (_retryAfter != "")
+	if (_retryAfter.empty())
 		header += "Retry-After: " + _retryAfter + "\r\n";
-	if (_server != "")
+	if (_server.empty())
 		header += "Server: " + _server + "\r\n";
-//	if (_transferEncoding != "")
+//	if (_transferEncoding.empty())
 //		header += "Transfer-Encoding: " + _transferEncoding + "\r\n";
-	if (_wwwAuthenticate != "")
+	if (_wwwAuthenticate.empty())
 		header += "Www-Authenticate: " + _wwwAuthenticate + "\r\n";
 	header += "\r\n";
 	return (header);
@@ -163,7 +166,9 @@ void responseHeader::setContentLanguage()
 
 void responseHeader::setContentLength(int length)
 {
-	_contentLength = std::to_string(length);
+	std::stringstream ss;
+	ss << length;
+	_contentLength = ss.str();
 }
 
 void responseHeader::setContentType(const std::string &contentType)
@@ -237,7 +242,9 @@ void responseHeader::setRetryAfter(int status, int number)
 	}
 	else if (status / 100 == 3)
 	{
-		_retryAfter = std::to_string(number);
+		std::stringstream ss;
+		ss << number;
+		_retryAfter = ss.str();
 	}
 	else
 		_retryAfter = "";

@@ -6,6 +6,7 @@
 #include <iostream>
 #include <iomanip>
 #include <unistd.h>
+#include <climits>
 
 const char	*server::inputErrorException::what() const throw()
 {

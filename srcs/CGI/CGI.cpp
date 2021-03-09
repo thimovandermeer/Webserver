@@ -5,6 +5,7 @@
 //#include <AppleEXR.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <string.h>
 #include "CGI.hpp"
 
 CGI::CgiError::CgiError(const char* w)
@@ -64,7 +65,7 @@ std::string 	CGI::executeGCI()
 		std::string pathStart = _path.substr(0, executableStart);
 		chdir(pathStart.c_str());
 		realArgv[0] = executable.c_str();
-		realArgv[1] = nullptr;
+		realArgv[1] = NULL;
 
 		char *const *argv = const_cast<char *const *>(realArgv);
 		int ret = execve(argv[0], reinterpret_cast<char* const*>(argv), _env);

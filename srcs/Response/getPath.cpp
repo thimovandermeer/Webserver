@@ -27,7 +27,7 @@ location*	findFileExtension(server &server, std::string *uri)
 			}
 		}
 	}
-	return (nullptr);
+	return (NULL);
 }
 
 std::string	getPath(server &serv, Request &req, Response &resp)
@@ -84,7 +84,7 @@ std::string	getPath(server &serv, Request &req, Response &resp)
 	}
 	else
 		uri.erase(0, 1);
-	if (!loc)
+	if (!loc && req.getMethod().compare("PUT") != 0)
 		resp.setStatus(404); // location not found
 	else
 	{
@@ -101,7 +101,7 @@ std::string	getPath(server &serv, Request &req, Response &resp)
 			resp.currentLoc = loc;
 			return (filePath);
 		}
-		if (needIndex)
+		if (needIndex && req.getMethod().compare("PUT") != 0)
 		{
 			std::vector<std::string>	indices;
 
@@ -124,7 +124,7 @@ std::string	getPath(server &serv, Request &req, Response &resp)
 		else
 		{
 			filePath = rootDir + uri;
-			if (stat(filePath.c_str(), &statBuf) != 0)
+			if (stat(filePath.c_str(), &statBuf) != 0 && req.getMethod().compare("PUT") != 0)
 				resp.setStatus(404);
 		}
 	}

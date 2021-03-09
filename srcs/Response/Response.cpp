@@ -125,12 +125,12 @@ void 	Response::readContent()
 
 	if(stat(_path.c_str(), &statBuf) != 0)
 		return (this->setStatus(404));
-	file.open(this->_path, std::ifstream::in);
+	file.open(this->_path.c_str(), std::ifstream::in);
 	if(!file.is_open())
 		return (this->setStatus(403));
 	if(stat(_path.c_str(), &statBuf) != 0 && _status == 200)
 		return (this->setStatus(404));
-	file.open(_path, std::ifstream::in);
+	file.open(_path.c_str(), std::ifstream::in);
 	if(!file.is_open() && _status == 200)
 		return (this->setStatus(403));
 	if (this->_status == 200)
@@ -146,7 +146,7 @@ void 	Response::writeContent(std::string content)
 	struct stat statBuf;
 	if(stat(_path.c_str(), &statBuf) == 0 && _status == 200)
 		this->setStatus(201);
-	file.open(_path, std::ofstream::out | std::ofstream::trunc);
+	file.open(_path.c_str(), std::ofstream::out | std::ofstream::trunc);
 	if(!file.is_open() && _status == 200)
 		return (this->setStatus(403));
 	file << content;
@@ -238,7 +238,7 @@ void Response::postMethod(std::string content)
 		return;
 	}
 	std::ofstream file;
-	file.open(_path, std::ios::out | std::ios::app);
+	file.open(_path.c_str(), std::ios::out | std::ios::app);
 	if(!file.is_open() && _status == 200)
 		this->setStatus(403);
 //	this->setStatus(204);
