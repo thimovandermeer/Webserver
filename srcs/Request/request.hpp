@@ -40,15 +40,14 @@ class Request{
         Request &operator=(const Request &original);
 
         std::string getMethod() const;
-        std::string getVersion() const;
         std::string getUri() const;
         std::map<headerType, std::string> getHeaders() const;
         std::string getBody() const;
         std::string getContentType();
-		std::string getAuthorization();
         std::string getCgiEnv() const;
         bool getCgi() const ;
 		int getStatus() const;
+        size_t getChunkedLength() const;
 
         void parseRequest();
         void parseRequestLine();
@@ -66,6 +65,7 @@ class Request{
         std::map<std::string, headerType>	_headerMap;
         std::map<headerType, std::string>   _defHeaders;
         int         _status;
+        size_t      _chunkedLength;
         bool        _cgi;
 } ;
 

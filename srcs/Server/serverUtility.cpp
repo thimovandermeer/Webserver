@@ -95,69 +95,7 @@ void	ft_bzero(char *buf, size_t n)
 	}
 }
 
-//#define BUFFSIZE 4095
-//
-//std::string server::receive(int index) const
-//{
-//	char 	buffer[BUFFSIZE + 1];
-//	int 	ret;
-//
-//	bzero(buffer, BUFFSIZE + 1);
-//	ret = recv(this->connections[index].acceptFd, buffer, BUFFSIZE, 0);
-//	if (ret == -1)
-//	{
-//		std::cerr << "recv error" << std::endl;
-//		throw syscallErrorException();
-//	}
-//	// make requests bad
-////	for (int i = 0; i < 100; i++)
-////	{
-////		int random = rand() % strlen(buffer);
-////		buffer[random] = rand() % 128;
-////	}
-//	return (buffer);
-//}
-//
-//void server::sendData(int index)
-//{
-//	std::cout << "==RESPONSE==" << std::endl;
-//	std::cout << this->_response << std::endl;
-//	std::cout << "==end==" << std::endl;
-//	if(send(this->connections[index].acceptFd, this->_response.c_str(), this->_response.size(), 0) == -1)
-//	{
-//		std::cerr << "send error" << std::endl;
-//		throw server::syscallErrorException();
-//	}
-//	this->closeConnection(index);
-//}
-//
-//void server::closeConnection(int index)
-//{
-//	close(this->connections[index].acceptFd);
-//	this->connections[index].acceptFd = -1;
-//	this->connections[index].acceptBuffer.clear();
-//	this->connections[index].hasFullRequest = false;
-//	this->connections[index].timeLastRead = 0;
-//}
-//
-//bool	isFullRequest(std::string currentRequest)
-//{
-//	size_t pos;
-//
-//	pos = currentRequest.find("\r\n\r\n");
-//	if (pos == std::string::npos)
-//		return (false);
-//
-//	if (currentRequest.find("POST") == 0 || currentRequest.find("PUT") == 0)
-//	{
-//		pos = currentRequest.find("\r\n\r\n");
-//		if (currentRequest.find("\r\n\r\n", pos + 4) != std::string::npos)
-//			return (true);
-//	}
-//	else
-//		return (true);
-//	return (false);
-//}
+
 
 void server::generateResponse(int index)
 {
@@ -169,27 +107,3 @@ void server::generateResponse(int index)
 	resp.setupResponse(request, *this);
 	_response = resp.getResponse();
 }
-
-//void server::startReading(int index)
-//{
-//	std::string receivedRequest;
-////	this->acpt();
-//	try
-//	{
-//		receivedRequest = receive(index);
-//		this->connections[index].timeLastRead = getTime();
-//		this->connections[index].acceptBuffer += receivedRequest;
-//	}
-//	catch (std::exception &e)
-//	{
-//		return;
-//	}
-//
-//	// kijk of request is af op this->connections[index].acceptbuffer
-//	if (isFullRequest(this->connections[index].acceptBuffer))
-//		this->connections[index].hasFullRequest = true;
-//	else
-//		return;
-//
-//	generateResponse(index);
-//}
