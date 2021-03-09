@@ -224,16 +224,11 @@ void Request::parseBody() {
     size_t begin = 0;
     size_t end;
     size_t last = _request.rfind("\r\n");
-    std::string hex;
     _body = "";
     if (_request.compare("0\r\n\r\n") == 0)
         return ;
-    while (begin != last - 2){          //voor tester -0 ?
+    while (begin != last - 2){
         end = _request.find("\r\n", begin);
-        hex = _request.substr(begin, end - begin);
-
-        _chunkedLength += stoi(hex, NULL, 16);
-        hex.clear();
         begin = end + 2;
         end = _request.find("\r\n", begin);
         _body.append(_request, begin, end - begin);

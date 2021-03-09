@@ -85,9 +85,9 @@ std::string 	CGI::executeGCI()
 		if (ret != -1)
 			buff[ret] = '\0';
 		content += buff;
-//		std::cerr << "looping..." << std::endl;
+		std::cerr << "looping..." << std::endl;
 	}
-//	std::cerr << "done reading" << std::endl;
+	std::cerr << "done reading" << std::endl;
 	close(fd[0]);
 	return content;
 }
