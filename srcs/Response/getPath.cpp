@@ -97,7 +97,7 @@ std::string	getPath(server &serv, Request &req, Response &resp)
 
 		if (!loc->getCgiPath().empty()) // cgi regel die we gister bedacht hadden?
 		{
-			filePath = loc->getCgiPath();
+			filePath = rootDir + loc->getCgiPath();
 			resp.currentLoc = loc;
 			return (filePath);
 		}

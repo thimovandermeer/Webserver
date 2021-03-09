@@ -31,7 +31,8 @@ Response::Response(Request &req, server &serv) :
 	_contentType(req.getContentType()),
 	_CGI(_path, req, serv),
 	_useCGI(req.getCgi()),
-	_method(req.getMethod())
+	_method(req.getMethod()),
+	_body(req.getBody())
 {
     _errorMessage[204] = "No Content";
     _errorMessage[400] = "Bad Request";
@@ -80,7 +81,6 @@ bool	Response::isMethodAllowed()
 }
 
 void Response::setupResponse(Request &req, server &serv) {
-    std::string content = req.getBody();
 	if (this->authenticate(req))
 	{
 		std::cerr << "Authentication failed" << std::endl;
@@ -104,7 +104,7 @@ void Response::setupResponse(Request &req, server &serv) {
 	else if(_method == "PUT")
 	{
 		if (this->isMethodAllowed())
-			putMethod(content); // done
+			putMethod(_body); // done
 	}
 	if (this->_status >= 299)
 	{
@@ -116,7 +116,7 @@ void 	Response::readContent()
 {
 	if (_useCGI == true)
 	{
-		_content = _CGI.executeGCI();
+		_content = _CGI.executeGCI(_body);
 		return ;
 	}
 	std::ifstream file;

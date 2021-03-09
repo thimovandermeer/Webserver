@@ -1,38 +1,32 @@
 //
 // Created by Thimo Van der meer on 09/02/2021.
 //
-
 //#include <AppleEXR.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <string.h>
+#include <fstream>
 #include "CGI.hpp"
-
 CGI::CgiError::CgiError(const char* w)
 		: std::runtime_error(w)
 {
 }
-
 CGI::PipeSetupFailed::PipeSetupFailed()
 		: CgiError("CGI pipe setup failed")
 {
 }
-
 CGI::ForkFailed::ForkFailed()
 		: CgiError("CGI fork failed")
 {
 }
-
 // default stuff
 CGI::CGI(std::string &path, Request &request, server &server) :
-	_path(path)
+		_path(path)
 {
 	_initEnvironment(request, server);
 }
-
 CGI::CGI()
 {
-
 }
 CGI::CGI(CGI &src)
 {
@@ -40,25 +34,30 @@ CGI::CGI(CGI &src)
 		this->_environment = src._environment;
 	return ;
 }
-
 CGI::~CGI()
 {
 	;
 }
-
 // public stuff
 
-std::string 	CGI::executeGCI()
+std::string CGI::executeGCI(std::string &body)
 {
 	_convertEnv();
 	std::cerr << _path << std::endl;
-	pipe(fd);
+//	pipe(fd);
+	int fileIn = open("/tmp/fuckyoupeerin.txt", O_CREAT | O_TRUNC | O_RDWR, S_IRWXU);
+	// write some shit for input
+	write(fileIn, body.c_str(), body.length());
+	int fileOut;
 	_pid = fork();
 	if (_pid == 0)
 	{
-		close(fd[0]);
-		dup2(fd[1], STDOUT_FILENO);
-		close(fd[1]);
+		fileOut  = open("/tmp/fuckyoupeerout.txt", O_CREAT | O_TRUNC | O_RDWR, S_IRWXU);
+		dup2(fileOut, STDOUT_FILENO);
+		close(fileOut);
+		fileIn = open("/tmp/fuckyoupeerin.txt", O_RDONLY, S_IRWXU);
+		dup2(fileIn, STDIN_FILENO);
+		close(fileIn);
 		long executableStart = _path.rfind('/') + 1;
 		std::string executable = _path.substr(executableStart);
 		const char *realArgv[2];
@@ -66,32 +65,21 @@ std::string 	CGI::executeGCI()
 		chdir(pathStart.c_str());
 		realArgv[0] = executable.c_str();
 		realArgv[1] = NULL;
-
 		char *const *argv = const_cast<char *const *>(realArgv);
 		int ret = execve(argv[0], reinterpret_cast<char* const*>(argv), _env);
 		if (ret < 0)
 			exit(1);
 	}
-	close(fd[1]);
-
-	char buff[500];
-	int ret = 1;
-	std::string content;
-//	std::cerr << "start reading" << std::endl;
-	fcntl(fd[0], F_SETFL, O_NONBLOCK);
-	while(ret >= 1)
-	{
-		ret = read(fd[0], buff, 499);
-		if (ret != -1)
-			buff[ret] = '\0';
-		content += buff;
-		std::cerr << "looping..." << std::endl;
-	}
-	std::cerr << "done reading" << std::endl;
-	close(fd[0]);
-	return content;
+//	fileOut = open("/tmp/fuckyoupeerout.txt", O_RDONLY, S_IRWXU);
+	std::string ret;
+	int status;
+	waitpid(0, &status, 0);
+	std::ifstream file;
+	file.open("/tmp/fuckyoupeerout.txt", std::ifstream::in);
+	ret.assign((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+	file.close();
+	return ret;
 }
-
 void CGI::_initEnvironment(Request &request, server &server)
 {
 	std::map<headerType, std::string> reqHeaders = request.getHeaders();
@@ -120,7 +108,6 @@ void CGI::_initEnvironment(Request &request, server &server)
 	this->_environment["SERVER_PROTOCOL"] = "HTTP/1.1"; // search app
 	this->_environment["SERVER_SOFTWARE"] = "Merel Jonas Thimo Epic webserver huts"; // search app
 }
-
 void CGI::_convertEnv()
 {
 	this->_env = new char*[this->_environment.size() + 1];
