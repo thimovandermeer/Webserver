@@ -6,6 +6,7 @@
 #include <fcntl.h>
 #include <string.h>
 #include <fstream>
+#include <sys/wait.h>
 #include "CGI.hpp"
 CGI::CgiError::CgiError(const char* w)
 		: std::runtime_error(w)
@@ -47,7 +48,8 @@ std::string CGI::executeGCI(std::string &body)
 //	pipe(fd);
 	int fileIn = open("/tmp/fuckyoupeerin.txt", O_CREAT | O_TRUNC | O_RDWR, S_IRWXU);
 	// write some shit for input
-	write(fileIn, body.c_str(), body.length());
+	int asdf = write(fileIn, body.c_str(), body.length());
+	if (asdf == -1){;}
 	int fileOut;
 	_pid = fork();
 	if (_pid == 0)
@@ -62,7 +64,8 @@ std::string CGI::executeGCI(std::string &body)
 		std::string executable = _path.substr(executableStart);
 		const char *realArgv[2];
 		std::string pathStart = _path.substr(0, executableStart);
-		chdir(pathStart.c_str());
+		if (chdir(pathStart.c_str()) == -1)
+			{;}
 		realArgv[0] = executable.c_str();
 		realArgv[1] = NULL;
 		char *const *argv = const_cast<char *const *>(realArgv);

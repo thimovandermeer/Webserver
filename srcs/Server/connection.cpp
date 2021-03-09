@@ -40,7 +40,10 @@ void	connection::closeThisConnection()
 void	connection::sendData(std::string &response)
 {
 	std::cout << "==RESPONSE==" << std::endl;
-	std::cout << response << std::endl;
+	int len = response.length() > 500 ? 500 : response.length();
+	int ret = write(1, response.c_str(), len);
+	if (ret == -1){;}
+//	std::cout << response << std::endl;
 	std::cout << "==end==" << std::endl;
 	if(send(this->acceptFd, response.c_str(), response.size(), 0) == -1)
 	{

@@ -277,6 +277,7 @@ void Response::putMethod(std::string content)
     if ((*it) == '/')
             _path.erase(it);
 	writeContent(content);
+	content.clear();
 	responseHeader header(content, _path, _status, _contentType);
 	_response = header.getHeader(_status); // here we got a potential bug
 }

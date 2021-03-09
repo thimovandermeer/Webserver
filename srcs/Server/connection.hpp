@@ -1,7 +1,7 @@
 #ifndef WEBSERV_CONNECTION_HPP
 # define WEBSERV_CONNECTION_HPP
 # include <string>
-# define BUFFSIZE 4095
+# define BUFFSIZE 1000000
 
 class connection {
 private:
