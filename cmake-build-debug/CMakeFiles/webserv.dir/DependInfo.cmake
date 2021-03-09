@@ -4,22 +4,22 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/thimovandermeer/CLionProjects/Webserver/srcs/CGI/CGI.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/CGI/CGI.cpp.o"
-  "/Users/thimovandermeer/CLionProjects/Webserver/srcs/Cluster/serverCluster.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Cluster/serverCluster.cpp.o"
-  "/Users/thimovandermeer/CLionProjects/Webserver/srcs/Request/request.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Request/request.cpp.o"
-  "/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response/Response.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o"
-  "/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response/getPath.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.o"
-  "/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response/responseHeader.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/responseHeader.cpp.o"
-  "/Users/thimovandermeer/CLionProjects/Webserver/srcs/Server/connection.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/connection.cpp.o"
-  "/Users/thimovandermeer/CLionProjects/Webserver/srcs/Server/location.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/location.cpp.o"
-  "/Users/thimovandermeer/CLionProjects/Webserver/srcs/Server/parser.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/parser.cpp.o"
-  "/Users/thimovandermeer/CLionProjects/Webserver/srcs/Server/serverBasic.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/serverBasic.cpp.o"
-  "/Users/thimovandermeer/CLionProjects/Webserver/srcs/Server/serverUtility.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/serverUtility.cpp.o"
-  "/Users/thimovandermeer/CLionProjects/Webserver/srcs/Utils/Base64.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Utils/Base64.cpp.o"
-  "/Users/thimovandermeer/CLionProjects/Webserver/srcs/Utils/utils.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Utils/utils.cpp.o"
-  "/Users/thimovandermeer/CLionProjects/Webserver/srcs/webserv.cpp" "/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir/srcs/webserv.cpp.o"
+  "/home/jonasbb/Documents/Projects/webserv/srcs/CGI/CGI.cpp" "/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/CGI/CGI.cpp.o"
+  "/home/jonasbb/Documents/Projects/webserv/srcs/Cluster/serverCluster.cpp" "/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Cluster/serverCluster.cpp.o"
+  "/home/jonasbb/Documents/Projects/webserv/srcs/Request/request.cpp" "/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Request/request.cpp.o"
+  "/home/jonasbb/Documents/Projects/webserv/srcs/Response/Response.cpp" "/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o"
+  "/home/jonasbb/Documents/Projects/webserv/srcs/Response/getPath.cpp" "/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.o"
+  "/home/jonasbb/Documents/Projects/webserv/srcs/Response/responseHeader.cpp" "/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/responseHeader.cpp.o"
+  "/home/jonasbb/Documents/Projects/webserv/srcs/Server/connection.cpp" "/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/connection.cpp.o"
+  "/home/jonasbb/Documents/Projects/webserv/srcs/Server/location.cpp" "/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/location.cpp.o"
+  "/home/jonasbb/Documents/Projects/webserv/srcs/Server/parser.cpp" "/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/parser.cpp.o"
+  "/home/jonasbb/Documents/Projects/webserv/srcs/Server/serverBasic.cpp" "/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/serverBasic.cpp.o"
+  "/home/jonasbb/Documents/Projects/webserv/srcs/Server/serverUtility.cpp" "/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/serverUtility.cpp.o"
+  "/home/jonasbb/Documents/Projects/webserv/srcs/Utils/Base64.cpp" "/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Utils/Base64.cpp.o"
+  "/home/jonasbb/Documents/Projects/webserv/srcs/Utils/utils.cpp" "/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Utils/utils.cpp.o"
+  "/home/jonasbb/Documents/Projects/webserv/srcs/webserv.cpp" "/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/webserv.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "AppleClang")
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

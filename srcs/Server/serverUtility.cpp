@@ -101,7 +101,7 @@ void server::generateResponse(int index)
 //	std::cout << connections[index].acceptBuffer << std::endl;
 	int len1 = connections[index].acceptBuffer.length();
 	int len2 = len1 > 500 ? 500 : len1;
-	write(1, connections[index].acceptBuffer.c_str(), len2);
+	if (write(1, connections[index].acceptBuffer.c_str(), len2) == -1) {;}
 	std::cout << "==end==" << std::endl;
 	Request	request(connections[index].acceptBuffer);
 	Response resp(request, *this);

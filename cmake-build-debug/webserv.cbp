@@ -8,154 +8,156 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug"/>
+				<Option working_dir="/home/jonasbb/Documents/Projects/webserv/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="rebuild_cache">
-				<Option working_dir="/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug"/>
+				<Option working_dir="/home/jonasbb/Documents/Projects/webserv/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/jonasbb/Documents/Projects/webserv/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="webserv">
-				<Option output="/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/webserv" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug"/>
+				<Option output="/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/webserv" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jonasbb/Documents/Projects/webserv/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 webserv"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/Makefile&quot;  VERBOSE=1 webserv"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="webserv/fast">
-				<Option output="/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/webserv" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug"/>
+				<Option output="/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/webserv" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jonasbb/Documents/Projects/webserv/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 webserv/fast"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/Makefile&quot;  VERBOSE=1 webserv/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/jonasbb/Documents/Projects/webserv/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/CGI/CGI.cpp">
+		<Unit filename="/home/jonasbb/Documents/Projects/webserv/srcs/CGI/CGI.cpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/CGI/CGI.hpp">
+		<Unit filename="/home/jonasbb/Documents/Projects/webserv/srcs/CGI/CGI.hpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Cluster/serverCluster.cpp">
+		<Unit filename="/home/jonasbb/Documents/Projects/webserv/srcs/Cluster/serverCluster.cpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Cluster/serverCluster.hpp">
+		<Unit filename="/home/jonasbb/Documents/Projects/webserv/srcs/Cluster/serverCluster.hpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Request/request.cpp">
+		<Unit filename="/home/jonasbb/Documents/Projects/webserv/srcs/Request/request.cpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Request/request.hpp">
+		<Unit filename="/home/jonasbb/Documents/Projects/webserv/srcs/Request/request.hpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response/Response.cpp">
+		<Unit filename="/home/jonasbb/Documents/Projects/webserv/srcs/Response/Response.cpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response/Response.hpp">
+		<Unit filename="/home/jonasbb/Documents/Projects/webserv/srcs/Response/Response.hpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response/getPath.cpp">
+		<Unit filename="/home/jonasbb/Documents/Projects/webserv/srcs/Response/getPath.cpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response/responseHeader.cpp">
+		<Unit filename="/home/jonasbb/Documents/Projects/webserv/srcs/Response/responseHeader.cpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response/responseHeader.hpp">
+		<Unit filename="/home/jonasbb/Documents/Projects/webserv/srcs/Response/responseHeader.hpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Server/connection.cpp">
+		<Unit filename="/home/jonasbb/Documents/Projects/webserv/srcs/Server/connection.cpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Server/connection.hpp">
+		<Unit filename="/home/jonasbb/Documents/Projects/webserv/srcs/Server/connection.hpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Server/location.cpp">
+		<Unit filename="/home/jonasbb/Documents/Projects/webserv/srcs/Server/location.cpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Server/location.hpp">
+		<Unit filename="/home/jonasbb/Documents/Projects/webserv/srcs/Server/location.hpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Server/parser.cpp">
+		<Unit filename="/home/jonasbb/Documents/Projects/webserv/srcs/Server/parser.cpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Server/server.hpp">
+		<Unit filename="/home/jonasbb/Documents/Projects/webserv/srcs/Server/server.hpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Server/serverBasic.cpp">
+		<Unit filename="/home/jonasbb/Documents/Projects/webserv/srcs/Server/serverBasic.cpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Server/serverUtility.cpp">
+		<Unit filename="/home/jonasbb/Documents/Projects/webserv/srcs/Server/serverUtility.cpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Utils/Base64.cpp">
+		<Unit filename="/home/jonasbb/Documents/Projects/webserv/srcs/Utils/Base64.cpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Utils/Base64.hpp">
+		<Unit filename="/home/jonasbb/Documents/Projects/webserv/srcs/Utils/Base64.hpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Utils/utils.cpp">
+		<Unit filename="/home/jonasbb/Documents/Projects/webserv/srcs/Utils/utils.cpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Utils/utils.hpp">
+		<Unit filename="/home/jonasbb/Documents/Projects/webserv/srcs/Utils/utils.hpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/webserv.cpp">
+		<Unit filename="/home/jonasbb/Documents/Projects/webserv/srcs/webserv.cpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/webserv.hpp">
+		<Unit filename="/home/jonasbb/Documents/Projects/webserv/srcs/webserv.hpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/CMakeLists.txt">
+		<Unit filename="/home/jonasbb/Documents/Projects/webserv/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

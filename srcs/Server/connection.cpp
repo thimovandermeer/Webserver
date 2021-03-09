@@ -43,7 +43,7 @@ void	connection::sendData(std::string &response)
 	std::cout << "==RESPONSE==" << std::endl;
 //	std::cout << std::setw(500) << response << std::endl;
 	int len = response.length() > 500 ? 500 : response.length();
-	write(1, response.c_str(), len);
+	if (write(1, response.c_str(), len) == -1) {;}
 	std::cout << "\n==end==" << std::endl;
 	if(send(this->acceptFd, response.c_str(), response.size(), MSG_NOSIGNAL) == -1)
 	{
