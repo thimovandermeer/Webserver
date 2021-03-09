@@ -6,6 +6,7 @@
 #include <iostream>
 #include <iomanip>
 #include <unistd.h>
+#include <climits>
 
 const char	*server::inputErrorException::what() const throw()
 {
@@ -17,7 +18,7 @@ const char	*server::syscallErrorException::what() const throw()
 	return ("a syscall has returned an error");
 }
 
-server::server() : _portNr(0), _maxBodySize(1000000), _autoindex(false), _errorPage("default_error_page"), _socketFd(-1), _acceptFd(-1) //should change default error page
+server::server() : _portNr(0), _maxBodySize(1000000), _autoindex(false), _errorPage("default_error_page"), _socketFd(-1) //should change default error page
 {
 	this->_typeFunctionMap.insert(std::make_pair("listen", &server::setPort));
 	this->_typeFunctionMap.insert(std::make_pair("client_max_body_size", &server::setMaxBodySize));
@@ -27,6 +28,14 @@ server::server() : _portNr(0), _maxBodySize(1000000), _autoindex(false), _errorP
 	this->_typeFunctionMap.insert(std::make_pair("host", &server::setHost));
 	this->_typeFunctionMap.insert(std::make_pair("server_name", &server::setServerNames));
 	this->_typeFunctionMap.insert(std::make_pair("index", &server::setIndices));
+//	for (int i = 0; i < NR_OF_CONNECTIONS; i++)
+//	{
+//		this->cnctns[i]();
+//		this->connections[i].acceptFd = -1;
+//		this->connections[i].hasFullRequest = false;
+//		this->connections[i].timeLastRead = 0;
+//	}
+
 }
 
 server::server(server const &original) : _portNr(), _maxBodySize(), _autoindex()
@@ -37,7 +46,8 @@ server::server(server const &original) : _portNr(), _maxBodySize(), _autoindex()
 server::~server()
 {
 	close(this->_socketFd);
-	close(this->_acceptFd);
+//	for (int i = 0; i < NR_OF_CONNECTIONS; i++)
+//		close(this->connections[i].acceptFd);
 	std::vector<location*>::iterator it;
 	it = this->_locations.begin();
 	while (!this->_locations.empty() && it != this->_locations.end())
@@ -61,7 +71,8 @@ server&	server::operator=(server const &original)
 	this->_locations = original._locations;
 	this->_socketFd = original._socketFd;
 	this->_addr = original._addr;
-	this->_acceptFd = original._acceptFd;
+//	for (int i = 0; i < NR_OF_CONNECTIONS; i++)
+//		this->connections[i] = original.connections[i];
 	return (*this);
 }
 
@@ -121,10 +132,10 @@ void	server::setIndices(std::string &indices)
 		this->_indices.push_back(index);
 }
 
-void	server::setAcceptFd(int fd)
-{
-	this->_acceptFd = fd;
-}
+//void	server::setAcceptFd(int fd)
+//{
+//	this->_acceptFd = fd;
+//}
 
 const int			&server::getPortNr() const
 {
@@ -181,10 +192,10 @@ const struct sockaddr_in	&server::getAddr() const
 	return (this->_addr);
 }
 
-const long	&server::getAcceptFd() const
-{
-	return(this->_acceptFd);
-}
+//const t_connection* server::getConnections() const
+//{
+//	return(this->connections);
+//}
 
 bool	server::valueCheck() const
 {
@@ -244,6 +255,9 @@ std::ostream&	operator<<(std::ostream &os, const server &serv)
 	os << std::setw(15) << std::left << "root: " << serv.getRoot() << std::endl;
 	os << std::setw(15) << std::left << "errorpage: " << serv.getErrorPage() << std::endl;
 	os << std::setw(15) << std::left << "host: " << serv.getHost() << std::endl;
+	os << std::setw(15) << std::left << "socket fd: " << serv.getSocketFd() << std::endl;
+//	os << std::setw(15) << std::left << "accept fd: " << serv.getConnections() << std::endl;
+
 
 	std::vector<std::string> vc;
 	std::vector<std::string>::iterator it;

@@ -1,6 +1,8 @@
 #include "serverCluster.hpp"
 #include <sys/select.h>
 #include "../Request/request.hpp"
+#include "../Utils/utils.hpp"
+#include <string.h>
 
 serverCluster::serverCluster() : _nrOfServers(0)
 {
@@ -57,15 +59,43 @@ void	serverCluster::startListening()
 {
 	while (true)
 	{
-		fd_set			workingSet;
+		fd_set			readSet;
+		fd_set			writeSet;
 		int 			ret;
+		std::vector<server*>::iterator it = this->_servers.begin();
 
-		memcpy(&workingSet, &this->readFds, sizeof (this->readFds));
-		FD_SET(0, &workingSet); // adding stdin to readfds
-
+		FD_ZERO(&writeSet);
+		FD_ZERO(&readSet);
+		memcpy(&readSet, &this->readFds, sizeof (this->readFds));
+		FD_SET(0, &readSet); // adding stdin to readfds
+		while (it != this->_servers.end())
+		{
+			for (int i = 0; i < NR_OF_CONNECTIONS; i++)
+			{
+				if ((*it)->connections[i].acceptFd != -1)
+				{
+					unsigned long a = getTime();
+					unsigned long b = (*it)->connections[i].timeLastRead;
+					if (a - b > 5)
+					{
+						std::cerr << "connection timed out: nothing received on socket" << std::endl;
+						(*it)->generateResponse(i);
+						(*it)->connections[i].hasFullRequest = true;
+					}
+					if (!(*it)->connections[i].hasFullRequest)
+						FD_SET((*it)->connections->acceptFd, &readSet);
+					else
+						FD_SET((*it)->connections[i].acceptFd, &writeSet);
+				}
+			}
+			it++;
+		}
 		std::cout << "waiting for connection.." << std::endl;
-		ret = select(this->_nrOfServers * NR_OF_CONNECTIONS + 1, &workingSet, NULL, NULL, NULL);
-		if (FD_ISSET(0, &workingSet)) //input from stdin
+		struct timeval timeout;
+		timeout.tv_sec = 1;
+		timeout.tv_usec = 0;
+		ret = select(this->_nrOfServers * (NR_OF_CONNECTIONS + 1), &readSet, &writeSet, NULL, &timeout);
+		if (FD_ISSET(0, &readSet)) //input from stdin
 		{
 			std::string	line;
 			std::getline(std::cin, line);
@@ -79,14 +109,35 @@ void	serverCluster::startListening()
 		}
 		if (ret > 0)
 			std::cout << "Houston we have contact" << std::endl;
-		std::vector<server*>::iterator it = this->_servers.begin();
-		while (!this->_servers.empty() && it != this->_servers.end() && ret)
+
+		it = this->_servers.begin();
+		while (it != this->_servers.end() && ret) // gebeurt per server
 		{
-			long fd  = (*it)->getSocketFd();
-			if (workingSet.fds_bits[fd / 64] & (long)(1UL << fd % 64)) {
-				(*it)->run();
-				ret--;
+			long fd = (*it)->getSocketFd(); // check of nieuwe verbinding op socket
+			if (readSet.fds_bits[fd / 64] & (long)(1UL << fd % 64))
+			{
+				(*it)->acpt();
+				break;
 			}
+			for (int i = 0; i < NR_OF_CONNECTIONS; i++)
+			{
+				if ((*it)->connections[i].acceptFd != -1) // er moet van gelezen of naar geschreven worden
+				{
+					fd = (*it)->connections[i].acceptFd;
+					if (readSet.fds_bits[fd / 64] & (long)(1UL << fd % 64))
+					{
+						(*it)->connections[i].startReading(); // start reading
+						break;
+					}
+					if (writeSet.fds_bits[fd / 64] & (long)(1UL << fd % 64))
+					{
+						(*it)->generateResponse(i);
+						(*it)->connections[i].sendData((*it)->_response); // start writing
+						break;
+					}
+				}
+			}
+			// maybe CGI lezen hier nog doen
 			it++;
 		}
 	}

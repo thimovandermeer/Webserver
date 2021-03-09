@@ -30,59 +30,104 @@ location*	findFileExtension(server &server, std::string *uri)
 	return (NULL);
 }
 
-std::string	getPath(server &server, Request &request, Response &response)
+std::string	getPath(server &serv, Request &req, Response &resp)
 {
 	std::string filePath;
 	std::string rootDir;
 	std::string uri;
 	std::string locMatch;
 	size_t		found;
+	location	*loc = NULL;
+	bool		needIndex = false;
 
-	uri = request.getUri();
-	location *loc = findFileExtension(server, &uri);
-	found = uri.find_first_of("/", 1);
-	if (found == std::string::npos)
-		found = 1;
-	locMatch = uri.substr(0, found);
-	if (uri.length() > 1)
+	uri = req.getUri();
+	loc = findFileExtension(serv, &uri);
+	if (!loc)
+	{
+		if (uri.find('.') != std::string::npos) // file requested
+		{
+			found = uri.find_first_of('/', 1);
+			if (uri.find_last_of('/') == 0)
+			{
+				locMatch = "/";
+				uri.erase(0, 1);
+			}
+			else
+				locMatch = uri.substr(0, found);
+			if (uri.length() > 1 && locMatch != "/")
+			{
+				if (found != std::string::npos)
+					uri.erase(0, found + 1);
+				else
+					uri.erase(0, found);
+			}
+		}
+		else // location index requested
+		{
+			needIndex = true;
+			if (uri == "/")
+				locMatch = "/";
+			else
+			{
+				found = uri.find_first_of('/', 1);
+				locMatch = uri.substr(0, found);
+				if (found != std::string::npos)
+					uri.erase(0, found + 1);
+				else
+					uri.erase(0, found);
+				if (uri.length() && uri[uri.length() - 1] != '/' && uri != "/") // add '/' at end
+					uri += "/";
+			}
+
+		}
+		loc = serv.findLocation(locMatch);
+	}
+	else
 		uri.erase(0, 1);
-	if (!loc)
-		loc = server.findLocation(locMatch);
-	if (!loc)
-		response.setStatus(404); // location not found
+	if (!loc && req.getMethod().compare("PUT") != 0)
+		resp.setStatus(404); // location not found
 	else
 	{
 		// location exists
+		struct stat statBuf = {};
 		if (!loc->getRoot().empty()) // location has no own root, so we use the server root
 			rootDir = loc->getRoot();
 		else
-			rootDir = server.getRoot();
+			rootDir = serv.getRoot();
 
-		std::vector<std::string>	indices;
-		if (uri[uri.length() - 1] == '/') // uri ends in '/', so a directory is requested, meaning we have to fetch an index page
+		if (!loc->getCgiPath().empty()) // cgi regel die we gister bedacht hadden?
 		{
+			filePath = rootDir + uri + loc->getCgiPath();
+			resp.currentLoc = loc;
+			return (filePath);
+		}
+		if (needIndex && req.getMethod().compare("PUT") != 0)
+		{
+			std::vector<std::string>	indices;
+
 			if (!loc->getIndices().empty())
-				indices = loc->getIndices(); // if location has no index specifications, we use the server's
+				indices = loc->getIndices();
 			else
-				indices = server.getIndices();
-			std::vector<std::string>::iterator it;
+				indices = serv.getIndices();
+
+			std::vector<std::string>::iterator it; // if empty, it will never loop and (it == indices.end()) will be true
 			for (it = indices.begin(); it < indices.end(); it++) // test from front to back to find the first existing index page at requested root
 			{
-				filePath = rootDir + (*it);
-				struct stat statBuf;
+				filePath = rootDir + uri + (*it);
 				if (stat(filePath.c_str(), &statBuf) == 0)
 					break;
 			}
 			if (it == indices.end()) // all index pages don't exist at requested root
-				response.setStatus(404);
+				resp.setStatus(404);
+			// if 404 and loc.getAutoindex == true, do the autoindex thing
 		}
-		else // uri does not end in '/', so a specific file is requested
+		else
 		{
 			filePath = rootDir + uri;
-			struct stat statBuf;
-			if (stat(filePath.c_str(), &statBuf) != 0)
-				response.setStatus(404);
+			if (stat(filePath.c_str(), &statBuf) != 0 && req.getMethod().compare("PUT") != 0)
+				resp.setStatus(404);
 		}
 	}
+	resp.currentLoc = loc;
 	return (filePath);
 }
