@@ -5,18 +5,16 @@
 #include <sys/time.h>
 #include <iostream>
 #include <unistd.h>
+#include <stdlib.h>
 #include <map>
 
 #define BUFFER_SIZE 42
 
-int 	getTime()
+long 	getTime()
 {
 	struct timeval currentTime;
-	int time;
 	gettimeofday(&currentTime, NULL);
-	time = currentTime.tv_sec;
-	std::cout << time << std::endl;
-	return time;
+	return (currentTime.tv_sec);
 }
 
 void removeAdjacentSlashes(std::string &str)

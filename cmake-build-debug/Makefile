@@ -59,38 +59,27 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake
+CMAKE_COMMAND = /snap/clion/139/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
+RM = /snap/clion/139/bin/cmake/linux/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/thimovandermeer/CLionProjects/Webserver
+CMAKE_SOURCE_DIR = /home/jonasbb/Documents/Projects/webserv
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug
+CMAKE_BINARY_DIR = /home/jonasbb/Documents/Projects/webserv/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/snap/clion/139/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -98,11 +87,22 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/snap/clion/139/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles /Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jonasbb/Documents/Projects/webserv/cmake-build-debug/CMakeFiles /home/jonasbb/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jonasbb/Documents/Projects/webserv/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -304,6 +304,33 @@ srcs/Response/responseHeader.s: srcs/Response/responseHeader.cpp.s
 srcs/Response/responseHeader.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Response/responseHeader.cpp.s
 .PHONY : srcs/Response/responseHeader.cpp.s
+
+srcs/Server/connection.o: srcs/Server/connection.cpp.o
+
+.PHONY : srcs/Server/connection.o
+
+# target to build an object file
+srcs/Server/connection.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Server/connection.cpp.o
+.PHONY : srcs/Server/connection.cpp.o
+
+srcs/Server/connection.i: srcs/Server/connection.cpp.i
+
+.PHONY : srcs/Server/connection.i
+
+# target to preprocess a source file
+srcs/Server/connection.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Server/connection.cpp.i
+.PHONY : srcs/Server/connection.cpp.i
+
+srcs/Server/connection.s: srcs/Server/connection.cpp.s
+
+.PHONY : srcs/Server/connection.s
+
+# target to generate assembly for a file
+srcs/Server/connection.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/webserv.dir/build.make CMakeFiles/webserv.dir/srcs/Server/connection.cpp.s
+.PHONY : srcs/Server/connection.cpp.s
 
 srcs/Server/location.o: srcs/Server/location.cpp.o
 
@@ -521,6 +548,9 @@ help:
 	@echo "... srcs/Response/responseHeader.o"
 	@echo "... srcs/Response/responseHeader.i"
 	@echo "... srcs/Response/responseHeader.s"
+	@echo "... srcs/Server/connection.o"
+	@echo "... srcs/Server/connection.i"
+	@echo "... srcs/Server/connection.s"
 	@echo "... srcs/Server/location.o"
 	@echo "... srcs/Server/location.i"
 	@echo "... srcs/Server/location.s"

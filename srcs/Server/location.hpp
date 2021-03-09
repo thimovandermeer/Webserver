@@ -6,7 +6,7 @@
 
 class location {
 public:
-	typedef void	(location::*setter)(std::string&);
+	typedef void	(location::*setter)(const std::string&);
 
 	class	inputErrorException : public std::exception {
 	public:
@@ -14,13 +14,14 @@ public:
 	};
 
 private:
-	bool								_autoindex;
-	std::string							_match;
-	std::string							_root;
-	std::string							_method;
-	std::string							_errorPage;
-	std::vector<std::string>			_indices;
-	std::map<std::string, setter>		_typeFunctionMap;
+	bool							_autoindex;
+	bool							_ownAutoindex;
+	std::string						_match;
+	std::string						_root;
+	std::vector<std::string>		_methods;
+	std::string						_errorPage;
+	std::vector<std::string>		_indices;
+	std::map<std::string, setter>	_typeFunctionMap;
 
 	std::string							_authBasic;
 	std::string							_authBasicUserFile;
@@ -37,30 +38,31 @@ public:
 	~location();
 	location& operator=(location const &original);
 
-	void	setAutoindex(std::string &autoindex);
-	void	setRoot(std::string &root);
-	void	setMethod(std::string &method);
-	void	setErrorPage(std::string &errorPage);
-	void	setIndices(std::string &indices);
-	void	setCgiPath(std::string &cgiPass);
-	void	setAuthBasic(std::string &authBasic);
-	void	setAuthUserFile(std::string &userFile);
-	void 	sethtpasswdpath(std::string &path);
+	void	setAutoindex(const std::string &autoindex);
+	void	setRoot(const std::string &root);
+	void	setMethod(const std::string &method);
+	void	setErrorPage(const std::string &errorPage);
+	void	setIndices(const std::string &indices);
+	void	setCgiPath(const std::string &cgiPass);
+	void	setAuthBasic(const std::string &authBasic);
+	void 	sethtpasswdpath(const std::string &path);
 
 
+	const bool						&hasOwnAutoindex() const;
 	const bool						&getAutoindex() const;
 	const std::string				&getMatch() const;
 	const std::string				&getRoot() const;
-	const std::string				&getMethod() const;
+	const std::vector<std::string>	&getMethods() const;
 	const std::string				&getErrorPage() const;
 	const std::vector<std::string>	&getIndices() const;
 	const std::string				&getCgiPath() const;
 	const std::string				&getAuthBasic() const;
 	const std::string				&getAuthUserFile() const;
-
+	bool 							getAuthMatch(const std::string& username, const std::string& passwd);
+	std::string						gethtpasswdpath() const;
 	void	findValue(std::string &key, std::string line);
 	bool	valueCheck() const;
-	bool 	getMatch(const std::string& username, const std::string& passwd);
+	bool 	getUser(const std::string& username, const std::string& passwd);
 	bool	isFileExtension() const;
 
 };

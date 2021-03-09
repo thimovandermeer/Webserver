@@ -9,23 +9,23 @@
 
 class Response {
 public:
-	Response(Request &request, server &server);
+	Response(Request &req, server &serv);
 	Response(const Response &src);
 	virtual ~Response();
 	Response &operator=(const Response &src);
 
-	void 	setupResponse(Request &request, server &server);
+	void 	setupResponse(Request &req, server &serv);
 
 	friend std::ostream &operator<<(std::ostream &os, const Response &response);
 
 private:
 	std::string 				_response;
 	std::string 				_content;
+	int 						_status;
 	std::string 				_path;
 	std::string 				_contentType;
 	CGI							_CGI;
 	bool 						_useCGI;
-	int 						_status;
 	std::map<int, std::string>	_errorMessage;
 	std::string					_method;
 private:
@@ -40,8 +40,10 @@ private:
     void        createErrorPage(std::string *pageData);
 		// helper functions
 	void 	readContent();
-	int		authenticate(Request &request, server &server);
+	int		authenticate(Request &req);
 	void 	writeContent(std::string content);
+
+	location			*currentLoc;
 
 
 public:
@@ -50,9 +52,10 @@ public:
 	const std::string 	&getResponse() const;
 	int 				getStatus() const;
 
+	bool				isMethodAllowed();
+
+	friend std::string	getPath(server &serv, Request &req, Response &resp);
+
 };
-
-std::string	getPath(server &server, Request &request, Response &response);
-
 
 #endif //WEBSERV_RESPONSE_HPP

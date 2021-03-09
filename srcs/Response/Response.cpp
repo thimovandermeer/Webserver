@@ -8,22 +8,41 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <sstream>
+#include <sys/stat.h>
 #include "../Utils/utils.hpp"
 #include "../Utils/Base64.hpp"
 
-Response::Response(Request &request, server &server) :
-	_path(getPath(server, request, *this)), // delete hardcoded
-	_contentType(request.getContentType()),
-	_CGI(_path, request, server),
-	_useCGI(request.getCgi()),
-	_status(request.getStatus()),
-	_method(request.getMethod())
+# define _RED			"\x1b[31m"
+# define _GREEN			"\x1b[32m"
+# define _YELLOW		"\x1b[33m"
+# define _BLUE			"\x1b[34m"
+# define _PURPLE		"\x1b[35m"
+# define _CYAN			"\x1b[36m"
+# define _WHITE			"\x1b[37m"
+
+# define _END			"\x1b[0m"
+# define _BOLD			"\x1b[1m"
+# define _UNDER			"\x1b[4m"
+# define _REV			"\x1b[7m"
+
+Response::Response(Request &req, server &serv) :
+	_status(req.getStatus()),
+	_path(getPath(serv, req, *this)), // delete hardcoded
+	_contentType(req.getContentType()),
+	_CGI(_path, req, serv),
+	_useCGI(req.getCgi()),
+	_method(req.getMethod())
 {
     _errorMessage[204] = "No Content";
     _errorMessage[400] = "Bad Request";
     _errorMessage[403] = "Forbidden";
     _errorMessage[404] = "Not Found";
     _errorMessage[405] = "Method Not Allowed";
+}
+
+Response::Response(const Response &src)
+{
+	*this = src;
 }
 
 Response::~Response()
@@ -45,23 +64,52 @@ Response &Response::operator=(const Response &src)
 	return (*this);
 }
 
-void Response::setupResponse(Request &request, server &server) {
-	_path = getPath(server, request, *this);
-	_status = request.getStatus();
-//	_status = 405;          //404 niet
-	if (this->authenticate(request, server))
-		std::cerr << "Authentication failed";
+bool	Response::isMethodAllowed()
+{
+	if (!this->currentLoc)
+		return (false);
+	std::vector<std::string>::iterator it;
+	std::vector<std::string> vc = this->currentLoc->getMethods();
+	for (it = vc.begin(); it < vc.end(); it++)
+	{
+		if ((*it) == this->_method)
+			return (true);
+	}
+	this->_status = 405;
+	return (false);
+}
+
+void Response::setupResponse(Request &req, server &serv) {
+//	_path = getPath(server, request, *this);
+//	_status = req.getStatus();
+	if (this->authenticate(req))
+	{
+		std::cerr << "Authentication failed" << std::endl;
+		return;
+	}
 	if(_method == "GET")
-		getMethod(); // done
+	{
+		if (this->isMethodAllowed())
+			getMethod(); // done
+	}
 	if(_method == "HEAD")
-		headMethod(); // done
+	{
+		if (this->isMethodAllowed())
+			headMethod(); // done
+	}
 	if(_method == "POST")
-		postMethod(request.getBody());
+	{
+		if (this->isMethodAllowed())
+			postMethod(req.getBody());
+	}
 	if(_method == "PUT")
-		putMethod(request.getBody()); // done
+	{
+		if (this->isMethodAllowed())
+			putMethod(req.getBody()); // done
+	}
 	if (this->_status >= 299)
 	{
-		this->errorPage(server);
+		this->errorPage(serv);
 	}
 }
 
@@ -73,17 +121,18 @@ void 	Response::readContent()
 		return ;
 	}
 	std::ifstream file;
-	const char *c = _path.c_str();
-	if(access(c, F_OK) != 0)
-		_status = 404;
-	file.open(this->_path, std::ifstream::in);
+	struct stat statBuf;
+
+	if(stat(_path.c_str(), &statBuf) != 0)
+		return (this->setStatus(404));
+	file.open(this->_path.c_str(), std::ifstream::in);
 	if(!file.is_open())
-		_status = 403;
-	if(access(c, F_OK) != 0 && _status == 200)
-		_status = 404;
-	file.open(_path, std::ifstream::in);
+		return (this->setStatus(403));
+	if(stat(_path.c_str(), &statBuf) != 0 && _status == 200)
+		return (this->setStatus(404));
+	file.open(_path.c_str(), std::ifstream::in);
 	if(!file.is_open() && _status == 200)
-		_status = 403;
+		return (this->setStatus(403));
 	if (this->_status == 200)
 	_content.assign((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
 	file.close();
@@ -92,15 +141,14 @@ void 	Response::readContent()
 void 	Response::writeContent(std::string content)
 {
 	std::ofstream file;
-
-	if (_status == 200)
-    	_status = 204;
-	const char *c = _path.c_str();
-	if(access(c, F_OK) == 0 && _status == 200)
-		_status = 201;
-	file.open(_path, std::ofstream::out | std::ofstream::trunc);
+//	if (_status == 200)
+//    	_status = 204;
+	struct stat statBuf;
+	if(stat(_path.c_str(), &statBuf) == 0 && _status == 200)
+		this->setStatus(201);
+	file.open(_path.c_str(), std::ofstream::out | std::ofstream::trunc);
 	if(!file.is_open() && _status == 200)
-		_status = 403;
+		return (this->setStatus(403));
 	file << content;
 	file.close();
 
@@ -159,7 +207,8 @@ void	Response::errorPage(server &serv)
 		createErrorPage(&pageData);
 	}
 	this->_content.clear();
-	this->_content = pageData;
+	if (this->_method != "HEAD")
+		this->_content = pageData;
 	responseHeader header(_content, _path, _status, _contentType);
 	_response = header.getHeader(_status) + _content;
 }
@@ -177,6 +226,7 @@ void Response::headMethod()
 	readContent();
 	responseHeader header(_content, _path, _status, _contentType);
   	_response = header.getHeader(_status);
+  	this->_content.clear();
 }
 
 void Response::postMethod(std::string content)
@@ -188,14 +238,13 @@ void Response::postMethod(std::string content)
 		return;
 	}
 	std::ofstream file;
-	file.open(_path, std::ios::out | std::ios::app);
+	file.open(_path.c_str(), std::ios::out | std::ios::app);
 	if(!file.is_open() && _status == 200)
-		_status = 403;
-	if (_status == 200)
-		_status = 204;
-	const char *c = _path.c_str();
-	if(access(c, F_OK) == 0 && _status == 200)
-		_status = 201;
+		this->setStatus(403);
+//	this->setStatus(204);
+	struct stat statBuf;
+	if(stat(_path.c_str(), &statBuf) == 0 && _status == 200)
+		this->setStatus(201);
 	file << content;
 	file.close();
 	responseHeader header(content, _path, _status, _contentType);
@@ -210,7 +259,6 @@ void Response::putMethod(std::string content)
 	_response = header.getHeader(_status); // here we got a potential bug
 }
 
-// getters
 std::string 		Response::getContent()
 {
 	return _content;
@@ -228,35 +276,43 @@ int 				Response::getStatus() const
 
 void				Response::setStatus(int status)
 {
+	if (this->_status >= 400)
+		return;
 	this->_status = status;
 }
 
-int					Response::authenticate(Request &request, server &server)
+int					Response::authenticate(Request &req)
 {
-	location *temp;
-	std::string input = "auth_basic";
-	temp = server.findLocation(input);
-	std::string username;
-	std::string passwd;
-	std::string auth = request.getAuthorization();
-	std::string type;
-	std::string credentials;
-	get_key_value(auth, type, credentials, ":", "\n\r#;");
-	credentials = base64_decode(credentials);
-	get_key_value(credentials, username, passwd, ":", "\n\r#;");
-	if (temp->getMatch(username, passwd))
-	{
-		std::cout << "Authorization successful!" << std::endl;
+	if (this->currentLoc == NULL) {
+		std::cout << _RED "Location does not exist" _END << std::endl;
+		return 0;
+	}
+	if (this->currentLoc->gethtpasswdpath().empty()) {
+		req._defHeaders[AUTHORIZATION].clear();
+		return 0;
+	}
+	std::string username, passwd, str;
+	try {
+		std::string auth = req._defHeaders.at(AUTHORIZATION);
+		std::string type, credentials;
+		get_key_value(auth, type, credentials, " ", "\n\r#;");
+		credentials = base64_decode(credentials);
+		get_key_value(credentials, username, passwd, ":", "\n\r#;");
+	}
+	catch (std::exception& e) {
+		std::cerr << e.what() << std::endl;
+		std::cerr <<_RED "No credentials provided by client" _END << std::endl;
+	}
+	req._defHeaders[AUTHORIZATION] = req._defHeaders[AUTHORIZATION].substr(0, req._defHeaders[AUTHORIZATION].find_first_of(' '));
+	req._defHeaders[REMOTE_USER] = username;
+	if (this->currentLoc->getAuthMatch(username, passwd)) {
+		std::cout << _GREEN _BOLD "Authorization successful!" _END << std::endl;
 		return 0;
 	}
 
 	_status = 401;
-	_response += "401 Unauthorized\r\n";
-	this->_response +=	"Server: Webserv/1.1\r\n"
-						  "Content-Type: text/html\r\n"
-						  "WWW-Authenticate: Basic realm=";
-	this->_response += temp->getAuthBasic();
-	this->_response += ", charset=\"UTF-8\"\r\n";
+	responseHeader header(_content, _path, _status, _contentType);
+	_response = header.getHeader(_status);
 	return 1;
 }
 

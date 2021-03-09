@@ -3,7 +3,7 @@
 #include <iostream>
 #include <iomanip>
 #include <sys/stat.h>
-#include <dns_sd.h>
+#include <fstream>
 #include "../Utils/utils.hpp"
 #include "../Utils/Base64.hpp"
 
@@ -12,7 +12,7 @@ const char	*location::inputErrorException::what() const throw()
 	return ("error in location block in config file");
 }
 
-location::location(std::string &match) : _autoindex(false), _isFileExtension(false)
+location::location(std::string &match) : _autoindex(false), _ownAutoindex(false), _isFileExtension(false)
 {
 	this->_match = match;
 	if (match[0] == '*' && match[1] == '.')
@@ -40,7 +40,7 @@ location	&location::operator=(const location &original)
 	this->_autoindex = original._autoindex;
 	this->_match = original._match;
 	this->_root = original._root;
-	this->_method = original._method;
+	this->_methods = original._methods;
 	this->_errorPage = original._errorPage;
 	this->_indices = original._indices;
 	this->_typeFunctionMap = original._typeFunctionMap;
@@ -51,33 +51,37 @@ location	&location::operator=(const location &original)
 	return (*this);
 }
 
-void	location::setAutoindex(std::string &autoindex)
+void	location::setAutoindex(const std::string &autoindex)
 {
+	this->_ownAutoindex = true;
 	if (autoindex == "on")
 	{
 		this->_autoindex = true;
 		return;
 	}
 	if (autoindex != "off") // input is neither 'on' nor 'off', so wrong
-		;
+	{;}
 }
 
-void	location::setRoot(std::string &root)
+void	location::setRoot(const std::string &root)
 {
 	this->_root = root;
 }
 
-void	location::setMethod(std::string &method)
+void	location::setMethod(const std::string &method)
 {
-	this->_method = method;
+	std::stringstream	ss(method);
+	std::string			meth;
+	while (ss >> meth)
+		this->_methods.push_back(meth);
 }
 
-void	location::setErrorPage(std::string &errorPage)
+void	location::setErrorPage(const std::string &errorPage)
 {
 	this->_errorPage = errorPage;
 }
 
-void	location::setIndices(std::string &indices)
+void	location::setIndices(const std::string &indices)
 {
 	std::stringstream	ss(indices);
 	std::string			index;
@@ -85,40 +89,41 @@ void	location::setIndices(std::string &indices)
 		this->_indices.push_back(index);
 }
 
-void	location::setCgiPath(std::string &cgiPass)
+void	location::setCgiPath(const std::string &cgiPass)
 {
 	this->_cgiPath = cgiPass;
 }
 
-void	location::setAuthBasic(std::string &authBasic)
+void	location::setAuthBasic(const std::string &authBasic)
 {
 	this->_authBasic = authBasic;
 }
 
-void	location::setAuthUserFile(std::string &userFile)
+void 	location::sethtpasswdpath(const std::string &path)
 {
-	this->_authBasicUserFile = userFile;
-}
-
-void 	location::sethtpasswdpath(std::string &path)
-{
-	struct stat statstruct = {};
+	struct stat	statstruct = {};
 	if (stat(path.c_str(), &statstruct) == -1)
 		return ;
 
 	this->_htpasswd_path = path;
-	int htpasswd_fd = open(this->_htpasswd_path.c_str(), O_RDONLY);
-	if (htpasswd_fd < 0)
-		return;
+	std::fstream	configfile;
 	std::string line;
-	while (get_next_line(htpasswd_fd, line)) {
+
+	configfile.open(this->_htpasswd_path.c_str());
+	if (!configfile)
+		return;
+	while (std::getline(configfile, line)) {
 		std::string user;
 		std::string pass;
 		get_key_value(line, user, pass, ":", "\n\r#;");
 		this->_loginfo[user] = pass;
 	}
-	if (close(htpasswd_fd) == -1)
-		throw std::runtime_error("Failed to close .htpasswd file");
+	configfile.close();
+}
+
+const bool						&location::hasOwnAutoindex() const
+{
+	return (this->_ownAutoindex);
 }
 
 const bool						&location::getAutoindex() const
@@ -136,9 +141,9 @@ const std::string				&location::getRoot() const
 	return (this->_root);
 }
 
-const std::string				&location::getMethod() const
+const std::vector<std::string>	&location::getMethods() const
 {
-	return (this->_method);
+	return (this->_methods);
 }
 
 const std::string				&location::getErrorPage() const
@@ -166,6 +171,10 @@ const std::string				&location::getAuthUserFile() const
 	return (this->_authBasicUserFile);
 }
 
+std::string	location::gethtpasswdpath() const {
+	return _htpasswd_path;
+}
+
 void	location::findValue(std::string &key, std::string line)
 {
 	if (*(line.rbegin()) != ';') // line doesn't end with ';'
@@ -186,11 +195,14 @@ void	location::findValue(std::string &key, std::string line)
 bool	location::valueCheck() const
 {
 	std::string	allowedMethods[5] = {"", "HEAD", "GET", "POST", "PUT"};
-	bool	ret = false;
-	for (int i = 0; i < 5; i++)
+	bool	ret = true;
+
+	std::vector<std::string>::const_iterator it;
+	std::vector<std::string> vc = this->_methods;
+	for (it = this->_methods.begin(); it < this->_methods.end(); it++)
 	{
-		if (this->_method == allowedMethods[i])
-			ret = true;
+		if ((*it) != allowedMethods[0] && (*it) != allowedMethods[1] && (*it) != allowedMethods[2] && (*it) != allowedMethods[3] && (*it) != allowedMethods[4])
+			ret = false;
 	}
 	if (!ret)
 		return (ret);
@@ -203,35 +215,56 @@ bool	location::isFileExtension() const
 	return (this->_isFileExtension);
 }
 
-bool location::getMatch(const std::string& username, const std::string& passwd)
+bool location::getAuthMatch(const std::string& username, const std::string& passwd)
 {
-	std::map<std::string, std::string>::const_iterator it = this->_loginfo.find(username);
+	std::map<std::string, std::string>::iterator it = this->_loginfo.find(username);
 
-	return ( it != _loginfo.end() && passwd == base64_decode(it->second) );
+//	return ( it != _loginfo.end() && passwd == base64_decode(it->second) );
+	if (it == this->_loginfo.end())
+		return (false);
+	if (passwd != it->second)
+		return (false);
+	return (true);
+
 }
 
 std::ostream&	operator<<(std::ostream &os, const location &loc)
 {
+	std::vector<std::string> vc;
+	std::vector<std::string>::iterator it;
+
 	os << std::setw(13) << std::left << "\tmatch: " << loc.getMatch() << std::endl;
 	os << std::setw(13) << std::left << "\tautoindex: ";
 	if (loc.getAutoindex())
 		os << "on" << std::endl;
 	else
 		os << "off" << std::endl;
-	os << std::setw(13) << std::left << "\troot: " << loc.getRoot() <<std::endl;
-	os << std::setw(13) << std::left << "\tmethod: " << loc.getMethod() <<std::endl;
-	os << std::setw(13) << std::left << "\terror page: " << loc.getErrorPage() <<std::endl;
+	os << std::setw(13) << std::left << "\troot: " << loc.getRoot() << std::endl;
 
-	std::vector<std::string> vc;
-	std::vector<std::string>::iterator it;
-	vc = loc.getIndices();
+	vc = loc.getMethods();
 	it = vc.begin();
 
-	os << std::setw(13) << std::left << "\tindices: " <<std::endl;
+	os << std::setw(13) << std::left << "\tmethods: " << std::endl;
 	while (!vc.empty() && it != vc.end())
 	{
 		os << "\t\t- " << *it << std::endl;
 		it++;
 	}
+
+	os << std::setw(13) << std::left << "\terror page: " << loc.getErrorPage() << std::endl;
+
+	vc = loc.getIndices();
+	it = vc.begin();
+
+	os << std::setw(13) << std::left << "\tindices: " << std::endl;
+	while (!vc.empty() && it != vc.end())
+	{
+		os << "\t\t- " << *it << std::endl;
+		it++;
+	}
+
+	os << std::setw(13) << std::left << "\tauthBasic: " << loc.getAuthBasic() << std::endl;
+	os << std::setw(13) << std::left << "\tauthFile: " << loc.getAuthUserFile() << std::endl;
+	os << std::setw(13) << std::left << "\tcgi path: " << loc.getCgiPath() << std::endl;
 	return (os);
 }

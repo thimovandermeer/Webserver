@@ -141,6 +141,18 @@ void	startParsing(std::fstream& configFile, serverCluster *cluster)
 				}
 			}
 		}
+		std::vector<location*> locs = newServer->getLocations();
+		for (std::vector<location*>::iterator it = locs.begin(); it != locs.end(); it++)
+		{
+			if (!(*it)->hasOwnAutoindex())
+			{
+				if (newServer->getAutoindex())
+					(*it)->setAutoindex("on");
+				else
+					(*it)->setAutoindex("off");
+			}
+		}
+
 		// check if all data set in server is correct
 		if (!newServer->valueCheck())
 			errMsgAndExit("invalid values in server block", 1);

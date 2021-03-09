@@ -5,6 +5,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o"
   "CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.o"
   "CMakeFiles/webserv.dir/srcs/Response/responseHeader.cpp.o"
+  "CMakeFiles/webserv.dir/srcs/Server/connection.cpp.o"
   "CMakeFiles/webserv.dir/srcs/Server/location.cpp.o"
   "CMakeFiles/webserv.dir/srcs/Server/parser.cpp.o"
   "CMakeFiles/webserv.dir/srcs/Server/serverBasic.cpp.o"

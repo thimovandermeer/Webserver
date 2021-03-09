@@ -27,11 +27,13 @@ enum headerType {
     SERVER,
     TRANSFER_ENCODING,
     USER_AGENT,
-    WWW_AUTHENTICATE
+    WWW_AUTHENTICATE,
+    REMOTE_USER
 };
 
 class Request{
     public:
+		friend class Response;
         ~Request();
         Request(std::string request);
         Request(const Request &original);
