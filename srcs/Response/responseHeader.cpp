@@ -115,6 +115,7 @@ std::string		responseHeader::createStatusMessage(int status)
 		return ("Zieke Error in onze code");
 }
 
+#include <cstdlib>
 std::string 		responseHeader::writeHeader()
 {
 	std::string header;
@@ -123,8 +124,12 @@ std::string 		responseHeader::writeHeader()
 		header += "Allow: " + _allow + "\r\n";
 	if (!_contentLanguage.empty())
 		header += "Content-Language: " + _contentLanguage + "\r\n";
-	if (!_contentLength.empty())
+
+	if (strtol(this->_contentLength.c_str(), NULL, 10) < MAXSENDSIZE)
 		header += "Content-Length: " + _contentLength + "\r\n";
+	else
+		header += "Transfer-Encoding: " + _transferEncoding + "\r\n";
+
 	if (!_contentLocation.empty())
 		header += "Content-Location: " + _contentLocation + "\r\n";
 	if (!_contentType.empty())
@@ -139,14 +144,12 @@ std::string 		responseHeader::writeHeader()
 		header += "Retry-After: " + _retryAfter + "\r\n";
 	if (!_server.empty())
 		header += "Server: " + _server + "\r\n";
-//	i!f (_transferEncoding.empty())
-//		header += "Transfer-Encoding: " + _transferEncoding + "\r\n";
+
 	if (!_wwwAuthenticate.empty())
 		header += "Www-Authenticate: " + _wwwAuthenticate + "\r\n";
 	header += "\r\n";
 	return (header);
 }
-
 
 // setters
 void responseHeader::setContentLocation(const std::string &path, int status)

@@ -234,7 +234,7 @@ void Response::parseContent()
 void Response::postMethod(std::string content)
 {
 	if(_useCGI == true) {
-	    int pos;        //size_t?
+	    int pos;
 		readContent();
 		parseContent();
 		pos = _content.find("\r\n\r\n");
@@ -333,5 +333,10 @@ std::ostream &operator<<(std::ostream &os, const Response &response)
 	os << "_response: " << response._response << " _content: " << response._content << " _path: " << response._path
 	   << " _status: " << response._status;
 	return os;
+}
+
+size_t Response::getBodySize() const
+{
+	return (this->_content.size());
 }
 

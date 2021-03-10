@@ -53,6 +53,8 @@ private:
 public:
 	void				setStatus(int status);
 	const std::string 	&getResponse() const;
+	size_t				getBodySize() const;
+
 	bool				isMethodAllowed();
 
 	friend std::string	getPath(server &serv, Request &req, Response &resp);

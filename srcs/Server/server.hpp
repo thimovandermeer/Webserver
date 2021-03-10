@@ -50,6 +50,7 @@ private:
 public:
 
 	std::string			_response;
+	size_t				_bodylen;
 
 	server();
 	server(server const &original);

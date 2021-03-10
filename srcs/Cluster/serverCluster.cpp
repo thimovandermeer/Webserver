@@ -132,13 +132,11 @@ void	serverCluster::startListening()
 					if (writeSet.fds_bits[fd / 64] & (long)(1UL << fd % 64))
 					{
 						(*it)->generateResponse(i);
-						(*it)->connections[i].sendData((*it)->_response); // start writing
+						(*it)->connections[i].sendData((*it)->_response, (*it)->_bodylen); // start writing
 						break;
 					}
 				}
-
 			}
-			// maybe CGI lezen hier nog doen
 			it++;
 		}
 	}

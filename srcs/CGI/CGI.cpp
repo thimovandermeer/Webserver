@@ -8,7 +8,6 @@
 #include <fstream>
 #include <sys/wait.h>
 #include "CGI.hpp"
-#include <stdlib.h>
 #include <sstream>
 
 CGI::CgiError::CgiError(const char* w)
