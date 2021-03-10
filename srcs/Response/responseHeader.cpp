@@ -127,29 +127,29 @@ std::string 		responseHeader::writeHeader()
 {
 	std::string header;
 
-	if (_allow != "")
+	if (!_allow.empty())
 		header += "Allow: " + _allow + "\r\n";
-	if (_contentLanguage != "")
+	if (!_contentLanguage.empty())
 		header += "Content-Language: " + _contentLanguage + "\r\n";
-	if (_contentLength != "")
+	if (!_contentLength.empty())
 		header += "Content-Length: " + _contentLength + "\r\n";
-	if (_contentLocation != "")
+	if (!_contentLocation.empty())
 		header += "Content-Location: " + _contentLocation + "\r\n";
-	if (_contentType != "")
+	if (!_contentType.empty())
 		header += "Content-Type: " + _contentType + "\r\n";
-	if (_date != "")
+	if (!_date.empty())
 		header += "Date: " + _date + "\r\n";
-	if (_lastModified != "")
+	if (!_lastModified.empty())
 		header += "Last-Modified: " + _lastModified + "\r\n";
-	if (_location != "")
+	if (!_location.empty())
 		header += "Location: " + _location + "\r\n";
-	if (_retryAfter != "")
+	if (!_retryAfter.empty())
 		header += "Retry-After: " + _retryAfter + "\r\n";
-	if (_server != "")
+	if (!_server.empty())
 		header += "Server: " + _server + "\r\n";
-//	if (_transferEncoding != "")
+//	i!f (_transferEncoding.empty())
 //		header += "Transfer-Encoding: " + _transferEncoding + "\r\n";
-	if (_wwwAuthenticate != "")
+	if (!_wwwAuthenticate.empty())
 		header += "Www-Authenticate: " + _wwwAuthenticate + "\r\n";
 	header += "\r\n";
 	return (header);

@@ -37,18 +37,41 @@ void	connection::closeThisConnection()
 	this->hasFullRequest = false;
 	this->timeLastRead = 0;
 }
-#include <iomanip>
+
+#define SENDSIZE 524288
 void	connection::sendData(std::string &response)
 {
 	std::cout << "==RESPONSE==" << std::endl;
-//	std::cout << std::setw(500) << response << std::endl;
 	int len = response.length() > 500 ? 500 : response.length();
 	if (write(1, response.c_str(), len) == -1) {;}
 	std::cout << "\n==end==" << std::endl;
-	if(send(this->acceptFd, response.c_str(), response.size(), MSG_NOSIGNAL) == -1)
+
+	if (response.size() < SENDSIZE)
 	{
-		std::cerr << response.size() << std::endl;
-		std::cerr << "send error" << std::endl;
+		if (send(this->acceptFd, response.c_str(), response.size(), 0) == -1)
+		{
+			std::cerr << "size is" << response.size() << std::endl;
+			std::cerr << "send error" << std::endl;
+		}
+	}
+	else
+	{
+		const char *str = response.c_str();
+		size_t sizeLeft = response.size();
+		size_t sizeSent = 0;
+		while (sizeLeft > 0)
+		{
+			size_t thisSend = sizeLeft > SENDSIZE ? SENDSIZE : sizeLeft;
+			if (send(this->acceptFd, str + sizeSent, thisSend, 0) == -1)
+			{
+				std::cerr << "this is really uncool man\nsize is " << thisSend << std::endl;
+			}
+			else
+			{
+				sizeLeft -= thisSend;
+				sizeSent += thisSend;
+			}
+		}
 	}
 	this->closeThisConnection();
 }

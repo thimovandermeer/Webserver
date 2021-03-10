@@ -19,8 +19,9 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:fixing_tests" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/main" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
@@ -31,12 +32,13 @@
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
     <configurations>
-      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" ENABLED="true" />
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
     </configurations>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="pls work">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
@@ -49,12 +51,12 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/flags.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/webserv.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/webserv.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/CGI/CGI.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/CGI/CGI.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Response/Response.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Response/responseHeader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/responseHeader.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Server/connection.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/connection.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_mac/mac.conf" beforeDir="false" afterPath="$PROJECT_DIR$/test_mac/mac.conf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -123,23 +125,23 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.webserv">
-    <configuration name="Test" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv" TEST_CLASS="[List]" TEST_MODE="SUITE_TEST">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv" TEST_CLASS="[List]" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="webserv" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="&quot;./test_mac/mac.conf&quot;" REDIRECT_INPUT="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="webserv" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="&quot;./test_mac/mac.conf&quot;" REDIRECT_INPUT="false" ELEVATE="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -499,6 +501,40 @@
     <MESSAGE value="comments on how to improve the whole select process" />
     <MESSAGE value="pls work" />
     <option name="LAST_COMMIT_MESSAGE" value="pls work" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="2518" height="276" key="GridCell.Tab.0.bottom" timestamp="1615367547939">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2518" height="276" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1615367547939" />
+    <state width="2518" height="276" key="GridCell.Tab.0.center" timestamp="1615367547938">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2518" height="276" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1615367547938" />
+    <state width="2518" height="276" key="GridCell.Tab.0.left" timestamp="1615367547938">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2518" height="276" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1615367547938" />
+    <state width="2518" height="276" key="GridCell.Tab.0.right" timestamp="1615367547939">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2518" height="276" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1615367547939" />
+    <state width="2518" height="168" key="GridCell.Tab.1.bottom" timestamp="1615364771941">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2518" height="168" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1615364771941" />
+    <state width="2518" height="168" key="GridCell.Tab.1.center" timestamp="1615364771940">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2518" height="168" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1615364771940" />
+    <state width="2518" height="168" key="GridCell.Tab.1.left" timestamp="1615364771940">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2518" height="168" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1615364771940" />
+    <state width="2518" height="168" key="GridCell.Tab.1.right" timestamp="1615364771940">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2518" height="168" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1615364771940" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

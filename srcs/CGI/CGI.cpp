@@ -73,7 +73,6 @@ std::string CGI::executeGCI(std::string &body)
 		if (ret < 0)
 			exit(1);
 	}
-//	fileOut = open("/tmp/fuckyoupeerout.txt", O_RDONLY, S_IRWXU);
 	std::string ret;
 	int status;
 	waitpid(0, &status, 0);

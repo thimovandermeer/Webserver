@@ -118,6 +118,7 @@ void 	Response::readContent()
 	{
 		std::cerr << _content << std::endl;
 		_content = _CGI.executeGCI(_body);
+		// hier staat in this->_content de output van CGI en moeten we die headers eruit halen
 		std::cerr << _content.length() << std::endl;
 		return ;
 	}
