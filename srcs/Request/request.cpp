@@ -1,10 +1,7 @@
 #include "request.hpp"
 
 #include <stdexcept>
-#include <sstream>
-#include <iomanip>
 #include <string>
-//#include <cstdint>
 
 std::string methods[4] = {
         "GET",
@@ -37,7 +34,6 @@ Request &Request::operator=(const Request &original) {
 Request::Request(std::string request) : _request(request)
 {
     _status = 200;
-    _chunkedLength = 0;
     _headerMap["ACCEP-CHARSET"] = ACCEPT_CHARSET;
     _headerMap["ACCEPT-LANGUAGE"] = ACCEPT_LANGUAGE;
     _headerMap["ALLOW"] = ALLOW;
@@ -133,31 +129,29 @@ void Request::parseRequestLine(){
 
     if (_request[0] == ' ' || _request.find("\r\n") == std::string::npos)
         _status = 400;
-    pos2 = _request.find(" ");
+    pos2 = _request.find(' ');
     _method = _request.substr(0, pos2);
     if (getMethod().empty()){
         _status = 400;
     }
     pos2+=1;
-    pos1 = _request.find(" ", pos2);
-	size_t qMarkLocation = _request.find("?", pos2); // is npos if no '?'
+    pos1 = _request.find(' ', pos2);
+	size_t qMarkLocation = _request.find('?', pos2);
     if (qMarkLocation <= pos1){
-        pos1 = _request.find("?");
+        pos1 = _request.find('?');
         _cgi = true;
         _uri = _request.substr(pos2, pos1-pos2);
-        pos2 = _request.find(" ", pos1);
-        _cgiEnv = _request.substr(pos1+1, pos2-pos1-1);		//ook checken
+        pos2 = _request.find(' ', pos1);
+        _cgiEnv = _request.substr(pos1+1, pos2-pos1-1);
     }
     else
 	{
 		_uri = _request.substr(pos2, pos1-pos2);
-		pos2 = _request.find(" ", pos1);
+		pos2 = _request.find(' ', pos1);
 	}
     pos1 = _request.find("\r\n");
 	pos2++;
     _version = _request.substr(pos2, pos1-pos2);
-    if (_version.compare("HTTP/1.1") != 0)
-        _status = 400;
     _request = _request.substr(pos1+2);
 }
 
@@ -194,12 +188,10 @@ void Request::parseHeaders() {
         std::map<std::string, headerType>::iterator it = _headerMap.find(upperHeader);
         if (it == _headerMap.end())
 		{
-			pos = length+2;			//van hier tot 
+			pos = length+2;			//van hier tot
 			if (_request[pos] == '\r' && _request[pos + 1] == '\n')
 				loop = false;
         	continue;				// hier eruithalen of beter behandelen
-			_status = 400;
-			return;
 		}
         std::map<headerType, std::string>::iterator it_h = _defHeaders.find(it->second);
         if (it_h != _defHeaders.end())
@@ -238,8 +230,4 @@ void Request::parseBody() {
 
 bool Request::getCgi() const {
 	return _cgi;
-}
-
-size_t Request::getChunkedLength() const {
-    return _chunkedLength;
 }

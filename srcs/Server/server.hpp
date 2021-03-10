@@ -47,11 +47,10 @@ private:
 	long				_socketFd;
 	struct sockaddr_in	_addr;
 
-
-
 public:
 
 	std::string			_response;
+	size_t				_bodylen;
 
 
 	server();
@@ -68,9 +67,7 @@ public:
 	void	setServerNames(std::string &names);
 	void	setIndices(std::string &indices);
 
-//	t_connection		connections[NR_OF_CONNECTIONS];
 	connection			connections[NR_OF_CONNECTIONS];
-//	void	setAcceptFd(int fd);
 
 	const int						&getPortNr() const;
 	const size_t					&getMaxBodySize() const;
@@ -84,19 +81,14 @@ public:
 
 	const long						&getSocketFd() const;
 	const struct sockaddr_in		&getAddr() const;
-//	const t_connection				*getConnections() const;
 
 	void		addLocation(location *newLoc);
 	bool		valueCheck() const;
-//	std::string receive(int index) const;
-//	void sendData(int index);
-//	void closeConnection(int index);
+
 	void 		acpt();
 	void		findValue(std::string &key, std::string line);
 
 	void	startListening();
-
-//	void startReading(int index);
 
 	location*	findLocation(std::string &match);
 

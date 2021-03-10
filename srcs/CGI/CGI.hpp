@@ -31,6 +31,7 @@ public:
 	~CGI();
 	CGI();
 	std::string executeGCI(std::string &body);
+
 private:
 	void 								_initEnvironment(Request &request, server &server);
 	void 								_convertEnv();

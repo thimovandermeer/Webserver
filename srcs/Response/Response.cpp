@@ -1,7 +1,3 @@
-//
-// Created by Thimo Van der meer on 20/01/2021.
-//
-
 #include "Response.hpp"
 #include "responseHeader.hpp"
 #include <fstream>
@@ -14,16 +10,9 @@
 
 # define _RED			"\x1b[31m"
 # define _GREEN			"\x1b[32m"
-# define _YELLOW		"\x1b[33m"
-# define _BLUE			"\x1b[34m"
-# define _PURPLE		"\x1b[35m"
-# define _CYAN			"\x1b[36m"
-# define _WHITE			"\x1b[37m"
 
 # define _END			"\x1b[0m"
 # define _BOLD			"\x1b[1m"
-# define _UNDER			"\x1b[4m"
-# define _REV			"\x1b[7m"
 
 Response::Response(Request &req, server &serv) :
 	_status(req.getStatus()),
@@ -39,6 +28,11 @@ Response::Response(Request &req, server &serv) :
     _errorMessage[403] = "Forbidden";
     _errorMessage[404] = "Not Found";
     _errorMessage[405] = "Method Not Allowed";
+}
+
+Response::Response()
+{
+
 }
 
 Response::Response(const Response &src)
@@ -117,8 +111,7 @@ void 	Response::readContent()
 	if (_useCGI == true)
 	{
 		std::cerr << _content << std::endl;
-		_content = _CGI.executeGCI(_body);
-		// hier staat in this->_content de output van CGI en moeten we die headers eruit halen
+		this->_content = _CGI.executeGCI(_body);
 		std::cerr << _content.length() << std::endl;
 		return ;
 	}
@@ -215,10 +208,37 @@ void Response::headMethod()
   	this->_content.clear();
 }
 
+std::string Response::headerValue(size_t startPos) {
+    size_t pos;
+    size_t pos1;
+    size_t pos2;
+
+    pos1 = _content.find(' ', startPos);
+    pos2 = _content.find(';', startPos);
+
+    pos = pos1 > pos2 ? pos2 : pos1;
+    std::string temp = _content.substr(startPos, pos - startPos);
+    return temp;
+}
+
+void Response::parseContent()
+{
+    size_t pos;
+
+    if ((pos = _content.find("Status")) != std::string::npos)
+        _status = stoi(headerValue(pos + 8));
+    if ((pos = _content.find("Content-Type")) != std::string::npos)
+        _contentType = headerValue(pos + 14);
+}
+
 void Response::postMethod(std::string content)
 {
 	if(_useCGI == true) {
+	    int pos;
 		readContent();
+		parseContent();
+		pos = _content.find("\r\n\r\n");
+		_content.erase(0, pos + 4);
 		responseHeader header(_content, _path, _status, _contentType);
 		_response = header.getHeader(_status) + _content;
 		return;
@@ -227,7 +247,6 @@ void Response::postMethod(std::string content)
 	file.open(_path.c_str(), std::ios::out | std::ios::app);
 	if(!file.is_open() && _status == 200)
 		this->setStatus(403);
-//	this->setStatus(204);
 	struct stat statBuf;
 	if(stat(_path.c_str(), &statBuf) < 0 && _status == 200)
 		this->setStatus(201);
@@ -235,10 +254,9 @@ void Response::postMethod(std::string content)
 	file.close();
 	responseHeader header(content, _path, _status, _contentType);
 	_response = header.getHeader(_status); // here we got a potential bug
-	// need more knowledge about CGI
 }
 
-void Response::putMethod(std::string content)
+void Response::putMethod(std::string const &content)
 {
 	std::string::iterator it;
 
@@ -251,7 +269,7 @@ void Response::putMethod(std::string content)
 	_response = header.getHeader(_status); // here we got a potential bug
 }
 
-void 	Response::writeContent(std::string content)
+void 	Response::writeContent(std::string const &content)
 {
     std::ofstream file;
 	struct stat statBuf;
@@ -263,21 +281,9 @@ void 	Response::writeContent(std::string content)
 	file.close();
 }
 
-
-
-std::string 		Response::getContent()
-{
-	return _content;
-}
-
 const std::string 	&Response::getResponse() const
 {
 	return _response;
-}
-
-int 				Response::getStatus() const
-{
-	return _status;
 }
 
 void				Response::setStatus(int status)
@@ -327,5 +333,10 @@ std::ostream &operator<<(std::ostream &os, const Response &response)
 	os << "_response: " << response._response << " _content: " << response._content << " _path: " << response._path
 	   << " _status: " << response._status;
 	return os;
+}
+
+size_t Response::getBodySize() const
+{
+	return (this->_content.size());
 }
 

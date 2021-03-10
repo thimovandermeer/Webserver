@@ -1,10 +1,5 @@
-//
-// Created by Thimo Van der meer on 25/01/2021.
-//
-
 #ifndef WEBSERV_RESPONSEHEADER_HPP
 #define WEBSERV_RESPONSEHEADER_HPP
-
 
 #include <string>
 #include "Response.hpp"
@@ -42,40 +37,6 @@ private:
 	// public members
 public:
 	std::string getHeader(int status);
-
-	const std::string &getAcceptCharsets() const;
-
-	const std::string &getAcceptLanguage() const;
-
-	const std::string &getAllow() const;
-
-	const std::string &getAuthorization() const;
-
-	const std::string &getContentLanguage() const;
-
-	const std::string &getContentLocation() const;
-
-	const std::string &getContentLength() const;
-
-	const std::string &getContentType() const;
-
-	const std::string &getDate() const;
-
-	const std::string &getHost() const;
-
-	const std::string &getLastModified() const;
-
-	const std::string &getLocation() const;
-
-	const std::string &getReferer() const;
-
-	const std::string &getRetryAfter() const;
-
-	const std::string &getServer() const;
-
-	const std::string &getTransferEncoding() const;
-
-	const std::string &getWwwAuthenticate() const;
 
 
 private:

@@ -8,6 +8,8 @@
 #include <fstream>
 #include <sys/wait.h>
 #include "CGI.hpp"
+#include <sstream>
+
 CGI::CgiError::CgiError(const char* w)
 		: std::runtime_error(w)
 {
@@ -82,12 +84,17 @@ std::string CGI::executeGCI(std::string &body)
 	file.close();
 	return ret;
 }
+
 void CGI::_initEnvironment(Request &request, server &server)
 {
+    std::stringstream ss;
+
 	std::map<headerType, std::string> reqHeaders = request.getHeaders();
 	if (reqHeaders.find(AUTHORIZATION) != reqHeaders.end())
 		this->_environment["AUTH_TYPE"] = reqHeaders[AUTHORIZATION];
-	this->_environment["CONTENT_LENGTH"] = request.getBody().length();
+	ss << request.getBody().length();
+	this->_environment["CONTENT_LENGTH"] = ss.str();
+	ss.clear();
 	if (request.getBody().empty())
 		this->_environment["CONTENT_TYPE"] = "";
 	else
@@ -106,7 +113,9 @@ void CGI::_initEnvironment(Request &request, server &server)
 		this->_environment["SERVER_NAME"] = reqHeaders[HOST];
 	else
 		this->_environment["SERVER_NAME"] = this->_environment["REMOTE_ADDR"];
-	this->_environment["SERVER_PORT"] = server.getPortNr(); // search app
+	ss << server.getPortNr();
+	this->_environment["SERVER_PORT"] = ss.str(); // search app       //hier ook
+	ss.clear();
 	this->_environment["SERVER_PROTOCOL"] = "HTTP/1.1"; // search app
 	this->_environment["SERVER_SOFTWARE"] = "Merel Jonas Thimo Epic webserver huts"; // search app
 }
