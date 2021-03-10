@@ -6,7 +6,10 @@
 #include <fcntl.h>
 #include <string.h>
 #include <fstream>
+#include <sys/wait.h>
 #include "CGI.hpp"
+#include <sstream>
+
 CGI::CgiError::CgiError(const char* w)
 		: std::runtime_error(w)
 {
@@ -47,7 +50,8 @@ std::string CGI::executeGCI(std::string &body)
 //	pipe(fd);
 	int fileIn = open("/tmp/fuckyoupeerin.txt", O_CREAT | O_TRUNC | O_RDWR, S_IRWXU);
 	// write some shit for input
-	write(fileIn, body.c_str(), body.length());
+	int asdf = write(fileIn, body.c_str(), body.length());
+	if (asdf == -1){;}
 	int fileOut;
 	_pid = fork();
 	if (_pid == 0)
@@ -62,7 +66,8 @@ std::string CGI::executeGCI(std::string &body)
 		std::string executable = _path.substr(executableStart);
 		const char *realArgv[2];
 		std::string pathStart = _path.substr(0, executableStart);
-		chdir(pathStart.c_str());
+		if (chdir(pathStart.c_str()) == -1)
+			{;}
 		realArgv[0] = executable.c_str();
 		realArgv[1] = NULL;
 		char *const *argv = const_cast<char *const *>(realArgv);
@@ -70,7 +75,6 @@ std::string CGI::executeGCI(std::string &body)
 		if (ret < 0)
 			exit(1);
 	}
-//	fileOut = open("/tmp/fuckyoupeerout.txt", O_RDONLY, S_IRWXU);
 	std::string ret;
 	int status;
 	waitpid(0, &status, 0);
@@ -80,12 +84,17 @@ std::string CGI::executeGCI(std::string &body)
 	file.close();
 	return ret;
 }
+
 void CGI::_initEnvironment(Request &request, server &server)
 {
+    std::stringstream ss;
+
 	std::map<headerType, std::string> reqHeaders = request.getHeaders();
 	if (reqHeaders.find(AUTHORIZATION) != reqHeaders.end())
 		this->_environment["AUTH_TYPE"] = reqHeaders[AUTHORIZATION];
-	this->_environment["CONTENT_LENGTH"] = request.getBody().length();
+	ss << request.getBody().length();
+	this->_environment["CONTENT_LENGTH"] = ss.str();
+	ss.clear();
 	if (request.getBody().empty())
 		this->_environment["CONTENT_TYPE"] = "";
 	else
@@ -104,7 +113,9 @@ void CGI::_initEnvironment(Request &request, server &server)
 		this->_environment["SERVER_NAME"] = reqHeaders[HOST];
 	else
 		this->_environment["SERVER_NAME"] = this->_environment["REMOTE_ADDR"];
-	this->_environment["SERVER_PORT"] = server.getPortNr(); // search app
+	ss << server.getPortNr();
+	this->_environment["SERVER_PORT"] = ss.str(); // search app       //hier ook
+	ss.clear();
 	this->_environment["SERVER_PROTOCOL"] = "HTTP/1.1"; // search app
 	this->_environment["SERVER_SOFTWARE"] = "Merel Jonas Thimo Epic webserver huts"; // search app
 }

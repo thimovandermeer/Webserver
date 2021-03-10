@@ -98,10 +98,13 @@ void	ft_bzero(char *buf, size_t n)
 void server::generateResponse(int index)
 {
 	std::cout << "==REQUEST==" << std::endl;
-	std::cout << connections[index].acceptBuffer << std::endl;
+//	std::cout << connections[index].acceptBuffer << std::endl;
+	int len = std::min(connections[index].acceptBuffer.length(), (size_t)500);
+	if (write(1, connections[index].acceptBuffer.c_str(), len) == -1) {;}
 	std::cout << "==end==" << std::endl;
 	Request	request(connections[index].acceptBuffer);
 	Response resp(request, *this);
 	resp.setupResponse(request, *this);
+	this->_bodylen = resp.getBodySize();
 	_response = resp.getResponse();
 }

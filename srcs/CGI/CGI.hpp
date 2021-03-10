@@ -24,13 +24,14 @@ public:
 		ForkFailed();
 	};
 	// zometeen aanpassen
-	int fd[2];
+//	int fd[2];
 
 	CGI(std::string &path, Request &request, server &server);
 	CGI(CGI &src);
 	~CGI();
 	CGI();
 	std::string executeGCI(std::string &body);
+
 private:
 	void 								_initEnvironment(Request &request, server &server);
 	void 								_convertEnv();

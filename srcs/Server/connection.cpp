@@ -7,6 +7,7 @@
 
 connection::connection() : timeLastRead(0), acceptFd(-1), hasFullRequest(false)
 {
+
 }
 
 connection::~connection()
@@ -37,36 +38,68 @@ void	connection::closeThisConnection()
 	this->timeLastRead = 0;
 }
 
-void	connection::sendData(std::string &response)
+#include <algorithm>
+#include <sstream>
+void connection::sendData(std::string &response, const size_t bodylen)
 {
 	std::cout << "==RESPONSE==" << std::endl;
-	std::cout << response << std::endl;
-	std::cout << "==end==" << std::endl;
-	if(send(this->acceptFd, response.c_str(), response.size(), 0) == -1)
+	int len = std::min(response.length(), (size_t)500);
+	if (write(1, response.c_str(), len) == -1) {;}
+	std::cout << "\n==end==" << std::endl;
+
+	size_t headerlen = response.find("\r\n\r\n") + 4;
+
+	if (bodylen < (size_t)MAXSENDSIZE)
 	{
-		std::cerr << "send error" << std::endl;
+		if (send(this->acceptFd, response.c_str(), response.length(), 0) == -1)
+		{
+			std::cerr << "send error" << std::endl;
+			std::cerr << "errno is " << errno << std::endl;
+			std::cerr << strerror(errno) << std::endl;
+		}
+	}
+	else // chunked response
+	{
+		// send header
+		std::string headr = response.substr(0, headerlen);
+//		std::cerr << "sending header" << std::endl;
+		send(this->acceptFd, headr.c_str(), headr.length(), 0);
+		size_t bodyBytesSent = 0;
+		while(bodylen - bodyBytesSent > 0)
+		{
+//			std::cerr << "sending chunk" << std::endl;
+			size_t	bytesToSend = std::min((bodylen - bodyBytesSent), (size_t)MAXSENDSIZE);
+
+			std::stringstream ss;
+
+			ss << std::hex << bytesToSend;
+			std::string chunk(ss.str());
+			chunk += "\r\n";
+			chunk.append(response, headerlen + bodyBytesSent, bytesToSend);
+			chunk += "\r\n";
+			send(this->acceptFd, chunk.c_str(), chunk.length(), 0);
+//			std::cerr << "done sending chunk" << std::endl;
+			bodyBytesSent += bytesToSend;
+			// repeat
+		}
+		std::string end("0\r\n\r\n");
+		send(this->acceptFd, end.c_str(), 5, 0);
 	}
 	this->closeThisConnection();
 }
 
 std::string	connection::receive() const
 {
-	char 	buffer[BUFFSIZE + 1];
+	char 	buffer[MAXREADSIZE + 1];
 	int 	ret;
 
-	bzero(buffer, BUFFSIZE + 1);
-	ret = recv(this->acceptFd, buffer, BUFFSIZE, 0);
+	bzero(buffer, MAXREADSIZE + 1);
+	ret = recv(this->acceptFd, buffer, MAXREADSIZE, 0);
 	if (ret == -1)
 	{
 		std::cerr << "recv error" << std::endl;
 //		throw syscallErrorException();
 	}
-	// make requests bad
-//	for (int i = 0; i < 100; i++)
-//	{
-//		int random = rand() % strlen(buffer);
-//		buffer[random] = rand() % 128;
-//	}
 	return (buffer);
 }
 
@@ -85,13 +118,10 @@ void	connection::startReading()
 		return;
 	}
 
-	// kijk of request is af op this->acceptbuffer
 	if (isFullRequest(this->acceptBuffer))
 		this->hasFullRequest = true;
 	else
 		return;
-
-//	generateResponse(*this);
 }
 
 bool	connection::isFullRequest(std::string &currentRequest) const
@@ -112,5 +142,3 @@ bool	connection::isFullRequest(std::string &currentRequest) const
 		return (true);
 	return (false);
 }
-
-

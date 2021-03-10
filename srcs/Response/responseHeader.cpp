@@ -1,13 +1,8 @@
-//
-// Created by Thimo Van der meer on 25/01/2021.
-//
-
 #include "responseHeader.hpp"
 #include <sys/time.h>
 #include <sys/stat.h>
 #include <string>
-#include <sstream>
-// canonical form functions
+
 responseHeader::responseHeader(std::string &content, std::string &path, int status, std::string &contentType)
 {
 	setAllow(status);
@@ -44,7 +39,23 @@ responseHeader::responseHeader(const responseHeader &src)
 	_wwwAuthenticate = src._wwwAuthenticate;
 }
 
-responseHeader::~responseHeader()
+void			responseHeader::resetValues(void)
+{
+	_allow = "";
+	_contentLanguage = "";
+	_contentLength = "";
+	_contentLocation = "";
+	_contentType = "";
+	_date = "";
+	_lastModified = "";
+	_location = "";
+	_retryAfter = "";
+	_server = "";
+	_transferEncoding = "";
+	_wwwAuthenticate = "";
+}
+
+ responseHeader::~responseHeader()
 {
 
 }
@@ -75,19 +86,14 @@ std::string responseHeader::getHeader(int status)
 {
 	std::string header;
 
-	// set all headers to appropriate info
-//	setAllHeaders(content, path, status, contentType);
-	// write header
-	std::stringstream ss;
-	ss << status;
-	header = "HTTP/1.1 " + ss.str() + " " + createStatusMessage(status) + "\r\n";
+//	resetValues();
+	header = "HTTP/1.1 " + std::to_string(status) + " " + createStatusMessage(status) + "\r\n";
 	header += writeHeader();
 	return (header);
 }
 
-std::string		responseHeader::createStatusMessage(int status)		//ik denk dat deze functie niet meer nodig is
+std::string		responseHeader::createStatusMessage(int status)
 {
-	// trying to solve this with an enum or some other smart data type
 	if(status == 200)
 		return ("OK");
 	else if (status == 201)
@@ -109,38 +115,41 @@ std::string		responseHeader::createStatusMessage(int status)		//ik denk dat deze
 		return ("Zieke Error in onze code");
 }
 
+#include <cstdlib>
 std::string 		responseHeader::writeHeader()
 {
 	std::string header;
 
-	if (_allow.empty())
+	if (!_allow.empty())
 		header += "Allow: " + _allow + "\r\n";
-	if (_contentLanguage.empty())
+	if (!_contentLanguage.empty())
 		header += "Content-Language: " + _contentLanguage + "\r\n";
-	if (_contentLength.empty())
+
+	if (strtol(this->_contentLength.c_str(), NULL, 10) < MAXSENDSIZE)
 		header += "Content-Length: " + _contentLength + "\r\n";
-	if (_contentLocation.empty())
+	else
+		header += "Transfer-Encoding: " + _transferEncoding + "\r\n";
+
+	if (!_contentLocation.empty())
 		header += "Content-Location: " + _contentLocation + "\r\n";
-	if (_contentType.empty())
+	if (!_contentType.empty())
 		header += "Content-Type: " + _contentType + "\r\n";
-	if (_date.empty())
+	if (!_date.empty())
 		header += "Date: " + _date + "\r\n";
-	if (_lastModified.empty())
+	if (!_lastModified.empty())
 		header += "Last-Modified: " + _lastModified + "\r\n";
-	if (_location.empty())
+	if (!_location.empty())
 		header += "Location: " + _location + "\r\n";
-	if (_retryAfter.empty())
+	if (!_retryAfter.empty())
 		header += "Retry-After: " + _retryAfter + "\r\n";
-	if (_server.empty())
+	if (!_server.empty())
 		header += "Server: " + _server + "\r\n";
-//	if (_transferEncoding.empty())
-//		header += "Transfer-Encoding: " + _transferEncoding + "\r\n";
-	if (_wwwAuthenticate.empty())
+
+	if (!_wwwAuthenticate.empty())
 		header += "Www-Authenticate: " + _wwwAuthenticate + "\r\n";
 	header += "\r\n";
 	return (header);
 }
-
 
 // setters
 void responseHeader::setContentLocation(const std::string &path, int status)
@@ -166,9 +175,7 @@ void responseHeader::setContentLanguage()
 
 void responseHeader::setContentLength(int length)
 {
-	std::stringstream ss;
-	ss << length;
-	_contentLength = ss.str();
+	_contentLength = std::to_string(length);
 }
 
 void responseHeader::setContentType(const std::string &contentType)
@@ -242,97 +249,8 @@ void responseHeader::setRetryAfter(int status, int number)
 	}
 	else if (status / 100 == 3)
 	{
-		std::stringstream ss;
-		ss << number;
-		_retryAfter = ss.str();
+		_retryAfter = std::to_string(number);
 	}
 	else
 		_retryAfter = "";
-}
-
-// Getters for testing
-
-const std::string &responseHeader::getAcceptCharsets() const
-{
-	return _acceptCharsets;
-}
-
-const std::string &responseHeader::getAcceptLanguage() const
-{
-	return _acceptLanguage;
-}
-
-const std::string &responseHeader::getAllow() const
-{
-	return _allow;
-}
-
-const std::string &responseHeader::getAuthorization() const
-{
-	return _authorization;
-}
-
-const std::string &responseHeader::getContentLanguage() const
-{
-	return _contentLanguage;
-}
-
-const std::string &responseHeader::getContentLocation() const
-{
-	return _contentLocation;
-}
-
-const std::string &responseHeader::getContentLength() const
-{
-	return _contentLength;
-}
-
-const std::string &responseHeader::getContentType() const
-{
-	return _contentType;
-}
-
-const std::string &responseHeader::getDate() const
-{
-	return _date;
-}
-
-const std::string &responseHeader::getHost() const
-{
-	return _host;
-}
-
-const std::string &responseHeader::getLastModified() const
-{
-	return _lastModified;
-}
-
-const std::string &responseHeader::getLocation() const
-{
-	return _location;
-}
-
-const std::string &responseHeader::getReferer() const
-{
-	return _referer;
-}
-
-const std::string &responseHeader::getRetryAfter() const
-{
-	return _retryAfter;
-}
-
-const std::string &responseHeader::getServer() const
-{
-	return _server;
-}
-
-const std::string &responseHeader::getTransferEncoding() const
-{
-	return _transferEncoding;
-}
-
-const std::string &responseHeader::getWwwAuthenticate() const
-{
-	return _wwwAuthenticate;
 }

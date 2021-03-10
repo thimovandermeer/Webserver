@@ -47,7 +47,6 @@ class Request{
         std::string getCgiEnv() const;
         bool getCgi() const ;
 		int getStatus() const;
-        size_t getChunkedLength() const;
 
         void parseRequest();
         void parseRequestLine();
@@ -65,7 +64,6 @@ class Request{
         std::map<std::string, headerType>	_headerMap;
         std::map<headerType, std::string>   _defHeaders;
         int         _status;
-        size_t      _chunkedLength;
         bool        _cgi;
 } ;
 

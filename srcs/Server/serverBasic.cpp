@@ -132,11 +132,6 @@ void	server::setIndices(std::string &indices)
 		this->_indices.push_back(index);
 }
 
-//void	server::setAcceptFd(int fd)
-//{
-//	this->_acceptFd = fd;
-//}
-
 const int			&server::getPortNr() const
 {
 	return (this->_portNr);
@@ -192,17 +187,10 @@ const struct sockaddr_in	&server::getAddr() const
 	return (this->_addr);
 }
 
-//const t_connection* server::getConnections() const
-//{
-//	return(this->connections);
-//}
-
 bool	server::valueCheck() const
 {
 	if (this->_portNr <= 0)
 		return (false);
-//	if (this->_errorPage.empty())
-//		return (false);
 	if (this->_host.empty())
 		return (false);
 	return (true);

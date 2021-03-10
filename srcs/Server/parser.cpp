@@ -57,7 +57,6 @@ location	*getLocation(std::string &startLine, std::fstream &configFile, int &lin
 	std::string	match;
 
 	match = startLine.substr(9, startLine.length() - 11);
-	// 9 is length of "location ", 11 is that + the " {" at the end;
 	location	*newLoc = new location(match);
 
 	while (std::getline(configFile, line))
@@ -152,7 +151,6 @@ void	startParsing(std::fstream& configFile, serverCluster *cluster)
 					(*it)->setAutoindex("off");
 			}
 		}
-
 		// check if all data set in server is correct
 		if (!newServer->valueCheck())
 			errMsgAndExit("invalid values in server block", 1);
