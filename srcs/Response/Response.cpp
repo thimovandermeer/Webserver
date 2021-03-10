@@ -239,7 +239,6 @@ void Response::postMethod(std::string content)
 		parseContent();
 		pos = _content.find("\r\n\r\n");
 		_content.erase(0, pos + 4);
-//		_CGI.setContentLength(_content.length());
 		responseHeader header(_content, _path, _status, _contentType);
 		_response = header.getHeader(_status) + _content;
 		return;
