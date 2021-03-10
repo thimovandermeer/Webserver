@@ -8,6 +8,7 @@
 #include <string>
 #include <sstream>
 // canonical form functions
+//is content hier uberhaupt nodig?
 responseHeader::responseHeader(std::string &content, std::string &path, int status, std::string &contentType)
 {
 	setAllow(status);
@@ -60,7 +61,7 @@ void			responseHeader::resetValues(void)
 	_wwwAuthenticate = "";
 }
 
-responseHeader::~responseHeader()
+ responseHeader::~responseHeader()
 {
 
 }

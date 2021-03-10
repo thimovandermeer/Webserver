@@ -251,7 +251,7 @@ void Response::postMethod(std::string content)
 	if(_useCGI == true) {
 		readContent();
 		parseContent();
-		responseHeader header(_body, _path, _status, _contentType);
+		responseHeader header(_content, _path, _status, _contentType);
 		_response = header.getHeader(_status) + _content;
 		return;
 	}
