@@ -215,11 +215,43 @@ void Response::headMethod()
   	this->_content.clear();
 }
 
+//zoeken naar een lijst van headers waar ik de gevonden headers makkelijk tegenaan kan houden
+//als er een match is gevonden, die gevonden waarde geven aan deze header
+// het gaat om de volgende headesr: _path, _status, _contentType
+
+std::string Response::headerValue(size_t startPos) {
+    size_t pos;
+    size_t pos1;
+    size_t pos2;
+
+    pos1 = _content.find(' ', startPos);
+    pos2 = _content.find(';', startPos);
+
+    pos = pos1 > pos2 ? pos2 : pos1;
+    std::cout << pos << std::endl;
+    std::string temp = _content.substr(startPos, pos - startPos);
+//    return (_content.substr(startPos, pos - startPos));
+    return temp;
+}
+//Status: 200 OK
+//Content-Type: h
+void Response::parseContent()
+{
+    size_t pos;
+
+    if ((pos = _content.find("Status")) != std::string::npos)
+        _status = stoi(headerValue(pos + 8));
+    if ((pos = _content.find("Content-Type")) != std::string::npos)
+        _contentType = headerValue(pos + 14);
+}
+
+//Status: 200 OK\r\nContent-Type: text/html; lalala
 void Response::postMethod(std::string content)
 {
 	if(_useCGI == true) {
 		readContent();
-		responseHeader header(_content, _path, _status, _contentType);
+		parseContent();
+		responseHeader header(_body, _path, _status, _contentType);
 		_response = header.getHeader(_status) + _content;
 		return;
 	}

@@ -42,11 +42,14 @@ private:
 	void		errorPage(server &serv);
     void        createErrorPage(std::string *pageData);
 		// helper functions
-	void 	readContent();
-	int		authenticate(Request &req);
-	void 	writeContent(std::string content);
+	void 	    readContent();
+	int		    authenticate(Request &req);
+	void 	    writeContent(std::string content);
+	void        parseContent();
+    std::string headerValue(size_t startPos);
 
-	location			*currentLoc;
+
+        location			*currentLoc;
 
 
 public:
