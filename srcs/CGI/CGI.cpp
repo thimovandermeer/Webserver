@@ -8,6 +8,8 @@
 #include <fstream>
 #include <sys/wait.h>
 #include "CGI.hpp"
+#include <stdlib.h>
+
 CGI::CgiError::CgiError(const char* w)
 		: std::runtime_error(w)
 {
@@ -82,12 +84,19 @@ std::string CGI::executeGCI(std::string &body)
 	file.close();
 	return ret;
 }
+
+//void CGI::setContentLength(int len)
+//{
+//    this->_environment["CONTENT_LENGTH"] = std::to_string(len);
+//}
+
 void CGI::_initEnvironment(Request &request, server &server)
 {
 	std::map<headerType, std::string> reqHeaders = request.getHeaders();
 	if (reqHeaders.find(AUTHORIZATION) != reqHeaders.end())
 		this->_environment["AUTH_TYPE"] = reqHeaders[AUTHORIZATION];
-	this->_environment["CONTENT_LENGTH"] = request.getBody().length();
+	//hier halen we de verkeerde length op en moet deze in zijn geheel aan gaan passen
+	this->_environment["CONTENT_LENGTH"] = std::to_string(request.getBody().length());
 	if (request.getBody().empty())
 		this->_environment["CONTENT_TYPE"] = "";
 	else
