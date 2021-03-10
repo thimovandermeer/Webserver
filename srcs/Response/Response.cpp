@@ -215,10 +215,6 @@ void Response::headMethod()
   	this->_content.clear();
 }
 
-//zoeken naar een lijst van headers waar ik de gevonden headers makkelijk tegenaan kan houden
-//als er een match is gevonden, die gevonden waarde geven aan deze header
-// het gaat om de volgende headesr: _path, _status, _contentType
-
 std::string Response::headerValue(size_t startPos) {
     size_t pos;
     size_t pos1;
@@ -228,13 +224,10 @@ std::string Response::headerValue(size_t startPos) {
     pos2 = _content.find(';', startPos);
 
     pos = pos1 > pos2 ? pos2 : pos1;
-    std::cout << pos << std::endl;
     std::string temp = _content.substr(startPos, pos - startPos);
-//    return (_content.substr(startPos, pos - startPos));
     return temp;
 }
-//Status: 200 OK
-//Content-Type: h
+
 void Response::parseContent()
 {
     size_t pos;
@@ -245,12 +238,14 @@ void Response::parseContent()
         _contentType = headerValue(pos + 14);
 }
 
-//Status: 200 OK\r\nContent-Type: text/html; lalala
 void Response::postMethod(std::string content)
 {
 	if(_useCGI == true) {
+	    int pos;
 		readContent();
 		parseContent();
+		pos = _content.find("\r\n\r\n");
+		_content.erase(0, pos + 4);
 		responseHeader header(_content, _path, _status, _contentType);
 		_response = header.getHeader(_status) + _content;
 		return;
@@ -259,7 +254,6 @@ void Response::postMethod(std::string content)
 	file.open(_path.c_str(), std::ios::out | std::ios::app);
 	if(!file.is_open() && _status == 200)
 		this->setStatus(403);
-//	this->setStatus(204);
 	struct stat statBuf;
 	if(stat(_path.c_str(), &statBuf) < 0 && _status == 200)
 		this->setStatus(201);
@@ -267,7 +261,6 @@ void Response::postMethod(std::string content)
 	file.close();
 	responseHeader header(content, _path, _status, _contentType);
 	_response = header.getHeader(_status); // here we got a potential bug
-	// need more knowledge about CGI
 }
 
 void Response::putMethod(std::string content)
