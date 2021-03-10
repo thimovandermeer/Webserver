@@ -1,7 +1,3 @@
-//
-// Created by Thimo Van der meer on 25/01/2021.
-//
-
 #include "responseHeader.hpp"
 #include <sys/time.h>
 #include <sys/stat.h>

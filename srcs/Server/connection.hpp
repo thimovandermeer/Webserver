@@ -6,7 +6,6 @@
 class connection {
 private:
 
-
 public:
 
 	unsigned long	timeLastRead;

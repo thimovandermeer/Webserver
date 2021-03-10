@@ -35,29 +35,24 @@ private:
 	Response();
 	// functions for each different method
 	void 		getMethod();
-//	std::string	getPath(server &server, Request &request);
 	void 		headMethod();
 	void 		postMethod(std::string content);
-	void 		putMethod(std::string content);
+	void 		putMethod(std::string const &content);
 	void		errorPage(server &serv);
     void        createErrorPage(std::string *pageData);
 		// helper functions
 	void 	    readContent();
 	int		    authenticate(Request &req);
-	void 	    writeContent(std::string content);
+	void 	    writeContent(std::string const &content);
 	void        parseContent();
     std::string headerValue(size_t startPos);
 
-
-        location			*currentLoc;
+    location			*currentLoc;
 
 
 public:
 	void				setStatus(int status);
-	std::string 		getContent();
 	const std::string 	&getResponse() const;
-	int 				getStatus() const;
-
 	bool				isMethodAllowed();
 
 	friend std::string	getPath(server &serv, Request &req, Response &resp);

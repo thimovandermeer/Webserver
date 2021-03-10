@@ -88,12 +88,6 @@ std::string	connection::receive() const
 		std::cerr << "recv error" << std::endl;
 //		throw syscallErrorException();
 	}
-	// make requests bad
-//	for (int i = 0; i < 100; i++)
-//	{
-//		int random = rand() % strlen(buffer);
-//		buffer[random] = rand() % 128;
-//	}
 	return (buffer);
 }
 

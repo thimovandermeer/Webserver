@@ -1,10 +1,5 @@
-//
-// Created by Thimo Van der meer on 25/01/2021.
-//
-
 #ifndef WEBSERV_RESPONSEHEADER_HPP
 #define WEBSERV_RESPONSEHEADER_HPP
-
 
 #include <string>
 #include "Response.hpp"
