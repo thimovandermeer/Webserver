@@ -21,7 +21,9 @@ responseHeader::responseHeader(std::string &content, std::string &path, int stat
 }
 
 void            responseHeader::setUnkownHeader() {
-    _specialHeader
+    X-SECRET-HEADER-FOR-TEST	1
+    _specialHeaderKey;
+    _specialHeaderValue;
 }
 
 responseHeader::responseHeader(const responseHeader &src)
@@ -149,9 +151,10 @@ std::string 		responseHeader::writeHeader()
 		header += "Retry-After: " + _retryAfter + "\r\n";
 	if (!_server.empty())
 		header += "Server: " + _server + "\r\n";
-
 	if (!_wwwAuthenticate.empty())
 		header += "Www-Authenticate: " + _wwwAuthenticate + "\r\n";
+	if (!_specialHeaderKey.empty() && !_specialHeaderValue.empty())
+	    header += _specialHeaderKey + ": " + _specialHeaderValue + "\r\n";
 	header += "\r\n";
 	return (header);
 }

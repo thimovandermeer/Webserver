@@ -58,7 +58,9 @@ private:
 	std::string		_server;
 	std::string		_transferEncoding;
 	std::string		_wwwAuthenticate;
-	std::string     _specialHeader;
+	std::string     _specialHeaderKey;
+    std::string     _specialHeaderValue;
+
 };
 
 
