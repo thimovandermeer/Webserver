@@ -17,14 +17,14 @@ responseHeader::responseHeader(std::string &content, std::string &path, int stat
 	setServer();
 	setTransferEncoding();
 	setWwwAuthenticate(status);
-	setUnknownHeader();
+//	setUnknownHeader();
 }
 
-void            responseHeader::setUnkownHeader() {
-    X-SECRET-HEADER-FOR-TEST	1
-    _specialHeaderKey;
-    _specialHeaderValue;
-}
+//void            responseHeader::setUnkownHeader() {
+//    X-SECRET-HEADER-FOR-TEST	1
+//    _specialHeaderKey;
+//    _specialHeaderValue;
+//}
 
 responseHeader::responseHeader(const responseHeader &src)
 {

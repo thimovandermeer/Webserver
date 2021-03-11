@@ -37,25 +37,6 @@ Request &Request::operator=(const Request &original) {
 Request::Request(std::string request) : _request(request)
 {
     _status = 200;
-//    _headerMap["ACCEP-CHARSET"] = ACCEPT_CHARSET;
-//    _headerMap["ACCEPT-LANGUAGE"] = ACCEPT_LANGUAGE;
-//    _headerMap["ALLOW"] = ALLOW;
-//    _headerMap["AUTHORIZATION"] = AUTHORIZATION;
-//    _headerMap["CONTENT-LANGUAGE"] = CONTENT_LANGUAGE;
-//    _headerMap["CONTENT-LENGTH"] = CONTENT_LENGTH;
-//    _headerMap["CONTENT-LOCATION"] = CONTENT_LOCATION;
-//    _headerMap["CONTENT-TYPE"] = CONTENT_TYPE;
-//    _headerMap["DATE"] = DATE;
-//    _headerMap["HOST"] = HOST;
-//    _headerMap["LAST-MODIFIED"] = LAST_MODIFIED;
-//    _headerMap["LOCATION"] = LOCATION;
-//    _headerMap["REFERER"] = REFERER;
-//    _headerMap["RETRY-AFTER"] = RETRY_AFTER;
-//    _headerMap["SERVER"] = SERVER;
-//    _headerMap["TRANSFER-ENCODING"] = TRANSFER_ENCODING;
-//    _headerMap["USER-AGENT"] = USER_AGENT;
-//    _headerMap["WWW-AUTHENTICATE"] = WWW_AUTHENTICATE;
-//    _headerMap["REMOTE_USER"] = REMOTE_USER;
 	parseRequest();
 }
 
@@ -74,6 +55,10 @@ std::string Request::getUri() const {
 
 std::map<std::string, std::string> Request::getHeaders() const {
     return _defHeaders;
+}
+
+std::map<std::string, std::string> Request::getCgiHeaders() const {
+    return _cgiHeaders;
 }
 
 std::string Request::getBody() const {
@@ -98,7 +83,7 @@ int Request::getStatus() const {
 }
 
 void Request::parseRequest() {
-    checkCGI();
+    checkCgi();
     parseRequestLine();
     parseHeaders();
     std::map<std::string, std::string>::iterator it = _defHeaders.find("TRANSFER-ENCODING");
@@ -111,7 +96,7 @@ void Request::parseRequest() {
     _request.clear();
 }
 
-void Request::checkCGI() {
+void Request::checkCgi() {
     if (_request.find(".py") != std::string::npos)
         _cgi = true;
     else if (_request.find(".php") != std::string::npos)
@@ -189,17 +174,16 @@ void Request::parseHeaders() {
             pos = length+1;
         length = _request.find("\r\n", pos);
         value = _request.substr(pos, length-pos);
+        if (header[0] == 'X' && header[1] == '-')
+        {
+            _cgiHeaders.insert(std::make_pair(header, value));
+            pos = length+2;
+            if (_request[pos] == '\r' && _request[pos + 1] == '\n')
+                loop = false ;
+            continue ;
+        }
         for (int i = 0; header[i]; i++)
             upperHeader += std::toupper(header[i]);
-//        std::cout << upperHeader << std::endl ;
-//        std::map<std::string, headerType>::iterator it = _headerMap.find(upperHeader);
-//        if (it == _headerMap.end())
-//		{
-//			pos = length+2;			//van hier tot
-//			if (_request[pos] == '\r' && _request[pos + 1] == '\n')
-//				loop = false;
-//        	continue;				// hier eruithalen of beter behandelen
-//		}
         std::map<std::string, std::string>::iterator it_h = _defHeaders.find(upperHeader);
         if (it_h != _defHeaders.end())      //deze is denk ik voor dubbele headers?
 		{
@@ -213,17 +197,12 @@ void Request::parseHeaders() {
     }
 	if (_defHeaders.empty())
 	{
-		_status = 400;			//als er helemaal geen geldige headers zijn binnengekomen
+		_status = 400;
 		return ;
 	}	
     _request = _request.substr(pos+2);
-    std::map<std::string, std::string>::iterator it_k = _defHeaders.begin();
-    while (it_k != _defHeaders.end()) {
-        std::cout << it_k->first << "\t" << it_k->second << std::endl;
-        it_k++;
-    }
-
 }
+
 
 void Request::parseBody() {
     size_t begin = 0;
