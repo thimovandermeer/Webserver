@@ -300,12 +300,12 @@ int					Response::authenticate(Request &req)
 		return 0;
 	}
 	if (this->currentLoc->gethtpasswdpath().empty()) {
-		req._defHeaders[AUTHORIZATION].clear();
+		req._defHeaders["AUTHORIZATION"].clear();
 		return 0;
 	}
 	std::string username, passwd, str;
 	try {
-		std::string auth = req._defHeaders.at(AUTHORIZATION);
+		std::string auth = req._defHeaders.at("AUTHORIZATION");
 		std::string type, credentials;
 		get_key_value(auth, type, credentials, " ", "\n\r#;");
 		credentials = base64_decode(credentials);
@@ -315,8 +315,8 @@ int					Response::authenticate(Request &req)
 		std::cerr << e.what() << std::endl;
 		std::cerr <<_RED "No credentials provided by client" _END << std::endl;
 	}
-	req._defHeaders[AUTHORIZATION] = req._defHeaders[AUTHORIZATION].substr(0, req._defHeaders[AUTHORIZATION].find_first_of(' '));
-	req._defHeaders[REMOTE_USER] = username;
+	req._defHeaders["AUTHORIZATION"] = req._defHeaders["AUTHORIZATION"].substr(0, req._defHeaders["AUTHORIZATION"].find_first_of(' '));
+	req._defHeaders["REMOTE_USER"] = username;
 	if (this->currentLoc->getAuthMatch(username, passwd)) {
 		std::cout << _GREEN _BOLD "Authorization successful!" _END << std::endl;
 		return 0;

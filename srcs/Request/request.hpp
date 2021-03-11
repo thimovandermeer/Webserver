@@ -9,27 +9,27 @@
 #include <vector>
 #include <algorithm>
 
-enum headerType {
-    ACCEPT_CHARSET,
-    ACCEPT_LANGUAGE,
-    ALLOW,
-    AUTHORIZATION,
-    CONTENT_LANGUAGE,
-    CONTENT_LENGTH,
-    CONTENT_LOCATION,
-    CONTENT_TYPE,
-    DATE,
-    HOST,
-    LAST_MODIFIED,
-    LOCATION,
-    REFERER,
-    RETRY_AFTER,
-    SERVER,
-    TRANSFER_ENCODING,
-    USER_AGENT,
-    WWW_AUTHENTICATE,
-    REMOTE_USER
-};
+//enum headerType {
+//    ACCEPT_CHARSET,
+//    ACCEPT_LANGUAGE,
+//    ALLOW,
+//    AUTHORIZATION,
+//    CONTENT_LANGUAGE,
+//    CONTENT_LENGTH,
+//    CONTENT_LOCATION,
+//    CONTENT_TYPE,
+//    DATE,
+//    HOST,
+//    LAST_MODIFIED,
+//    LOCATION,
+//    REFERER,
+//    RETRY_AFTER,
+//    SERVER,
+//    TRANSFER_ENCODING,
+//    USER_AGENT,
+//    WWW_AUTHENTICATE,
+//    REMOTE_USER
+//};
 
 class Request{
     public:
@@ -41,7 +41,7 @@ class Request{
 
         std::string getMethod() const;
         std::string getUri() const;
-        std::map<headerType, std::string> getHeaders() const;
+        std::map<std::string, std::string> getHeaders() const;
         std::string getBody() const;
         std::string getContentType();
         std::string getCgiEnv() const;
@@ -61,8 +61,8 @@ class Request{
         std::string _version;
         std::string _cgiEnv;
         std::string _body;
-        std::map<std::string, headerType>	_headerMap;
-        std::map<headerType, std::string>   _defHeaders;
+//        std::map<std::string, headerType>	_headerMap;
+        std::map<std::string, std::string>   _defHeaders;
         int         _status;
         bool        _cgi;
 } ;

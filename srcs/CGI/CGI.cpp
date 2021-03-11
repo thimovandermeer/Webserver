@@ -89,9 +89,9 @@ void CGI::_initEnvironment(Request &request, server &server)
 {
     std::stringstream ss;
 
-	std::map<headerType, std::string> reqHeaders = request.getHeaders();
-	if (reqHeaders.find(AUTHORIZATION) != reqHeaders.end())
-		this->_environment["AUTH_TYPE"] = reqHeaders[AUTHORIZATION];
+	std::map<std::string, std::string> reqHeaders = request.getHeaders();
+	if (reqHeaders.find("AUTHORIZATION") != reqHeaders.end())
+		this->_environment["AUTH_TYPE"] = reqHeaders["AUTHORIZATION"];
 	ss << request.getBody().length();
 	this->_environment["CONTENT_LENGTH"] = ss.str();
 	ss.clear();
@@ -109,8 +109,8 @@ void CGI::_initEnvironment(Request &request, server &server)
 	this->_environment["REQUEST_METHOD"] = request.getMethod(); // SEARCH APP
 	this->_environment["REQUEST_URI"] = request.getUri(); // search app
 	this->_environment["SCRIPT_NAME"] = request.getUri(); // search app
-	if (reqHeaders.find(HOST) != reqHeaders.end())
-		this->_environment["SERVER_NAME"] = reqHeaders[HOST];
+	if (reqHeaders.find("HOST") != reqHeaders.end())
+		this->_environment["SERVER_NAME"] = reqHeaders["HOST"];
 	else
 		this->_environment["SERVER_NAME"] = this->_environment["REMOTE_ADDR"];
 	ss << server.getPortNr();

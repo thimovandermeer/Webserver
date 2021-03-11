@@ -24,7 +24,7 @@ Request &Request::operator=(const Request &original) {
     this->_version = original._version;
 	this->_cgiEnv = original._cgiEnv;
 	this->_body = original._body;
-	this->_headerMap = original._headerMap;
+//	this->_headerMap = original._headerMap;
 	this->_defHeaders = original._defHeaders;
 	this->_status = original._status;
 	this->_cgi = original._cgi;
@@ -34,25 +34,25 @@ Request &Request::operator=(const Request &original) {
 Request::Request(std::string request) : _request(request)
 {
     _status = 200;
-    _headerMap["ACCEP-CHARSET"] = ACCEPT_CHARSET;
-    _headerMap["ACCEPT-LANGUAGE"] = ACCEPT_LANGUAGE;
-    _headerMap["ALLOW"] = ALLOW;
-    _headerMap["AUTHORIZATION"] = AUTHORIZATION;
-    _headerMap["CONTENT-LANGUAGE"] = CONTENT_LANGUAGE;
-    _headerMap["CONTENT-LENGTH"] = CONTENT_LENGTH;
-    _headerMap["CONTENT-LOCATION"] = CONTENT_LOCATION;
-    _headerMap["CONTENT-TYPE"] = CONTENT_TYPE;
-    _headerMap["DATE"] = DATE;
-    _headerMap["HOST"] = HOST;
-    _headerMap["LAST-MODIFIED"] = LAST_MODIFIED;
-    _headerMap["LOCATION"] = LOCATION;
-    _headerMap["REFERER"] = REFERER;
-    _headerMap["RETRY-AFTER"] = RETRY_AFTER;
-    _headerMap["SERVER"] = SERVER;
-    _headerMap["TRANSFER-ENCODING"] = TRANSFER_ENCODING;
-    _headerMap["USER-AGENT"] = USER_AGENT;
-    _headerMap["WWW-AUTHENTICATE"] = WWW_AUTHENTICATE;
-    _headerMap["REMOTE_USER"] = REMOTE_USER;
+//    _headerMap["ACCEP-CHARSET"] = ACCEPT_CHARSET;
+//    _headerMap["ACCEPT-LANGUAGE"] = ACCEPT_LANGUAGE;
+//    _headerMap["ALLOW"] = ALLOW;
+//    _headerMap["AUTHORIZATION"] = AUTHORIZATION;
+//    _headerMap["CONTENT-LANGUAGE"] = CONTENT_LANGUAGE;
+//    _headerMap["CONTENT-LENGTH"] = CONTENT_LENGTH;
+//    _headerMap["CONTENT-LOCATION"] = CONTENT_LOCATION;
+//    _headerMap["CONTENT-TYPE"] = CONTENT_TYPE;
+//    _headerMap["DATE"] = DATE;
+//    _headerMap["HOST"] = HOST;
+//    _headerMap["LAST-MODIFIED"] = LAST_MODIFIED;
+//    _headerMap["LOCATION"] = LOCATION;
+//    _headerMap["REFERER"] = REFERER;
+//    _headerMap["RETRY-AFTER"] = RETRY_AFTER;
+//    _headerMap["SERVER"] = SERVER;
+//    _headerMap["TRANSFER-ENCODING"] = TRANSFER_ENCODING;
+//    _headerMap["USER-AGENT"] = USER_AGENT;
+//    _headerMap["WWW-AUTHENTICATE"] = WWW_AUTHENTICATE;
+//    _headerMap["REMOTE_USER"] = REMOTE_USER;
 	parseRequest();
 }
 
@@ -69,7 +69,7 @@ std::string Request::getUri() const {
     return _uri;
 }
 
-std::map<headerType, std::string> Request::getHeaders() const {
+std::map<std::string, std::string> Request::getHeaders() const {
     return _defHeaders;
 }
 
@@ -80,7 +80,7 @@ std::string Request::getBody() const {
 std::string Request::getContentType()  {
     if (_defHeaders.begin() == _defHeaders.end())
         return ("NULL");
-    std::map<headerType, std::string>::iterator it = _defHeaders.find(CONTENT_TYPE);
+    std::map<std::string, std::string>::iterator it = _defHeaders.find("CONTENT_TYPE");
     if (it == _defHeaders.end())
         return ("NULL");
     return (it->second);
@@ -98,7 +98,7 @@ void Request::parseRequest() {
     checkCGI();
     parseRequestLine();
     parseHeaders();
-    std::map<headerType, std::string>::iterator it = _defHeaders.find(TRANSFER_ENCODING);
+    std::map<std::string, std::string>::iterator it = _defHeaders.find("TRANSFER_ENCODING");
     if (it != _defHeaders.end()) {
         if (it->second.compare("chunked") == 0)
             parseBody();
@@ -185,21 +185,21 @@ void Request::parseHeaders() {
         value = _request.substr(pos, length-pos);
         for (int i = 0; header[i]; i++)
             upperHeader += std::toupper(header[i]);
-        std::map<std::string, headerType>::iterator it = _headerMap.find(upperHeader);
-        if (it == _headerMap.end())
-		{
-			pos = length+2;			//van hier tot
-			if (_request[pos] == '\r' && _request[pos + 1] == '\n')
-				loop = false;
-        	continue;				// hier eruithalen of beter behandelen
-		}
-        std::map<headerType, std::string>::iterator it_h = _defHeaders.find(it->second);
-        if (it_h != _defHeaders.end())
+//        std::map<std::string, headerType>::iterator it = _headerMap.find(upperHeader);
+//        if (it == _headerMap.end())
+//		{
+//			pos = length+2;			//van hier tot
+//			if (_request[pos] == '\r' && _request[pos + 1] == '\n')
+//				loop = false;
+//        	continue;				// hier eruithalen of beter behandelen
+//		}
+        std::map<std::string, std::string>::iterator it_h = _defHeaders.find(upperHeader);
+        if (it_h != _defHeaders.end())      //deze is denk ik voor dubbele headers?
 		{
 			_status = 400;
 			return;
 		}
-        _defHeaders.insert(std::make_pair(it->second, value));
+        _defHeaders.insert(std::make_pair(upperHeader, value));
         pos = length+2;
 		if (_request[pos] == '\r' && _request[pos + 1] == '\n')
 			loop = false ;
