@@ -316,7 +316,7 @@ int					Response::authenticate(Request &req)
 		std::cerr <<_RED "No credentials provided by client" _END << std::endl;
 	}
 	req._defHeaders["AUTHORIZATION"] = req._defHeaders["AUTHORIZATION"].substr(0, req._defHeaders["AUTHORIZATION"].find_first_of(' '));
-	req._defHeaders["REMOTE_USER"] = username;
+	req._defHeaders["REMOTE-USER"] = username;
 	if (this->currentLoc->getAuthMatch(username, passwd)) {
 		std::cout << _GREEN _BOLD "Authorization successful!" _END << std::endl;
 		return 0;

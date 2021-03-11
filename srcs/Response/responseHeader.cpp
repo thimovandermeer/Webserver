@@ -17,6 +17,11 @@ responseHeader::responseHeader(std::string &content, std::string &path, int stat
 	setServer();
 	setTransferEncoding();
 	setWwwAuthenticate(status);
+	setUnknownHeader();
+}
+
+void            responseHeader::setUnkownHeader() {
+    _specialHeader
 }
 
 responseHeader::responseHeader(const responseHeader &src)

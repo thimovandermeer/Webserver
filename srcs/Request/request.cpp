@@ -2,6 +2,9 @@
 
 #include <stdexcept>
 #include <string>
+#include <fcntl.h>
+#include <unistd.h>
+
 
 std::string methods[4] = {
         "GET",
@@ -98,7 +101,7 @@ void Request::parseRequest() {
     checkCGI();
     parseRequestLine();
     parseHeaders();
-    std::map<std::string, std::string>::iterator it = _defHeaders.find("TRANSFER_ENCODING");
+    std::map<std::string, std::string>::iterator it = _defHeaders.find("TRANSFER-ENCODING");
     if (it != _defHeaders.end()) {
         if (it->second.compare("chunked") == 0)
             parseBody();
@@ -163,6 +166,9 @@ void Request::parseHeaders() {
     std::string value;
 	bool loop = true;
 
+    int fileIn = open("../test.txt", O_CREAT | O_TRUNC | O_RDWR, S_IRWXU);
+    write(fileIn, _request.c_str(), _request.length());
+
     while (loop == true){
         header.clear();
         value.clear();
@@ -185,6 +191,7 @@ void Request::parseHeaders() {
         value = _request.substr(pos, length-pos);
         for (int i = 0; header[i]; i++)
             upperHeader += std::toupper(header[i]);
+//        std::cout << upperHeader << std::endl ;
 //        std::map<std::string, headerType>::iterator it = _headerMap.find(upperHeader);
 //        if (it == _headerMap.end())
 //		{
@@ -210,6 +217,12 @@ void Request::parseHeaders() {
 		return ;
 	}	
     _request = _request.substr(pos+2);
+    std::map<std::string, std::string>::iterator it_k = _defHeaders.begin();
+    while (it_k != _defHeaders.end()) {
+        std::cout << it_k->first << "\t" << it_k->second << std::endl;
+        it_k++;
+    }
+
 }
 
 void Request::parseBody() {

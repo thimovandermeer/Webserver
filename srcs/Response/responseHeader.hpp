@@ -27,6 +27,7 @@ private:
 	void 			setLocation(const std::string &path, int status);
 	void 			setServer();
 	void 			setTransferEncoding();
+	void            setUnkownHeader();
 	void 			setRetryAfter(int status, int number);
 	void 			setWwwAuthenticate(int status);
 	void 			resetValues(void);
@@ -57,6 +58,7 @@ private:
 	std::string		_server;
 	std::string		_transferEncoding;
 	std::string		_wwwAuthenticate;
+	std::string     _specialHeader;
 };
 
 

@@ -93,12 +93,12 @@ void CGI::_initEnvironment(Request &request, server &server)
 	if (reqHeaders.find("AUTHORIZATION") != reqHeaders.end())
 		this->_environment["AUTH_TYPE"] = reqHeaders["AUTHORIZATION"];
 	ss << request.getBody().length();
-	this->_environment["CONTENT_LENGTH"] = ss.str();
+	this->_environment["CONTENT-LENGTH"] = ss.str();
 	ss.clear();
 	if (request.getBody().empty())
-		this->_environment["CONTENT_TYPE"] = "";
+		this->_environment["CONTENT-TYPE"] = "";
 	else
-		this->_environment["CONTENT_TYPE"] = request.getMethod();
+		this->_environment["CONTENT-TYPE"] = request.getMethod();
 	this->_environment["GATEWAY_INTERFACE"] = "EPIC CGI"; // search app
 	this->_environment["PATH_INFO"] = request.getUri() + request.getCgiEnv(); // SEARCH APP
 	this->_environment["PATH_TRANSLATED"] = request.getUri(); // SEARCH APP
