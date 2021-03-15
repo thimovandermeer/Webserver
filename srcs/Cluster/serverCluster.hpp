@@ -1,6 +1,7 @@
 #ifndef SERVERCLUSTER_HPP
 # define SERVERCLUSTER_HPP
 # include "../Server/server.hpp"
+# define TIMEOUT 10
 
 class serverCluster {
 public:

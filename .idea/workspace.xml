@@ -19,9 +19,8 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/main" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:sending" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
@@ -37,25 +36,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="started fixing sending on macOS, gonna work in branch from now on">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/flags.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/CGI/CGI.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/CGI/CGI.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/CGI/CGI.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/CGI/CGI.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Request/request.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Request/request.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Request/request.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Request/request.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Cluster/serverCluster.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Cluster/serverCluster.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Response/Response.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Response/Response.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Response/responseHeader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/responseHeader.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Response/responseHeader.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/responseHeader.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Server/connection.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/connection.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Server/connection.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/connection.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/location.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/location.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/parser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/parser.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Server/server.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/server.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/serverBasic.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/serverBasic.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -207,6 +196,8 @@
       <workItem from="1615189443466" duration="4689000" />
       <workItem from="1615197170931" duration="12784000" />
       <workItem from="1615377698776" duration="7293000" />
+      <workItem from="1615809221130" duration="4717000" />
+      <workItem from="1615820432233" duration="1495000" />
     </task>
     <task id="LOCAL-00003" summary="nearly done all set functions of responseheader">
       <created>1611650661666</created>
@@ -417,7 +408,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/main" />
+                        <option value="sending" />
                       </list>
                     </value>
                   </entry>
@@ -510,46 +501,58 @@
     <option name="LAST_COMMIT_MESSAGE" value="started fixing sending on macOS, gonna work in branch from now on" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="871" y="373" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1615815465908">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="871" y="373" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1615815465908" />
+    <state x="1147" y="451" key="#xdebugger.XInspectDialog" timestamp="1615803537208">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="1147" y="451" key="#xdebugger.XInspectDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1615803537208" />
     <state x="100" y="123" width="2360" height="1137" key="DiffContextDialog" timestamp="1615388696997">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="100" y="123" width="2360" height="1137" key="DiffContextDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1615388696997" />
-    <state width="2518" height="583" key="GridCell.Tab.0.bottom" timestamp="1615389260170">
+    <state width="2518" height="467" key="GridCell.Tab.0.bottom" timestamp="1615821983125">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="583" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1615389260170" />
-    <state width="2518" height="583" key="GridCell.Tab.0.center" timestamp="1615389260169">
+    <state width="2518" height="467" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1615821983125" />
+    <state width="2518" height="467" key="GridCell.Tab.0.center" timestamp="1615821983124">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="583" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1615389260169" />
-    <state width="2518" height="583" key="GridCell.Tab.0.left" timestamp="1615389260169">
+    <state width="2518" height="467" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1615821983124" />
+    <state width="2518" height="467" key="GridCell.Tab.0.left" timestamp="1615821983123">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="583" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1615389260169" />
-    <state width="2518" height="583" key="GridCell.Tab.0.right" timestamp="1615389260170">
+    <state width="2518" height="467" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1615821983123" />
+    <state width="2518" height="467" key="GridCell.Tab.0.right" timestamp="1615821983124">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="583" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1615389260170" />
-    <state width="2518" height="583" key="GridCell.Tab.1.bottom" timestamp="1615389260172">
+    <state width="2518" height="467" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1615821983124" />
+    <state width="2518" height="467" key="GridCell.Tab.1.bottom" timestamp="1615821983126">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="583" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1615389260172" />
-    <state width="2518" height="583" key="GridCell.Tab.1.center" timestamp="1615389260171">
+    <state width="2518" height="467" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1615821983126" />
+    <state width="2518" height="467" key="GridCell.Tab.1.center" timestamp="1615821983126">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="583" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1615389260171" />
-    <state width="2518" height="583" key="GridCell.Tab.1.left" timestamp="1615389260171">
+    <state width="2518" height="467" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1615821983126" />
+    <state width="2518" height="467" key="GridCell.Tab.1.left" timestamp="1615821983125">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="583" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1615389260171" />
-    <state width="2518" height="583" key="GridCell.Tab.1.right" timestamp="1615389260171">
+    <state width="2518" height="467" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1615821983125" />
+    <state width="2518" height="467" key="GridCell.Tab.1.right" timestamp="1615821983126">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="583" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1615389260171" />
+    <state width="2518" height="467" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1615821983126" />
     <state x="789" y="330" key="SettingsEditor" timestamp="1615368302481">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="789" y="330" key="SettingsEditor/0.23.2560.1337@0.23.2560.1337" timestamp="1615368302481" />
+    <state x="1000" y="612" key="VCS.ChangelistChooser" timestamp="1615814833801">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="1000" y="612" key="VCS.ChangelistChooser/0.23.2560.1337@0.23.2560.1337" timestamp="1615814833801" />
     <state x="880" y="431" key="Vcs.Push.Dialog.v2" timestamp="1615367584859">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -558,22 +561,22 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="1056" y="432" key="VcsDiffUtil.ChangesDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1615388664110" />
-    <state width="1280" height="668" key="XDebugger.FullValuePopup" timestamp="1615383616402">
+    <state width="1280" height="668" key="XDebugger.FullValuePopup" timestamp="1615821335968">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1280" height="668" key="XDebugger.FullValuePopup/0.23.2560.1337@0.23.2560.1337" timestamp="1615383616402" />
-    <state x="1064" y="489" key="refactoring.ChangeSignatureDialog" timestamp="1615382083768">
+    <state width="1280" height="668" key="XDebugger.FullValuePopup/0.23.2560.1337@0.23.2560.1337" timestamp="1615821335968" />
+    <state x="1064" y="489" width="432" height="400" key="refactoring.ChangeSignatureDialog" timestamp="1615821799452">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="1064" y="489" key="refactoring.ChangeSignatureDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1615382083768" />
+    <state x="1064" y="489" width="432" height="400" key="refactoring.ChangeSignatureDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1615821799452" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/srcs/Server/connection.cpp</url>
-          <line>62</line>
-          <option name="timeStamp" value="1" />
+          <line>116</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -49,9 +49,9 @@ private:
 
 public:
 
-	std::string			_response;
 	size_t				_bodylen;
 
+	connection			connections[NR_OF_CONNECTIONS];
 
 	server();
 	server(server const &original);
@@ -66,8 +66,6 @@ public:
 	void	setHost(std::string &host);
 	void	setServerNames(std::string &names);
 	void	setIndices(std::string &indices);
-
-	connection			connections[NR_OF_CONNECTIONS];
 
 	const int						&getPortNr() const;
 	const size_t					&getMaxBodySize() const;
