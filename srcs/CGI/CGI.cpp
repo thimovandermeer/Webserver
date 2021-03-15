@@ -95,7 +95,7 @@ void CGI::_initEnvironment(Request &request, server &server)
     std::stringstream ss;
 
 	std::map<std::string, std::string> reqHeaders = request.getHeaders();
-	std::map<std::string, std::string> cgiHeaders = request.getCgiHeaders();
+
 	if (reqHeaders.find("AUTHORIZATION") != reqHeaders.end())
 		this->_environment["AUTH_TYPE"] = reqHeaders["AUTHORIZATION"];
 	ss << request.getBody().length();
@@ -124,9 +124,11 @@ void CGI::_initEnvironment(Request &request, server &server)
 	ss.clear();
 	this->_environment["SERVER_PROTOCOL"] = "HTTP/1.1"; // search app
 	this->_environment["SERVER_SOFTWARE"] = "Merel Jonas Thimo Epic webserver huts"; // search app
-    std::map<std::string, std::string>::iterator it = cgiHeaders.begin();
+	std::map<std::string, std::string> cgiHeaders = request.getCgiHeaders();
+	std::map<std::string, std::string>::iterator it = cgiHeaders.begin();
     while (it != cgiHeaders.end()) {
         _environment.insert(std::make_pair(it->first, it->second));
+
         std::cerr << it->first << "\t\t\t" << it->second << std::endl ;
         it++;
     }

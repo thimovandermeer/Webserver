@@ -176,7 +176,10 @@ void Request::parseHeaders() {
         value = _request.substr(pos, length-pos);
         if (header[0] == 'X' && header[1] == '-')
         {
-            _cgiHeaders.insert(std::make_pair(header, value));
+        	std::string insert("HTTP_");
+			std::replace(header.begin(), header.end(), '-', '_');
+            insert.append(header);
+			_cgiHeaders.insert(std::make_pair(insert, value));
             pos = length+2;
             if (_request[pos] == '\r' && _request[pos + 1] == '\n')
                 loop = false ;
