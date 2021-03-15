@@ -90,7 +90,7 @@ Usage: _int connect(int server_fd, const struct sockaddr *address, socklen_t add
 The connect() system call connects the socket referred to by the file descriptor _serverfd_ to the address specified by _address_.  The _addrlen_ argument specifies the size of _addr_.  The format of the address in _addr_ is determined by the address space of the socket _server_fd_.
 
 ### select():
-Usage: _int select(int nfds, fd_set *restrict readfds, fd_set *restrict writefds,fd_set *restrict errorfds, struct timeval *restrict timeLastRead);_
+Usage: _int select(int nfds, fd_set *restrict readfds, fd_set *restrict writefds,fd_set *restrict errorfds, struct timeval *restrict _timeLastRead);_
 
 select() allows a program to monitor multiple file descriptors, waiting until one or more of the file descriptors become 'ready' for some class of I/O operation (e.g., input possible).  A file descriptor is considered ready if it is possible to perform a corresponding I/O operation or a sufficiently small write(2)) without blocking. select() can monitor only file descriptors numbers that are less than FD_SETSIZE.
 select() updates fd_set's, so we need to build fd_set's before each select() call.

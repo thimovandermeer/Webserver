@@ -72,20 +72,20 @@ void	serverCluster::startListening()
 		{
 			for (int i = 0; i < NR_OF_CONNECTIONS; i++)
 			{
-				if ((*it)->connections[i].acceptFd != -1)
+				if ((*it)->connections[i].getAcceptFd() != -1)
 				{
 					unsigned long a = getTime();
-					unsigned long b = (*it)->connections[i].timeLastRead;
-					if (a - b > 5)
+					unsigned long b = (*it)->connections[i].getTimeLastRead();
+					if (a - b > TIMEOUT && (*it)->connections[i].getResponseString().empty())
 					{
 						std::cerr << "connection timed out: nothing received on socket" << std::endl;
 						(*it)->generateResponse(i);
-						(*it)->connections[i].hasFullRequest = true;
+						(*it)->connections[i].setFullReq(true);
 					}
-					if (!(*it)->connections[i].hasFullRequest)
-						FD_SET((*it)->connections->acceptFd, &readSet);
+					if (!(*it)->connections[i].hasFullRequest())
+						FD_SET((*it)->connections->getAcceptFd(), &readSet);
 					else
-						FD_SET((*it)->connections[i].acceptFd, &writeSet);
+						FD_SET((*it)->connections[i].getAcceptFd(), &writeSet);
 				}
 			}
 			it++;
@@ -121,9 +121,9 @@ void	serverCluster::startListening()
 			}
 			for (int i = 0; i < NR_OF_CONNECTIONS; i++)
 			{
-				if ((*it)->connections[i].acceptFd != -1) // er moet van gelezen of naar geschreven worden
+				if ((*it)->connections[i].getAcceptFd() != -1) // er moet van gelezen of naar geschreven worden
 				{
-					fd = (*it)->connections[i].acceptFd;
+					fd = (*it)->connections[i].getAcceptFd();
 					if (readSet.fds_bits[fd / 64] & (long)(1UL << fd % 64))
 					{
 						(*it)->connections[i].startReading(); // start reading
@@ -132,7 +132,7 @@ void	serverCluster::startListening()
 					if (writeSet.fds_bits[fd / 64] & (long)(1UL << fd % 64))
 					{
 						(*it)->generateResponse(i);
-						(*it)->connections[i].sendData((*it)->_response, (*it)->_bodylen); // start writing
+						(*it)->connections[i].sendData((*it)->_bodylen); // start writing
 						break;
 					}
 				}
