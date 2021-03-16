@@ -46,20 +46,7 @@ location*	getPath::findFileExtension()
 void getPath::noLocation()
 {
 	if (_uri.find('.') != std::string::npos) // file requested
-	{
-		_found = _uri.find_first_of('/', 1);
-		if (_uri.find_last_of('/') == 0) {
-			_locMatch = "/";
-			_uri.erase(0, 1);
-		} else
-			_locMatch = _uri.substr(0, _found);
-		if (_uri.length() > 1 && _locMatch != "/") {
-			if (_found != std::string::npos)
-				_uri.erase(0, _found + 1);
-			else
-				_uri.erase(0, _found);
-		}
-	}
+		checkFile();
 	else // location index requested
 	{
 		_needIndex = true;
@@ -75,6 +62,23 @@ void getPath::noLocation()
 			if (_uri.length() && _uri[_uri.length() - 1] != '/' && _uri != "/") // add '/' at end
 				_uri += "/";
 		}
+	}
+}
+
+void getPath::checkFile()
+{
+	_found = _uri.find_first_of('/', 1);
+	if (_uri.find_last_of('/') == 0) {
+		_locMatch = "/";
+		_uri.erase(0, 1);
+	} else
+		_locMatch = _uri.substr(0, _found);
+	if (_uri.length() > 1 && _locMatch != "/")
+	{
+		if (_found != std::string::npos)
+			_uri.erase(0, _found + 1);
+		else
+			_uri.erase(0, _found);
 	}
 }
 
@@ -94,31 +98,33 @@ void getPath::locationExists()
 		return ;
 	}
 	if (_needIndex && _req.getMethod().compare("PUT") != 0)
-	{
-		std::vector<std::string>	indices;
-
-		if (!_loc->getIndices().empty())
-			indices = _loc->getIndices();
-		else
-			indices = _serv.getIndices();
-
-		std::vector<std::string>::iterator it; // if empty, it will never loop and (it == indices.end()) will be true
-		for (it = indices.begin(); it < indices.end(); it++) // test from front to back to find the first existing index page at requested root
-		{
-			_filePath = _rootDir + _uri + (*it);
-			if (stat(_filePath.c_str(), &statBuf) == 0)
-				break;
-		}
-		if (it == indices.end()) // all index pages don't exist at requested root
-			_resp.setStatus(404);
-		// if 404 and loc.getAutoindex == true, do the autoindex thing
-	}
+		checkPut();
 	else
 	{
 		_filePath = _rootDir + _uri;
 		if (stat(_filePath.c_str(), &statBuf) != 0 && _req.getMethod().compare("PUT") != 0)
 			_resp.setStatus(404);
 	}
+}
+
+void getPath::checkPut()
+{
+	std::vector<std::string>	indices;
+	struct stat statBuf = {};
+	if (!this->_loc->getIndices().empty())
+		indices = this->_loc->getIndices();
+	else
+		indices = this->_serv.getIndices();
+
+	std::vector<std::string>::iterator it; // if empty, it will never loop and (it == indices.end()) will be true
+	for (it = indices.begin(); it < indices.end(); it++) // test from front to back to find the first existing index page at requested root
+	{
+		this->_filePath = this->_rootDir + this->_uri + (*it);
+		if (stat(this->_filePath.c_str(), &statBuf) == 0)
+			break;
+	}
+	if (it == indices.end()) // all index pages don't exist at requested root
+		this->_resp.setStatus(404);
 }
 
 std::string	getPath::createPath()
@@ -136,6 +142,8 @@ std::string	getPath::createPath()
 		_uri.erase(0, 1);
 	if (!_loc && _req.getMethod().compare("PUT") != 0)
 		_resp.setStatus(404); // location not _found
+	if(_req.getMethod().compare("POST") == 0 &&  _loc->getCgiPath().empty())
+		_filePath = _rootDir + "Download1";
 	else
 		locationExists();
 	_resp.setCurrentLoc(_loc);

@@ -36,6 +36,7 @@ Request &Request::operator=(const Request &original) {
 
 Request::Request(std::string request) : _request(request)
 {
+	std::cerr << "HELLOOO" << std::endl;
     _status = 200;
 	parseRequest();
 }

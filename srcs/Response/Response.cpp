@@ -262,6 +262,7 @@ void Response::postMethod(std::string content)
 		this->setStatus(201);
 	file << content;
 	file.close();
+	content.clear();
 	responseHeader header(content, _path, _status, _contentType);
 	_response = header.getHeader(_status); // here we got a potential bug
 }
