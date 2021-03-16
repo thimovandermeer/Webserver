@@ -27,6 +27,7 @@ std::string CGI::executeGCI(std::string &body)
 	_convertEnv();
 	int fileIn = open("/tmp/fuckyoupeerin.txt", O_CREAT | O_TRUNC | O_RDWR, S_IRWXU);
 	int asdf = write(fileIn, body.c_str(), body.length());
+	close(fileIn);
 	if (asdf == -1){;}
 	int fileOut;
 	_pid = fork();

@@ -157,23 +157,23 @@ void	connection::startReading()
 		return;
 	}
 
-	if (isFullRequest(this->_acceptBuffer))
+	if (isFullRequest())
 		this->_hasFullRequest = true;
 	else
 		return;
 }
 
 
-bool	connection::isFullRequest(std::string &currentRequest) const
+bool connection::isFullRequest() const
 {
 	size_t pos;
-	pos = currentRequest.find("\r\n\r\n");
+	pos = this->_acceptBuffer.find("\r\n\r\n");
 	if (pos == std::string::npos)
 		return (false);
 
-	if (currentRequest.find("Transfer-Encoding: chunked\r\n") != std::string::npos)
+	if (this->_acceptBuffer.find("Transfer-Encoding: chunked\r\n") != std::string::npos)
 	{
-		if (currentRequest.find("0\r\n\r\n", pos + 4) == currentRequest.length() - 5)
+		if (this->_acceptBuffer.find("0\r\n\r\n", pos + 4) == this->_acceptBuffer.length() - 5)
 			return (true);
 		else
 			return (false);

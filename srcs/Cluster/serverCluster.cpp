@@ -73,16 +73,22 @@ void	serverCluster::startListening()
 			{
 				if ((*it)->connections[i].getAcceptFd() != -1)
 				{
-//					unsigned long a = getTime();
-//					unsigned long b = (*it)->connections[i].getTimeLastRead();
-//					if (a - b > TIMEOUT && (*it)->connections[i].getResponseString().empty())
-//					{
-//						std::cerr << "connection timed out: nothing received on socket" << std::endl;
+
+					unsigned long a = getTime();
+					unsigned long b = (*it)->connections[i].getTimeLastRead();
+					if (CONNECTION_TIMEOUT > 0 && a - b > CONNECTION_TIMEOUT && (*it)->connections[i].getResponseString().empty())
+					{
+						std::cerr << "connection timed out: nothing received on socket" << std::endl;
+
 //						(*it)->generateResponse(i);
+//						std::cerr << "INCOMPLETE REQUEST\n";
+//						std::cerr <<(*it)->connections[i].getResponseString() << std::endl;
 //						(*it)->connections[i].setFullReq(true);
-//					}
+						(*it)->connections[i].closeThisConnection();
+						continue;
+					}
 					if (!(*it)->connections[i].hasFullRequest())
-						FD_SET((*it)->connections->getAcceptFd(), &readSet);
+						FD_SET((*it)->connections[i].getAcceptFd(), &readSet);
 					else
 						FD_SET((*it)->connections[i].getAcceptFd(), &writeSet);
 				}
@@ -91,19 +97,14 @@ void	serverCluster::startListening()
 		}
 //		std::cout << "waiting for connection.." << std::endl;
 		struct timeval timeout;
-		timeout.tv_sec = 1;
+		timeout.tv_sec = SELECT_TIMEOUT;
 		timeout.tv_usec = 0;
 		ret = select(this->_nrOfServers * (NR_OF_CONNECTIONS + 1), &readSet, &writeSet, NULL, &timeout);
 		it = this->_servers.begin();
 		while (it != this->_servers.end() && ret) // gebeurt per server
 		{
-			std::cout << "Still looping" << std::endl;
-			long fd = (*it)->getSocketFd(); // check of nieuwe verbinding op socket
-			if (readSet.fds_bits[fd / 64] & (long)(1UL << fd % 64))
-			{
-				(*it)->acpt();
-				break;
-			}
+//			std::cout << "Still looping" << std::endl;
+			long fd;
 			for (int i = 0; i < NR_OF_CONNECTIONS; i++)
 			{
 				if ((*it)->connections[i].getAcceptFd() != -1) // er moet van gelezen of naar geschreven worden
@@ -121,6 +122,12 @@ void	serverCluster::startListening()
 						break;
 					}
 				}
+			}
+			fd = (*it)->getSocketFd(); // check of nieuwe verbinding op socket
+			if (readSet.fds_bits[fd / 64] & (long)(1UL << fd % 64))
+			{
+				(*it)->acpt();
+				break;
 			}
 			it++;
 		}

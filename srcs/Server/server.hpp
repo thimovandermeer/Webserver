@@ -14,7 +14,10 @@
 #include <unistd.h>
 #include <climits>
 
-# define NR_OF_CONNECTIONS 100
+# define NR_OF_CONNECTIONS 10
+# define MAXLOGS 25 // this is to prevent literally 100.000s of log files being created, it will only save the most recent logs
+# define PRINTLOG false
+# define PRINTOUT false
 
 class server {
 public:

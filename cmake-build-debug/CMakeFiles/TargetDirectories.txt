@@ -1,3 +1,3 @@
-/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/thimovandermeer/CLionProjects/Webserver/cmake-build-debug/CMakeFiles/webserv.dir
+/Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles/webserv.dir

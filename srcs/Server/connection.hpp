@@ -24,7 +24,7 @@ private:
 	bool			_headerSent;
 	std::string		_responseString;
 	bool
-	isFullRequest(std::string &currentRequest) const;
+	isFullRequest() const;
 
 public:
 	connection();
