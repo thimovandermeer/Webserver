@@ -1,20 +1,20 @@
 #include "connection.hpp"
 #include "../Utils/utils.hpp"
 #include <unistd.h>
-#include <iostream>
 #include <sys/socket.h>
-#include <cstring>
+#include <iostream>
+//#include <cstring>
 #include <algorithm>
 #include <sstream>
 
-connection::connection() : timeLastRead(0), acceptFd(-1), hasFullRequest(false)
+connection::connection() : _timeLastRead(0), _acceptFd(-1), _hasFullRequest(false), _bodyBytesSent(0), _headerSent(false)
 {
 
 }
 
 connection::~connection()
 {
-	close(this->acceptFd);
+	close(this->_acceptFd);
 }
 
 connection::connection(const connection &original)
@@ -24,65 +24,115 @@ connection::connection(const connection &original)
 
 connection &connection::operator=(const connection &original)
 {
-	this->timeLastRead = original.timeLastRead;
-	this->acceptFd = original.acceptFd;
-	this->acceptBuffer = original.acceptBuffer;
-	this->hasFullRequest = original.hasFullRequest;
+	this->_timeLastRead = original._timeLastRead;
+	this->_acceptFd = original._acceptFd;
+	this->_acceptBuffer = original._acceptBuffer;
+	this->_hasFullRequest = original._hasFullRequest;
 	return (*this);
+}
+
+void	connection::setTimeLastRead(const unsigned long &time)
+{
+	this->_timeLastRead = time;
+}
+
+void	connection::setFd(const long &fd)
+{
+	this->_acceptFd = fd;
+}
+
+void	connection::setFullReq(const bool &full)
+{
+	this->_hasFullRequest = full;
+}
+
+void	connection::setResponseString(const std::string &resp)
+{
+	this->_responseString = resp;
+}
+
+const unsigned long&	connection::getTimeLastRead() const
+{
+	return (this->_timeLastRead);
+}
+
+const long&			connection::getAcceptFd() const
+{
+	return (this->_acceptFd);
+}
+
+const bool&			connection::hasFullRequest() const
+{
+	return (this->_hasFullRequest);
+}
+
+const std::string&	connection::getBuffer() const
+{
+	return (this->_acceptBuffer);
+}
+
+const std::string&	connection::getResponseString() const
+{
+	return (this->_responseString);
 }
 
 void	connection::closeThisConnection()
 {
-	close(this->acceptFd);
-	this->acceptFd = -1;
-	this->acceptBuffer.clear();
-	this->hasFullRequest = false;
-	this->timeLastRead = 0;
+	close(this->_acceptFd);
+	this->_acceptFd = -1;
+	this->_acceptBuffer.clear();
+	this->_hasFullRequest = false;
+	this->_timeLastRead = 0;
+	this->_bodyBytesSent = 0;
+	this->_headerSent = false;
+	this->_responseString.clear();
 }
 
-void connection::sendData(std::string &response, const size_t bodylen)
+void connection::sendData(const size_t bodylen)
 {
-	std::cout << "==RESPONSE==" << std::endl;
-	int len = std::min(response.length(), (size_t)500);
-	if (write(1, response.c_str(), len) == -1) {;}
-	std::cout << "\n==end==" << std::endl;
-
-	size_t headerlen = response.find("\r\n\r\n") + 4;
+	size_t headerlen = this->_responseString.find("\r\n\r\n") + 4;
 
 	if (bodylen < (size_t)MAXSENDSIZE)
 	{
-		if (send(this->acceptFd, response.c_str(), response.length(), 0) == -1)
-		{
+		if (send(this->_acceptFd, this->_responseString.c_str(), this->_responseString.length(), 0) == -1)
 			std::cerr << "send error" << std::endl;
-			std::cerr << "errno is " << errno << std::endl;
-			std::cerr << strerror(errno) << std::endl;
-		}
+		this->closeThisConnection();
 	}
 	else // chunked response
 	{
-		// send header
-		std::string headr = response.substr(0, headerlen);
-		send(this->acceptFd, headr.c_str(), headr.length(), 0);
-		size_t bodyBytesSent = 0;
-		while(bodylen - bodyBytesSent > 0)
-		{
-			size_t	bytesToSend = std::min((bodylen - bodyBytesSent), (size_t)MAXSENDSIZE);
-
-			std::stringstream ss;
-
-			ss << std::hex << bytesToSend;
-			std::string chunk(ss.str());
-			chunk += "\r\n";
-			chunk.append(response, headerlen + bodyBytesSent, bytesToSend);
-			chunk += "\r\n";
-			send(this->acceptFd, chunk.c_str(), chunk.length(), 0);
-			bodyBytesSent += bytesToSend;
-			// repeat
-		}
-		std::string end("0\r\n\r\n");
-		send(this->acceptFd, end.c_str(), 5, 0);
+		sendChunked(bodylen, headerlen);
 	}
-	this->closeThisConnection();
+}
+
+void	connection::sendChunked(const size_t bodylen, const size_t headerlen)
+{
+	// send header
+	if (!this->_headerSent)
+	{
+		std::string headr = this->_responseString.substr(0, headerlen);
+		send(_acceptFd, headr.c_str(), headr.length(), 0);
+		this->_headerSent = true;
+		return;
+	}
+	else if (bodylen - this->_bodyBytesSent > 0) // send non-empty chunks
+	{
+		std::stringstream ss;
+		size_t	bytesToSend = std::min((bodylen - this->_bodyBytesSent), (size_t)MAXSENDSIZE);
+
+		ss << std::hex << bytesToSend;
+		std::string chunk(ss.str());
+		chunk += "\r\n";
+		chunk.append(this->_responseString, headerlen + this->_bodyBytesSent, bytesToSend);
+		chunk += "\r\n";
+		send(_acceptFd, chunk.c_str(), chunk.length(), 0);
+		this->_bodyBytesSent += bytesToSend;
+	}
+	else
+	{
+		std::string end("0\r\n\r\n");
+		send(_acceptFd, end.c_str(), 5, 0);
+		closeThisConnection();
+	}
 }
 
 std::string	connection::receive() const
@@ -91,7 +141,7 @@ std::string	connection::receive() const
 	int 	ret;
 
 	bzero(buffer, MAXREADSIZE + 1);
-	ret = recv(this->acceptFd, buffer, MAXREADSIZE, 0);
+	ret = recv(this->_acceptFd, buffer, MAXREADSIZE, 0);
 	if (ret == -1)
 	{
 		std::cerr << "recv error" << std::endl;
@@ -107,33 +157,35 @@ void	connection::startReading()
 	try
 	{
 		receivedRequest = receive();
-		this->timeLastRead = getTime();
-		this->acceptBuffer += receivedRequest;
+		this->_timeLastRead = getTime();
+		this->_acceptBuffer += receivedRequest;
 	}
 	catch (std::exception &e)
 	{
 		return;
 	}
 
-	if (isFullRequest(this->acceptBuffer))
-		this->hasFullRequest = true;
+	if (isFullRequest(this->_acceptBuffer))
+		this->_hasFullRequest = true;
 	else
 		return;
 }
 
 bool	connection::isFullRequest(std::string &currentRequest) const
 {
-    size_t pos;
-    pos = currentRequest.find("\r\n\r\n");
-    if (pos == std::string::npos)
-        return (false);
-    if (currentRequest.find("Transfer-Encoding: chunked\r\n") != std::string::npos)
-    {
-        if (currentRequest.find("0\r\n\r\n", pos + 4) == currentRequest.length() - 5)
-            return (true);
-        else
-            return (false);
-    }
-    else
-        return (true);
+	size_t pos;
+
+	pos = currentRequest.find("\r\n\r\n");
+	if (pos == std::string::npos)
+		return (false);
+
+	if (currentRequest.find("Transfer-Encoding: chunked\r\n") != std::string::npos)
+	{
+		if (currentRequest.find("0\r\n\r\n", pos + 4) == currentRequest.length() - 5)
+			return (true);
+		else
+			return (false);
+	}
+	else
+		return (true);
 }

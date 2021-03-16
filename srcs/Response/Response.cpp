@@ -144,8 +144,8 @@ void    Response::createErrorPage(std::string *pageData)
 			break;
 		std::stringstream stat;
 		stat << this->_status;
-		std::string statstr;
-		stat >> statstr;
+		std::string statstr = stat.str();
+//		stat >> statstr;
 		pageData->replace(found, 10, statstr);
 	}
 	found = 1;
@@ -154,7 +154,6 @@ void    Response::createErrorPage(std::string *pageData)
         found = pageData->find("MESSAGE");
         if (found == std::string::npos)
             break;
-        std::stringstream stat;
         std::map<int, std::string>::iterator it = _errorMessage.find(_status);
         if (it == this->_errorMessage.end())
         	pageData->replace(found, 7, "unknown error");
