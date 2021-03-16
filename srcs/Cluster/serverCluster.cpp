@@ -67,7 +67,6 @@ void	serverCluster::startListening()
 		FD_ZERO(&writeSet);
 		FD_ZERO(&readSet);
 		memcpy(&readSet, &this->readFds, sizeof (this->readFds));
-//		FD_SET(0, &readSet); // adding stdin to readfds
 		while (it != this->_servers.end())
 		{
 			for (int i = 0; i < NR_OF_CONNECTIONS; i++)
@@ -95,21 +94,6 @@ void	serverCluster::startListening()
 		timeout.tv_sec = 1;
 		timeout.tv_usec = 0;
 		ret = select(this->_nrOfServers * (NR_OF_CONNECTIONS + 1), &readSet, &writeSet, NULL, &timeout);
-//		if (FD_ISSET(0, &readSet)) //input from stdin
-//		{
-//			std::string	line;
-//			std::getline(std::cin, line);
-//			if (line == "exit")
-//			{
-//				std::cout << "exiting..." << std::endl;
-//				exit(0);
-//			}
-//			else
-//				std::cout << "unknown input" << std::endl;
-//		}
-//		if (ret > 0)
-//			std::cout << "Houston we have contact" << std::endl;
-
 		it = this->_servers.begin();
 		while (it != this->_servers.end() && ret) // gebeurt per server
 		{

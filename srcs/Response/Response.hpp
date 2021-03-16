@@ -39,6 +39,7 @@ private:
 	std::map<int, std::string>	_errorMessage;
 	std::string					_method;
 	std::string 				_body;
+	location					*_currentLoc;
 private:
 	Response();
 	void 		getMethod();
@@ -53,15 +54,16 @@ private:
 	void        parseContent();
     std::string headerValue(size_t startPos);
 
-    location			*currentLoc;
+
 
 
 public:
 	void				setStatus(int status);
 	const std::string 	&getResponse() const;
 	size_t				getBodySize() const;
+	void 				setCurrentLoc(location *newloc);
 	bool				isMethodAllowed();
-	friend std::string	getPath(server &serv, Request &req, Response &resp);
+
 };
 
 #endif

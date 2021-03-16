@@ -85,7 +85,7 @@ std::string		responseHeader::createStatusMessage(int status)
 	else if (status == 403)
 		return ("Forbidden");
 	else if (status == 404)
-		return ("Not found");
+		return ("Not _found");
 	else if (status == 405)         //GET and HEAD mogen deze nooit returnen
 	    return ("Method Not Allowed");
 	    //error 503 toevoegen (wordt genoemd op regel 223

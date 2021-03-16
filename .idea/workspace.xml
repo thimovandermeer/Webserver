@@ -32,19 +32,17 @@
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
     <configurations>
-      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" ENABLED="true" />
     </configurations>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="started fixing sending on macOS, gonna work in branch from now on">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Request/request.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Request/request.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/location.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/location.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/location.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/location.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/parser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/parser.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Response/Response.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Response/getPath.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/getPath.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_mac/mac.conf" beforeDir="false" afterPath="$PROJECT_DIR$/test_mac/mac.conf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +92,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -112,25 +110,25 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.webserv">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Test" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv" TEST_CLASS="[List]" TEST_MODE="SUITE_TEST">
+    <configuration name="Test" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv" TEST_CLASS="[List]" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="webserv" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="&quot;./test_mac/mac.conf&quot;" REDIRECT_INPUT="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv">
+    <configuration name="webserv" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="&quot;./test_mac/mac.conf&quot;" REDIRECT_INPUT="false" ELEVATE="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <list>
@@ -195,7 +193,7 @@
       <workItem from="1615189443466" duration="4689000" />
       <workItem from="1615197170931" duration="12784000" />
       <workItem from="1615377698776" duration="7293000" />
-      <workItem from="1615886173370" duration="951000" />
+      <workItem from="1615878089594" duration="7200000" />
     </task>
     <task id="LOCAL-00003" summary="nearly done all set functions of responseheader">
       <created>1611650661666</created>
@@ -386,7 +384,21 @@
       <option name="project" value="LOCAL" />
       <updated>1615367583261</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Secret headers werken">
+      <created>1615799806117</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1615799806117</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Created path class">
+      <created>1615883071282</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1615883071282</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -406,7 +418,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="main" />
+                        <option value="origin/main" />
                       </list>
                     </value>
                   </entry>
@@ -471,8 +483,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="First full main to use from now" />
-    <MESSAGE value="Nearly finished first pipeline" />
     <MESSAGE value="added exit option" />
     <MESSAGE value="idfk anymore" />
     <MESSAGE value="Push zodat jonas kan werken aan Server" />
@@ -496,69 +506,22 @@
     <MESSAGE value="comments on how to improve the whole select process" />
     <MESSAGE value="pls work" />
     <MESSAGE value="started fixing sending on macOS, gonna work in branch from now on" />
-    <option name="LAST_COMMIT_MESSAGE" value="started fixing sending on macOS, gonna work in branch from now on" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="100" y="123" width="2360" height="1137" key="DiffContextDialog" timestamp="1615823472016">
-      <screen x="0" y="23" width="2560" height="1337" />
-    </state>
-    <state x="100" y="123" width="2360" height="1137" key="DiffContextDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1615823472016" />
-    <state width="2518" height="467" key="GridCell.Tab.0.bottom" timestamp="1615887741952">
-      <screen x="0" y="23" width="2560" height="1337" />
-    </state>
-    <state width="2518" height="467" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1615887741952" />
-    <state width="2518" height="467" key="GridCell.Tab.0.center" timestamp="1615887741951">
-      <screen x="0" y="23" width="2560" height="1337" />
-    </state>
-    <state width="2518" height="467" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1615887741951" />
-    <state width="2518" height="467" key="GridCell.Tab.0.left" timestamp="1615887741951">
-      <screen x="0" y="23" width="2560" height="1337" />
-    </state>
-    <state width="2518" height="467" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1615887741951" />
-    <state width="2518" height="467" key="GridCell.Tab.0.right" timestamp="1615887741952">
-      <screen x="0" y="23" width="2560" height="1337" />
-    </state>
-    <state width="2518" height="467" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1615887741952" />
-    <state width="2518" height="467" key="GridCell.Tab.1.bottom" timestamp="1615887741952">
-      <screen x="0" y="23" width="2560" height="1337" />
-    </state>
-    <state width="2518" height="467" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1615887741952" />
-    <state width="2518" height="467" key="GridCell.Tab.1.center" timestamp="1615887741952">
-      <screen x="0" y="23" width="2560" height="1337" />
-    </state>
-    <state width="2518" height="467" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1615887741952" />
-    <state width="2518" height="467" key="GridCell.Tab.1.left" timestamp="1615887741952">
-      <screen x="0" y="23" width="2560" height="1337" />
-    </state>
-    <state width="2518" height="467" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1615887741952" />
-    <state width="2518" height="467" key="GridCell.Tab.1.right" timestamp="1615887741952">
-      <screen x="0" y="23" width="2560" height="1337" />
-    </state>
-    <state width="2518" height="467" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1615887741952" />
-    <state x="256" y="146" key="MergeDialog" timestamp="1615823216557">
-      <screen x="0" y="23" width="2560" height="1337" />
-    </state>
-    <state x="256" y="146" key="MergeDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1615823216557" />
-    <state x="919" y="460" key="MultipleFileMergeDialog" timestamp="1615823221656">
-      <screen x="0" y="23" width="2560" height="1337" />
-    </state>
-    <state x="919" y="460" key="MultipleFileMergeDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1615823221656" />
-    <state x="789" y="330" key="SettingsEditor" timestamp="1615887846187">
-      <screen x="0" y="23" width="2560" height="1337" />
-    </state>
-    <state x="789" y="330" key="SettingsEditor/0.23.2560.1337@0.23.2560.1337" timestamp="1615887846187" />
-    <state x="880" y="431" key="Vcs.Push.Dialog.v2" timestamp="1615823468869">
-      <screen x="0" y="23" width="2560" height="1337" />
-    </state>
-    <state x="880" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1615823468869" />
+    <MESSAGE value="Secret headers werken" />
+    <MESSAGE value="Created path class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created path class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/srcs/Server/connection.cpp</url>
-          <line>95</line>
+          <line>62</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/srcs/Response/Response.cpp</url>
+          <line>28</line>
+          <option name="timeStamp" value="99" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

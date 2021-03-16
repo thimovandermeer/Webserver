@@ -163,10 +163,10 @@ void	connection::startReading()
 		return;
 }
 
+
 bool	connection::isFullRequest(std::string &currentRequest) const
 {
 	size_t pos;
-
 	pos = currentRequest.find("\r\n\r\n");
 	if (pos == std::string::npos)
 		return (false);
