@@ -73,14 +73,14 @@ void	serverCluster::startListening()
 			{
 				if ((*it)->connections[i].getAcceptFd() != -1)
 				{
-					unsigned long a = getTime();
-					unsigned long b = (*it)->connections[i].getTimeLastRead();
-					if (a - b > TIMEOUT && (*it)->connections[i].getResponseString().empty())
-					{
-						std::cerr << "connection timed out: nothing received on socket" << std::endl;
-						(*it)->generateResponse(i);
-						(*it)->connections[i].setFullReq(true);
-					}
+//					unsigned long a = getTime();
+//					unsigned long b = (*it)->connections[i].getTimeLastRead();
+//					if (a - b > TIMEOUT && (*it)->connections[i].getResponseString().empty())
+//					{
+//						std::cerr << "connection timed out: nothing received on socket" << std::endl;
+//						(*it)->generateResponse(i);
+//						(*it)->connections[i].setFullReq(true);
+//					}
 					if (!(*it)->connections[i].hasFullRequest())
 						FD_SET((*it)->connections->getAcceptFd(), &readSet);
 					else
@@ -97,6 +97,7 @@ void	serverCluster::startListening()
 		it = this->_servers.begin();
 		while (it != this->_servers.end() && ret) // gebeurt per server
 		{
+			std::cout << "Still looping" << std::endl;
 			long fd = (*it)->getSocketFd(); // check of nieuwe verbinding op socket
 			if (readSet.fds_bits[fd / 64] & (long)(1UL << fd % 64))
 			{

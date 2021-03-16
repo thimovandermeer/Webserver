@@ -50,7 +50,9 @@ void 	server::acpt()
 			break;
 	}
 	if (i == NR_OF_CONNECTIONS)
-	{ ; } // too many connections, should never happen
+	{
+		std::cerr << "kom ik hier in ?" << std::endl;
+	} // too many connections, should never happen
 	this->connections[i].setFd(accept(this->_socketFd, &connectingAddr, &addressLen));
 	if (this->connections[i].getAcceptFd() == -1)
 		std::cerr << "Could not create fd" << std::endl;

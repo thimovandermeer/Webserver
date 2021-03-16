@@ -14,7 +14,7 @@
 #include <unistd.h>
 #include <climits>
 
-# define NR_OF_CONNECTIONS 10
+# define NR_OF_CONNECTIONS 100
 
 class server {
 public:
