@@ -91,6 +91,8 @@ std::string		responseHeader::createStatusMessage(int status)
 	    //error 503 toevoegen (wordt genoemd op regel 223
 	else if (status == 401)
 		return ("Unauthorized");
+	else if (status == 413)
+		return ("Payload too large");
 	else
 		return ("Zieke Error in onze code");
 }

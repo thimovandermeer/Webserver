@@ -15,12 +15,6 @@ Response::Response(Request &req, server &serv) :
 	_method(req.getMethod()),
 	_body(req.getBody())
 {
-    _errorMessage[204] = "No Content";
-    _errorMessage[400] = "Bad Request";
-    _errorMessage[403] = "Forbidden";
-    _errorMessage[404] = "Not Found";
-    _errorMessage[405] = "Method Not Allowed";
-    _errorMessage[413] = "please doe het even voor me";
 }
 
 Response::Response()
