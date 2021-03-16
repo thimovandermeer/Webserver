@@ -1,6 +1,13 @@
-#ifndef WEBSERV_CONNECTION_HPP
-# define WEBSERV_CONNECTION_HPP
-# include <string>
+#ifndef CONNECTION_HPP
+# define CONNECTION_HPP
+
+#include <string>
+#include <unistd.h>
+#include <sys/socket.h>
+#include <iostream>
+#include <algorithm>
+#include <sstream>
+#include "../Utils/utils.hpp"
 
 # define KB 1024
 # define MB (KB * 1024)

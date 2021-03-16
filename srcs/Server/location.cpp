@@ -1,11 +1,4 @@
 #include "location.hpp"
-#include <sstream>
-#include <iostream>
-#include <iomanip>
-#include <sys/stat.h>
-#include <fstream>
-#include "../Utils/utils.hpp"
-#include "../Utils/Base64.hpp"
 
 const char	*location::inputErrorException::what() const throw()
 {
@@ -59,7 +52,7 @@ void	location::setAutoindex(const std::string &autoindex)
 		this->_autoindex = true;
 		return;
 	}
-	if (autoindex != "off") // input is neither 'on' nor 'off', so wrong
+	if (autoindex != "off")
 	{;}
 }
 
@@ -177,7 +170,7 @@ std::string	location::gethtpasswdpath() const {
 
 void	location::findValue(std::string &key, std::string line)
 {
-	if (*(line.rbegin()) != ';') // line doesn't end with ';'
+	if (*(line.rbegin()) != ';')
 		throw location::inputErrorException();
 
 	std::map<std::string, setter>::iterator it;
@@ -219,7 +212,6 @@ bool location::getAuthMatch(const std::string& username, const std::string& pass
 {
 	std::map<std::string, std::string>::iterator it = this->_loginfo.find(username);
 
-//	return ( it != _loginfo.end() && passwd == base64_decode(it->second) );
 	if (it == this->_loginfo.end())
 		return (false);
 	if (passwd != it->second)

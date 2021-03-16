@@ -1,6 +1,8 @@
 #ifndef WEBSERV_HPP
 # define WEBSERV_HPP
-# include "Cluster/serverCluster.hpp"
+#include <fstream>
+#include "Cluster/serverCluster.hpp"
+#include "../srcs/Request/request.hpp"
 
 void	errMsgAndExit(const std::string &errMsg, int code);
 

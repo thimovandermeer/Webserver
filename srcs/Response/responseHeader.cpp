@@ -37,22 +37,6 @@ responseHeader::responseHeader(const responseHeader &src)
 	_wwwAuthenticate = src._wwwAuthenticate;
 }
 
-void			responseHeader::resetValues(void)
-{
-	_allow = "";
-	_contentLanguage = "";
-	_contentLength = "";
-	_contentLocation = "";
-	_contentType = "";
-	_date = "";
-	_lastModified = "";
-	_location = "";
-	_retryAfter = "";
-	_server = "";
-	_transferEncoding = "";
-	_wwwAuthenticate = "";
-}
-
  responseHeader::~responseHeader()
 {
 
@@ -79,12 +63,10 @@ responseHeader &responseHeader::operator=(const responseHeader &src)
 	return (*this);
 }
 
-// public member functions
 std::string responseHeader::getHeader(int status)
 {
 	std::string header;
 
-//	resetValues();
 	header = "HTTP/1.1 " + std::to_string(status) + " " + createStatusMessage(status) + "\r\n";
 	header += writeHeader();
 	return (header);
@@ -150,7 +132,6 @@ std::string 		responseHeader::writeHeader()
 	return (header);
 }
 
-// setters
 void responseHeader::setContentLocation(const std::string &path, int status)
 {
 	if (status != 404)
@@ -220,10 +201,8 @@ void responseHeader::setServer()
 
 void responseHeader::setTransferEncoding()
 {
-	// if request asks for encoding put this in to it
 	_transferEncoding = "Chunked";
 	// with chunked encoding no content-length
-
 }
 
 void responseHeader::setWwwAuthenticate(int status)
@@ -234,7 +213,6 @@ void responseHeader::setWwwAuthenticate(int status)
 	}
 }
 
-// create proper testers
 void responseHeader::setRetryAfter(int status, int number)
 {
 	if (status == 503)

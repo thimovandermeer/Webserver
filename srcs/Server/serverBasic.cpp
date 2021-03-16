@@ -1,12 +1,6 @@
 #include <map>
 #include "server.hpp"
 #include "location.hpp"
-#include <string>
-#include <sstream>
-#include <iostream>
-#include <iomanip>
-#include <unistd.h>
-#include <climits>
 
 const char	*server::inputErrorException::what() const throw()
 {

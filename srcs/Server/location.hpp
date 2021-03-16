@@ -1,8 +1,15 @@
 #ifndef LOCATION_HPP
 # define LOCATION_HPP
-# include <string>
-# include <vector>
-# include <map>
+#include <string>
+#include <vector>
+#include <map>
+#include <sstream>
+#include <iostream>
+#include <iomanip>
+#include <sys/stat.h>
+#include <fstream>
+#include "../Utils/utils.hpp"
+#include "../Utils/Base64.hpp"
 
 class location {
 public:
@@ -14,8 +21,10 @@ public:
 	};
 
 private:
+	location();
 	bool							_autoindex;
 	bool							_ownAutoindex;
+	bool							_isFileExtension;
 	std::string						_match;
 	std::string						_root;
 	std::vector<std::string>		_methods;
@@ -28,9 +37,6 @@ private:
 	std::string							_cgiPath;
 	std::string 						_htpasswd_path;
 	std::map<std::string, std::string>	_loginfo;
-
-	bool							_isFileExtension;
-	location();
 
 public:
 	explicit location(std::string &match);
@@ -60,9 +66,9 @@ public:
 	const std::string				&getAuthUserFile() const;
 	bool 							getAuthMatch(const std::string& username, const std::string& passwd);
 	std::string						gethtpasswdpath() const;
-	void	findValue(std::string &key, std::string line);
-	bool	valueCheck() const;
-	bool	isFileExtension() const;
+	void	                        findValue(std::string &key, std::string line);
+	bool	                        valueCheck() const;
+	bool	                        isFileExtension() const;
 
 };
 

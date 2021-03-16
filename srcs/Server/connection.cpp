@@ -1,11 +1,4 @@
 #include "connection.hpp"
-#include "../Utils/utils.hpp"
-#include <unistd.h>
-#include <sys/socket.h>
-#include <iostream>
-//#include <cstring>
-#include <algorithm>
-#include <sstream>
 
 connection::connection() : _timeLastRead(0), _acceptFd(-1), _hasFullRequest(false), _bodyBytesSent(0), _headerSent(false)
 {
@@ -106,7 +99,6 @@ void connection::sendData(const size_t bodylen)
 
 void	connection::sendChunked(const size_t bodylen, const size_t headerlen)
 {
-	// send header
 	if (!this->_headerSent)
 	{
 		std::string headr = this->_responseString.substr(0, headerlen);

@@ -1,13 +1,4 @@
-#include <map>
 #include "server.hpp"
-#include <string>
-#include <sstream>
-#include <iostream>
-#include <unistd.h>
-#include <sys/socket.h>
-#include <fcntl.h>
-#include <cstring>
-#include "../Utils/utils.hpp"
 #include "../Request/request.hpp"
 #include "../Response/Response.hpp"
 
@@ -22,10 +13,8 @@ void	server::startListening()
 	bzero(&this->_addr, sizeof(this->_addr));
 	this->_addr.sin_family = AF_INET;
 	this->_addr.sin_port = htons(this->_portNr);
-	// do something with host
 	this->_addr.sin_addr.s_addr = htonl(INADDR_ANY); // this can be the IP address
 
-//	 clear port if it is in use
 	int	ret;
 	int options = 1;
 	ret = setsockopt(this->_socketFd, SOL_SOCKET, SO_REUSEADDR, &options, sizeof(options));

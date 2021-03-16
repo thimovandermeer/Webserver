@@ -1,22 +1,19 @@
-#ifndef WEBSERV_RESPONSEHEADER_HPP
-#define WEBSERV_RESPONSEHEADER_HPP
+#ifndef RESPONSEHEADER_HPP
+#define RESPONSEHEADER_HPP
 
-//#include <string>
 #include "Response.hpp"
 #include "../Request/request.hpp"
 
 class responseHeader
 {
 public:
-	// public functions
 	responseHeader(std::string &content, std::string &path, int status, std::string &contentType);
 	responseHeader(const responseHeader &src);
 	virtual ~responseHeader();
-
 	responseHeader &operator=(const responseHeader &src);
+	std::string getHeader(int status);
 
 private:
-	// private setter functions
 	void 			setAllow(const int &status);
 	void 			setContentLanguage();
 	void 			setContentLength(int length);
@@ -27,20 +24,12 @@ private:
 	void 			setLocation(const std::string &path, int status);
 	void 			setServer();
 	void 			setTransferEncoding();
-	void            setUnkownHeader();
 	void 			setRetryAfter(int status, int number);
 	void 			setWwwAuthenticate(int status);
-	void 			resetValues(void);
 
-	// private member functions
 	std::string		createStatusMessage(int status);
 	std::string 	writeHeader();
-	// public members
-public:
-	std::string getHeader(int status);
 
-
-private:
 	std::string		_acceptCharsets;
 	std::string		_acceptLanguage;
 	std::string		_allow;
@@ -60,8 +49,7 @@ private:
 	std::string		_wwwAuthenticate;
 	std::string     _specialHeaderKey;
     std::string     _specialHeaderValue;
-
 };
 
 
-#endif //WEBSERV_RESPONSEHEADER_HPP
+#endif
