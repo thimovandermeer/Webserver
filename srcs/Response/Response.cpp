@@ -1,13 +1,4 @@
 #include "Response.hpp"
-#include "responseHeader.hpp"
-#include <fstream>
-#include <unistd.h>
-#include <fcntl.h>
-#include <sstream>
-#include <sys/stat.h>
-#include "../Utils/utils.hpp"
-#include "../Utils/Base64.hpp"
-#include "getPath.hpp"
 
 # define _RED			"\x1b[31m"
 # define _GREEN			"\x1b[32m"
@@ -153,8 +144,8 @@ void    Response::createErrorPage(std::string *pageData)
 			break;
 		std::stringstream stat;
 		stat << this->_status;
-		std::string statstr;
-		stat >> statstr;
+		std::string statstr = stat.str();
+//		stat >> statstr;
 		pageData->replace(found, 10, statstr);
 	}
 	found = 1;
@@ -163,7 +154,6 @@ void    Response::createErrorPage(std::string *pageData)
         found = pageData->find("MESSAGE");
         if (found == std::string::npos)
             break;
-        std::stringstream stat;
         std::map<int, std::string>::iterator it = _errorMessage.find(_status);
         if (it == this->_errorMessage.end())
         	pageData->replace(found, 7, "unknown error");

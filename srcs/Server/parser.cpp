@@ -1,8 +1,5 @@
 #include "../webserv.hpp"
 #include "server.hpp"
-#include <iostream>
-#include <sstream>
-#include <fstream>
 
 bool	isEmptyLine(std::string line)
 {
@@ -66,7 +63,7 @@ location	*getLocation(std::string &startLine, std::fstream &configFile, int &lin
 			parseError(lineNr);
 		if (isEmptyLine(line))
 			continue;
-		if (line[0] == '#') // comment line
+		if (line[0] == '#')
 			continue;
 		line = trimEndSpaces(line);
 		if (line == "server {" || firstword(line) == "location")

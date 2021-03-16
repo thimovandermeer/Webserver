@@ -1,22 +1,20 @@
 #ifndef SERVER_HPP
 # define SERVER_HPP
-# include "location.hpp"
-# include "connection.hpp"
-# include <vector>
-# include <map>
-# include <stdexcept>
-# include <string>
-# include <sys/socket.h>
-# include <netdb.h>
+#include "location.hpp"
+#include "connection.hpp"
+#include <vector>
+#include <map>
+#include <stdexcept>
+#include <string>
+#include <sys/socket.h>
+#include <netdb.h>
+#include <sstream>
+#include <iostream>
+#include <iomanip>
+#include <unistd.h>
+#include <climits>
 
 # define NR_OF_CONNECTIONS 10
-
-//typedef struct s_connection {
-//	unsigned long	timeLastRead;
-//	long 			acceptFd;
-//	std::string 	acceptBuffer;
-//	bool			hasFullRequest;
-//}				t_connection;
 
 class server {
 public:
@@ -49,8 +47,8 @@ private:
 
 public:
 
-	std::string			_response;
 	size_t				_bodylen;
+	connection			connections[NR_OF_CONNECTIONS];
 
 	server();
 	server(server const &original);
@@ -65,8 +63,6 @@ public:
 	void	setHost(std::string &host);
 	void	setServerNames(std::string &names);
 	void	setIndices(std::string &indices);
-
-	connection			connections[NR_OF_CONNECTIONS];
 
 	const int						&getPortNr() const;
 	const size_t					&getMaxBodySize() const;
@@ -83,15 +79,11 @@ public:
 
 	void		addLocation(location *newLoc);
 	bool		valueCheck() const;
-
 	void 		acpt();
 	void		findValue(std::string &key, std::string line);
-
-	void	startListening();
-
+	void	    startListening();
 	location*	findLocation(std::string &match);
-
-	void generateResponse(int index);
+	void        generateResponse(int index);
 };
 
 std::ostream&	operator<<(std::ostream &os, const server &serv);

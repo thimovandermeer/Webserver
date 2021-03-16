@@ -1,55 +1,31 @@
-//
-// Created by Thimo Van der meer on 09/02/2021.
-//
-//#include <AppleEXR.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <string.h>
-#include <fstream>
-#include <sys/wait.h>
 #include "CGI.hpp"
-#include <sstream>
 
-CGI::CgiError::CgiError(const char* w)
-		: std::runtime_error(w)
-{
-}
-CGI::PipeSetupFailed::PipeSetupFailed()
-		: CgiError("CGI pipe setup failed")
-{
-}
-CGI::ForkFailed::ForkFailed()
-		: CgiError("CGI fork failed")
-{
-}
-// default stuff
 CGI::CGI(std::string &path, Request &request, server &server) :
 		_path(path)
 {
 	_initEnvironment(request, server);
 }
+
 CGI::CGI()
 {
 }
+
 CGI::CGI(CGI &src)
 {
 	if (this != &src)
 		this->_environment = src._environment;
 	return ;
 }
+
 CGI::~CGI()
 {
 	;
 }
-// public stuff
 
 std::string CGI::executeGCI(std::string &body)
 {
 	_convertEnv();
-	std::cerr << _path << std::endl;
-//	pipe(fd);
 	int fileIn = open("/tmp/fuckyoupeerin.txt", O_CREAT | O_TRUNC | O_RDWR, S_IRWXU);
-	// write some shit for input
 	int asdf = write(fileIn, body.c_str(), body.length());
 	if (asdf == -1){;}
 	int fileOut;
@@ -71,11 +47,6 @@ std::string CGI::executeGCI(std::string &body)
 		realArgv[0] = executable.c_str();
 		realArgv[1] = NULL;
 		char *const *argv = const_cast<char *const *>(realArgv);
-		int i = 0;
-		while(_env[i]) {
-		    std::cerr << _env[i] << std::endl ;
-		    i++;
-		}
 		int ret = execve(argv[0], reinterpret_cast<char* const*>(argv), _env);
 		if (ret < 0)
 			exit(1);
@@ -128,8 +99,6 @@ void CGI::_initEnvironment(Request &request, server &server)
 	std::map<std::string, std::string>::iterator it = cgiHeaders.begin();
     while (it != cgiHeaders.end()) {
         _environment.insert(std::make_pair(it->first, it->second));
-
-        std::cerr << it->first << "\t\t\t" << it->second << std::endl ;
         it++;
     }
 }
