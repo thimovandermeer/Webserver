@@ -60,6 +60,7 @@ public:
 	const bool						&hasOwnAutoindex() const;
 	const bool 						&hasOwnBodySize() const;
 	const bool						&getAutoindex() const;
+	const size_t					&getMaxBodySize() const;
 	const std::string				&getMatch() const;
 	const std::string				&getRoot() const;
 	const std::vector<std::string>	&getMethods() const;

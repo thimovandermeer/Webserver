@@ -31,6 +31,8 @@ add_executable(
 		srcs/Response/responseHeader.hpp
 
 		# Server
+		srcs/Server/connection.cpp
+		srcs/Server/connection.hpp
 		srcs/Server/location.cpp
 		srcs/Server/location.hpp
 		srcs/Server/parser.cpp
@@ -47,5 +49,5 @@ add_executable(
 		# main
 		srcs/webserv.cpp
 		srcs/webserv.hpp
-		srcs/Server/connection.cpp srcs/Server/connection.hpp)
+		)
 set_target_properties(webserv PROPERTIES LINKER_LANGUAGE CXX CXX_STANDARD 98)

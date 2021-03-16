@@ -141,6 +141,11 @@ const bool						&location::getAutoindex() const
 	return (this->_autoindex);
 }
 
+const size_t					&location::getMaxBodySize() const
+{
+	return (this->_maxBodySize);
+}
+
 const std::string				&location::getMatch() const
 {
 	return (this->_match);

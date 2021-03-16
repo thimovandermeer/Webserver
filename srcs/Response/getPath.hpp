@@ -1,11 +1,8 @@
-//
-// Created by Thimo Van der meer on 16/03/2021.
-//
-
 #ifndef WEBSERV_GETPATH_HPP
-#define WEBSERV_GETPATH_HPP
-#include "../Request/request.hpp"
-#include "../Response/Response.hpp"
+# define WEBSERV_GETPATH_HPP
+# include "../Request/request.hpp"
+# include "Response.hpp"
+# include "../Server/server.hpp"
 
 class getPath{
 public:

@@ -1,8 +1,8 @@
 #ifndef RESPONSEHEADER_HPP
-#define RESPONSEHEADER_HPP
+# define RESPONSEHEADER_HPP
 
-#include "Response.hpp"
-#include "../Request/request.hpp"
+# include "Response.hpp"
+# include "../Request/request.hpp"
 
 class responseHeader
 {

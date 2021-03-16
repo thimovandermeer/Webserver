@@ -1,21 +1,21 @@
 #ifndef RESPONSE_HPP
 # define RESPONSE_HPP
 
-#include <string>
-#include <ostream>
-#include <cstdio>
-#include <sys/stat.h>
-#include <fstream>
-#include <unistd.h>
-#include <fcntl.h>
-#include <sstream>
-#include <sys/stat.h>
-#include "responseHeader.hpp"
-#include "../Server/server.hpp"
-#include "../CGI/CGI.hpp"
-#include "../Server/location.hpp"
-#include "../Utils/utils.hpp"
-#include "../Utils/Base64.hpp"
+# include <string>
+# include <ostream>
+# include <cstdio>
+# include <sys/stat.h>
+# include <fstream>
+# include <unistd.h>
+# include <fcntl.h>
+# include <sstream>
+# include <sys/stat.h>
+# include "responseHeader.hpp"
+# include "../Server/server.hpp"
+# include "../CGI/CGI.hpp"
+# include "../Server/location.hpp"
+# include "../Utils/utils.hpp"
+# include "../Utils/Base64.hpp"
 
 class Response {
 public:

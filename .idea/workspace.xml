@@ -32,17 +32,24 @@
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
     <configurations>
-      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" ENABLED="true" />
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="started fixing sending on macOS, gonna work in branch from now on">
+    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="added maxbody size in location, will take server's if none is specified">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Request/request.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Request/request.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Download1" beforeDir="false" afterPath="$PROJECT_DIR$/Download1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Response/Response.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Response/getPath.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/getPath.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_mac/mac.conf" beforeDir="false" afterPath="$PROJECT_DIR$/test_mac/mac.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Response/Response.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Response/getPath.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/getPath.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Response/responseHeader.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/responseHeader.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Server/location.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/location.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Server/location.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/location.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,11 +117,6 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.webserv">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Test" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv" TEST_CLASS="[List]" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -129,6 +131,11 @@
     <configuration name="webserv" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="&quot;./test_mac/mac.conf&quot;" REDIRECT_INPUT="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <list>
@@ -194,6 +201,7 @@
       <workItem from="1615197170931" duration="12784000" />
       <workItem from="1615377698776" duration="7293000" />
       <workItem from="1615878089594" duration="7200000" />
+      <workItem from="1615888882068" duration="775000" />
     </task>
     <task id="LOCAL-00003" summary="nearly done all set functions of responseheader">
       <created>1611650661666</created>
@@ -398,7 +406,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615883071282</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="added maxbody size in location, will take server's if none is specified">
+      <created>1615888383035</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1615888383035</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -483,7 +498,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added exit option" />
     <MESSAGE value="idfk anymore" />
     <MESSAGE value="Push zodat jonas kan werken aan Server" />
     <MESSAGE value="Doe het pauperding" />
@@ -508,19 +522,57 @@
     <MESSAGE value="started fixing sending on macOS, gonna work in branch from now on" />
     <MESSAGE value="Secret headers werken" />
     <MESSAGE value="Created path class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created path class" />
+    <MESSAGE value="added maxbody size in location, will take server's if none is specified" />
+    <option name="LAST_COMMIT_MESSAGE" value="added maxbody size in location, will take server's if none is specified" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="2518" height="467" key="GridCell.Tab.0.bottom" timestamp="1615889078420">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2518" height="467" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1615889078420" />
+    <state width="2518" height="467" key="GridCell.Tab.0.center" timestamp="1615889078419">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2518" height="467" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1615889078419" />
+    <state width="2518" height="467" key="GridCell.Tab.0.left" timestamp="1615889078418">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2518" height="467" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1615889078418" />
+    <state width="2518" height="467" key="GridCell.Tab.0.right" timestamp="1615889078419">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2518" height="467" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1615889078419" />
+    <state width="2518" height="467" key="GridCell.Tab.1.bottom" timestamp="1615889078427">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2518" height="467" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1615889078427" />
+    <state width="2518" height="467" key="GridCell.Tab.1.center" timestamp="1615889078426">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2518" height="467" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1615889078426" />
+    <state width="2518" height="467" key="GridCell.Tab.1.left" timestamp="1615889078424">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2518" height="467" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1615889078424" />
+    <state width="2518" height="467" key="GridCell.Tab.1.right" timestamp="1615889078427">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2518" height="467" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1615889078427" />
+    <state x="880" y="431" key="Vcs.Push.Dialog.v2" timestamp="1615888384581">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="880" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1615888384581" />
+    <state x="1081" y="612" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1615888371612">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="1081" y="612" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.2560.1337@0.23.2560.1337" timestamp="1615888371612" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/srcs/Server/connection.cpp</url>
-          <line>62</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/srcs/Response/Response.cpp</url>
-          <line>28</line>
+          <line>30</line>
           <option name="timeStamp" value="99" />
         </line-breakpoint>
       </breakpoints>

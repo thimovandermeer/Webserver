@@ -1,4 +1,5 @@
 #include "Response.hpp"
+#include "getPath.hpp"
 
 # define _RED			"\x1b[31m"
 # define _GREEN			"\x1b[32m"
@@ -17,13 +18,14 @@ Response::Response(Request &req, server &serv) :
 {
 	getPath path(serv, req, *this);
 
-	_path = path.createPath(); // delete hardcoded
+	_path = path.createPath();
 	_CGI = CGI(_path, req, serv);
     _errorMessage[204] = "No Content";
     _errorMessage[400] = "Bad Request";
     _errorMessage[403] = "Forbidden";
     _errorMessage[404] = "Not Found";
     _errorMessage[405] = "Method Not Allowed";
+    _errorMessage[413] = "Payload Too Large";
 }
 
 Response::Response()
@@ -111,9 +113,7 @@ void 	Response::readContent()
 {
 	if (_useCGI == true)
 	{
-		std::cerr << _content << std::endl;
 		this->_content = _CGI.executeGCI(_body);
-		std::cerr << _content.length() << std::endl;
 		return ;
 	}
 	std::ifstream file;
@@ -243,6 +243,8 @@ void Response::postMethod(std::string content)
 		_response = header.getHeader(_status) + _content;
 		return;
 	}
+	if (this->_currentLoc->getMaxBodySize() < content.length())
+		return (this->setStatus(413));
 	std::ofstream file;
 	file.open(_path.c_str(), std::ios::out | std::ios::app);
 	if(!file.is_open() && _status == 200)
