@@ -11,7 +11,7 @@ void	errMsgAndExit(const std::string &errMsg, int code)
 int main(int argc, char **argv)
 {
 	serverCluster cluster;
-	system("cd logs && rm -f ./*");
+	system("mkdir -p logs && cd logs && rm -f ./*");
 	openConfig(argc, argv, &cluster);
 	cluster.startListening();
 }
