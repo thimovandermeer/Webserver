@@ -124,21 +124,20 @@ void	connection::startReading()
 		return;
 }
 
+
 bool	connection::isFullRequest(std::string &currentRequest) const
 {
 	size_t pos;
-
 	pos = currentRequest.find("\r\n\r\n");
 	if (pos == std::string::npos)
 		return (false);
-
-	if (currentRequest.find("POST") == 0 || currentRequest.find("PUT") == 0)
+	if (currentRequest.find("Transfer-Encoding: chunked\r\n") != std::string::npos)
 	{
-		pos = currentRequest.find("\r\n\r\n");
-		if (currentRequest.find("\r\n\r\n", pos + 4) != std::string::npos)
+		if (currentRequest.find("0\r\n\r\n", pos + 4) == currentRequest.length() - 5)
 			return (true);
+		else
+			return (false);
 	}
 	else
 		return (true);
-	return (false);
 }

@@ -24,6 +24,7 @@ add_executable(
 
 		# Response
 		srcs/Response/getPath.cpp
+		srcs/Response/getPath.hpp
 		srcs/Response/Response.cpp
 		srcs/Response/Response.hpp
 		srcs/Response/responseHeader.cpp

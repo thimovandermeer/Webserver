@@ -38,23 +38,22 @@
   <component name="ChangeListManager">
     <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="started fixing sending on macOS, gonna work in branch from now on">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/flags.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/webserv.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/webserv.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/CGI/CGI.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/CGI/CGI.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Request/request.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Request/request.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html_pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/html_pages/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Response/Response.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Response/Response.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Response/getPath.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/getPath.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Response/responseHeader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/responseHeader.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Server/connection.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/connection.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/untitled/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled/cmake-build-debug/CMakeFiles/CMakeError.log" beforeDir="false" afterPath="$PROJECT_DIR$/untitled/cmake-build-debug/CMakeFiles/CMakeError.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/untitled/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +68,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="special_header" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -122,11 +121,6 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.webserv">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Test" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv" TEST_CLASS="[List]" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -141,6 +135,11 @@
     <configuration name="webserv" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="&quot;./test_mac/mac.conf&quot;" REDIRECT_INPUT="false" ELEVATE="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <list>
@@ -205,6 +204,7 @@
       <workItem from="1615189443466" duration="4689000" />
       <workItem from="1615197170931" duration="12784000" />
       <workItem from="1615377698776" duration="7293000" />
+      <workItem from="1615878089594" duration="4881000" />
     </task>
     <task id="LOCAL-00003" summary="nearly done all set functions of responseheader">
       <created>1611650661666</created>
@@ -395,7 +395,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615367583261</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Secret headers werken">
+      <created>1615799806117</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1615799806117</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -480,7 +487,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="First full main to use from now" />
     <MESSAGE value="Nearly finished first pipeline" />
     <MESSAGE value="added exit option" />
     <MESSAGE value="idfk anymore" />
@@ -505,7 +511,8 @@
     <MESSAGE value="comments on how to improve the whole select process" />
     <MESSAGE value="pls work" />
     <MESSAGE value="started fixing sending on macOS, gonna work in branch from now on" />
-    <option name="LAST_COMMIT_MESSAGE" value="started fixing sending on macOS, gonna work in branch from now on" />
+    <MESSAGE value="Secret headers werken" />
+    <option name="LAST_COMMIT_MESSAGE" value="Secret headers werken" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -516,9 +523,9 @@
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/srcs/CGI/CGI.cpp</url>
-          <line>48</line>
-          <option name="timeStamp" value="95" />
+          <url>file://$PROJECT_DIR$/srcs/Response/Response.cpp</url>
+          <line>28</line>
+          <option name="timeStamp" value="99" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -23,6 +23,7 @@ CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o: ../srcs/CGI/CGI.hpp
 CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o: ../srcs/Request/request.hpp
 CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o: ../srcs/Response/Response.cpp
 CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o: ../srcs/Response/Response.hpp
+CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o: ../srcs/Response/getPath.hpp
 CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o: ../srcs/Response/responseHeader.hpp
 CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o: ../srcs/Server/connection.hpp
 CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o: ../srcs/Server/location.hpp
@@ -34,6 +35,7 @@ CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.o: ../srcs/CGI/CGI.hpp
 CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.o: ../srcs/Request/request.hpp
 CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.o: ../srcs/Response/Response.hpp
 CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.o: ../srcs/Response/getPath.cpp
+CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.o: ../srcs/Response/getPath.hpp
 CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.o: ../srcs/Server/connection.hpp
 CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.o: ../srcs/Server/location.hpp
 CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.o: ../srcs/Server/server.hpp

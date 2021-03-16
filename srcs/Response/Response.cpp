@@ -7,6 +7,7 @@
 #include <sys/stat.h>
 #include "../Utils/utils.hpp"
 #include "../Utils/Base64.hpp"
+#include "getPath.hpp"
 
 # define _RED			"\x1b[31m"
 # define _GREEN			"\x1b[32m"
@@ -16,13 +17,17 @@
 
 Response::Response(Request &req, server &serv) :
 	_status(req.getStatus()),
-	_path(getPath(serv, req, *this)), // delete hardcoded
+
 	_contentType(req.getContentType()),
-	_CGI(_path, req, serv),
+
 	_useCGI(req.getCgi()),
 	_method(req.getMethod()),
 	_body(req.getBody())
 {
+	getPath path(serv, req, *this);
+
+	_path = path.createPath(); // delete hardcoded
+	_CGI = CGI(_path, req, serv);
     _errorMessage[204] = "No Content";
     _errorMessage[400] = "Bad Request";
     _errorMessage[403] = "Forbidden";
@@ -45,6 +50,11 @@ Response::~Response()
 
 }
 
+void Response::setCurrentLoc(location *newloc)
+{
+	_currentLoc = newloc;
+}
+
 Response &Response::operator=(const Response &src)
 {
 	_response = src._response;
@@ -61,10 +71,10 @@ Response &Response::operator=(const Response &src)
 
 bool	Response::isMethodAllowed()
 {
-	if (!this->currentLoc)
+	if (!this->_currentLoc)
 		return (false);
 	std::vector<std::string>::iterator it;
-	std::vector<std::string> vc = this->currentLoc->getMethods();
+	std::vector<std::string> vc = this->_currentLoc->getMethods();
 	for (it = vc.begin(); it < vc.end(); it++)
 	{
 		if ((*it) == this->_method)
@@ -295,11 +305,11 @@ void				Response::setStatus(int status)
 
 int					Response::authenticate(Request &req)
 {
-	if (this->currentLoc == NULL) {
+	if (this->_currentLoc == NULL) {
 		std::cout << _RED "Location does not exist" _END << std::endl;
 		return 0;
 	}
-	if (this->currentLoc->gethtpasswdpath().empty()) {
+	if (this->_currentLoc->gethtpasswdpath().empty()) {
 		req._defHeaders["AUTHORIZATION"].clear();
 		return 0;
 	}
@@ -317,7 +327,7 @@ int					Response::authenticate(Request &req)
 	}
 	req._defHeaders["AUTHORIZATION"] = req._defHeaders["AUTHORIZATION"].substr(0, req._defHeaders["AUTHORIZATION"].find_first_of(' '));
 	req._defHeaders["REMOTE-USER"] = username;
-	if (this->currentLoc->getAuthMatch(username, passwd)) {
+	if (this->_currentLoc->getAuthMatch(username, passwd)) {
 		std::cout << _GREEN _BOLD "Authorization successful!" _END << std::endl;
 		return 0;
 	}

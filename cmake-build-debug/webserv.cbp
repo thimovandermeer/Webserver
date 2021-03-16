@@ -107,6 +107,9 @@
 		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response/getPath.cpp">
 			<Option target="webserv"/>
 		</Unit>
+		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response/getPath.hpp">
+			<Option target="webserv"/>
+		</Unit>
 		<Unit filename="/Users/thimovandermeer/CLionProjects/Webserver/srcs/Response/responseHeader.cpp">
 			<Option target="webserv"/>
 		</Unit>
