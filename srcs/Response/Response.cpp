@@ -243,6 +243,7 @@ void Response::postMethod(std::string content)
 		_response = header.getHeader(_status) + _content;
 		return;
 	}
+	std::cerr << "max size is " << this->_currentLoc->getMaxBodySize() << " and content size is " << content.length() << std::endl;
 	if (this->_currentLoc->getMaxBodySize() < content.length())
 		return (this->setStatus(413));
 	std::ofstream file;
