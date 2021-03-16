@@ -5,7 +5,9 @@ const char	*location::inputErrorException::what() const throw()
 	return ("error in location block in config file");
 }
 
-location::location(std::string &match) : _autoindex(false), _ownAutoindex(false), _isFileExtension(false)
+location::location(std::string &match) : _autoindex(false),  _ownAutoindex(false),
+										_maxBodySize(1000000), _ownBodySize(false),
+										_isFileExtension(false)
 {
 	this->_match = match;
 	if (match[0] == '*' && match[1] == '.')
@@ -18,6 +20,7 @@ location::location(std::string &match) : _autoindex(false), _ownAutoindex(false)
 	this->_typeFunctionMap.insert(std::make_pair("cgi_exec", &location::setCgiPath));
 	this->_typeFunctionMap.insert(std::make_pair("auth_basic", &location::setAuthBasic));
 	this->_typeFunctionMap.insert(std::make_pair("auth_basic_user_file", &location::sethtpasswdpath));
+	this->_typeFunctionMap.insert(std::make_pair("client_max_body_size", &location::setMaxBody));
 }
 
 location::location(const location &original)
@@ -54,6 +57,15 @@ void	location::setAutoindex(const std::string &autoindex)
 	}
 	if (autoindex != "off")
 	{;}
+}
+
+void		location::setMaxBody(const std::string &size)
+{
+	this->_ownBodySize = true;
+	std::stringstream	ss(size);
+	ss >> this->_maxBodySize;
+	if (this->_maxBodySize == 0) // unlimited
+		this->_maxBodySize = (ULLONG_MAX); // this is 18.45 million terrabyte, I think we're ok with 'unlimited'
 }
 
 void	location::setRoot(const std::string &root)
@@ -117,6 +129,11 @@ void 	location::sethtpasswdpath(const std::string &path)
 const bool						&location::hasOwnAutoindex() const
 {
 	return (this->_ownAutoindex);
+}
+
+const bool						&location::hasOwnBodySize() const
+{
+	return (this->_ownBodySize);
 }
 
 const bool						&location::getAutoindex() const

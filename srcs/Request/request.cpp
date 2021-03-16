@@ -32,7 +32,6 @@ Request::Request(std::string request) : _request(request)
     _bodyLength = 0;
     _contentLength = -1;
     _status = 200;
-    std::cerr << "aaaaaaah" << std::endl ;
 	parseRequest();
 }
 
@@ -224,7 +223,6 @@ void Request::parseBody() {
         _bodyLength += (hex.c_str(), 0, 16);
         begin = end + 2;
         end = _request.find("\r\n", begin);
-        std::cerr << hex << std::endl ;
         _body.append(_request, begin, end - begin);
         begin = _request.find("\r\n", end + 2);
         hex.clear();

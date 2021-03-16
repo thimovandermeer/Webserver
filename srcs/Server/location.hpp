@@ -24,6 +24,8 @@ private:
 	location();
 	bool							_autoindex;
 	bool							_ownAutoindex;
+	size_t							_maxBodySize;
+	bool							_ownBodySize;
 	bool							_isFileExtension;
 	std::string						_match;
 	std::string						_root;
@@ -45,6 +47,7 @@ public:
 	location& operator=(location const &original);
 
 	void	setAutoindex(const std::string &autoindex);
+	void	setMaxBody(const std::string &size);
 	void	setRoot(const std::string &root);
 	void	setMethod(const std::string &method);
 	void	setErrorPage(const std::string &errorPage);
@@ -55,6 +58,7 @@ public:
 
 
 	const bool						&hasOwnAutoindex() const;
+	const bool 						&hasOwnBodySize() const;
 	const bool						&getAutoindex() const;
 	const std::string				&getMatch() const;
 	const std::string				&getRoot() const;

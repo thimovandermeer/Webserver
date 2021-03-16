@@ -147,6 +147,12 @@ void	startParsing(std::fstream& configFile, serverCluster *cluster)
 				else
 					(*it)->setAutoindex("off");
 			}
+			if (!(*it)->hasOwnBodySize())
+			{
+				std::stringstream ss;
+				ss << newServer->getMaxBodySize();
+				(*it)->setMaxBody(ss.str());
+			}
 		}
 		// check if all data set in server is correct
 		if (!newServer->valueCheck())
