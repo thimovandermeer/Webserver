@@ -74,14 +74,14 @@ void	serverCluster::startListening()
 			{
 				if ((*it)->connections[i].acceptFd != -1)
 				{
-					unsigned long a = getTime();
-					unsigned long b = (*it)->connections[i].timeLastRead;
-					if (a - b > 5)
-					{
-						std::cerr << "connection timed out: nothing received on socket" << std::endl;
-						(*it)->generateResponse(i);
-						(*it)->connections[i].hasFullRequest = true;
-					}
+//					unsigned long a = getTime();
+//					unsigned long b = (*it)->connections[i].timeLastRead;
+//					if (a - b > 5)
+//					{
+//						std::cerr << "connection timed out: nothing received on socket" << std::endl;
+//						(*it)->generateResponse(i);
+//						(*it)->connections[i].hasFullRequest = true;
+//					}
 					if (!(*it)->connections[i].hasFullRequest)
 						FD_SET((*it)->connections->acceptFd, &readSet);
 					else

@@ -4,6 +4,8 @@
 #include <iostream>
 #include <sys/socket.h>
 #include <cstring>
+#include <algorithm>
+#include <sstream>
 
 connection::connection() : timeLastRead(0), acceptFd(-1), hasFullRequest(false)
 {
@@ -38,8 +40,6 @@ void	connection::closeThisConnection()
 	this->timeLastRead = 0;
 }
 
-#include <algorithm>
-#include <sstream>
 void connection::sendData(std::string &response, const size_t bodylen)
 {
 	std::cout << "==RESPONSE==" << std::endl;
@@ -62,12 +62,10 @@ void connection::sendData(std::string &response, const size_t bodylen)
 	{
 		// send header
 		std::string headr = response.substr(0, headerlen);
-//		std::cerr << "sending header" << std::endl;
 		send(this->acceptFd, headr.c_str(), headr.length(), 0);
 		size_t bodyBytesSent = 0;
 		while(bodylen - bodyBytesSent > 0)
 		{
-//			std::cerr << "sending chunk" << std::endl;
 			size_t	bytesToSend = std::min((bodylen - bodyBytesSent), (size_t)MAXSENDSIZE);
 
 			std::stringstream ss;
@@ -78,7 +76,6 @@ void connection::sendData(std::string &response, const size_t bodylen)
 			chunk.append(response, headerlen + bodyBytesSent, bytesToSend);
 			chunk += "\r\n";
 			send(this->acceptFd, chunk.c_str(), chunk.length(), 0);
-//			std::cerr << "done sending chunk" << std::endl;
 			bodyBytesSent += bytesToSend;
 			// repeat
 		}
@@ -126,19 +123,17 @@ void	connection::startReading()
 
 bool	connection::isFullRequest(std::string &currentRequest) const
 {
-	size_t pos;
-
-	pos = currentRequest.find("\r\n\r\n");
-	if (pos == std::string::npos)
-		return (false);
-
-	if (currentRequest.find("POST") == 0 || currentRequest.find("PUT") == 0)
-	{
-		pos = currentRequest.find("\r\n\r\n");
-		if (currentRequest.find("\r\n\r\n", pos + 4) != std::string::npos)
-			return (true);
-	}
-	else
-		return (true);
-	return (false);
+    size_t pos;
+    pos = currentRequest.find("\r\n\r\n");
+    if (pos == std::string::npos)
+        return (false);
+    if (currentRequest.find("Transfer-Encoding: chunked\r\n") != std::string::npos)
+    {
+        if (currentRequest.find("0\r\n\r\n", pos + 4) == currentRequest.length() - 5)
+            return (true);
+        else
+            return (false);
+    }
+    else
+        return (true);
 }

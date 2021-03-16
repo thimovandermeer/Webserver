@@ -3,7 +3,6 @@
 #include <stdexcept>
 #include <string>
 #include <fcntl.h>
-#include <unistd.h>
 
 
 std::string methods[4] = {
@@ -27,7 +26,6 @@ Request &Request::operator=(const Request &original) {
     this->_version = original._version;
 	this->_cgiEnv = original._cgiEnv;
 	this->_body = original._body;
-//	this->_headerMap = original._headerMap;
 	this->_defHeaders = original._defHeaders;
 	this->_status = original._status;
 	this->_cgi = original._cgi;
@@ -36,7 +34,10 @@ Request &Request::operator=(const Request &original) {
 
 Request::Request(std::string request) : _request(request)
 {
+    _bodyLength = 0;
+    _contentLength = -1;
     _status = 200;
+    std::cerr << "aaaaaaah" << std::endl ;
 	parseRequest();
 }
 
@@ -68,7 +69,7 @@ std::string Request::getBody() const {
 std::string Request::getContentType()  {
     if (_defHeaders.begin() == _defHeaders.end())
         return ("NULL");
-    std::map<std::string, std::string>::iterator it = _defHeaders.find("CONTENT_TYPE");
+    std::map<std::string, std::string>::iterator it = _defHeaders.find("CONTENT-TYPE");
     if (it == _defHeaders.end())
         return ("NULL");
     return (it->second);
@@ -144,15 +145,13 @@ void Request::parseRequestLine(){
 }
 
 void Request::parseHeaders() {
-    size_t      pos = 0;
-    size_t      length;
-    std::string header;
-    std::string upperHeader;
-    std::string value;
-	bool loop = true;
-
-    int fileIn = open("../test.txt", O_CREAT | O_TRUNC | O_RDWR, S_IRWXU);
-    write(fileIn, _request.c_str(), _request.length());
+    size_t                                          pos = 0;
+    size_t                                          length;
+    std::string                                     header;
+    std::string                                     upperHeader;
+    std::string                                     value;
+    std::map<std::string, std::string>::iterator    it;
+	bool                                            loop = true;
 
     while (loop == true){
         header.clear();
@@ -187,8 +186,8 @@ void Request::parseHeaders() {
         }
         for (int i = 0; header[i]; i++)
             upperHeader += std::toupper(header[i]);
-        std::map<std::string, std::string>::iterator it_h = _defHeaders.find(upperHeader);
-        if (it_h != _defHeaders.end())      //deze is denk ik voor dubbele headers?
+        it = _defHeaders.find(upperHeader);
+        if (it != _defHeaders.end())
 		{
 			_status = 400;
 			return;
@@ -202,7 +201,16 @@ void Request::parseHeaders() {
 	{
 		_status = 400;
 		return ;
-	}	
+	}
+	it = _defHeaders.begin();
+	while (it != _defHeaders.end())
+    {
+        if (it->first.compare("CONTENT-LENGTH") == 0) {
+            _contentLength = std::stoi(it->second.c_str(), 0, 10);
+            break;
+        }
+        it++;
+    }
     _request = _request.substr(pos+2);
 }
 
@@ -210,17 +218,24 @@ void Request::parseHeaders() {
 void Request::parseBody() {
     size_t begin = 0;
     size_t end;
+    std::string hex;
     size_t last = _request.rfind("\r\n");
     _body = "";
     if (_request.compare("0\r\n\r\n") == 0)
         return ;
     while (begin != last - 2){
         end = _request.find("\r\n", begin);
+        hex = _request.substr(begin, end - begin);
+        _bodyLength += (hex.c_str(), 0, 16);
         begin = end + 2;
         end = _request.find("\r\n", begin);
+        std::cerr << hex << std::endl ;
         _body.append(_request, begin, end - begin);
         begin = _request.find("\r\n", end + 2);
+        hex.clear();
     }
+    if (_bodyLength != _contentLength && _contentLength != -1)
+        _status = 413;
 }
 
 bool Request::getCgi() const {
