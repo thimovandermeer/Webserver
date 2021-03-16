@@ -1,12 +1,4 @@
 #include "Response.hpp"
-#include "responseHeader.hpp"
-#include <fstream>
-#include <unistd.h>
-#include <fcntl.h>
-#include <sstream>
-#include <sys/stat.h>
-#include "../Utils/utils.hpp"
-#include "../Utils/Base64.hpp"
 
 # define _RED			"\x1b[31m"
 # define _GREEN			"\x1b[32m"

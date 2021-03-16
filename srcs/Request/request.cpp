@@ -1,10 +1,5 @@
 #include "request.hpp"
 
-#include <stdexcept>
-#include <string>
-#include <fcntl.h>
-
-
 std::string methods[4] = {
         "GET",
         "HEAD",

@@ -1,7 +1,4 @@
 #include "responseHeader.hpp"
-#include <sys/time.h>
-#include <sys/stat.h>
-#include <string>
 
 responseHeader::responseHeader(std::string &content, std::string &path, int status, std::string &contentType)
 {
@@ -17,14 +14,8 @@ responseHeader::responseHeader(std::string &content, std::string &path, int stat
 	setServer();
 	setTransferEncoding();
 	setWwwAuthenticate(status);
-//	setUnknownHeader();
 }
 
-//void            responseHeader::setUnkownHeader() {
-//    X-SECRET-HEADER-FOR-TEST	1
-//    _specialHeaderKey;
-//    _specialHeaderValue;
-//}
 
 responseHeader::responseHeader(const responseHeader &src)
 {

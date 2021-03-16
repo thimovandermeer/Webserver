@@ -1,13 +1,21 @@
-#ifndef WEBSERV_RESPONSE_HPP
-# define WEBSERV_RESPONSE_HPP
-# include <string>
-# include <ostream>
-# include "../Request/request.hpp"
-# include "../Server/server.hpp"
-# include "../CGI/CGI.hpp"
-# include <cstdio>
+#ifndef RESPONSE_HPP
+# define RESPONSE_HPP
 
-// this needs to be deleted when request is been made
+#include <string>
+#include <ostream>
+#include <cstdio>
+#include <sys/stat.h>
+#include <fstream>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sstream>
+#include <sys/stat.h>
+#include "responseHeader.hpp"
+#include "../Server/server.hpp"
+#include "../CGI/CGI.hpp"
+#include "../Server/location.hpp"
+#include "../Utils/utils.hpp"
+#include "../Utils/Base64.hpp"
 
 class Response {
 public:
@@ -33,14 +41,12 @@ private:
 	std::string 				_body;
 private:
 	Response();
-	// functions for each different method
 	void 		getMethod();
 	void 		headMethod();
 	void 		postMethod(std::string content);
 	void 		putMethod(std::string const &content);
 	void		errorPage(server &serv);
     void        createErrorPage(std::string *pageData);
-		// helper functions
 	void 	    readContent();
 	int		    authenticate(Request &req);
 	void 	    writeContent(std::string const &content);
@@ -54,11 +60,8 @@ public:
 	void				setStatus(int status);
 	const std::string 	&getResponse() const;
 	size_t				getBodySize() const;
-
 	bool				isMethodAllowed();
-
 	friend std::string	getPath(server &serv, Request &req, Response &resp);
-
 };
 
-#endif //WEBSERV_RESPONSE_HPP
+#endif

@@ -8,6 +8,10 @@
 #include <locale>
 #include <vector>
 #include <algorithm>
+#include <stdexcept>
+#include <string>
+#include <fcntl.h>
+
 
 class Request{
     public:
@@ -27,11 +31,12 @@ class Request{
         bool getCgi() const ;
 		int getStatus() const;
 
-    void parseRequest();
+        void parseRequest();
         void parseRequestLine();
         void parseHeaders();
         void parseBody();
 		void checkCgi();
+
      private:
         Request();
         std::string _request;

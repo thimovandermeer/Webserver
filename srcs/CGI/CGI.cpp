@@ -1,47 +1,26 @@
-//
-// Created by Thimo Van der meer on 09/02/2021.
-//
-//#include <AppleEXR.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <string.h>
-#include <fstream>
-#include <sys/wait.h>
 #include "CGI.hpp"
-#include <sstream>
 
-CGI::CgiError::CgiError(const char* w)
-		: std::runtime_error(w)
-{
-}
-CGI::PipeSetupFailed::PipeSetupFailed()
-		: CgiError("CGI pipe setup failed")
-{
-}
-CGI::ForkFailed::ForkFailed()
-		: CgiError("CGI fork failed")
-{
-}
-// default stuff
 CGI::CGI(std::string &path, Request &request, server &server) :
 		_path(path)
 {
 	_initEnvironment(request, server);
 }
+
 CGI::CGI()
 {
 }
+
 CGI::CGI(CGI &src)
 {
 	if (this != &src)
 		this->_environment = src._environment;
 	return ;
 }
+
 CGI::~CGI()
 {
 	;
 }
-// public stuff
 
 std::string CGI::executeGCI(std::string &body)
 {

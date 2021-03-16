@@ -1,8 +1,3 @@
-#include <string>
-#include <sys/stat.h>
-#include "../Server/location.hpp"
-#include "../Server/server.hpp"
-#include "../Request/request.hpp"
 #include "Response.hpp"
 
 location*	findFileExtension(server &server, std::string *uri)
