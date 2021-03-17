@@ -78,12 +78,15 @@ void	serverCluster::startListening()
 					unsigned long b = (*it)->connections[i].getTimeLastRead();
 					if (CONNECTION_TIMEOUT > 0 && a - b > CONNECTION_TIMEOUT && (*it)->connections[i].getResponseString().empty())
 					{
-						std::cerr << "connection timed out: nothing received on socket" << std::endl;
+						std::cerr << "closing connection" << std::endl;
 
 //						(*it)->generateResponse(i);
 //						std::cerr << "INCOMPLETE REQUEST\n";
 //						std::cerr <<(*it)->connections[i].getResponseString() << std::endl;
 //						(*it)->connections[i].setFullReq(true);
+						close((*it)->connections[i].getAcceptFd());
+						(*it)->connections[i].setFd(-1);
+						(*it)->connections[i].setTimeLastRead(0);
 						(*it)->connections[i].closeThisConnection();
 						continue;
 					}
@@ -105,6 +108,12 @@ void	serverCluster::startListening()
 		{
 //			std::cout << "Still looping" << std::endl;
 			long fd;
+			fd = (*it)->getSocketFd(); // check of nieuwe verbinding op socket
+			if (readSet.fds_bits[fd / 64] & (long)(1UL << fd % 64))
+			{
+				if ((*it)->acpt() == 1)
+					break;
+			}
 			for (int i = 0; i < NR_OF_CONNECTIONS; i++)
 			{
 				if ((*it)->connections[i].getAcceptFd() != -1) // er moet van gelezen of naar geschreven worden
@@ -123,12 +132,7 @@ void	serverCluster::startListening()
 					}
 				}
 			}
-			fd = (*it)->getSocketFd(); // check of nieuwe verbinding op socket
-			if (readSet.fds_bits[fd / 64] & (long)(1UL << fd % 64))
-			{
-				(*it)->acpt();
-				break;
-			}
+
 			it++;
 		}
 	}

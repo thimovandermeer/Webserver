@@ -71,11 +71,12 @@ const std::string&	connection::getResponseString() const
 
 void	connection::closeThisConnection()
 {
-	close(this->_acceptFd);
-	this->_acceptFd = -1;
+//	usleep(10);
+//	close(this->_acceptFd);
+//	this->_acceptFd = -1;
 	this->_acceptBuffer.clear();
 	this->_hasFullRequest = false;
-	this->_timeLastRead = 0;
+//	this->_timeLastRead = 0;
 	this->_bodyBytesSent = 0;
 	this->_headerSent = false;
 	this->_responseString.clear();

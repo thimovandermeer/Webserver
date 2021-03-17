@@ -17,7 +17,7 @@ void	server::startListening()
 
 	int	ret;
 	int options = 1;
-	ret = setsockopt(this->_socketFd, SOL_SOCKET, SO_REUSEADDR, &options, sizeof(options));
+	ret = setsockopt(this->_socketFd, SOL_SOCKET, SO_REUSEPORT, &options, sizeof(options));
 	if (ret < 0)
 	{
 		std::cerr << "setsockopt error" << std::endl;
@@ -38,7 +38,7 @@ void	server::startListening()
 	}
 }
 
-void 	server::acpt()
+int server::acpt()
 {
 	struct sockaddr connectingAddr;
 	socklen_t		addressLen;
@@ -52,12 +52,13 @@ void 	server::acpt()
 	if (i == NR_OF_CONNECTIONS)
 	{
 //		std::cerr << "kom ik hier in ?" << std::endl;
-		return;
+		return (0);
 	} // too many connections, should never happen
 	this->connections[i].setFd(accept(this->_socketFd, &connectingAddr, &addressLen));
 	if (this->connections[i].getAcceptFd() == -1)
 		std::cerr << "Could not create fd" << std::endl;
 	this->connections[i].setTimeLastRead(getTime());
+	return (1);
 //	this->_acceptFds.push_back((accept(this->_socketFd, &connectingAddr, &addressLen)));
 //	if (*this->_acceptFds.rbegin() == -1)
 //		std::cerr << "Could not create fd" << std::ençdl; // dit zometeen aanpassen naar try catch

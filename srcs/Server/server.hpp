@@ -1,18 +1,18 @@
 #ifndef SERVER_HPP
 # define SERVER_HPP
-#include "location.hpp"
-#include "connection.hpp"
-#include <vector>
-#include <map>
-#include <stdexcept>
-#include <string>
-#include <sys/socket.h>
-#include <netdb.h>
-#include <sstream>
-#include <iostream>
-#include <iomanip>
-#include <unistd.h>
-#include <climits>
+# include "location.hpp"
+# include "connection.hpp"
+# include <vector>
+# include <map>
+# include <stdexcept>
+# include <string>
+# include <sys/socket.h>
+# include <netdb.h>
+# include <sstream>
+# include <iostream>
+# include <iomanip>
+# include <unistd.h>
+# include <climits>
 
 # define NR_OF_CONNECTIONS 10
 # define MAXLOGS 25 // this is to prevent literally 100.000s of log files being created, it will only save the most recent logs
@@ -82,7 +82,7 @@ public:
 
 	void		addLocation(location *newLoc);
 	bool		valueCheck() const;
-	void 		acpt();
+	int acpt();
 	void		findValue(std::string &key, std::string line);
 	void	    startListening();
 	location*	findLocation(std::string &match);
