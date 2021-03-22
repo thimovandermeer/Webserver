@@ -36,23 +36,12 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="keeping connections open when done sending, fixing the issue of limited socket connections on macOS">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="moved defines to separate header">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Download1" beforeDir="false" afterPath="$PROJECT_DIR$/Download1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/webserv.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/webserv.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Cluster/serverCluster.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Cluster/serverCluster.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Request/request.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Request/request.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Response/Response.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Response/getPath.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/getPath.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Response/responseHeader.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/responseHeader.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Server/connection.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/connection.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Server/connection.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/connection.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/server.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/server.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Utils/defines.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Utils/defines.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,7 +198,7 @@
       <workItem from="1615914587826" duration="1544000" />
       <workItem from="1615974911188" duration="6501000" />
       <workItem from="1616396995662" duration="2607000" />
-      <workItem from="1616404142821" duration="9094000" />
+      <workItem from="1616404142821" duration="10797000" />
     </task>
     <task id="LOCAL-00003" summary="nearly done all set functions of responseheader">
       <created>1611650661666</created>
@@ -449,7 +438,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615987295215</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="moved defines to separate header">
+      <created>1616418572269</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1616418572270</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -534,7 +530,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="started on dynamic error page" />
     <MESSAGE value="fixed dynamic error page, put error msg in place in case of no error page, fixed locations in server class, messed around with getPath in response" />
     <MESSAGE value="edited CGI in location to only have path" />
     <MESSAGE value="fixed error page, added search for file extension" />
@@ -559,7 +554,8 @@
     <MESSAGE value="added dynamic printing with defines in server.hpp" />
     <MESSAGE value="making logs folder if it doesn't exist" />
     <MESSAGE value="keeping connections open when done sending, fixing the issue of limited socket connections on macOS" />
-    <option name="LAST_COMMIT_MESSAGE" value="keeping connections open when done sending, fixing the issue of limited socket connections on macOS" />
+    <MESSAGE value="moved defines to separate header" />
+    <option name="LAST_COMMIT_MESSAGE" value="moved defines to separate header" />
   </component>
   <component name="WindowStateProjectService">
     <state x="880" y="357" key="#New_File_Extensions" timestamp="1616416242181">
@@ -578,46 +574,46 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="89" y="65" width="2360" height="1137" key="DiffContextDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1616404625901" />
-    <state width="2518" height="277" key="GridCell.Tab.0.bottom" timestamp="1616418359658">
+    <state width="2518" height="277" key="GridCell.Tab.0.bottom" timestamp="1616427450844">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="277" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1616418359658" />
-    <state width="2518" height="277" key="GridCell.Tab.0.center" timestamp="1616418359658">
+    <state width="2518" height="277" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1616427450844" />
+    <state width="2518" height="277" key="GridCell.Tab.0.center" timestamp="1616427450843">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="277" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1616418359658" />
-    <state width="2518" height="277" key="GridCell.Tab.0.left" timestamp="1616418359658">
+    <state width="2518" height="277" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1616427450843" />
+    <state width="2518" height="277" key="GridCell.Tab.0.left" timestamp="1616427450843">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="277" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1616418359658" />
-    <state width="2518" height="277" key="GridCell.Tab.0.right" timestamp="1616418359658">
+    <state width="2518" height="277" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1616427450843" />
+    <state width="2518" height="277" key="GridCell.Tab.0.right" timestamp="1616427450843">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="277" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1616418359658" />
-    <state width="2518" height="277" key="GridCell.Tab.1.bottom" timestamp="1616418359659">
+    <state width="2518" height="277" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1616427450843" />
+    <state width="2518" height="277" key="GridCell.Tab.1.bottom" timestamp="1616427450845">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="277" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1616418359659" />
-    <state width="2518" height="277" key="GridCell.Tab.1.center" timestamp="1616418359659">
+    <state width="2518" height="277" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1616427450845" />
+    <state width="2518" height="277" key="GridCell.Tab.1.center" timestamp="1616427450845">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="277" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1616418359659" />
-    <state width="2518" height="277" key="GridCell.Tab.1.left" timestamp="1616418359659">
+    <state width="2518" height="277" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1616427450845" />
+    <state width="2518" height="277" key="GridCell.Tab.1.left" timestamp="1616427450844">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="277" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1616418359659" />
-    <state width="2518" height="277" key="GridCell.Tab.1.right" timestamp="1616418359659">
+    <state width="2518" height="277" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1616427450844" />
+    <state width="2518" height="277" key="GridCell.Tab.1.right" timestamp="1616427450845">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="277" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1616418359659" />
+    <state width="2518" height="277" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1616427450845" />
     <state x="789" y="330" key="SettingsEditor" timestamp="1616403984644">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="789" y="330" key="SettingsEditor/0.23.2560.1337@0.23.2560.1337" timestamp="1616403984644" />
-    <state x="880" y="431" key="Vcs.Push.Dialog.v2" timestamp="1615987297232">
+    <state x="880" y="431" key="Vcs.Push.Dialog.v2" timestamp="1616418572807">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="880" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1615987297232" />
+    <state x="880" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1616418572807" />
     <state x="1065" y="432" key="VcsDiffUtil.ChangesDialog" timestamp="1616404281246">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -626,5 +622,9 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="1064" y="484" key="refactoring.ChangeSignatureDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1616408211180" />
+    <state x="945" y="326" key="run.anything.popup" timestamp="1616419605110">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="945" y="326" key="run.anything.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1616419605110" />
   </component>
 </project>

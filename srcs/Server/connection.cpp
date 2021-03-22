@@ -1,9 +1,9 @@
 #include "connection.hpp"
 
-connection::connection() : _timeLastRead(0), _acceptFd(-1), _hasFullRequest(false), _bodyBytesSent(0), _headerSent(false)
-{
-
-}
+connection::connection() : _timeLastRead(0), _timeFirstRead(0),
+						   _acceptFd(-1), _hasFullRequest(false),
+						   _bodyBytesSent(0), _headerSent(false)
+{}
 
 connection::~connection()
 {
@@ -76,6 +76,7 @@ void	connection::resetConnection()
 	this->_bodyBytesSent = 0;
 	this->_headerSent = false;
 	this->_responseString.clear();
+	this->_timeFirstRead = getTime();
 }
 
 void	connection::closeConnection()
@@ -84,11 +85,6 @@ void	connection::closeConnection()
 	this->_acceptFd = -1;
 	this->_timeLastRead = 0;
 }
-
-//void 	connection::sighandler(int sig)
-//{
-//
-//}
 
 bool	connection::doINeedToFuckingCloseThisShitIDFK()
 {
@@ -192,6 +188,8 @@ void	connection::startReading()
 	{
 		receivedRequest = this->receive();
 		this->_timeLastRead = getTime();
+		if (this->_acceptBuffer.empty())
+			this->_timeFirstRead = this->_timeLastRead;
 		this->_acceptBuffer += receivedRequest;
 	}
 	catch (std::exception &e)
