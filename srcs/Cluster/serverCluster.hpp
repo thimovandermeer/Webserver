@@ -1,8 +1,7 @@
 #ifndef SERVERCLUSTER_HPP
 # define SERVERCLUSTER_HPP
 # include "../Server/server.hpp"
-# define CONNECTION_TIMEOUT 13
-# define SELECT_TIMEOUT 3
+# include "../Utils/defines.hpp"
 
 class serverCluster {
 public:

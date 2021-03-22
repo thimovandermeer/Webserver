@@ -1,7 +1,8 @@
 #ifndef RESPONSEHEADER_HPP
 # define RESPONSEHEADER_HPP
 
-# include "Response.hpp"
+# include <sys/stat.h>
+# include "../Server/server.hpp"
 # include "../Request/request.hpp"
 
 class responseHeader

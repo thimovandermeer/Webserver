@@ -69,20 +69,50 @@ const std::string&	connection::getResponseString() const
 	return (this->_responseString);
 }
 
-void	connection::closeThisConnection()
+void	connection::resetConnection()
 {
-//	usleep(10);
-//	close(this->_acceptFd);
-//	this->_acceptFd = -1;
 	this->_acceptBuffer.clear();
 	this->_hasFullRequest = false;
-//	this->_timeLastRead = 0;
 	this->_bodyBytesSent = 0;
 	this->_headerSent = false;
 	this->_responseString.clear();
 }
 
-void connection::sendData(const size_t bodylen)
+void	connection::closeConnection()
+{
+	close(this->_acceptFd);
+	this->_acceptFd = -1;
+	this->_timeLastRead = 0;
+}
+
+//void 	connection::sighandler(int sig)
+//{
+//
+//}
+
+bool	connection::doINeedToFuckingCloseThisShitIDFK()
+{
+	char buf[1];
+	buf[0] = 0;
+	if (recv(this->_acceptFd, NULL, 1, MSG_PEEK | MSG_DONTWAIT) == 0)
+	{
+		this->resetConnection();
+		this->closeConnection();
+		return (true);
+	}
+//	signal(SIGPIPE, &connection::sighandler);
+//	if (write(this->_acceptFd, buf, 0) == -1)
+//	{
+//		this->resetConnection();
+//		this->closeConnection();
+//		signal(SIGPIPE, SIG_DFL);
+//		return (true);
+//	}
+//	signal(SIGPIPE, SIG_DFL);
+	return (false);
+}
+
+void	connection::sendData(const size_t bodylen)
 {
 	size_t headerlen = this->_responseString.find("\r\n\r\n") + 4;
 
@@ -90,12 +120,13 @@ void connection::sendData(const size_t bodylen)
 	{
 		if (send(this->_acceptFd, this->_responseString.c_str(), this->_responseString.length(), 0) == -1)
 			std::cerr << "send error" << std::endl;
-		this->closeThisConnection();
+		this->resetConnection();
 	}
 	else // chunked response
 	{
-		sendChunked(bodylen, headerlen);
+		this->sendChunked(bodylen, headerlen);
 	}
+//	std::cerr << "done sending" << std::endl;
 }
 
 void	connection::sendChunked(const size_t bodylen, const size_t headerlen)
@@ -103,7 +134,8 @@ void	connection::sendChunked(const size_t bodylen, const size_t headerlen)
 	if (!this->_headerSent)
 	{
 		std::string headr = this->_responseString.substr(0, headerlen);
-		send(_acceptFd, headr.c_str(), headr.length(), 0);
+		if (send(_acceptFd, headr.c_str(), headr.length(), 0) == -1)
+			std::cerr << "send error" << std::endl;
 		this->_headerSent = true;
 		return;
 	}
@@ -117,18 +149,20 @@ void	connection::sendChunked(const size_t bodylen, const size_t headerlen)
 		chunk += "\r\n";
 		chunk.append(this->_responseString, headerlen + this->_bodyBytesSent, bytesToSend);
 		chunk += "\r\n";
-		send(_acceptFd, chunk.c_str(), chunk.length(), 0);
+		if (send(_acceptFd, chunk.c_str(), chunk.length(), 0) == -1)
+			std::cerr << "send error" << std::endl;
 		this->_bodyBytesSent += bytesToSend;
 	}
 	else
 	{
 		std::string end("0\r\n\r\n");
-		send(_acceptFd, end.c_str(), 5, 0);
-		closeThisConnection();
+		if (send(_acceptFd, end.c_str(), 5, 0) == -1)
+			std::cerr << "send error" << std::endl;
+		this->resetConnection();
 	}
 }
 
-std::string	connection::receive() const
+std::string	connection::receive()
 {
 	char 	buffer[MAXREADSIZE + 1];
 	int 	ret;
@@ -138,7 +172,14 @@ std::string	connection::receive() const
 	if (ret == -1)
 	{
 		std::cerr << "recv error" << std::endl;
+		this->resetConnection();
+		this->closeConnection();
 //		throw syscallErrorException();
+	}
+	if (ret == 0)
+	{
+		this->resetConnection();
+		this->closeConnection();
 	}
 	return (buffer);
 }
@@ -149,7 +190,7 @@ void	connection::startReading()
 //	this->acpt();
 	try
 	{
-		receivedRequest = receive();
+		receivedRequest = this->receive();
 		this->_timeLastRead = getTime();
 		this->_acceptBuffer += receivedRequest;
 	}
@@ -158,7 +199,7 @@ void	connection::startReading()
 		return;
 	}
 
-	if (isFullRequest())
+	if (this->isFullRequest())
 		this->_hasFullRequest = true;
 	else
 		return;
@@ -179,6 +220,5 @@ bool connection::isFullRequest() const
 		else
 			return (false);
 	}
-	else
-		return (true);
+	return (true);
 }

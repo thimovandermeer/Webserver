@@ -72,6 +72,8 @@ void server::generateResponse(int index)
 	static size_t nr = 0;
 	if (!this->connections[index].getResponseString().empty())
 		return;
+
+//	if (!(nr % 100))
 	std::cout << "handling request nr " << nr << std::endl;
 
 	if (PRINTLOG)

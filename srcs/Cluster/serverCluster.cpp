@@ -73,21 +73,20 @@ void	serverCluster::startListening()
 			{
 				if ((*it)->connections[i].getAcceptFd() != -1)
 				{
-
+					if ((*it)->connections[i].doINeedToFuckingCloseThisShitIDFK())
+						continue;
 					unsigned long a = getTime();
 					unsigned long b = (*it)->connections[i].getTimeLastRead();
 					if (CONNECTION_TIMEOUT > 0 && a - b > CONNECTION_TIMEOUT && (*it)->connections[i].getResponseString().empty())
 					{
 						std::cerr << "closing connection" << std::endl;
-
-//						(*it)->generateResponse(i);
-//						std::cerr << "INCOMPLETE REQUEST\n";
-//						std::cerr <<(*it)->connections[i].getResponseString() << std::endl;
-//						(*it)->connections[i].setFullReq(true);
-						close((*it)->connections[i].getAcceptFd());
-						(*it)->connections[i].setFd(-1);
-						(*it)->connections[i].setTimeLastRead(0);
-						(*it)->connections[i].closeThisConnection();
+						if (!(*it)->connections[i].getBuffer().empty())
+						{
+							(*it)->generateResponse(i);
+							(*it)->connections[i].sendData((*it)->_bodylen);
+						}
+						(*it)->connections[i].resetConnection();
+						(*it)->connections[i].closeConnection();
 						continue;
 					}
 					if (!(*it)->connections[i].hasFullRequest())
@@ -132,7 +131,6 @@ void	serverCluster::startListening()
 					}
 				}
 			}
-
 			it++;
 		}
 	}

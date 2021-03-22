@@ -12,7 +12,6 @@
 #include <string>
 #include <fcntl.h>
 
-
 class Request{
     public:
 		friend class Response;

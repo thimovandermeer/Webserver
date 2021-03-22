@@ -38,7 +38,7 @@ location*	getPath::findFileExtension()
 	return (NULL);
 }
 
-void getPath::noLocation()
+void	getPath::noLocation()
 {
 	if (_uri.find('.') != std::string::npos) // file requested
 		checkFile();
@@ -60,7 +60,7 @@ void getPath::noLocation()
 	}
 }
 
-void getPath::checkFile()
+void	getPath::checkFile()
 {
 	_found = _uri.find_first_of('/', 1);
 	if (_uri.find_last_of('/') == 0) {
@@ -77,7 +77,7 @@ void getPath::checkFile()
 	}
 }
 
-void getPath::locationExists()
+void	getPath::locationExists()
 {
 	// location exists
 	struct stat statBuf = {};
@@ -136,7 +136,11 @@ std::string	getPath::createPath()
 	else
 		_uri.erase(0, 1);
 	if (!_loc && _req.getMethod().compare("PUT") != 0)
+	{
 		_resp.setStatus(404); // location not _found
+		_resp.setCurrentLoc(_loc);
+		return ("");
+	}
 	if(_req.getMethod().compare("POST") == 0 &&  _loc->getCgiPath().empty())
 		_filePath = _rootDir + "Download1";
 	else

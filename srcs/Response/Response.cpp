@@ -1,11 +1,11 @@
 #include "Response.hpp"
 #include "getPath.hpp"
 
-# define _RED			"\x1b[31m"
-# define _GREEN			"\x1b[32m"
+# define RED			"\x1b[31m"
+# define GREEN			"\x1b[32m"
 
-# define _END			"\x1b[0m"
-# define _BOLD			"\x1b[1m"
+# define END			"\x1b[0m"
+# define BOLD			"\x1b[1m"
 
 Response::Response(Request &req, server &serv) :
 	_status(req.getStatus()),
@@ -48,7 +48,7 @@ void Response::setCurrentLoc(location *newloc)
 	_currentLoc = newloc;
 }
 
-Response &Response::operator=(const Response &src)
+Response	&Response::operator=(const Response &src)
 {
 	_response = src._response;
 	_content = src._content;
@@ -299,7 +299,7 @@ void				Response::setStatus(int status)
 int					Response::authenticate(Request &req)
 {
 	if (this->_currentLoc == NULL) {
-		std::cout << _RED "Location does not exist" _END << std::endl;
+		std::cout << RED "Location does not exist" END << std::endl;
 		return 0;
 	}
 	if (this->_currentLoc->gethtpasswdpath().empty()) {
@@ -316,12 +316,12 @@ int					Response::authenticate(Request &req)
 	}
 	catch (std::exception& e) {
 		std::cerr << e.what() << std::endl;
-		std::cerr <<_RED "No credentials provided by client" _END << std::endl;
+		std::cerr <<RED "No credentials provided by client" END << std::endl;
 	}
 	req._defHeaders["AUTHORIZATION"] = req._defHeaders["AUTHORIZATION"].substr(0, req._defHeaders["AUTHORIZATION"].find_first_of(' '));
 	req._defHeaders["REMOTE-USER"] = username;
 	if (this->_currentLoc->getAuthMatch(username, passwd)) {
-		std::cout << _GREEN _BOLD "Authorization successful!" _END << std::endl;
+		std::cout << GREEN BOLD "Authorization successful!" END << std::endl;
 		return 0;
 	}
 

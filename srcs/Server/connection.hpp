@@ -1,18 +1,14 @@
 #ifndef CONNECTION_HPP
 # define CONNECTION_HPP
 
-#include <string>
-#include <unistd.h>
-#include <sys/socket.h>
-#include <iostream>
-#include <algorithm>
-#include <sstream>
-#include "../Utils/utils.hpp"
-
-# define KB 1024
-# define MB (KB * 1024)
-# define MAXSENDSIZE (1 * MB)
-# define MAXREADSIZE (1 * MB)
+# include <string>
+# include <unistd.h>
+# include <sys/socket.h>
+# include <iostream>
+# include <algorithm>
+# include <sstream>
+# include "../Utils/utils.hpp"
+# include "../Utils/defines.hpp"
 
 class connection {
 private:
@@ -43,10 +39,13 @@ public:
 	const std::string&		getBuffer() const;
 	const std::string&		getResponseString() const;
 
-	void		closeThisConnection();
+	void		resetConnection();
+	void		closeConnection();
 	void		sendData(const size_t bodylen);
-	std::string	receive() const;
+	std::string	receive();
 	void		startReading();
+	bool		doINeedToFuckingCloseThisShitIDFK();
+	void		sighandler(int sig);
 
 	void		sendChunked(const size_t bodylen, const size_t headerlen);
 };

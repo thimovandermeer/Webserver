@@ -2,6 +2,7 @@
 # define SERVER_HPP
 # include "location.hpp"
 # include "connection.hpp"
+# include "../Utils/defines.hpp"
 # include <vector>
 # include <map>
 # include <stdexcept>
@@ -13,11 +14,6 @@
 # include <iomanip>
 # include <unistd.h>
 # include <climits>
-
-# define NR_OF_CONNECTIONS 10
-# define MAXLOGS 25 // this is to prevent literally 100.000s of log files being created, it will only save the most recent logs
-# define PRINTLOG false
-# define PRINTOUT false
 
 class server {
 public:
