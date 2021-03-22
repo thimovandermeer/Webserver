@@ -2,7 +2,7 @@
 # define WEBSERV_DEFINES_HPP
 
 // times are in seconds
-# define MAX_LIFETIME 15
+//# define MAX_LIFETIME 15
 # define CONNECTION_TIMEOUT 10 // 0 will make it never time out a connection
 # define SELECT_TIMEOUT 2
 

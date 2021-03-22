@@ -183,7 +183,6 @@ std::string	connection::receive()
 void	connection::startReading()
 {
 	std::string receivedRequest;
-//	this->acpt();
 	try
 	{
 		receivedRequest = this->receive();
@@ -218,5 +217,9 @@ bool connection::isFullRequest() const
 		else
 			return (false);
 	}
+	if (this->_acceptBuffer.find("Content-Length: ") == std::string::npos) // content len not specified, so there is no body
+		return (true);
+	if (this->_acceptBuffer.find("\r\n\r\n", pos + 4) == std::string::npos) // there is content len, so a body, but no end of body found
+		return (false);
 	return (true);
 }

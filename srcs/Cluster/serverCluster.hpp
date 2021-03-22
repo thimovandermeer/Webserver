@@ -2,6 +2,7 @@
 # define SERVERCLUSTER_HPP
 # include "../Server/server.hpp"
 # include "../Utils/defines.hpp"
+# include <algorithm>
 
 class serverCluster {
 public:
@@ -11,6 +12,7 @@ public:
 private:
 	std::vector<server*>	_servers;
 	int						_nrOfServers;
+	long					_highestFd;
 
 public:
 	serverCluster();
