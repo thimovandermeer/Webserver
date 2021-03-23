@@ -51,7 +51,12 @@ INCLUDES = $(addprefix srcs/, $(_INCLUDE))
 
 all: $(NAME)
 
-fclean: clean
-	@rm -rf $(NAME) $(NAME)
+$(NAME):
 
-re: fclean all`
+
+clean:
+
+fclean: clean
+	@rm -rf $(NAME)
+
+re: fclean all

@@ -41,15 +41,15 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="fixed first argument of select and added extra check for end of request">
+    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="minor FDSET syntax changes in servercluster">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Download1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/flags.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html_pages/Downloads/file_should_exist_after" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/html_pages/Downloads/hoiikbenjonas.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Response/getPath.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/getPath.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Server/connection.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/connection.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Server/connection.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/connection.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Utils/defines.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Utils/defines.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -209,7 +209,7 @@
       <workItem from="1616396995662" duration="2607000" />
       <workItem from="1616404142821" duration="13443000" />
       <workItem from="1616492656982" duration="1698000" />
-      <workItem from="1616494518452" duration="3717000" />
+      <workItem from="1616494518452" duration="9296000" />
     </task>
     <task id="LOCAL-00003" summary="nearly done all set functions of responseheader">
       <created>1611650661666</created>
@@ -470,7 +470,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616438250125</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="minor FDSET syntax changes in servercluster">
+      <created>1616501676937</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1616501676937</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -555,7 +562,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed error page, added search for file extension" />
     <MESSAGE value="messed around with reading" />
     <MESSAGE value="please work" />
     <MESSAGE value="again" />
@@ -580,7 +586,8 @@
     <MESSAGE value="moved defines to separate header" />
     <MESSAGE value="idek anymore" />
     <MESSAGE value="fixed first argument of select and added extra check for end of request" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed first argument of select and added extra check for end of request" />
+    <MESSAGE value="minor FDSET syntax changes in servercluster" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor FDSET syntax changes in servercluster" />
   </component>
   <component name="WindowStateProjectService">
     <state x="880" y="357" key="#New_File_Extensions" timestamp="1616416242181">
@@ -591,54 +598,54 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="1000" y="522" key="#Notifications/0.23.2560.1337@0.23.2560.1337" timestamp="1616414867822" />
-    <state x="1000" y="500" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1615898918791">
+    <state x="1000" y="500" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1616504815230">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="1000" y="500" key="#com.intellij.fileTypes.FileTypeChooser/0.23.2560.1337@0.23.2560.1337" timestamp="1615898918791" />
+    <state x="1000" y="500" key="#com.intellij.fileTypes.FileTypeChooser/0.23.2560.1337@0.23.2560.1337" timestamp="1616504815230" />
     <state x="89" y="65" width="2360" height="1137" key="DiffContextDialog" timestamp="1616404625901">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="89" y="65" width="2360" height="1137" key="DiffContextDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1616404625901" />
-    <state width="2518" height="376" key="GridCell.Tab.0.bottom" timestamp="1616501297318">
+    <state width="2518" height="394" key="GridCell.Tab.0.bottom" timestamp="1616507141276">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="376" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1616501297318" />
-    <state width="2518" height="376" key="GridCell.Tab.0.center" timestamp="1616501297317">
+    <state width="2518" height="394" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1616507141276" />
+    <state width="2518" height="394" key="GridCell.Tab.0.center" timestamp="1616507141276">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="376" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1616501297317" />
-    <state width="2518" height="376" key="GridCell.Tab.0.left" timestamp="1616501297316">
+    <state width="2518" height="394" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1616507141276" />
+    <state width="2518" height="394" key="GridCell.Tab.0.left" timestamp="1616507141276">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="376" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1616501297316" />
-    <state width="2518" height="376" key="GridCell.Tab.0.right" timestamp="1616501297318">
+    <state width="2518" height="394" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1616507141276" />
+    <state width="2518" height="394" key="GridCell.Tab.0.right" timestamp="1616507141276">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="376" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1616501297318" />
-    <state width="2518" height="376" key="GridCell.Tab.1.bottom" timestamp="1616501297320">
+    <state width="2518" height="394" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1616507141276" />
+    <state width="2518" height="394" key="GridCell.Tab.1.bottom" timestamp="1616506200912">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="376" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1616501297320" />
-    <state width="2518" height="376" key="GridCell.Tab.1.center" timestamp="1616501297319">
+    <state width="2518" height="394" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1616506200912" />
+    <state width="2518" height="394" key="GridCell.Tab.1.center" timestamp="1616506200911">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="376" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1616501297319" />
-    <state width="2518" height="376" key="GridCell.Tab.1.left" timestamp="1616501297319">
+    <state width="2518" height="394" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1616506200911" />
+    <state width="2518" height="394" key="GridCell.Tab.1.left" timestamp="1616506200911">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="376" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1616501297319" />
-    <state width="2518" height="376" key="GridCell.Tab.1.right" timestamp="1616501297319">
+    <state width="2518" height="394" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1616506200911" />
+    <state width="2518" height="394" key="GridCell.Tab.1.right" timestamp="1616506200912">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="376" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1616501297319" />
+    <state width="2518" height="394" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1616506200912" />
     <state x="789" y="330" key="SettingsEditor" timestamp="1616403984644">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="789" y="330" key="SettingsEditor/0.23.2560.1337@0.23.2560.1337" timestamp="1616403984644" />
-    <state x="880" y="431" key="Vcs.Push.Dialog.v2" timestamp="1616438251351">
+    <state x="880" y="431" key="Vcs.Push.Dialog.v2" timestamp="1616501678653">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="880" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1616438251351" />
+    <state x="880" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1616501678653" />
     <state x="1065" y="432" key="VcsDiffUtil.ChangesDialog" timestamp="1616404281246">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>

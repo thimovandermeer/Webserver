@@ -3,7 +3,7 @@
 
 // times are in seconds
 //# define MAX_LIFETIME 15
-# define CONNECTION_TIMEOUT 0 // 0 will make it never time out a connection
+# define CONNECTION_TIMEOUT 10 // 0 will make it never time out a connection
 # define SELECT_TIMEOUT 2
 
 # define KB 1024

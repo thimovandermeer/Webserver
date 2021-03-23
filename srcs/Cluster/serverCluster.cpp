@@ -75,13 +75,19 @@ void	serverCluster::startListening()
 			{
 				if ((*it)->connections[i].getAcceptFd() != -1)
 				{
-					if ((*it)->connections[i].doINeedToFuckingCloseThisShitIDFK())
-						continue;
+//					if ((*it)->connections[i].doINeedToFuckingCloseThisShitIDFK())
+//						continue;
 					unsigned long a = getTime();
 					unsigned long b = (*it)->connections[i].getTimeLastRead();
-					if (CONNECTION_TIMEOUT > 0 && a - b > CONNECTION_TIMEOUT && (*it)->connections[i].getResponseString().empty())
+					if (CONNECTION_TIMEOUT > 0 && a - b > CONNECTION_TIMEOUT)
 					{
-//						std::cerr << "haven't done shit on this connection for " << CONNECTION_TIMEOUT << std::endl;
+						std::cerr << "trying to read from connection I'm about to close" << std::endl;
+
+						errno = 0;
+						int recvret = recv((*it)->connections[i].getAcceptFd(), NULL, 1, MSG_PEEK | MSG_DONTWAIT);
+						std::cerr << "errno is " << errno << " " << strerror(errno) << std::endl;
+						std::cerr << "recvret is " << recvret << std::endl;
+
 						std::cerr << "closing connection" << std::endl;
 						std::cerr << "connection nr " << i << ", bufferlen is " << (*it)->connections[i].getBuffer().length() << " left in buffer is\n" << (*it)->connections[i].getBuffer() << std::endl;
 						if (!(*it)->connections[i].getBuffer().empty())
@@ -116,23 +122,26 @@ void	serverCluster::startListening()
 				if ((*it)->acpt() == 1)
 					break;
 			}
+			static int connectioncounter = 0;
 			for (int i = 0; i < NR_OF_CONNECTIONS; i++)
 			{
-				if ((*it)->connections[i].getAcceptFd() != -1) // er moet van gelezen of naar geschreven worden
+				if ((*it)->connections[connectioncounter].getAcceptFd() != -1) // er moet van gelezen of naar geschreven worden
 				{
-					fd = (*it)->connections[i].getAcceptFd();
+					fd = (*it)->connections[connectioncounter].getAcceptFd();
 					if (FD_ISSET(fd, &readSet))
 					{
-						(*it)->connections[i].startReading(); // start reading
+						(*it)->connections[connectioncounter].startReading(); // start reading
 						break;
 					}
 					if (FD_ISSET(fd, &writeSet))
 					{
-						(*it)->generateResponse(i);
-						(*it)->connections[i].sendData((*it)->_bodylen); // start writing
+						(*it)->generateResponse(connectioncounter);
+						(*it)->connections[connectioncounter].sendData((*it)->_bodylen); // start writing
 						break;
 					}
 				}
+				connectioncounter++;
+				connectioncounter %= NR_OF_CONNECTIONS;
 			}
 			it++;
 		}

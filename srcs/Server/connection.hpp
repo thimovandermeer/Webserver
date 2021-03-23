@@ -12,8 +12,7 @@
 
 class connection {
 private:
-	unsigned long	_timeLastRead;
-	unsigned long	_timeFirstRead;
+	unsigned long	_timeLastContact;
 	long			_acceptFd;
 	std::string		_acceptBuffer;
 	bool			_hasFullRequest;

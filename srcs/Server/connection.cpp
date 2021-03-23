@@ -1,6 +1,6 @@
 #include "connection.hpp"
 
-connection::connection() : _timeLastRead(0), _timeFirstRead(0),
+connection::connection() : _timeLastContact(0),
 						   _acceptFd(-1), _hasFullRequest(false),
 						   _bodyBytesSent(0), _headerSent(false)
 {}
@@ -17,7 +17,7 @@ connection::connection(const connection &original)
 
 connection &connection::operator=(const connection &original)
 {
-	this->_timeLastRead = original._timeLastRead;
+	this->_timeLastContact = original._timeLastContact;
 	this->_acceptFd = original._acceptFd;
 	this->_acceptBuffer = original._acceptBuffer;
 	this->_hasFullRequest = original._hasFullRequest;
@@ -26,7 +26,7 @@ connection &connection::operator=(const connection &original)
 
 void	connection::setTimeLastRead(const unsigned long &time)
 {
-	this->_timeLastRead = time;
+	this->_timeLastContact = time;
 }
 
 void	connection::setFd(const long &fd)
@@ -46,7 +46,7 @@ void	connection::setResponseString(const std::string &resp)
 
 const unsigned long&	connection::getTimeLastRead() const
 {
-	return (this->_timeLastRead);
+	return (this->_timeLastContact);
 }
 
 const long&			connection::getAcceptFd() const
@@ -76,20 +76,17 @@ void	connection::resetConnection()
 	this->_bodyBytesSent = 0;
 	this->_headerSent = false;
 	this->_responseString.clear();
-	this->_timeFirstRead = getTime();
 }
 
 void	connection::closeConnection()
 {
 	close(this->_acceptFd);
 	this->_acceptFd = -1;
-	this->_timeLastRead = 0;
+	this->_timeLastContact = 0;
 }
 
 bool	connection::doINeedToFuckingCloseThisShitIDFK()
 {
-	char buf[1];
-	buf[0] = 0;
 	if (recv(this->_acceptFd, NULL, 1, MSG_PEEK | MSG_DONTWAIT) == 0)
 	{
 		this->resetConnection();
@@ -122,16 +119,19 @@ void	connection::sendData(const size_t bodylen)
 	{
 		this->sendChunked(bodylen, headerlen);
 	}
+	this->_timeLastContact = getTime();
 //	std::cerr << "done sending" << std::endl;
 }
 
 void	connection::sendChunked(const size_t bodylen, const size_t headerlen)
 {
+	size_t ret = 0;
 	if (!this->_headerSent)
 	{
 		std::string headr = this->_responseString.substr(0, headerlen);
-		if (send(_acceptFd, headr.c_str(), headr.length(), 0) == -1)
-			std::cerr << "send error" << std::endl;
+		ret = send(_acceptFd, headr.c_str(), headr.length(), 0);
+		if (ret != headerlen)
+			std::cerr << "ret = " << ret << " send error" << std::endl;
 		this->_headerSent = true;
 		return;
 	}
@@ -145,15 +145,17 @@ void	connection::sendChunked(const size_t bodylen, const size_t headerlen)
 		chunk += "\r\n";
 		chunk.append(this->_responseString, headerlen + this->_bodyBytesSent, bytesToSend);
 		chunk += "\r\n";
-		if (send(_acceptFd, chunk.c_str(), chunk.length(), 0) == -1)
+		ret = send(_acceptFd, chunk.c_str(), chunk.length(), 0);
+		if (ret != chunk.length())
 			std::cerr << "send error" << std::endl;
 		this->_bodyBytesSent += bytesToSend;
 	}
 	else
 	{
 		std::string end("0\r\n\r\n");
-		if (send(_acceptFd, end.c_str(), 5, 0) == -1)
-			std::cerr << "send error" << std::endl;
+		ret = send(_acceptFd, end.c_str(), 5, 0);
+		if (ret != 5)
+			std::cerr << "ret = " << ret << " send error" << std::endl;
 		this->resetConnection();
 	}
 }
@@ -185,9 +187,7 @@ void	connection::startReading()
 	try
 	{
 		receivedRequest = this->receive();
-		this->_timeLastRead = getTime();
-		if (this->_acceptBuffer.empty())
-			this->_timeFirstRead = this->_timeLastRead;
+		this->_timeLastContact = getTime();
 		this->_acceptBuffer += receivedRequest;
 	}
 	catch (std::exception &e)

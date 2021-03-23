@@ -142,7 +142,17 @@ std::string	getPath::createPath()
 		return ("");
 	}
 	if(_req.getMethod().compare("POST") == 0 &&  _loc->getCgiPath().empty())
-		_filePath = _rootDir + "Download1";
+	{
+		if (!_loc->getRoot().empty()) // location has no own root, so we use the server root
+			_rootDir = _loc->getRoot();
+		else
+			_rootDir = _serv.getRoot();
+		static int nr = 0;
+		std::stringstream ss;
+		ss << _rootDir << "Download_" << nr;
+		_filePath = ss.str();
+		nr++;
+	}
 	else
 		locationExists();
 	_resp.setCurrentLoc(_loc);
