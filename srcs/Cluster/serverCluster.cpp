@@ -68,7 +68,7 @@ void	serverCluster::startListening()
 
 		FD_ZERO(&writeSet);
 		FD_ZERO(&readSet);
-		memcpy(&readSet, &this->readFds, sizeof (this->readFds));
+		readSet = this->readFds;
 		while (it != this->_servers.end())
 		{
 			for (int i = 0; i < NR_OF_CONNECTIONS; i++)
@@ -81,7 +81,9 @@ void	serverCluster::startListening()
 					unsigned long b = (*it)->connections[i].getTimeLastRead();
 					if (CONNECTION_TIMEOUT > 0 && a - b > CONNECTION_TIMEOUT && (*it)->connections[i].getResponseString().empty())
 					{
+//						std::cerr << "haven't done shit on this connection for " << CONNECTION_TIMEOUT << std::endl;
 						std::cerr << "closing connection" << std::endl;
+						std::cerr << "connection nr " << i << ", bufferlen is " << (*it)->connections[i].getBuffer().length() << " left in buffer is\n" << (*it)->connections[i].getBuffer() << std::endl;
 						if (!(*it)->connections[i].getBuffer().empty())
 						{
 							(*it)->generateResponse(i);
@@ -100,7 +102,6 @@ void	serverCluster::startListening()
 			}
 			it++;
 		}
-//		std::cout << "waiting for connection.." << std::endl;
 		struct timeval timeout;
 		timeout.tv_sec = SELECT_TIMEOUT;
 		timeout.tv_usec = 0;
@@ -108,10 +109,9 @@ void	serverCluster::startListening()
 		it = this->_servers.begin();
 		while (it != this->_servers.end() && ret) // gebeurt per server
 		{
-//			std::cout << "Still looping" << std::endl;
 			long fd;
 			fd = (*it)->getSocketFd(); // check of nieuwe verbinding op socket
-			if (readSet.fds_bits[fd / 64] & (long)(1UL << fd % 64))
+			if (FD_ISSET(fd, &readSet))
 			{
 				if ((*it)->acpt() == 1)
 					break;
@@ -121,12 +121,12 @@ void	serverCluster::startListening()
 				if ((*it)->connections[i].getAcceptFd() != -1) // er moet van gelezen of naar geschreven worden
 				{
 					fd = (*it)->connections[i].getAcceptFd();
-					if (readSet.fds_bits[fd / 64] & (long)(1UL << fd % 64))
+					if (FD_ISSET(fd, &readSet))
 					{
 						(*it)->connections[i].startReading(); // start reading
 						break;
 					}
-					if (writeSet.fds_bits[fd / 64] & (long)(1UL << fd % 64))
+					if (FD_ISSET(fd, &writeSet))
 					{
 						(*it)->generateResponse(i);
 						(*it)->connections[i].sendData((*it)->_bodylen); // start writing

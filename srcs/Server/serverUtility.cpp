@@ -73,8 +73,8 @@ void server::generateResponse(int index)
 	if (!this->connections[index].getResponseString().empty())
 		return;
 
-//	if (!(nr % 100))
-	std::cout << "handling request nr " << nr << std::endl;
+	if (!(nr % 100))
+		std::cout << "handling request nr " << nr << std::endl;
 
 	if (PRINTLOG)
 	{

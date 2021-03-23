@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(webserv)
 
 set(CMAKE_CXX_STANDARD 98)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -g3 -Werror -Wextra -fsanitize=address")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -Wextra")
 #^^^ these are the compilation flags for cmake ^^^ can add '-fsanitize=address' for debugging
 set(CMAKE_LINKER_FLAGS)
 
@@ -43,11 +43,12 @@ add_executable(
 		# Utils
 		srcs/Utils/utils.cpp
 		srcs/Utils/utils.hpp
+		srcs/Utils/defines.hpp
 		srcs/Utils/Base64.cpp
 		srcs/Utils/Base64.hpp
 
 		# main
 		srcs/webserv.cpp
 		srcs/webserv.hpp
-		srcs/Utils/defines.hpp)
+		)
 set_target_properties(webserv PROPERTIES LINKER_LANGUAGE CXX CXX_STANDARD 98)

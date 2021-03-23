@@ -170,7 +170,6 @@ std::string	connection::receive()
 		std::cerr << "recv error" << std::endl;
 		this->resetConnection();
 		this->closeConnection();
-//		throw syscallErrorException();
 	}
 	if (ret == 0)
 	{
@@ -201,7 +200,6 @@ void	connection::startReading()
 	else
 		return;
 }
-
 
 bool connection::isFullRequest() const
 {

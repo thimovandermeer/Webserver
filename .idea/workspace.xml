@@ -15,13 +15,18 @@
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:personal" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
     </expand>
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/main" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/Connection_Refused" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
@@ -36,13 +41,15 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="idek anymore">
+    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="fixed first argument of select and added extra check for end of request">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Download1" beforeDir="false" afterPath="$PROJECT_DIR$/Download1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Download1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Cluster/serverCluster.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Cluster/serverCluster.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Server/connection.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/connection.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Utils/defines.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Utils/defines.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -200,7 +207,9 @@
       <workItem from="1615914587826" duration="1544000" />
       <workItem from="1615974911188" duration="6501000" />
       <workItem from="1616396995662" duration="2607000" />
-      <workItem from="1616404142821" duration="13208000" />
+      <workItem from="1616404142821" duration="13443000" />
+      <workItem from="1616492656982" duration="1698000" />
+      <workItem from="1616494518452" duration="3717000" />
     </task>
     <task id="LOCAL-00003" summary="nearly done all set functions of responseheader">
       <created>1611650661666</created>
@@ -454,7 +463,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616427465642</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="fixed first argument of select and added extra check for end of request">
+      <created>1616438250125</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1616438250125</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -474,7 +490,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/main" />
+                        <option value="origin/Connection_Refused" />
                       </list>
                     </value>
                   </entry>
@@ -539,7 +555,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="edited CGI in location to only have path" />
     <MESSAGE value="fixed error page, added search for file extension" />
     <MESSAGE value="messed around with reading" />
     <MESSAGE value="please work" />
@@ -564,7 +579,8 @@
     <MESSAGE value="keeping connections open when done sending, fixing the issue of limited socket connections on macOS" />
     <MESSAGE value="moved defines to separate header" />
     <MESSAGE value="idek anymore" />
-    <option name="LAST_COMMIT_MESSAGE" value="idek anymore" />
+    <MESSAGE value="fixed first argument of select and added extra check for end of request" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed first argument of select and added extra check for end of request" />
   </component>
   <component name="WindowStateProjectService">
     <state x="880" y="357" key="#New_File_Extensions" timestamp="1616416242181">
@@ -583,46 +599,46 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="89" y="65" width="2360" height="1137" key="DiffContextDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1616404625901" />
-    <state width="2346" height="455" key="GridCell.Tab.0.bottom" timestamp="1616437811159">
+    <state width="2518" height="376" key="GridCell.Tab.0.bottom" timestamp="1616501297318">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2346" height="455" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1616437811159" />
-    <state width="2346" height="455" key="GridCell.Tab.0.center" timestamp="1616437811158">
+    <state width="2518" height="376" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1616501297318" />
+    <state width="2518" height="376" key="GridCell.Tab.0.center" timestamp="1616501297317">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2346" height="455" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1616437811158" />
-    <state width="2346" height="455" key="GridCell.Tab.0.left" timestamp="1616437811157">
+    <state width="2518" height="376" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1616501297317" />
+    <state width="2518" height="376" key="GridCell.Tab.0.left" timestamp="1616501297316">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2346" height="455" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1616437811157" />
-    <state width="2346" height="455" key="GridCell.Tab.0.right" timestamp="1616437811158">
+    <state width="2518" height="376" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1616501297316" />
+    <state width="2518" height="376" key="GridCell.Tab.0.right" timestamp="1616501297318">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2346" height="455" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1616437811158" />
-    <state width="2346" height="455" key="GridCell.Tab.1.bottom" timestamp="1616437811160">
+    <state width="2518" height="376" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1616501297318" />
+    <state width="2518" height="376" key="GridCell.Tab.1.bottom" timestamp="1616501297320">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2346" height="455" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1616437811160" />
-    <state width="2346" height="455" key="GridCell.Tab.1.center" timestamp="1616437811159">
+    <state width="2518" height="376" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1616501297320" />
+    <state width="2518" height="376" key="GridCell.Tab.1.center" timestamp="1616501297319">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2346" height="455" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1616437811159" />
-    <state width="2346" height="455" key="GridCell.Tab.1.left" timestamp="1616437811159">
+    <state width="2518" height="376" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1616501297319" />
+    <state width="2518" height="376" key="GridCell.Tab.1.left" timestamp="1616501297319">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2346" height="455" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1616437811159" />
-    <state width="2346" height="455" key="GridCell.Tab.1.right" timestamp="1616437811160">
+    <state width="2518" height="376" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1616501297319" />
+    <state width="2518" height="376" key="GridCell.Tab.1.right" timestamp="1616501297319">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2346" height="455" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1616437811160" />
+    <state width="2518" height="376" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1616501297319" />
     <state x="789" y="330" key="SettingsEditor" timestamp="1616403984644">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="789" y="330" key="SettingsEditor/0.23.2560.1337@0.23.2560.1337" timestamp="1616403984644" />
-    <state x="880" y="431" key="Vcs.Push.Dialog.v2" timestamp="1616418572807">
+    <state x="880" y="431" key="Vcs.Push.Dialog.v2" timestamp="1616438251351">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="880" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1616418572807" />
+    <state x="880" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1616438251351" />
     <state x="1065" y="432" key="VcsDiffUtil.ChangesDialog" timestamp="1616404281246">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
