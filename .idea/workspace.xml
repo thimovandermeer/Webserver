@@ -41,15 +41,15 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="minor FDSET syntax changes in servercluster">
+    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="yes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html_pages/Downloads/file_should_exist_after" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html_pages/Downloads/hoiikbenjonas.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Response/getPath.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/getPath.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Server/connection.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/connection.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/connection.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/connection.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Utils/defines.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Utils/defines.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -92,7 +92,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/cgi-bin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
@@ -209,7 +209,15 @@
       <workItem from="1616396995662" duration="2607000" />
       <workItem from="1616404142821" duration="13443000" />
       <workItem from="1616492656982" duration="1698000" />
-      <workItem from="1616494518452" duration="9296000" />
+      <workItem from="1616494518452" duration="9997000" />
+      <workItem from="1616578786112" duration="6575000" />
+      <workItem from="1616598866023" duration="190000" />
+      <workItem from="1616997801427" duration="891000" />
+      <workItem from="1617005303412" duration="654000" />
+      <workItem from="1617026500035" duration="114000" />
+      <workItem from="1617175842926" duration="180000" />
+      <workItem from="1617194378861" duration="2607000" />
+      <workItem from="1617611445453" duration="3109000" />
     </task>
     <task id="LOCAL-00003" summary="nearly done all set functions of responseheader">
       <created>1611650661666</created>
@@ -477,7 +485,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616501676937</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="yes">
+      <created>1616510018902</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1616510018902</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -562,7 +577,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="messed around with reading" />
     <MESSAGE value="please work" />
     <MESSAGE value="again" />
     <MESSAGE value="added auth_basic and auth_basic_user_file to location vars" />
@@ -587,7 +601,8 @@
     <MESSAGE value="idek anymore" />
     <MESSAGE value="fixed first argument of select and added extra check for end of request" />
     <MESSAGE value="minor FDSET syntax changes in servercluster" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor FDSET syntax changes in servercluster" />
+    <MESSAGE value="yes" />
+    <option name="LAST_COMMIT_MESSAGE" value="yes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="880" y="357" key="#New_File_Extensions" timestamp="1616416242181">
@@ -606,50 +621,54 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="89" y="65" width="2360" height="1137" key="DiffContextDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1616404625901" />
-    <state width="2518" height="394" key="GridCell.Tab.0.bottom" timestamp="1616507141276">
+    <state width="2092" height="546" key="GridCell.Tab.0.bottom" timestamp="1617613450868">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="394" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1616507141276" />
-    <state width="2518" height="394" key="GridCell.Tab.0.center" timestamp="1616507141276">
+    <state width="2092" height="546" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1617613450868" />
+    <state width="2092" height="546" key="GridCell.Tab.0.center" timestamp="1617613450867">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="394" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1616507141276" />
-    <state width="2518" height="394" key="GridCell.Tab.0.left" timestamp="1616507141276">
+    <state width="2092" height="546" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1617613450867" />
+    <state width="2092" height="546" key="GridCell.Tab.0.left" timestamp="1617613450866">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="394" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1616507141276" />
-    <state width="2518" height="394" key="GridCell.Tab.0.right" timestamp="1616507141276">
+    <state width="2092" height="546" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1617613450866" />
+    <state width="2092" height="546" key="GridCell.Tab.0.right" timestamp="1617613450868">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="394" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1616507141276" />
-    <state width="2518" height="394" key="GridCell.Tab.1.bottom" timestamp="1616506200912">
+    <state width="2092" height="546" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1617613450868" />
+    <state width="2092" height="546" key="GridCell.Tab.1.bottom" timestamp="1617613450869">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="394" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1616506200912" />
-    <state width="2518" height="394" key="GridCell.Tab.1.center" timestamp="1616506200911">
+    <state width="2092" height="546" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1617613450869" />
+    <state width="2092" height="546" key="GridCell.Tab.1.center" timestamp="1617613450869">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="394" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1616506200911" />
-    <state width="2518" height="394" key="GridCell.Tab.1.left" timestamp="1616506200911">
+    <state width="2092" height="546" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1617613450869" />
+    <state width="2092" height="546" key="GridCell.Tab.1.left" timestamp="1617613450868">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="394" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1616506200911" />
-    <state width="2518" height="394" key="GridCell.Tab.1.right" timestamp="1616506200912">
+    <state width="2092" height="546" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1617613450868" />
+    <state width="2092" height="546" key="GridCell.Tab.1.right" timestamp="1617613450869">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="394" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1616506200912" />
-    <state x="789" y="330" key="SettingsEditor" timestamp="1616403984644">
+    <state width="2092" height="546" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1617613450869" />
+    <state x="789" y="330" key="SettingsEditor" timestamp="1617005029140">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="789" y="330" key="SettingsEditor/0.23.2560.1337@0.23.2560.1337" timestamp="1616403984644" />
-    <state x="880" y="431" key="Vcs.Push.Dialog.v2" timestamp="1616501678653">
+    <state x="789" y="330" key="SettingsEditor/0.23.2560.1337@0.23.2560.1337" timestamp="1617005029140" />
+    <state x="880" y="431" key="Vcs.Push.Dialog.v2" timestamp="1616510020143">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="880" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1616501678653" />
+    <state x="880" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1616510020143" />
     <state x="1065" y="432" key="VcsDiffUtil.ChangesDialog" timestamp="1616404281246">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="1065" y="432" key="VcsDiffUtil.ChangesDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1616404281246" />
+    <state width="1280" height="668" key="XDebugger.FullValuePopup" timestamp="1616584070161">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="1280" height="668" key="XDebugger.FullValuePopup/0.23.2560.1337@0.23.2560.1337" timestamp="1616584070161" />
     <state x="1064" y="484" key="refactoring.ChangeSignatureDialog" timestamp="1616408211180">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -658,5 +677,9 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="945" y="326" key="run.anything.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1616419605110" />
+    <state x="733" y="328" key="search.everywhere.popup" timestamp="1617005161042">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="733" y="328" key="search.everywhere.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1617005161042" />
   </component>
 </project>

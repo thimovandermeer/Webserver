@@ -81,15 +81,6 @@ void	serverCluster::startListening()
 					unsigned long b = (*it)->connections[i].getTimeLastRead();
 					if (CONNECTION_TIMEOUT > 0 && a - b > CONNECTION_TIMEOUT)
 					{
-						std::cerr << "trying to read from connection I'm about to close" << std::endl;
-
-						errno = 0;
-						int recvret = recv((*it)->connections[i].getAcceptFd(), NULL, 1, MSG_PEEK | MSG_DONTWAIT);
-						std::cerr << "errno is " << errno << " " << strerror(errno) << std::endl;
-						std::cerr << "recvret is " << recvret << std::endl;
-
-						std::cerr << "closing connection" << std::endl;
-						std::cerr << "connection nr " << i << ", bufferlen is " << (*it)->connections[i].getBuffer().length() << " left in buffer is\n" << (*it)->connections[i].getBuffer() << std::endl;
 						if (!(*it)->connections[i].getBuffer().empty())
 						{
 							(*it)->generateResponse(i);

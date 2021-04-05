@@ -114,7 +114,10 @@ void getPath::checkPut()
 	std::vector<std::string>::iterator it; // if empty, it will never loop and (it == indices.end()) will be true
 	for (it = indices.begin(); it < indices.end(); it++) // test from front to back to find the first existing index page at requested root
 	{
-		this->_filePath = this->_rootDir + this->_uri + (*it);
+		if (this->_uri != "/")
+			this->_filePath = this->_rootDir + this->_uri + (*it);
+		else
+			this->_filePath = this->_rootDir + (*it);
 		if (stat(this->_filePath.c_str(), &statBuf) == 0)
 			break;
 	}

@@ -80,6 +80,8 @@ void	connection::resetConnection()
 
 void	connection::closeConnection()
 {
+	std::cerr << "closing connection" << std::endl;
+	std::cerr << "bufferlen is " << this->_acceptBuffer.length() << " left in buffer is\n" << this->_acceptBuffer << std::endl;
 	close(this->_acceptFd);
 	this->_acceptFd = -1;
 	this->_timeLastContact = 0;
@@ -169,6 +171,7 @@ std::string	connection::receive()
 	ret = recv(this->_acceptFd, buffer, MAXREADSIZE, 0);
 	if (ret == -1)
 	{
+
 		std::cerr << "recv error" << std::endl;
 		this->resetConnection();
 		this->closeConnection();
@@ -197,8 +200,6 @@ void	connection::startReading()
 
 	if (this->isFullRequest())
 		this->_hasFullRequest = true;
-	else
-		return;
 }
 
 bool connection::isFullRequest() const
