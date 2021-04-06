@@ -43,13 +43,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="yes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/flags.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Response/getPath.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/getPath.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/connection.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/connection.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/CGI/CGI.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/CGI/CGI.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Utils/defines.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Utils/defines.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -118,15 +112,15 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.webserv">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Test" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv" TEST_CLASS="[List]" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="webserv" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="&quot;./test_mac/mac.conf&quot;" REDIRECT_INPUT="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv">
@@ -218,6 +212,9 @@
       <workItem from="1617175842926" duration="180000" />
       <workItem from="1617194378861" duration="2607000" />
       <workItem from="1617611445453" duration="3109000" />
+      <workItem from="1617620352532" duration="1908000" />
+      <workItem from="1617629709960" duration="3318000" />
+      <workItem from="1617706471800" duration="1004000" />
     </task>
     <task id="LOCAL-00003" summary="nearly done all set functions of responseheader">
       <created>1611650661666</created>
@@ -621,38 +618,38 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="89" y="65" width="2360" height="1137" key="DiffContextDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1616404625901" />
-    <state width="2092" height="546" key="GridCell.Tab.0.bottom" timestamp="1617613450868">
+    <state width="2092" height="394" key="GridCell.Tab.0.bottom" timestamp="1617707683857">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2092" height="546" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1617613450868" />
-    <state width="2092" height="546" key="GridCell.Tab.0.center" timestamp="1617613450867">
+    <state width="2092" height="394" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1617707683857" />
+    <state width="2092" height="394" key="GridCell.Tab.0.center" timestamp="1617707683856">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2092" height="546" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1617613450867" />
-    <state width="2092" height="546" key="GridCell.Tab.0.left" timestamp="1617613450866">
+    <state width="2092" height="394" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1617707683856" />
+    <state width="2092" height="394" key="GridCell.Tab.0.left" timestamp="1617707683855">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2092" height="546" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1617613450866" />
-    <state width="2092" height="546" key="GridCell.Tab.0.right" timestamp="1617613450868">
+    <state width="2092" height="394" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1617707683855" />
+    <state width="2092" height="394" key="GridCell.Tab.0.right" timestamp="1617707683856">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2092" height="546" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1617613450868" />
-    <state width="2092" height="546" key="GridCell.Tab.1.bottom" timestamp="1617613450869">
+    <state width="2092" height="394" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1617707683856" />
+    <state width="2092" height="394" key="GridCell.Tab.1.bottom" timestamp="1617707683859">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2092" height="546" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1617613450869" />
-    <state width="2092" height="546" key="GridCell.Tab.1.center" timestamp="1617613450869">
+    <state width="2092" height="394" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1617707683859" />
+    <state width="2092" height="394" key="GridCell.Tab.1.center" timestamp="1617707683858">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2092" height="546" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1617613450869" />
-    <state width="2092" height="546" key="GridCell.Tab.1.left" timestamp="1617613450868">
+    <state width="2092" height="394" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1617707683858" />
+    <state width="2092" height="394" key="GridCell.Tab.1.left" timestamp="1617707683857">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2092" height="546" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1617613450868" />
-    <state width="2092" height="546" key="GridCell.Tab.1.right" timestamp="1617613450869">
+    <state width="2092" height="394" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1617707683857" />
+    <state width="2092" height="394" key="GridCell.Tab.1.right" timestamp="1617707683858">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2092" height="546" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1617613450869" />
+    <state width="2092" height="394" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1617707683858" />
     <state x="789" y="330" key="SettingsEditor" timestamp="1617005029140">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -677,9 +674,9 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="945" y="326" key="run.anything.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1616419605110" />
-    <state x="733" y="328" key="search.everywhere.popup" timestamp="1617005161042">
+    <state x="733" y="328" width="670" height="676" key="search.everywhere.popup" timestamp="1617622323138">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="733" y="328" key="search.everywhere.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1617005161042" />
+    <state x="733" y="328" width="670" height="676" key="search.everywhere.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1617622323138" />
   </component>
 </project>
