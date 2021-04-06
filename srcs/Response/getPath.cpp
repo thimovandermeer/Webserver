@@ -92,7 +92,7 @@ void	getPath::locationExists()
 		_resp.setCurrentLoc(_loc); // gaat dit goed is dit nu niet een shallow copy ?
 		return ;
 	}
-	if (_needIndex && _req.getMethod().compare("PUT") != 0)
+	if (_needIndex && _req.getMethod().compare("PUT") != 0 && this->_loc->getAutoindex())
 		checkPut();
 	else
 	{
