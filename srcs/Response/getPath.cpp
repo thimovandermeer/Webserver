@@ -7,7 +7,7 @@ getPath::getPath(server &serv, Request &req, Response &resp) :
 	_req(req),
 	_resp(resp)
 {
-};
+}
 
 getPath::~getPath()
 {

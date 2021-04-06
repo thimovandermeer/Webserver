@@ -20,6 +20,7 @@ Response::Response(Request &req, server &serv) :
 
 	_path = path.createPath();
 	_CGI = CGI(_path, req, serv);
+//    _CGI = CGI(_CGI);
     _errorMessage[204] = "No Content";
     _errorMessage[400] = "Bad Request";
     _errorMessage[403] = "Forbidden";

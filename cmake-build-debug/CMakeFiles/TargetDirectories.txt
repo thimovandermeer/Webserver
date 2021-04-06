@@ -1,3 +1,3 @@
-/Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/jbennink/Documents/Projects/webserv_new/cmake-build-debug/CMakeFiles/webserv.dir
+/Users/merelmourik/Desktop/trans_git/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/merelmourik/Desktop/trans_git/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/merelmourik/Desktop/trans_git/cmake-build-debug/CMakeFiles/webserv.dir

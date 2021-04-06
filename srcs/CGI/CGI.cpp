@@ -27,19 +27,10 @@ CGI::~CGI()
 #include <sys/time.h>
 std::string CGI::executeGCI(std::string &body)
 {
-//	struct timeval tim;
-//	gettimeofday(&tim, NULL);
-//	size_t starttm = tim.tv_sec * 1000 + tim.tv_usec / 1000;
-//	gettimeofday(&tim, NULL);
-//	size_t currtm = (tim.tv_sec * 1000 + tim.tv_usec / 1000) - starttm;
-//	std::cerr << currtm << " starting cgi" << std::endl;
 	_convertEnv();
 	int fileIn = open("/tmp/fuckyoupeerin.txt", O_CREAT | O_TRUNC | O_RDWR, S_IRWXU);
 	int asdf = write(fileIn, body.c_str(), body.length());
 	close(fileIn);
-//	gettimeofday(&tim, NULL);
-//	currtm = (tim.tv_sec * 1000 + tim.tv_usec / 1000) - starttm;
-//	std::cerr << currtm << " done creating file" << std::endl;
 	if (asdf == -1){;}
 	int fileOut;
 	_pid = fork();
@@ -60,9 +51,6 @@ std::string CGI::executeGCI(std::string &body)
 		realArgv[0] = executable.c_str();
 		realArgv[1] = NULL;
 		char *const *argv = const_cast<char *const *>(realArgv);
-//		gettimeofday(&tim, NULL);
-//		currtm = (tim.tv_sec * 1000 + tim.tv_usec / 1000) - starttm;
-//		std::cerr << currtm << " execve" << std::endl;
 		int ret = execve(argv[0], reinterpret_cast<char* const*>(argv), _env);
 		if (ret < 0)
 			exit(1);
@@ -70,10 +58,7 @@ std::string CGI::executeGCI(std::string &body)
 	std::string ret;
 	int status;
 	waitpid(0, &status, 0);
-//	std::ifstream file;
-//	gettimeofday(&tim, NULL);
-//	currtm = (tim.tv_sec * 1000 + tim.tv_usec / 1000) - starttm;
-//	std::cerr << currtm << " before reading cgi" << std::endl;
+	// deleten?
 	int fd = open("/tmp/fuckyoupeerout.txt", O_RDONLY);
 	char buff[MB];
 	int readret = 1;
@@ -84,12 +69,6 @@ std::string CGI::executeGCI(std::string &body)
 		ret += buff;
 	}
 	close(fd);
-//	file.open("/tmp/fuckyoupeerout.txt", std::ifstream::in);
-//	ret.assign((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
-//	file.close();
-//	gettimeofday(&tim, NULL);
-//	currtm = (tim.tv_sec * 1000 + tim.tv_usec / 1000) - starttm;
-//	std::cerr << currtm << " done with cgi" << std::endl;
 	return ret;
 }
 
