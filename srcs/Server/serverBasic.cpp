@@ -22,14 +22,6 @@ server::server() : _portNr(0), _maxBodySize(1000000), _autoindex(false), _errorP
 	this->_typeFunctionMap.insert(std::make_pair("host", &server::setHost));
 	this->_typeFunctionMap.insert(std::make_pair("server_name", &server::setServerNames));
 	this->_typeFunctionMap.insert(std::make_pair("index", &server::setIndices));
-//	for (int i = 0; i < NR_OF_CONNECTIONS; i++)
-//	{
-//		this->cnctns[i]();
-//		this->connections[i].acceptFd = -1;
-//		this->connections[i].hasFullRequest = false;
-//		this->connections[i].timeLastRead = 0;
-//	}
-
 }
 
 server::server(server const &original) : _portNr(), _maxBodySize(), _autoindex()
@@ -40,8 +32,6 @@ server::server(server const &original) : _portNr(), _maxBodySize(), _autoindex()
 server::~server()
 {
 	close(this->_socketFd);
-//	for (int i = 0; i < NR_OF_CONNECTIONS; i++)
-//		close(this->connections[i].acceptFd);
 	std::vector<location*>::iterator it;
 	it = this->_locations.begin();
 	while (!this->_locations.empty() && it != this->_locations.end())
@@ -65,8 +55,6 @@ server&	server::operator=(server const &original)
 	this->_locations = original._locations;
 	this->_socketFd = original._socketFd;
 	this->_addr = original._addr;
-//	for (int i = 0; i < NR_OF_CONNECTIONS; i++)
-//		this->connections[i] = original.connections[i];
 	return (*this);
 }
 
@@ -81,7 +69,7 @@ void	server::setMaxBodySize(std::string &size)
 	std::stringstream	ss(size);
 	ss >> this->_maxBodySize;
 	if (this->_maxBodySize == 0) // unlimited
-		this->_maxBodySize = (ULLONG_MAX); // this is 18.45 million terrabyte, I think we're ok with 'unlimited'
+		this->_maxBodySize = (ULONG_MAX); // this is 18.45 million terrabyte, I think we're ok with 'unlimited'
 }
 
 void	server::setAutoindex(std::string &autoindex)

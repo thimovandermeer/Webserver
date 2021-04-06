@@ -19,8 +19,8 @@ Response::Response(Request &req, server &serv) :
 	getPath path(serv, req, *this);
 
 	_path = path.createPath();
-	_CGI = CGI(_path, req, serv);
-//    _CGI = CGI(_CGI);
+    CGI cgiTemp(_path, req, serv);
+    _CGI = cgiTemp;
     _errorMessage[204] = "No Content";
     _errorMessage[400] = "Bad Request";
     _errorMessage[403] = "Forbidden";
