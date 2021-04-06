@@ -64,8 +64,8 @@ void		location::setMaxBody(const std::string &size)
 	this->_ownBodySize = true;
 	std::stringstream	ss(size);
 	ss >> this->_maxBodySize;
-	if (this->_maxBodySize == 0) // unlimited
-		this->_maxBodySize = (ULONG_MAX); // this is 18.45 million terrabyte, I think we're ok with 'unlimited'
+	if (this->_maxBodySize == 0) 
+		this->_maxBodySize = (ULONG_MAX); 
 }
 
 void	location::setRoot(const std::string &root)
@@ -221,7 +221,6 @@ bool	location::valueCheck() const
 	}
 	if (!ret)
 		return (ret);
-	// can test for more stuff here, don't know what though
 	return (true);
 }
 

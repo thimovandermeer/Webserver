@@ -41,7 +41,7 @@ std::string	trimEndSpaces(std::string line)
 	return (line.substr(i, j + 1));
 }
 
-void	parseError(int lineNr) // not sure if we wanna exit in this case, can figure it out later
+void	parseError(int lineNr) 
 {
 	std::stringstream errStr;
 	errStr << "Parse error on line " << lineNr;

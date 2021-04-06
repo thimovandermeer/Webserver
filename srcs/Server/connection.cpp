@@ -80,8 +80,6 @@ void	connection::resetConnection()
 
 void	connection::closeConnection()
 {
-	std::cerr << "closing connection" << std::endl;
-	std::cerr << "bufferlen is " << this->_acceptBuffer.length() << " left in buffer is\n" << this->_acceptBuffer << std::endl;
 	close(this->_acceptFd);
 	this->_acceptFd = -1;
 	this->_timeLastContact = 0;
@@ -95,15 +93,6 @@ bool	connection::doINeedToFuckingCloseThisShitIDFK()
 		this->closeConnection();
 		return (true);
 	}
-//	signal(SIGPIPE, &connection::sighandler);
-//	if (write(this->_acceptFd, buf, 0) == -1)
-//	{
-//		this->resetConnection();
-//		this->closeConnection();
-//		signal(SIGPIPE, SIG_DFL);
-//		return (true);
-//	}
-//	signal(SIGPIPE, SIG_DFL);
 	return (false);
 }
 
@@ -122,7 +111,6 @@ void	connection::sendData(const size_t bodylen)
 		this->sendChunked(bodylen, headerlen);
 	}
 	this->_timeLastContact = getTime();
-//	std::cerr << "done sending" << std::endl;
 }
 
 void	connection::sendChunked(const size_t bodylen, const size_t headerlen)

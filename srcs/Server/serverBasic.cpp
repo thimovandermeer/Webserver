@@ -12,7 +12,7 @@ const char	*server::syscallErrorException::what() const throw()
 	return ("a syscall has returned an error");
 }
 
-server::server() : _portNr(0), _maxBodySize(1000000), _autoindex(false), _errorPage("default_error_page"), _socketFd(-1) //should change default error page
+server::server() : _portNr(0), _maxBodySize(1000000), _autoindex(false), _errorPage("default_error_page"), _socketFd(-1)
 {
 	this->_typeFunctionMap.insert(std::make_pair("listen", &server::setPort));
 	this->_typeFunctionMap.insert(std::make_pair("client_max_body_size", &server::setMaxBodySize));
@@ -68,8 +68,8 @@ void	server::setMaxBodySize(std::string &size)
 {
 	std::stringstream	ss(size);
 	ss >> this->_maxBodySize;
-	if (this->_maxBodySize == 0) // unlimited
-		this->_maxBodySize = (ULONG_MAX); // this is 18.45 million terrabyte, I think we're ok with 'unlimited'
+	if (this->_maxBodySize == 0) 
+		this->_maxBodySize = (ULONG_MAX); 
 }
 
 void	server::setAutoindex(std::string &autoindex)
@@ -226,8 +226,6 @@ std::ostream&	operator<<(std::ostream &os, const server &serv)
 	os << std::setw(15) << std::left << "errorpage: " << serv.getErrorPage() << std::endl;
 	os << std::setw(15) << std::left << "host: " << serv.getHost() << std::endl;
 	os << std::setw(15) << std::left << "socket fd: " << serv.getSocketFd() << std::endl;
-//	os << std::setw(15) << std::left << "accept fd: " << serv.getConnections() << std::endl;
-
 
 	std::vector<std::string> vc;
 	std::vector<std::string>::iterator it;

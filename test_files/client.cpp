@@ -1,4 +1,3 @@
-// Client side C/C++ program to demonstrate Socket programming
 #include <stdio.h>
 #include <sys/socket.h>
 #include <stdlib.h>
@@ -164,9 +163,6 @@ int		main(void)
 			filename += choose_target();
 		else
 			filename += choose_connect();
-
-		// std::cout << std::endl << "File [" << filename << "] Port " << port << std::endl;
-
 		send(port, filename);
 	}
 

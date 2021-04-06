@@ -86,15 +86,16 @@ std::string		responseHeader::createStatusMessage(int status)
 		return ("Forbidden");
 	else if (status == 404)
 		return ("Not _found");
-	else if (status == 405)         //GET and HEAD mogen deze nooit returnen
+	else if (status == 405)         
 	    return ("Method Not Allowed");
-	    //error 503 toevoegen (wordt genoemd op regel 223
 	else if (status == 401)
 		return ("Unauthorized");
 	else if (status == 413)
 		return ("Payload too large");
+	else if (status == 503)
+		return ("Service unavailable");
 	else
-		return ("Zieke Error in onze code");
+		return ("Unknown error");
 }
 
 #include <cstdlib>
@@ -171,7 +172,7 @@ void responseHeader::setDate()
 	time_t now = time(0);
 	struct tm tm = *gmtime(&now);
 	strftime(buf, sizeof buf, "%a, %d %b %Y %H:%M:%S %Z", &tm);
-	_date = buf; // might cast in to a string lets check later
+	_date = buf; 
 }
 
 void responseHeader::setLastModified(const std::string &path)
@@ -204,7 +205,6 @@ void responseHeader::setServer()
 void responseHeader::setTransferEncoding()
 {
 	_transferEncoding = "Chunked";
-	// with chunked encoding no content-length
 }
 
 void responseHeader::setWwwAuthenticate(int status)
@@ -224,7 +224,7 @@ void responseHeader::setRetryAfter(int status, int number)
 		struct tm tm = *gmtime(&now);
 		tm.tm_hour += 1;
 		strftime(buf, sizeof buf, "%a, %d %b %Y %H:%M:%S %Z", &tm);
-		_retryAfter = buf; // might need to convert it to a string lets see later
+		_retryAfter = buf; 
 	}
 	else if (status / 100 == 3)
 	{

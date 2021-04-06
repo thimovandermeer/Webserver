@@ -1,5 +1,5 @@
-#ifndef WEBSERV_GETPATH_HPP
-# define WEBSERV_GETPATH_HPP
+#ifndef GETPATH_HPP
+# define GETPATH_HPP
 # include "../Request/request.hpp"
 # include "Response.hpp"
 # include "../Server/server.hpp"
@@ -11,7 +11,7 @@ public:
 	virtual ~getPath();
 	getPath &operator=(const getPath &src);
 	std::string createPath();
-// private members
+
 private:
 	server		&_serv;
 	Request		&_req;
@@ -23,18 +23,17 @@ private:
 	size_t		_found;
 	location	*_loc;
 	bool		_needIndex;
-// private functions
-private:
+
 	void		locationExists();
-	location*	findFileExtension();
 	void 		checkPut();
-	void checkFile();
-// getters
+	void 		checkFile();
+	location*	findFileExtension();
+
 public:
 	std::string getFilePath();
 	std::string getRootDir();
-	void	noLocation();
+	void		noLocation();
 
 };
 
-#endif //WEBSERV_GETPATH_HPP
+#endif 

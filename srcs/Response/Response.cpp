@@ -55,7 +55,6 @@ Response	&Response::operator=(const Response &src)
 	_content = src._content;
 	_path = src._path;
 	_contentType = src._contentType;
-//	_CGI = src._CGI;
 	_useCGI = src._useCGI;
 	_status = src._status;
 	_errorMessage = src._errorMessage;
@@ -87,12 +86,12 @@ void Response::setupResponse(Request &req, server &serv) {
 	if(_method == "GET")
 	{
 		if (this->isMethodAllowed())
-			getMethod(); // done
+			getMethod();
 	}
 	else if(_method == "HEAD")
 	{
 		if (this->isMethodAllowed())
-			headMethod(); // done
+			headMethod(); 
 	}
 	else if(_method == "POST")
 	{
@@ -102,7 +101,7 @@ void Response::setupResponse(Request &req, server &serv) {
 	else if(_method == "PUT")
 	{
 		if (this->isMethodAllowed())
-			putMethod(_body); // done
+			putMethod(_body); 
 	}
 	if (this->_status >= 299)
 	{
@@ -146,7 +145,6 @@ void    Response::createErrorPage(std::string *pageData)
 		std::stringstream stat;
 		stat << this->_status;
 		std::string statstr = stat.str();
-//		stat >> statstr;
 		pageData->replace(found, 10, statstr);
 	}
 	found = 1;
@@ -257,7 +255,7 @@ void Response::postMethod(std::string content)
 	file.close();
 	content.clear();
 	responseHeader header(content, _path, _status, _contentType);
-	_response = header.getHeader(_status); // here we got a potential bug
+	_response = header.getHeader(_status); 
 }
 
 void Response::putMethod(std::string const &content)
@@ -268,9 +266,8 @@ void Response::putMethod(std::string const &content)
 	if ((*it) == '/')
 		_path.erase(it);
 	writeContent(content);
-//	content.clear();
 	responseHeader header(_content, _path, _status, _contentType);
-	_response = header.getHeader(_status); // here we got a potential bug
+	_response = header.getHeader(_status); 
 }
 
 void 	Response::writeContent(std::string const &content)
@@ -317,7 +314,7 @@ int					Response::authenticate(Request &req)
 	}
 	catch (std::exception& e) {
 		std::cerr << e.what() << std::endl;
-		std::cerr <<RED "No credentials provided by client" END << std::endl;
+		std::cerr << "No credentials provided by client" END << std::endl;
 	}
 	req._defHeaders["AUTHORIZATION"] = req._defHeaders["AUTHORIZATION"].substr(0, req._defHeaders["AUTHORIZATION"].find_first_of(' '));
 	req._defHeaders["REMOTE-USER"] = username;

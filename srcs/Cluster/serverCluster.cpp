@@ -75,8 +75,6 @@ void	serverCluster::startListening()
 			{
 				if ((*it)->connections[i].getAcceptFd() != -1)
 				{
-//					if ((*it)->connections[i].doINeedToFuckingCloseThisShitIDFK())
-//						continue;
 					unsigned long a = getTime();
 					unsigned long b = (*it)->connections[i].getTimeLastRead();
 					if (CONNECTION_TIMEOUT > 0 && a - b > CONNECTION_TIMEOUT)
@@ -104,10 +102,10 @@ void	serverCluster::startListening()
 		timeout.tv_usec = 0;
 		ret = select(maxFd + 1, &readSet, &writeSet, NULL, &timeout);
 		it = this->_servers.begin();
-		while (it != this->_servers.end() && ret) // gebeurt per server
+		while (it != this->_servers.end() && ret) 
 		{
 			long fd;
-			fd = (*it)->getSocketFd(); // check of nieuwe verbinding op socket
+			fd = (*it)->getSocketFd(); 
 			if (FD_ISSET(fd, &readSet))
 			{
 				if ((*it)->acpt() == 1)
@@ -116,18 +114,18 @@ void	serverCluster::startListening()
 			static int connectioncounter = 0;
 			for (int i = 0; i < NR_OF_CONNECTIONS; i++)
 			{
-				if ((*it)->connections[connectioncounter].getAcceptFd() != -1) // er moet van gelezen of naar geschreven worden
+				if ((*it)->connections[connectioncounter].getAcceptFd() != -1) 
 				{
 					fd = (*it)->connections[connectioncounter].getAcceptFd();
 					if (FD_ISSET(fd, &readSet))
 					{
-						(*it)->connections[connectioncounter].startReading(); // start reading
+						(*it)->connections[connectioncounter].startReading(); 
 						break;
 					}
 					if (FD_ISSET(fd, &writeSet))
 					{
 						(*it)->generateResponse(connectioncounter);
-						(*it)->connections[connectioncounter].sendData((*it)->_bodylen); // start writing
+						(*it)->connections[connectioncounter].sendData((*it)->_bodylen); 
 						break;
 					}
 				}

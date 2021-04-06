@@ -1,7 +1,3 @@
-//
-// Created by Thimo Van der meer on 26/01/2021.
-//
-
 #include <sys/time.h>
 #include <iostream>
 #include <unistd.h>

@@ -13,7 +13,7 @@ void	server::startListening()
 	bzero(&this->_addr, sizeof(this->_addr));
 	this->_addr.sin_family = AF_INET;
 	this->_addr.sin_port = htons(this->_portNr);
-	this->_addr.sin_addr.s_addr = htonl(INADDR_ANY); // this can be the IP address
+	this->_addr.sin_addr.s_addr = htonl(INADDR_ANY);
 
 	int	ret;
 	int options = 1;
@@ -51,18 +51,13 @@ int server::acpt()
 	}
 	if (i == NR_OF_CONNECTIONS)
 	{
-//		std::cerr << "kom ik hier in ?" << std::endl;
 		return (0);
-	} // too many connections, should never happen
+	}
 	this->connections[i].setFd(accept(this->_socketFd, &connectingAddr, &addressLen));
 	if (this->connections[i].getAcceptFd() == -1)
 		std::cerr << "Could not create fd" << std::endl;
 	this->connections[i].setTimeLastRead(getTime());
 	return (1);
-//	this->_acceptFds.push_back((accept(this->_socketFd, &connectingAddr, &addressLen)));
-//	if (*this->_acceptFds.rbegin() == -1)
-//		std::cerr << "Could not create fd" << std::ençdl; // dit zometeen aanpassen naar try catch
-	//	fcntl(this->_acceptFd, F_SETFL, O_NONBLOCK);
 }
 
 #include <sstream>
@@ -72,8 +67,6 @@ void server::generateResponse(int index)
 	static size_t nr = 0;
 	if (!this->connections[index].getResponseString().empty())
 		return;
-
-//	if (!(nr % 1000))
 	std::cout << "handling request nr " << nr << std::endl;
 
 #ifdef PRINTLOG

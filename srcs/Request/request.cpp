@@ -156,12 +156,12 @@ void Request::parseHeaders() {
             return ;
         }
         length = _request.find(":", pos);
-        if (std::isspace(_request[length - 1])){       //spatie voor :
+        if (std::isspace(_request[length - 1])){      
             _status = 400;
             return ;
         }
         header = _request.substr(pos, length-pos);
-        if (std::isspace(_request[length + 1]))     //spatie na :
+        if (std::isspace(_request[length + 1]))   
             pos = length+2;
         else
             pos = length+1;

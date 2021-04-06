@@ -22,14 +22,14 @@ location*	getPath::findFileExtension()
 		if ((*it)->isFileExtension())
 		{
 			std::string	extension = (*it)->getMatch();
-			if (extension == "*.error_image.png") // some hardcoding for our error img...
+			if (extension == "*.error_image.png") 
 				extension.erase(0, 2);
 			else
 				extension.erase(0, 1);
 			size_t len = extension.length();
 			if (_uri.length() >= len && !_uri.compare(_uri.length() - len, len, extension))
 			{
-				if (extension == "error_image.png") // some more hardcoding...
+				if (extension == "error_image.png")
 					_uri = "/error_image.png";
 				return (*it);
 			}
@@ -86,10 +86,10 @@ void	getPath::locationExists()
 	else
 		_rootDir = _serv.getRoot();
 
-	if (!_loc->getCgiPath().empty()) // cgi regel die we gister bedacht hadden?
+	if (!_loc->getCgiPath().empty()) 
 	{
 		_filePath = _rootDir + _loc->getCgiPath();
-		_resp.setCurrentLoc(_loc); // gaat dit goed is dit nu niet een shallow copy ?
+		_resp.setCurrentLoc(_loc); 
 		return ;
 	}
 	if (_needIndex && _req.getMethod().compare("PUT") != 0 && this->_loc->getAutoindex())
@@ -111,8 +111,8 @@ void getPath::checkPut()
 	else
 		indices = this->_serv.getIndices();
 
-	std::vector<std::string>::iterator it; // if empty, it will never loop and (it == indices.end()) will be true
-	for (it = indices.begin(); it < indices.end(); it++) // test from front to back to find the first existing index page at requested root
+	std::vector<std::string>::iterator it; 
+	for (it = indices.begin(); it < indices.end(); it++) 
 	{
 		if (this->_uri != "/")
 			this->_filePath = this->_rootDir + this->_uri + (*it);
@@ -140,7 +140,7 @@ std::string	getPath::createPath()
 		_uri.erase(0, 1);
 	if (!_loc && _req.getMethod().compare("PUT") != 0)
 	{
-		_resp.setStatus(404); // location not _found
+		_resp.setStatus(404); 
 		_resp.setCurrentLoc(_loc);
 		return ("");
 	}
