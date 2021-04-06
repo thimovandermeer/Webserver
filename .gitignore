@@ -133,3 +133,8 @@ htmlfiles/newFile
 
 # Editor-based Rest Client
 .idea/httpRequests
+
+# Files that Jonas added himself, since this file seems auto-generated :)
+html_pages/Downloads/Download*
+html_pages/Downloads/file_should_exist_after
+html_pages/Downloads/multiple_same

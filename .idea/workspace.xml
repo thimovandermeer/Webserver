@@ -26,7 +26,7 @@
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/Connection_Refused" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/main" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
@@ -41,10 +41,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="yes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/CGI/CGI.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/CGI/CGI.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Utils/defines.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Utils/defines.hpp" afterDir="false" />
+    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="changed cgi reading to be faster, changed defines to be bigger">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,7 +212,7 @@
       <workItem from="1617611445453" duration="3109000" />
       <workItem from="1617620352532" duration="1908000" />
       <workItem from="1617629709960" duration="3318000" />
-      <workItem from="1617706471800" duration="1004000" />
+      <workItem from="1617706471800" duration="1221000" />
     </task>
     <task id="LOCAL-00003" summary="nearly done all set functions of responseheader">
       <created>1611650661666</created>
@@ -489,7 +487,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616510018902</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="changed cgi reading to be faster, changed defines to be bigger">
+      <created>1617708104779</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1617708104779</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -509,7 +514,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/Connection_Refused" />
+                        <option value="origin/main" />
                       </list>
                     </value>
                   </entry>
@@ -574,7 +579,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="please work" />
     <MESSAGE value="again" />
     <MESSAGE value="added auth_basic and auth_basic_user_file to location vars" />
     <MESSAGE value="updated assignment operators, split server code in 2 files" />
@@ -599,7 +603,8 @@
     <MESSAGE value="fixed first argument of select and added extra check for end of request" />
     <MESSAGE value="minor FDSET syntax changes in servercluster" />
     <MESSAGE value="yes" />
-    <option name="LAST_COMMIT_MESSAGE" value="yes" />
+    <MESSAGE value="changed cgi reading to be faster, changed defines to be bigger" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed cgi reading to be faster, changed defines to be bigger" />
   </component>
   <component name="WindowStateProjectService">
     <state x="880" y="357" key="#New_File_Extensions" timestamp="1616416242181">
@@ -618,46 +623,46 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="89" y="65" width="2360" height="1137" key="DiffContextDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1616404625901" />
-    <state width="2092" height="394" key="GridCell.Tab.0.bottom" timestamp="1617707683857">
+    <state width="2092" height="394" key="GridCell.Tab.0.bottom" timestamp="1617708153038">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2092" height="394" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1617707683857" />
-    <state width="2092" height="394" key="GridCell.Tab.0.center" timestamp="1617707683856">
+    <state width="2092" height="394" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1617708153038" />
+    <state width="2092" height="394" key="GridCell.Tab.0.center" timestamp="1617708153037">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2092" height="394" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1617707683856" />
-    <state width="2092" height="394" key="GridCell.Tab.0.left" timestamp="1617707683855">
+    <state width="2092" height="394" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1617708153037" />
+    <state width="2092" height="394" key="GridCell.Tab.0.left" timestamp="1617708153037">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2092" height="394" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1617707683855" />
-    <state width="2092" height="394" key="GridCell.Tab.0.right" timestamp="1617707683856">
+    <state width="2092" height="394" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1617708153037" />
+    <state width="2092" height="394" key="GridCell.Tab.0.right" timestamp="1617708153038">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2092" height="394" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1617707683856" />
-    <state width="2092" height="394" key="GridCell.Tab.1.bottom" timestamp="1617707683859">
+    <state width="2092" height="394" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1617708153038" />
+    <state width="2092" height="394" key="GridCell.Tab.1.bottom" timestamp="1617708153039">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2092" height="394" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1617707683859" />
-    <state width="2092" height="394" key="GridCell.Tab.1.center" timestamp="1617707683858">
+    <state width="2092" height="394" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1617708153039" />
+    <state width="2092" height="394" key="GridCell.Tab.1.center" timestamp="1617708153038">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2092" height="394" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1617707683858" />
-    <state width="2092" height="394" key="GridCell.Tab.1.left" timestamp="1617707683857">
+    <state width="2092" height="394" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1617708153038" />
+    <state width="2092" height="394" key="GridCell.Tab.1.left" timestamp="1617708153038">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2092" height="394" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1617707683857" />
-    <state width="2092" height="394" key="GridCell.Tab.1.right" timestamp="1617707683858">
+    <state width="2092" height="394" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1617708153038" />
+    <state width="2092" height="394" key="GridCell.Tab.1.right" timestamp="1617708153039">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2092" height="394" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1617707683858" />
+    <state width="2092" height="394" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1617708153039" />
     <state x="789" y="330" key="SettingsEditor" timestamp="1617005029140">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="789" y="330" key="SettingsEditor/0.23.2560.1337@0.23.2560.1337" timestamp="1617005029140" />
-    <state x="880" y="431" key="Vcs.Push.Dialog.v2" timestamp="1616510020143">
+    <state x="880" y="431" key="Vcs.Push.Dialog.v2" timestamp="1617708106970">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="880" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1616510020143" />
+    <state x="880" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1617708106970" />
     <state x="1065" y="432" key="VcsDiffUtil.ChangesDialog" timestamp="1616404281246">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
