@@ -13,20 +13,6 @@
 NAME = webserv
 CC = clang++
 CXXFLAGS = -W -Wall -Wextra -Werror -pedantic -std=c++98
-_INCLUDES = CGI/CGI.hpp \
-           Cluster/serverCluster.hpp \
-           Request/request.hpp \
-           Response/getPath.hpp \
-           Response/Response.hpp \
-           Response/responseHeader.hpp \
-           Server/connection.hpp \
-           Server/location.hpp \
-           Server/server.hpp \
-		   Server/parser.hpp \
-           Utils/Base64.hpp \
-           Utils/defines.hpp \
-           Utils/utils.hpp \
-           webserv.hpp
 
 _SRCS =    CGI/CGI.cpp \
            Cluster/serverCluster.cpp \
