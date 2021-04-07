@@ -13,19 +13,6 @@
 NAME = webserv
 CC = clang++
 CXXFLAGS = -W -Wall -Wextra -Werror -pedantic -std=c++98
-# _INCLUDES = CGI/CGI.hpp \
-#            Cluster/serverCluster.hpp \
-#            Request/request.hpp \
-#            Response/getPath.hpp \
-#            Response/Response.hpp \
-#            Response/responseHeader.hpp \
-#            Server/connection.hpp \
-#            Server/location.hpp \
-#            Server/server.hpp \
-#            Utils/Base64.hpp \
-#            Utils/defines.hpp \
-#            Utils/utils.hpp \
-#            webserv.hpp
 
 _SRCS =    CGI/CGI.cpp \
            Cluster/serverCluster.cpp \
@@ -35,6 +22,7 @@ _SRCS =    CGI/CGI.cpp \
            Response/responseHeader.cpp \
            Server/connection.cpp \
            Server/location.cpp \
+           Server/parser.cpp \
            Server/serverBasic.cpp \
            Server/serverUtility.cpp \
            Utils/Base64.cpp \
@@ -42,15 +30,12 @@ _SRCS =    CGI/CGI.cpp \
            webserv.cpp
            
 SRCS = $(addprefix srcs/, $(_SRCS))
-# INCLUDES = $(addprefix srcs/, $(_INCLUDE))
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@$(CC) $(CXXFLAGS) -I. $(SRCS) -o $(NAME)
-	# @$(CC) $(CXXFLAGS) -I. -L. $(SRCS) -o $(NAME)
-
 
 clean:
 	@$(RM) $(OBJS)
