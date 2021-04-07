@@ -13,19 +13,19 @@
 NAME = webserv
 CC = clang++
 CXXFLAGS = -W -Wall -Wextra -Werror -pedantic -std=c++98
-_INCLUDES = CGI/CGI.hpp \
-           Cluster/serverCluster.hpp \
-           Request/request.hpp \
-           Response/getPath.hpp \
-           Response/Response.hpp \
-           Response/responseHeader.hpp \
-           Server/connection.hpp \
-           Server/location.hpp \
-           Server/server.hpp \
-           Utils/Base64.hpp \
-           Utils/defines.hpp \
-           Utils/utils.hpp \
-           webserv.hpp
+# _INCLUDES = CGI/CGI.hpp \
+#            Cluster/serverCluster.hpp \
+#            Request/request.hpp \
+#            Response/getPath.hpp \
+#            Response/Response.hpp \
+#            Response/responseHeader.hpp \
+#            Server/connection.hpp \
+#            Server/location.hpp \
+#            Server/server.hpp \
+#            Utils/Base64.hpp \
+#            Utils/defines.hpp \
+#            Utils/utils.hpp \
+#            webserv.hpp
 
 _SRCS =    CGI/CGI.cpp \
            Cluster/serverCluster.cpp \
@@ -41,18 +41,24 @@ _SRCS =    CGI/CGI.cpp \
            Utils/utils.cpp \
            webserv.cpp
 SRCS = $(addprefix srcs/, $(_SRCS))
-INCLUDES = $(addprefix srcs/, $(_INCLUDE))
+# INCLUDES = $(addprefix srcs/, $(_INCLUDE))
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CXXFLAGS) -I. -L. $(SRCS) -o $(NAME)
+	@$(CC) $(CXXFLAGS) -I. $(SRCS) -o $(NAME)
+	# @$(CC) $(CXXFLAGS) -I. -L. $(SRCS) -o $(NAME)
+
 
 clean:
 	@$(RM) $(OBJS)
 
 fclean: clean
 	@rm -rf $(NAME)
+	@rm -f html_pages/Downloads/multiple_same
+	@rm -f html_pages/Downloads/file_should_exist_after
+	@rm -f html_pages/Downloads/Download_1
+	@rm -f html_pages/Downloads/Download_2
 
 re: fclean all
