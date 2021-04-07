@@ -3,6 +3,8 @@
 #include <fstream>
 #include "Cluster/serverCluster.hpp"
 #include "../srcs/Request/request.hpp"
+#include "CGI/CGI.hpp"
+#include "Server/server.hpp"
 
 void	errMsgAndExit(const std::string &errMsg, int code);
 

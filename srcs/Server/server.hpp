@@ -78,7 +78,7 @@ public:
 
 	void		addLocation(location *newLoc);
 	bool		valueCheck() const;
-	int acpt();
+	int 		acpt();
 	void		findValue(std::string &key, std::string line);
 	void	    startListening();
 	location*	findLocation(std::string &match);
