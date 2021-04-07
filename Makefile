@@ -13,7 +13,6 @@
 NAME = webserv
 CC = clang++
 CXXFLAGS = -W -Wall -Wextra -Werror -pedantic -std=c++98
-
 _SRCS =    CGI/CGI.cpp \
            Cluster/serverCluster.cpp \
            Request/request.cpp \
@@ -29,7 +28,6 @@ _SRCS =    CGI/CGI.cpp \
            Utils/Base64.cpp \
            Utils/utils.cpp \
            webserv.cpp
-           
 SRCS = $(addprefix srcs/, $(_SRCS))
 OBJS = $(SRCS:.cpp=.o)
 
