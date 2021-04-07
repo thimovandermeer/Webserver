@@ -22,25 +22,30 @@ _SRCS =    CGI/CGI.cpp \
            Response/responseHeader.cpp \
            Server/connection.cpp \
            Server/location.cpp \
+           Server/parser.cpp \
            Server/serverBasic.cpp \
            Server/serverUtility.cpp \
 		   Server/parser.cpp \
            Utils/Base64.cpp \
            Utils/utils.cpp \
            webserv.cpp
+           
 SRCS = $(addprefix srcs/, $(_SRCS))
-INCLUDES = $(addprefix srcs/, $(_INCLUDE))
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CXXFLAGS) -I. -L. $(SRCS) -o $(NAME)
+	@$(CC) $(CXXFLAGS) -I. $(SRCS) -o $(NAME)
 
 clean:
 	@$(RM) $(OBJS)
 
 fclean: clean
 	@rm -rf $(NAME)
+	@rm -f html_pages/Downloads/multiple_same
+	@rm -f html_pages/Downloads/file_should_exist_after
+	@rm -f html_pages/Downloads/Download_1
+	@rm -f html_pages/Downloads/Download_2
 
 re: fclean all
