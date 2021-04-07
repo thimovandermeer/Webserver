@@ -6,7 +6,7 @@
 #    By: thvan-de <thvan-de@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/07/25 17:28:30 by pde-bakk      #+#    #+#                  #
-#    Updated: 2021/01/25 10:59:18 by thvan-de      ########   odam.nl          #
+#    Updated: 2021/04/07 15:24:42 by thvan-de      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ _INCLUDES = CGI/CGI.hpp \
            Server/connection.hpp \
            Server/location.hpp \
            Server/server.hpp \
+		   Server/parser.hpp \
            Utils/Base64.hpp \
            Utils/defines.hpp \
            Utils/utils.hpp \
@@ -37,6 +38,7 @@ _SRCS =    CGI/CGI.cpp \
            Server/location.cpp \
            Server/serverBasic.cpp \
            Server/serverUtility.cpp \
+		   Server/parser.cpp \
            Utils/Base64.cpp \
            Utils/utils.cpp \
            webserv.cpp
