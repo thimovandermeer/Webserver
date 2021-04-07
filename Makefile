@@ -40,6 +40,7 @@ _SRCS =    CGI/CGI.cpp \
            Utils/Base64.cpp \
            Utils/utils.cpp \
            webserv.cpp
+           
 SRCS = $(addprefix srcs/, $(_SRCS))
 # INCLUDES = $(addprefix srcs/, $(_INCLUDE))
 OBJS = $(SRCS:.cpp=.o)
