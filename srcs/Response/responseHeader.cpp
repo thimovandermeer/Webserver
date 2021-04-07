@@ -26,6 +26,7 @@ responseHeader::responseHeader(const responseHeader &src)
 	_contentLanguage =src._contentLanguage;
 	_contentLength = src._contentLength;
 	_contentType = src._contentType;
+	_contentLocation = src._contentLocation;
 	_date = src._date;
 	_host = src._host;
 	_lastModified = src._lastModified;
@@ -51,7 +52,8 @@ responseHeader &responseHeader::operator=(const responseHeader &src)
 	_contentLanguage =src._contentLanguage;
 	_contentLength = src._contentLength;
 	_contentType = src._contentType;
-	_date = src._date;
+    _contentLocation = src._contentLocation;
+    _date = src._date;
 	_host = src._host;
 	_lastModified = src._lastModified;
 	_location = src._location;

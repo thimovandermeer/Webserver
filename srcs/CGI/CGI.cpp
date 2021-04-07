@@ -1,5 +1,4 @@
 #include "CGI.hpp"
-#include <iostream>
 
 CGI::CGI(std::string &path, Request &request, server &server) :
 		_path(path)

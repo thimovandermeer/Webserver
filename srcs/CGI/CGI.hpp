@@ -9,6 +9,7 @@
 #include <fstream>
 #include <sys/wait.h>
 #include <sstream>
+#include <iostream>
 
 class CGI
 {
