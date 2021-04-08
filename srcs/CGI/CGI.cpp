@@ -54,6 +54,7 @@ std::string CGI::executeGCI(std::string &body)
 	std::string ret;
 	int status;
 	waitpid(0, &status, 0);
+	free_array(_env);
 	int fd = open("/tmp/fuckyoupeerout.txt", O_RDONLY);
 	char buff[MB];
 	int readret = 1;

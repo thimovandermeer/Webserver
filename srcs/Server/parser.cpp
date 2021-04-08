@@ -170,7 +170,7 @@ void	openConfig(int ac, char **av, serverCluster *cluster)
 	if (ac == 1)
 	{
 		std::cout << "open default config" << std::endl;
-		configFile.open("parseTestConfig.conf");
+		configFile.open("./test_mac/mac.conf");
 		if (!configFile)
 			errMsgAndExit("default config missing", 1);
 	}
