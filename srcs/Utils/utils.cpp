@@ -59,3 +59,14 @@ void	get_key_value(std::string &str, std::string &key, std::string& value, const
 	size_t vend = str.find_first_of(end, vbegin);
 	value = str.substr(vbegin, vend - vbegin);
 }
+
+void	free_array(char **array)
+{
+	int i = 0;
+	while(array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}

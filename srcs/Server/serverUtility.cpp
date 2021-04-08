@@ -68,6 +68,7 @@ void server::generateResponse(int index)
 	if (!this->connections[index].getResponseString().empty())
 		return;
 	std::cout << "handling request nr " << nr << std::endl;
+	system("leaks webserv");
 
 #ifdef PRINTLOG
 	if (nr >= MAXLOGS)

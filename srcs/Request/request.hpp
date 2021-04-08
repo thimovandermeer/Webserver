@@ -45,7 +45,7 @@ class Request{
         std::string _cgiEnv;
         std::string _body;
         std::map<std::string, std::string>	_cgiHeaders;
-        std::map<std::string, std::string>   _defHeaders;
+        std::map<std::string, std::string>  _defHeaders;
         int         _status;
         int         _bodyLength;
         int         _contentLength;
