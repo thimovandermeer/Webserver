@@ -24,7 +24,6 @@ _SRCS =    CGI/CGI.cpp \
            Server/parser.cpp \
            Server/serverBasic.cpp \
            Server/serverUtility.cpp \
-		   Server/parser.cpp \
            Utils/Base64.cpp \
            Utils/utils.cpp \
            webserv.cpp
