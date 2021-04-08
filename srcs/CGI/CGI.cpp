@@ -17,9 +17,8 @@ CGI::CGI(CGI &src)
 	return ;
 }
 
-CGI::~CGI()
-{
-	;
+CGI::~CGI() {
+    _environment.clear();
 }
 
 std::string CGI::executeGCI(std::string &body)
@@ -51,7 +50,7 @@ std::string CGI::executeGCI(std::string &body)
 		int ret = execve(argv[0], reinterpret_cast<char* const*>(argv), _env);
 		if (ret < 0)
 			exit(1);
-	}
+    }
 	std::string ret;
 	int status;
 	waitpid(0, &status, 0);
@@ -114,10 +113,7 @@ void CGI::_convertEnv()
 {
 	this->_env = new char*[this->_environment.size() + 1];
 	if (!_env)
-	{
-		delete[] _env;
 		return ;
-	}
 	int j = 0;
 	std::map<std::string, std::string>::const_iterator it = this->_environment.begin();
 	while(it != this->_environment.end())
@@ -125,8 +121,8 @@ void CGI::_convertEnv()
 		std::string temp = it->first + "=" + it->second;
 		this->_env[j] = strdup(temp.c_str());
 		if (!this->_env[j])
-		{
-			std::cout << "ERRORRR" << std::endl;
+		{		//needs freeing
+			std::cout << "ERRORR" << std::endl;
 			return ;
 		}
 		it++;

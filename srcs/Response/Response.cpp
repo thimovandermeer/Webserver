@@ -41,7 +41,6 @@ Response::Response(const Response &src)
 
 Response::~Response()
 {
-
 }
 
 void Response::setCurrentLoc(location *newloc)
