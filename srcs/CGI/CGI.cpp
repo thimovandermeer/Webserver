@@ -31,26 +31,26 @@ std::string CGI::executeGCI(std::string &body)
     int     fd;
     long    executableStart;
 
-    if(!(fileIn = open("/tmp/fuckyoupeerin.txt", O_CREAT | O_TRUNC | O_RDWR, S_IRWXU)))
+    if((fileIn = open("/tmp/fuckyoupeerin.txt", O_CREAT | O_TRUNC | O_RDWR, S_IRWXU)) == -1)
         exit(1);
     asdf = write(fileIn, body.c_str(), body.length());
     if (close(fileIn) == -1)
         exit(1);
     if (asdf == -1)
         exit(1);
-    if (!(_pid = fork()))
+    if ((_pid = fork()) == -1)
         exit(1);
     if (_pid == 0)
 	{
-		if (!(fileOut  = open("/tmp/fuckyoupeerout.txt", O_CREAT | O_TRUNC | O_RDWR, S_IRWXU)))
+		if ((fileOut  = open("/tmp/fuckyoupeerout.txt", O_CREAT | O_TRUNC | O_RDWR, S_IRWXU)) == -1)
             exit(1);
-        if (!(dup2(fileOut, STDOUT_FILENO)))
+        if (dup2(fileOut, STDOUT_FILENO) == -1)
             exit(1);
         if (close(fileOut) == -1)
             exit(1);
-		if (!(fileIn = open("/tmp/fuckyoupeerin.txt", O_RDONLY, S_IRWXU)))
+		if ((fileIn = open("/tmp/fuckyoupeerin.txt", O_RDONLY, S_IRWXU)) == -1)
             exit(1);
-        if(!(dup2(fileIn, STDIN_FILENO)))
+        if(dup2(fileIn, STDIN_FILENO) == -1)
         {
             close(fileIn);
             exit(1);
@@ -73,10 +73,10 @@ std::string CGI::executeGCI(std::string &body)
         }
     }
 	std::string ret;
-	if(!(waitpid(0, &status, 0)))
+	if(waitpid(0, &status, 0) == -1)
 	    exit(1);
 	free_array(_env);
-	if(!(fd = open("/tmp/fuckyoupeerout.txt", O_RDONLY)))
+	if((fd = open("/tmp/fuckyoupeerout.txt", O_RDONLY)) == -1)
         exit(1);
 	char buff[MB];
 	int readret = 1;
