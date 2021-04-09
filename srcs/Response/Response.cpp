@@ -110,14 +110,14 @@ void Response::setupResponse(Request &req, server &serv) {
 
 void 	Response::readContent()
 {
+	std::ifstream file;
+	struct stat statBuf;
+
 	if (_useCGI == true)
 	{
 		this->_content = _CGI.executeGCI(_body);
 		return ;
 	}
-	std::ifstream file;
-	struct stat statBuf;
-
 	if(stat(_path.c_str(), &statBuf) != 0)
 		return (this->setStatus(404));
 	file.open(this->_path.c_str(), std::ifstream::in);

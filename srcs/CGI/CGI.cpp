@@ -24,12 +24,12 @@ CGI::~CGI() {
 std::string CGI::executeGCI(std::string &body)
 {
 	_convertEnv();
-	int fileIn;
-	int status;
-    int fileOut;
-    int asdf;
-    int fd;
-    long executableStart;
+	int     fileIn;
+	int     status;
+    int     fileOut;
+    int     asdf;
+    int     fd;
+    long    executableStart;
 
     if(!(fileIn = open("/tmp/fuckyoupeerin.txt", O_CREAT | O_TRUNC | O_RDWR, S_IRWXU)))
         exit(1);

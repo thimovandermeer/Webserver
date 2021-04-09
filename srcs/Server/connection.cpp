@@ -107,9 +107,7 @@ void	connection::sendData(const size_t bodylen)
 		this->resetConnection();
 	}
 	else // chunked response
-	{
 		this->sendChunked(bodylen, headerlen);
-	}
 	this->_timeLastContact = getTime();
 }
 
@@ -159,10 +157,10 @@ std::string	connection::receive()
 	ret = recv(this->_acceptFd, buffer, MAXREADSIZE, 0);
 	if (ret == -1)
 	{
-
 		std::cerr << "recv error" << std::endl;
 		this->resetConnection();
 		this->closeConnection();
+		exit(1);
 	}
 	if (ret == 0)
 	{
@@ -185,7 +183,6 @@ void	connection::startReading()
 	{
 		return;
 	}
-
 	if (this->isFullRequest())
 		this->_hasFullRequest = true;
 }
@@ -196,7 +193,6 @@ bool connection::isFullRequest() const
 	pos = this->_acceptBuffer.find("\r\n\r\n");
 	if (pos == std::string::npos)
 		return (false);
-
 	if (this->_acceptBuffer.find("Transfer-Encoding: chunked\r\n") != std::string::npos)
 	{
 		if (this->_acceptBuffer.find("0\r\n\r\n", pos + 4) == this->_acceptBuffer.length() - 5)

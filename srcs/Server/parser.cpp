@@ -120,7 +120,7 @@ void	startParsing(std::fstream& configFile, serverCluster *cluster)
 				location *newLoc = getLocation(line, configFile, lineNr);
 				newServer->addLocation(newLoc);
 			}
-			else if (line == "}") // end of server block
+			else if (line == "}")
 				break;
 			else
 			{

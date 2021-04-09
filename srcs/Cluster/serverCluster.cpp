@@ -100,7 +100,8 @@ void	serverCluster::startListening()
 		struct timeval timeout;
 		timeout.tv_sec = SELECT_TIMEOUT;
 		timeout.tv_usec = 0;
-		ret = select(maxFd + 1, &readSet, &writeSet, NULL, &timeout);
+		if ((ret = select(maxFd + 1, &readSet, &writeSet, NULL, &timeout)) == -1)
+		    exit(1);
 		it = this->_servers.begin();
 		while (it != this->_servers.end() && ret) 
 		{

@@ -114,7 +114,6 @@ std::string 		responseHeader::writeHeader()
 		header += "Content-Length: " + _contentLength + "\r\n";
 	else
 		header += "Transfer-Encoding: " + _transferEncoding + "\r\n";
-
 	if (!_contentLocation.empty())
 		header += "Content-Location: " + _contentLocation + "\r\n";
 	if (!_contentType.empty())
@@ -146,9 +145,7 @@ void responseHeader::setContentLocation(const std::string &path, int status)
 void responseHeader::setAllow(const int &status)
 {
 	if (status == 405)
-	{
 		_allow = "Get, Head, Post, Put";
-	}
 	else
 		_allow = "";
 }
@@ -194,9 +191,7 @@ void responseHeader::setLastModified(const std::string &path)
 void responseHeader::setLocation(const std::string &path, int status)
 {
 	if (status == 201 || status / 100 == 3)
-	{
 		_location = path;
-	}
 }
 
 void responseHeader::setServer()
@@ -212,9 +207,7 @@ void responseHeader::setTransferEncoding()
 void responseHeader::setWwwAuthenticate(int status)
 {
 	if (status == 401)
-	{
 		_wwwAuthenticate = "Basic realm=\"Access requires authentification\" charset=\"UTF-8\"";
-	}
 }
 
 void responseHeader::setRetryAfter(int status, int number)
@@ -229,9 +222,7 @@ void responseHeader::setRetryAfter(int status, int number)
 		_retryAfter = buf; 
 	}
 	else if (status / 100 == 3)
-	{
 		_retryAfter = std::to_string(number);
-	}
 	else
 		_retryAfter = "";
 }
