@@ -85,17 +85,6 @@ void	connection::closeConnection()
 	this->_timeLastContact = 0;
 }
 
-bool	connection::doINeedToFuckingCloseThisShitIDFK()
-{
-	if (recv(this->_acceptFd, NULL, 1, MSG_PEEK | MSG_DONTWAIT) == 0)
-	{
-		this->resetConnection();
-		this->closeConnection();
-		return (true);
-	}
-	return (false);
-}
-
 void	connection::sendData(const size_t bodylen)
 {
 	size_t headerlen = this->_responseString.find("\r\n\r\n") + 4;
