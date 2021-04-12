@@ -78,7 +78,6 @@ void	getPath::checkFile()
 
 void	getPath::locationExists()
 {
-	// location exists
 	struct stat statBuf = {};
 	if (!_loc->getRoot().empty()) // location has no own root, so we use the server root
 		_rootDir = _loc->getRoot();
@@ -104,14 +103,14 @@ void	getPath::locationExists()
 void getPath::checkPut()
 {
 	std::vector<std::string>	indices;
+	std::vector<std::string>::iterator it;
+
 	struct stat statBuf = {};
 	if (!this->_loc->getIndices().empty())
 		indices = this->_loc->getIndices();
 	else
 		indices = this->_serv.getIndices();
-
-	std::vector<std::string>::iterator it; 
-	for (it = indices.begin(); it < indices.end(); it++) 
+	for (it = indices.begin(); it < indices.end(); it++)
 	{
 		if (this->_uri != "/")
 			this->_filePath = this->_rootDir + this->_uri + (*it);

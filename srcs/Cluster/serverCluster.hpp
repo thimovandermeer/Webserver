@@ -15,6 +15,12 @@ private:
 	long					_highestFd;
 
 public:
+	typedef void	(server::*setter)(std::string&);
+
+	class	duplicatePortException : public std::exception {
+	public:
+		virtual const char*	what() const throw();
+	};
 	serverCluster();
 	serverCluster(const serverCluster &original);
 	~serverCluster();
@@ -23,6 +29,7 @@ public:
 	void	addServer(server *newServ);
 	bool	isEmpty() const;
 
+	void	duplicatePorts() const;
 	void	startup();
 
 	void	startListening();

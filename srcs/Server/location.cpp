@@ -109,7 +109,6 @@ void 	location::sethtpasswdpath(const std::string &path)
 	struct stat	statstruct = {};
 	if (stat(path.c_str(), &statstruct) == -1)
 		return ;
-
 	this->_htpasswd_path = path;
 	std::fstream	configfile;
 	std::string line;
@@ -192,10 +191,10 @@ std::string	location::gethtpasswdpath() const {
 
 void	location::findValue(std::string &key, std::string line)
 {
+	std::map<std::string, setter>::iterator it;
+
 	if (*(line.rbegin()) != ';')
 		throw location::inputErrorException();
-
-	std::map<std::string, setter>::iterator it;
 	it = this->_typeFunctionMap.find(key);
 	if (it == this->_typeFunctionMap.end()) // unknown key value
 	{

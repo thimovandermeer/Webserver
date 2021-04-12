@@ -60,15 +60,12 @@ int server::acpt()
 	return (1);
 }
 
-#include <sstream>
-
 void server::generateResponse(int index)
 {
 	static size_t nr = 0;
 	if (!this->connections[index].getResponseString().empty())
 		return;
 	std::cout << "handling request nr " << nr << std::endl;
-	system("leaks webserv");
 
 #ifdef PRINTLOG
 	if (nr >= MAXLOGS)
