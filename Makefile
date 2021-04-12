@@ -46,6 +46,10 @@ objects/%.o: srcs/*/%.cpp
 	@mkdir -p objects
 	@$(CC) $(CXXFLAGS) -c $< -o $@
 
+objects/%.o: srcs/%.cpp
+	@mkdir -p objects
+	@$(CC) $(CXXFLAGS) -c $< -o $@
+
 vars:
 	@echo $(OBJS)
 
