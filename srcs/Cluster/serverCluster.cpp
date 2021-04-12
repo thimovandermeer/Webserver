@@ -4,6 +4,11 @@
 #include "../Utils/utils.hpp"
 #include <string.h>
 
+const char	*serverCluster::duplicatePortException::what() const throw()
+{
+	return ("duplicate ports specificied over multiple server blocks");
+}
+
 serverCluster::serverCluster() : _nrOfServers(0), _highestFd(0)
 {
 	FD_ZERO(&this->readFds);
@@ -41,6 +46,21 @@ void	serverCluster::addServer(server *newServ)
 bool	serverCluster::isEmpty() const
 {
 	return (this->_servers.empty());
+}
+
+void	serverCluster::duplicatePorts() const
+{
+	std::vector<int>	ports;
+	std::vector<server*>::const_iterator it;
+	if (this->_servers.size() < 2)
+		return;
+	for (it = this->_servers.begin(); it != this->_servers.end(); it++)
+		ports.push_back((*it)->getPortNr());
+
+	std::sort(ports.begin(), ports.end());
+	std::vector<int>::iterator it1 = std::unique(ports.begin(), ports.end());
+	if (it1 != ports.end())
+		throw duplicatePortException();
 }
 
 void	serverCluster::startup()

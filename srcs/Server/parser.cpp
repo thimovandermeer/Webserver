@@ -165,12 +165,11 @@ void	startParsing(std::fstream& configFile, serverCluster *cluster)
 
 void	openConfig(int ac, char **av, serverCluster *cluster)
 {
-	std::fstream		configFile;
+	std::fstream	configFile;
 
 	if (ac == 1)
 	{
-		std::cout << "open default config" << std::endl;
-		configFile.open("./test_mac/mac.conf");
+		configFile.open("./configs/basic.conf");
 		if (!configFile)
 			errMsgAndExit("default config missing", 1);
 	}
@@ -187,6 +186,7 @@ void	openConfig(int ac, char **av, serverCluster *cluster)
 	startParsing(configFile, cluster);
 	try
 	{
+		cluster->duplicatePorts();
 		cluster->startup();
 	}
 	catch (std::exception &e)

@@ -70,6 +70,7 @@ CMakeFiles/webserv.dir/srcs/Server/location.cpp.o: ../srcs/Server/location.hpp
 CMakeFiles/webserv.dir/srcs/Server/location.cpp.o: ../srcs/Utils/Base64.hpp
 CMakeFiles/webserv.dir/srcs/Server/location.cpp.o: ../srcs/Utils/utils.hpp
 
+CMakeFiles/webserv.dir/srcs/Server/parser.cpp.o: ../srcs/CGI/CGI.hpp
 CMakeFiles/webserv.dir/srcs/Server/parser.cpp.o: ../srcs/Cluster/serverCluster.hpp
 CMakeFiles/webserv.dir/srcs/Server/parser.cpp.o: ../srcs/Request/request.hpp
 CMakeFiles/webserv.dir/srcs/Server/parser.cpp.o: ../srcs/Server/connection.hpp
@@ -105,6 +106,7 @@ CMakeFiles/webserv.dir/srcs/Utils/Base64.cpp.o: ../srcs/Utils/Base64.cpp
 
 CMakeFiles/webserv.dir/srcs/Utils/utils.cpp.o: ../srcs/Utils/utils.cpp
 
+CMakeFiles/webserv.dir/srcs/webserv.cpp.o: ../srcs/CGI/CGI.hpp
 CMakeFiles/webserv.dir/srcs/webserv.cpp.o: ../srcs/Cluster/serverCluster.hpp
 CMakeFiles/webserv.dir/srcs/webserv.cpp.o: ../srcs/Request/request.hpp
 CMakeFiles/webserv.dir/srcs/webserv.cpp.o: ../srcs/Server/connection.hpp
