@@ -26,7 +26,7 @@ _SRCS =    CGI/CGI.cpp \
            Server/serverUtility.cpp \
            Utils/Base64.cpp \
            Utils/utils.cpp \
-           webserv.cpp
+           main.cpp
 SRCS = $(addprefix srcs/, $(_SRCS))
 #_OBJS = $(_SRCS:CGI/%=%), $(_SRCS:Cluster/%=%), $(_SRCS:Request/%=%), $(_SRCS:Response/%=%), $(_SRCS:Server/%=%), $(_SRCS:Utils/%=%), $(_SRCS:.cpp=.o)
 #_OBJS = $($($($($($($(_SRCS:.cpp=.o):Utils/%=%):Server/%=%):Response/%=%):Request/%=%):Cluster/%=%):CGI/%=%)
