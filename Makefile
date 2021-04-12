@@ -28,12 +28,29 @@ _SRCS =    CGI/CGI.cpp \
            Utils/utils.cpp \
            webserv.cpp
 SRCS = $(addprefix srcs/, $(_SRCS))
-OBJS = $(SRCS:.cpp=.o)
+#_OBJS = $(_SRCS:CGI/%=%), $(_SRCS:Cluster/%=%), $(_SRCS:Request/%=%), $(_SRCS:Response/%=%), $(_SRCS:Server/%=%), $(_SRCS:Utils/%=%), $(_SRCS:.cpp=.o)
+#_OBJS = $($($($($($($(_SRCS:.cpp=.o):Utils/%=%):Server/%=%):Response/%=%):Request/%=%):Cluster/%=%):CGI/%=%)
+_OBJS0 = $(_SRCS:CGI/%=%)
+_OBJS1 = $(_OBJS0:Cluster/%=%)
+_OBJS2 = $(_OBJS1:Request/%=%)
+_OBJS3 = $(_OBJS2:Response/%=%)
+_OBJS4 = $(_OBJS3:Server/%=%)
+_OBJS5 = $(_OBJS4:Utils/%=%)
+_OBJS6 = $(_OBJS5:.cpp=.o)
+
+OBJS = $(addprefix objects/, $(_OBJS6))
 
 all: $(NAME)
 
+objects/%.o: srcs/*/%.cpp
+	@mkdir -p objects
+	@$(CC) $(CXXFLAGS) -c $< -o $@
+
+vars:
+	@echo $(OBJS)
+
 $(NAME): $(OBJS)
-	@$(CC) $(CXXFLAGS) -I. $(SRCS) -o $(NAME)
+	@$(CC) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 	@$(RM) $(OBJS)
