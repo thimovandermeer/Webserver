@@ -1,9 +1,9 @@
 #!/bin/bash
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-	./tester "http://localhost:8080"
+	./webserv "configs/tester_OS_X.conf"
 elif [[ "$OSTYPE" == "Ubuntu"* ]]; then
-	./ubuntu_tester "http://localhost:8080"
+	./webserv "configs/tester_Ubuntu.conf"
 else
 	echo "current OS is $OSTYPE, this only runs on OS X or Ubuntu"
 fi
