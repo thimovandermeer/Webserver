@@ -6,8 +6,12 @@
 # include "CGI/CGI.hpp"
 # include "Server/server.hpp"
 
+class	serverCluster;
+
 void	errMsgAndExit(const std::string &errMsg, int code);
 
 void	openConfig(int ac, char **av, serverCluster *cluster);
+
+extern connection	*g_recentConnection;
 
 #endif

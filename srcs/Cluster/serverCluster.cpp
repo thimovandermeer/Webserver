@@ -4,6 +4,8 @@
 #include "../Utils/utils.hpp"
 #include <string.h>
 
+connection *g_recentConnection;
+
 const char	*serverCluster::duplicatePortException::what() const throw()
 {
 	return ("duplicate ports specificied over multiple server blocks");
@@ -86,6 +88,8 @@ void	serverCluster::startListening()
 		long			maxFd = this->_highestFd;
 		std::vector<server*>::iterator it = this->_servers.begin();
 
+		g_recentConnection = NULL;
+		signal(SIGPIPE, sigPipeHandler);
 		FD_ZERO(&writeSet);
 		FD_ZERO(&readSet);
 		readSet = this->readFds;
@@ -101,6 +105,7 @@ void	serverCluster::startListening()
 					{
 						if (!(*it)->connections[i].getBuffer().empty())
 						{
+							g_recentConnection = &((*it)->connections[i]);
 							(*it)->generateResponse(i);
 							(*it)->connections[i].sendData((*it)->_bodylen);
 						}
@@ -140,11 +145,13 @@ void	serverCluster::startListening()
 					fd = (*it)->connections[connectioncounter].getAcceptFd();
 					if (FD_ISSET(fd, &readSet))
 					{
-						(*it)->connections[connectioncounter].startReading(); 
+						g_recentConnection = &((*it)->connections[connectioncounter]);
+						(*it)->connections[connectioncounter].startReading();
 						break;
 					}
 					if (FD_ISSET(fd, &writeSet))
 					{
+						g_recentConnection = &((*it)->connections[connectioncounter]);
 						(*it)->generateResponse(connectioncounter);
 						(*it)->connections[connectioncounter].sendData((*it)->_bodylen); 
 						break;

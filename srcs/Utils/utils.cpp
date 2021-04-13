@@ -2,6 +2,17 @@
 #include <iostream>
 #include <stdlib.h>
 #include <map>
+#include "../webserv.hpp"
+
+//std::pair<int, int>	g_connectionID;
+
+void	sigPipeHandler(int signal)
+{
+	if (signal != SIGPIPE)
+		std::cerr << "truly don't know what the fuck happened here tbh" << std::endl;
+	g_recentConnection->resetConnection();
+	g_recentConnection->closeConnection();
+}
 
 long 	getTime()
 {
