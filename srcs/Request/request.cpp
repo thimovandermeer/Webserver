@@ -1,4 +1,5 @@
 #include "request.hpp"
+#include <sstream>
 
 std::string methods[4] = {
         "GET",
@@ -200,7 +201,9 @@ void Request::parseHeaders() {
 	while (it != _defHeaders.end())
     {
         if (it->first.compare("CONTENT-LENGTH") == 0) {
-            _contentLength = std::stoi(it->second.c_str(), 0, 10);
+	    std::stringstream ss;
+	    ss << std::dec << it->second.c_str();
+            ss >> _contentLength;
             break;
         }
         it++;
@@ -220,7 +223,12 @@ void Request::parseBody() {
     while (begin != last - 2){
         end = _request.find("\r\n", begin);
         hex = _request.substr(begin, end - begin);
-        _bodyLength += (hex.c_str(), 0, 16);
+	std::stringstream ss;
+	int tmp;
+	ss << std::hex << hex.c_str();
+	ss >> tmp;
+	_bodyLength += tmp;
+        // _bodyLength += (hex.c_str(), 0, 16);
         begin = end + 2;
         end = _request.find("\r\n", begin);
         _body.append(_request, begin, end - begin);

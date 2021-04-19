@@ -212,7 +212,7 @@ bool	location::valueCheck() const
 	bool	ret = true;
 
 	std::vector<std::string>::const_iterator it;
-	std::vector<std::string> vc = this->_methods;
+//	std::vector<std::string> vc = this->_methods;
 	for (it = this->_methods.begin(); it < this->_methods.end(); it++)
 	{
 		if ((*it) != allowedMethods[0] && (*it) != allowedMethods[1] && (*it) != allowedMethods[2] && (*it) != allowedMethods[3] && (*it) != allowedMethods[4])

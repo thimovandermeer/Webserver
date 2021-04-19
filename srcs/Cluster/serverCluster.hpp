@@ -2,6 +2,7 @@
 # define SERVERCLUSTER_HPP
 # include "../Server/server.hpp"
 # include "../Utils/defines.hpp"
+# include "../webserv.hpp"
 # include <algorithm>
 
 class serverCluster {

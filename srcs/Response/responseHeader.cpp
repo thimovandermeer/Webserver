@@ -68,8 +68,10 @@ responseHeader &responseHeader::operator=(const responseHeader &src)
 std::string responseHeader::getHeader(int status)
 {
 	std::string header;
+	std::stringstream ss;
+	ss << status;
 
-	header = "HTTP/1.1 " + std::to_string(status) + " " + createStatusMessage(status) + "\r\n";
+	header = "HTTP/1.1 " + ss.str() + " " + createStatusMessage(status) + "\r\n";
 	header += writeHeader();
 	return (header);
 }
@@ -157,7 +159,9 @@ void responseHeader::setContentLanguage()
 
 void responseHeader::setContentLength(int length)
 {
-	_contentLength = std::to_string(length);
+	std::stringstream ss;
+	ss << length;
+	_contentLength = ss.str();
 }
 
 void responseHeader::setContentType(const std::string &contentType)
@@ -221,8 +225,11 @@ void responseHeader::setRetryAfter(int status, int number)
 		strftime(buf, sizeof buf, "%a, %d %b %Y %H:%M:%S %Z", &tm);
 		_retryAfter = buf; 
 	}
-	else if (status / 100 == 3)
-		_retryAfter = std::to_string(number);
+	else if (status / 100 == 3) {
+		std::stringstream ss;
+		ss << number;
+		_retryAfter = ss.str();
+	}
 	else
 		_retryAfter = "";
 }

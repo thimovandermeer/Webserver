@@ -7,6 +7,7 @@
 # include <iostream>
 # include <algorithm>
 # include <sstream>
+# include <cstring>
 # include "../Utils/utils.hpp"
 # include "../Utils/defines.hpp"
 

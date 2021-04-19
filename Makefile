@@ -11,32 +11,45 @@
 # **************************************************************************** #
 
 NAME = webserv
-CC = clang++
+CC = g++
 CXXFLAGS = -W -Wall -Wextra -Werror -pedantic -std=c++98
-_SRCS =    CGI/CGI.cpp \
-           Cluster/serverCluster.cpp \
-           Request/request.cpp \
-           Response/getPath.cpp \
-           Response/Response.cpp \
-           Response/responseHeader.cpp \
-           Server/connection.cpp \
-           Server/location.cpp \
-           Server/parser.cpp \
-           Server/serverBasic.cpp \
-           Server/serverUtility.cpp \
-           Utils/Base64.cpp \
-           Utils/utils.cpp \
-           webserv.cpp
+OBJDIR = objects
+
+_SRCS =	CGI/CGI.cpp \
+		Cluster/serverCluster.cpp \
+		Request/request.cpp \
+		Response/getPath.cpp \
+		Response/Response.cpp \
+		Response/responseHeader.cpp \
+		Server/connection.cpp \
+		Server/location.cpp \
+		Server/parser.cpp \
+		Server/serverBasic.cpp \
+		Server/serverUtility.cpp \
+		Utils/Base64.cpp \
+		Utils/utils.cpp \
+		main.cpp
 SRCS = $(addprefix srcs/, $(_SRCS))
-OBJS = $(SRCS:.cpp=.o)
+
+_OBJS = $(addprefix $(OBJDIR)/, $(notdir $(_SRCS)))
+OBJS = $(_OBJS:.cpp=.o)
 
 all: $(NAME)
 
+objects/%.o: srcs/*/%.cpp
+	@mkdir -p $(OBJDIR)
+	$(CC) $(CXXFLAGS) -c $< -o $@
+
+objects/%.o: srcs/%.cpp
+	@mkdir -p $(OBJDIR)
+	$(CC) $(CXXFLAGS) -c $< -o $@
+
 $(NAME): $(OBJS)
-	@$(CC) $(CXXFLAGS) -I. $(SRCS) -o $(NAME)
+	$(CC) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 clean:
-	@$(RM) $(OBJS)
+	@rm -rf $(OBJDIR)
+
 
 fclean: clean
 	@rm -rf $(NAME)

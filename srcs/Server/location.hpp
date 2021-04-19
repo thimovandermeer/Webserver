@@ -8,6 +8,7 @@
 #include <iomanip>
 #include <sys/stat.h>
 #include <fstream>
+# include <climits>
 #include "../Utils/utils.hpp"
 #include "../Utils/Base64.hpp"
 

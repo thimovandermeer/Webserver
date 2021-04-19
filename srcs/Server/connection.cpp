@@ -92,7 +92,11 @@ void	connection::sendData(const size_t bodylen)
 	if (bodylen < (size_t)MAXSENDSIZE)
 	{
 		if (send(this->_acceptFd, this->_responseString.c_str(), this->_responseString.length(), 0) == -1)
-			std::cerr << "send error" << std::endl;
+		{
+//			std::cerr << "send error" << std::endl;
+			// sigpipe here is being handled elsewhere
+			return;
+		}
 		this->resetConnection();
 	}
 	else // chunked response
@@ -108,7 +112,11 @@ void	connection::sendChunked(const size_t bodylen, const size_t headerlen)
 		std::string headr = this->_responseString.substr(0, headerlen);
 		ret = send(_acceptFd, headr.c_str(), headr.length(), 0);
 		if (ret != headerlen)
-			std::cerr << "ret = " << ret << " send error" << std::endl;
+		{
+//			std::cerr << "send error" << std::endl;
+			// sigpipe here is being handled elsewhere
+			return;
+		}
 		this->_headerSent = true;
 		return;
 	}
@@ -124,7 +132,11 @@ void	connection::sendChunked(const size_t bodylen, const size_t headerlen)
 		chunk += "\r\n";
 		ret = send(_acceptFd, chunk.c_str(), chunk.length(), 0);
 		if (ret != chunk.length())
-			std::cerr << "send error" << std::endl;
+		{
+//			std::cerr << "send error" << std::endl;
+			// sigpipe here is being handled elsewhere
+			return;
+		}
 		this->_bodyBytesSent += bytesToSend;
 	}
 	else
@@ -132,7 +144,11 @@ void	connection::sendChunked(const size_t bodylen, const size_t headerlen)
 		std::string end("0\r\n\r\n");
 		ret = send(_acceptFd, end.c_str(), 5, 0);
 		if (ret != 5)
-			std::cerr << "ret = " << ret << " send error" << std::endl;
+		{
+//			std::cerr << "send error" << std::endl;
+			// sigpipe here is being handled elsewhere
+			return;
+		}
 		this->resetConnection();
 	}
 }
@@ -149,7 +165,7 @@ std::string	connection::receive()
 		std::cerr << "recv error" << std::endl;
 		this->resetConnection();
 		this->closeConnection();
-		exit(1);
+//		exit(1);
 	}
 	if (ret == 0)
 	{

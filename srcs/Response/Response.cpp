@@ -223,8 +223,11 @@ void Response::parseContent()
 {
     size_t pos;
 
-    if ((pos = _content.find("Status")) != std::string::npos)
-        _status = stoi(headerValue(pos + 8));
+    if ((pos = _content.find("Status")) != std::string::npos) {
+	    std::stringstream ss(headerValue(pos + 8));
+	    ss >> _status;
+//	    _status = stoi(headerValue(pos + 8));
+    }
     if ((pos = _content.find("Content-Type")) != std::string::npos)
         _contentType = headerValue(pos + 14);
 }
