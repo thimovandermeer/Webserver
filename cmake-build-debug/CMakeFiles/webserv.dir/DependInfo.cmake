@@ -4,20 +4,20 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/jbennink/Documents/Projects/webserv/srcs/CGI/CGI.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/CGI/CGI.cpp.o"
-  "/Users/jbennink/Documents/Projects/webserv/srcs/Cluster/serverCluster.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Cluster/serverCluster.cpp.o"
-  "/Users/jbennink/Documents/Projects/webserv/srcs/Request/request.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Request/request.cpp.o"
-  "/Users/jbennink/Documents/Projects/webserv/srcs/Response/Response.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o"
-  "/Users/jbennink/Documents/Projects/webserv/srcs/Response/getPath.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.o"
-  "/Users/jbennink/Documents/Projects/webserv/srcs/Response/responseHeader.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/responseHeader.cpp.o"
-  "/Users/jbennink/Documents/Projects/webserv/srcs/Server/connection.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/connection.cpp.o"
-  "/Users/jbennink/Documents/Projects/webserv/srcs/Server/location.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/location.cpp.o"
-  "/Users/jbennink/Documents/Projects/webserv/srcs/Server/parser.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/parser.cpp.o"
-  "/Users/jbennink/Documents/Projects/webserv/srcs/Server/serverBasic.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/serverBasic.cpp.o"
-  "/Users/jbennink/Documents/Projects/webserv/srcs/Server/serverUtility.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/serverUtility.cpp.o"
-  "/Users/jbennink/Documents/Projects/webserv/srcs/Utils/Base64.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Utils/Base64.cpp.o"
-  "/Users/jbennink/Documents/Projects/webserv/srcs/Utils/utils.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Utils/utils.cpp.o"
-  "/Users/jbennink/Documents/Projects/webserv/srcs/webserv.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/webserv.cpp.o"
+  "/Users/thimovandermeer/Desktop/latestversion/srcs/CGI/CGI.cpp" "/Users/thimovandermeer/Desktop/latestversion/cmake-build-debug/CMakeFiles/webserv.dir/srcs/CGI/CGI.cpp.o"
+  "/Users/thimovandermeer/Desktop/latestversion/srcs/Cluster/serverCluster.cpp" "/Users/thimovandermeer/Desktop/latestversion/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Cluster/serverCluster.cpp.o"
+  "/Users/thimovandermeer/Desktop/latestversion/srcs/Request/request.cpp" "/Users/thimovandermeer/Desktop/latestversion/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Request/request.cpp.o"
+  "/Users/thimovandermeer/Desktop/latestversion/srcs/Response/Response.cpp" "/Users/thimovandermeer/Desktop/latestversion/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/Response.cpp.o"
+  "/Users/thimovandermeer/Desktop/latestversion/srcs/Response/getPath.cpp" "/Users/thimovandermeer/Desktop/latestversion/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/getPath.cpp.o"
+  "/Users/thimovandermeer/Desktop/latestversion/srcs/Response/responseHeader.cpp" "/Users/thimovandermeer/Desktop/latestversion/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Response/responseHeader.cpp.o"
+  "/Users/thimovandermeer/Desktop/latestversion/srcs/Server/connection.cpp" "/Users/thimovandermeer/Desktop/latestversion/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/connection.cpp.o"
+  "/Users/thimovandermeer/Desktop/latestversion/srcs/Server/location.cpp" "/Users/thimovandermeer/Desktop/latestversion/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/location.cpp.o"
+  "/Users/thimovandermeer/Desktop/latestversion/srcs/Server/parser.cpp" "/Users/thimovandermeer/Desktop/latestversion/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/parser.cpp.o"
+  "/Users/thimovandermeer/Desktop/latestversion/srcs/Server/serverBasic.cpp" "/Users/thimovandermeer/Desktop/latestversion/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/serverBasic.cpp.o"
+  "/Users/thimovandermeer/Desktop/latestversion/srcs/Server/serverUtility.cpp" "/Users/thimovandermeer/Desktop/latestversion/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/serverUtility.cpp.o"
+  "/Users/thimovandermeer/Desktop/latestversion/srcs/Utils/Base64.cpp" "/Users/thimovandermeer/Desktop/latestversion/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Utils/Base64.cpp.o"
+  "/Users/thimovandermeer/Desktop/latestversion/srcs/Utils/utils.cpp" "/Users/thimovandermeer/Desktop/latestversion/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Utils/utils.cpp.o"
+  "/Users/thimovandermeer/Desktop/latestversion/srcs/main.cpp" "/Users/thimovandermeer/Desktop/latestversion/cmake-build-debug/CMakeFiles/webserv.dir/srcs/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
