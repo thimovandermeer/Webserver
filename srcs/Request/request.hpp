@@ -12,6 +12,8 @@
 #include <string>
 #include <fcntl.h>
 
+enum filetype { PY = 1, PHP = 2, BLA = 3, CGIBIN = 4};
+
 class Request{
     public:
 		friend class Response;
@@ -29,6 +31,7 @@ class Request{
         std::string getCgiEnv() const;
         bool getCgi() const ;
 		int getStatus() const;
+		filetype getFileType() const;
 
         void parseRequest();
         void parseRequestLine();
@@ -50,6 +53,7 @@ class Request{
         int         _bodyLength;
         int         _contentLength;
         bool        _cgi;
+        filetype	_type;
 } ;
 
 #endif

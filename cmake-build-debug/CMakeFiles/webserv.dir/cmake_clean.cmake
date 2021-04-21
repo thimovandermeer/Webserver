@@ -12,7 +12,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/webserv.dir/srcs/Server/serverUtility.cpp.o"
   "CMakeFiles/webserv.dir/srcs/Utils/Base64.cpp.o"
   "CMakeFiles/webserv.dir/srcs/Utils/utils.cpp.o"
-  "CMakeFiles/webserv.dir/srcs/webserv.cpp.o"
+  "CMakeFiles/webserv.dir/srcs/main.cpp.o"
   "webserv"
   "webserv.pdb"
 )

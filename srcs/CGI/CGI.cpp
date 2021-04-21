@@ -1,7 +1,8 @@
 #include "CGI.hpp"
 
 CGI::CGI(std::string &path, Request &request, server &server) :
-		_path(path)
+		_path(path),
+		_type(request.getFileType())
 {
 	_initEnvironment(request, server);
 }
@@ -56,6 +57,8 @@ std::string CGI::executeGCI(std::string &body)
             exit(1);
         }
         close(fileIn);
+        if(_type == PHP)
+        	_path = "cgi-bin/php-cgi";
 		executableStart = _path.rfind('/') + 1;
 		std::string executable = _path.substr(executableStart);
 		std::string pathStart = _path.substr(0, executableStart);
@@ -92,6 +95,14 @@ std::string CGI::executeGCI(std::string &body)
     return ret;
 }
 
+std::string CGI::_setRedirectStatus()
+{
+	if (_type == PHP)
+		return("200");
+	else
+		return ("CGI");
+}
+
 void CGI::_initEnvironment(Request &request, server &server)
 {
     std::stringstream ss;
@@ -111,13 +122,16 @@ void CGI::_initEnvironment(Request &request, server &server)
 	this->_environment["GATEWAY_INTERFACE"] = "EPIC CGI";
 	this->_environment["PATH_INFO"] = request.getUri() + request.getCgiEnv();
 	this->_environment["PATH_TRANSLATED"] = request.getUri();
+	this->_environment["REDIRECT_STATUS"] = _setRedirectStatus();
 	this->_environment["QUERY_STRING"] = request.getCgiEnv();
 	this->_environment["REMOTE_ADDR"] = server.getHost();
 	this->_environment["REMOTE_IDENT"] = "Hello this is bullshit so we did not implement this";
 	this->_environment["REMOTE_USER"] = "The same as above counts for this";
 	this->_environment["REQUEST_METHOD"] = request.getMethod();
 	this->_environment["REQUEST_URI"] = request.getUri();
-	this->_environment["SCRIPT_NAME"] = request.getUri();
+	this->_environment["SCRIPT_NAME"] = request.getUri(); // dit moet wellicht nog anders
+	if (_type == PHP)
+		this->_environment["SCRIPT_FILENAME"] = "php_tester.php";
 	if (reqHeaders.find("HOST") != reqHeaders.end())
 		this->_environment["SERVER_NAME"] = reqHeaders["HOST"];
 	else
