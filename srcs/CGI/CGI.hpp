@@ -22,13 +22,14 @@ public:
 private:
 	void 								_initEnvironment(Request &request, server &server);
 	void 								_convertEnv();
-
+	std::string							_setRedirectStatus();
 private:
 
 	std::map<std::string, std::string> 	_environment;
 	char								**_env;
 	std::string 						_path;
 	pid_t 								_pid;
+	filetype							_type;
 };
 
 #endif

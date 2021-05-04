@@ -78,6 +78,11 @@ int Request::getStatus() const {
 	return _status;
 }
 
+filetype Request::getFileType() const
+{
+	return _type;
+}
+
 void Request::parseRequest() {
     checkCgi();
     parseRequestLine();
@@ -93,18 +98,33 @@ void Request::parseRequest() {
 }
 
 void Request::checkCgi() {
-    if (_request.find(".py") != std::string::npos)
-        _cgi = true;
-    else if (_request.find(".php") != std::string::npos)
-        _cgi = true;
-    else if (_request.find(".bla") != std::string::npos)
-        _cgi = true;
-    else if(_request.find(".cgi") != std::string::npos)
-        _cgi = true;
-    else if (_request.find("cgi-bin") != std::string::npos)
-        _cgi = true;
-    else
-        _cgi = false;
+	if (_request.find(".py") != std::string::npos)
+	{
+		_cgi = true;
+		_type = PY;
+	}
+	else if (_request.find(".php") != std::string::npos)
+	{
+		_cgi = true;
+		_type = PHP;
+	}
+	else if (_request.find(".bla") != std::string::npos)
+	{
+		_cgi = true;
+		_type = BLA;
+	}
+	else if(_request.find(".cgi") != std::string::npos)
+	{
+		_cgi = true;
+		_type = CGIBIN;
+	}
+	else if (_request.find("cgi-bin") != std::string::npos)
+	{
+		_cgi = true;
+		_type = CGIBIN;
+	}
+	else
+		_cgi = false;
 }
 
 void Request::parseRequestLine(){

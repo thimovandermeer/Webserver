@@ -23,6 +23,8 @@ location*	getPath::findFileExtension()
 			std::string	extension = (*it)->getMatch();
 			if (extension == "*.error_image.png") 
 				extension.erase(0, 2);
+			else if (extension == "*.php")
+				extension.erase(0,2);
 			else
 				extension.erase(0, 1);
 			size_t len = extension.length();
@@ -30,6 +32,8 @@ location*	getPath::findFileExtension()
 			{
 				if (extension == "error_image.png")
 					_uri = "/error_image.png";
+				else if (extension == "php")
+					_uri = "/cgi/bin/php-cgi";
 				return (*it);
 			}
 		}
@@ -94,6 +98,11 @@ void	getPath::locationExists()
 		checkPut();
 	else
 	{
+		if (_req.getFileType() == PHP)
+		{
+			_filePath = _rootDir;
+			return ;
+		}
 		_filePath = _rootDir + _uri;
 		if (stat(_filePath.c_str(), &statBuf) != 0 && _req.getMethod().compare("PUT") != 0)
 			_resp.setStatus(404);
