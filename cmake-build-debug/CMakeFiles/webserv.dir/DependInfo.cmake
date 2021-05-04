@@ -17,7 +17,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/jbennink/Documents/Projects/webserv/srcs/Server/serverUtility.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Server/serverUtility.cpp.o"
   "/Users/jbennink/Documents/Projects/webserv/srcs/Utils/Base64.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Utils/Base64.cpp.o"
   "/Users/jbennink/Documents/Projects/webserv/srcs/Utils/utils.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/Utils/utils.cpp.o"
-  "/Users/jbennink/Documents/Projects/webserv/srcs/webserv.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/webserv.cpp.o"
+  "/Users/jbennink/Documents/Projects/webserv/srcs/main.cpp" "/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles/webserv.dir/srcs/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

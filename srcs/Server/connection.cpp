@@ -1,4 +1,5 @@
 #include "connection.hpp"
+#include "../Response/Response.hpp"
 
 connection::connection() : _timeLastContact(0),
 						   _acceptFd(-1), _hasFullRequest(false),
@@ -34,10 +35,10 @@ void	connection::setFd(const long &fd)
 	this->_acceptFd = fd;
 }
 
-void	connection::setFullReq(const bool &full)
-{
-	this->_hasFullRequest = full;
-}
+//void	connection::setFullReq(const bool &full)
+//{
+//	this->_hasFullRequest = full;
+//}
 
 void	connection::setResponseString(const std::string &resp)
 {

@@ -246,18 +246,18 @@ CMakeFiles/webserv.dir/srcs/Utils/Base64.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/webserv.dir/srcs/Utils/Base64.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jbennink/Documents/Projects/webserv/srcs/Utils/Base64.cpp -o CMakeFiles/webserv.dir/srcs/Utils/Base64.cpp.s
 
-CMakeFiles/webserv.dir/srcs/webserv.cpp.o: CMakeFiles/webserv.dir/flags.make
-CMakeFiles/webserv.dir/srcs/webserv.cpp.o: ../srcs/webserv.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/webserv.dir/srcs/webserv.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/webserv.dir/srcs/webserv.cpp.o -c /Users/jbennink/Documents/Projects/webserv/srcs/webserv.cpp
+CMakeFiles/webserv.dir/srcs/main.cpp.o: CMakeFiles/webserv.dir/flags.make
+CMakeFiles/webserv.dir/srcs/main.cpp.o: ../srcs/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/webserv.dir/srcs/main.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/webserv.dir/srcs/main.cpp.o -c /Users/jbennink/Documents/Projects/webserv/srcs/main.cpp
 
-CMakeFiles/webserv.dir/srcs/webserv.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/webserv.dir/srcs/webserv.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/jbennink/Documents/Projects/webserv/srcs/webserv.cpp > CMakeFiles/webserv.dir/srcs/webserv.cpp.i
+CMakeFiles/webserv.dir/srcs/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/webserv.dir/srcs/main.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/jbennink/Documents/Projects/webserv/srcs/main.cpp > CMakeFiles/webserv.dir/srcs/main.cpp.i
 
-CMakeFiles/webserv.dir/srcs/webserv.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/webserv.dir/srcs/webserv.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jbennink/Documents/Projects/webserv/srcs/webserv.cpp -o CMakeFiles/webserv.dir/srcs/webserv.cpp.s
+CMakeFiles/webserv.dir/srcs/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/webserv.dir/srcs/main.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jbennink/Documents/Projects/webserv/srcs/main.cpp -o CMakeFiles/webserv.dir/srcs/main.cpp.s
 
 # Object files for target webserv
 webserv_OBJECTS = \
@@ -274,7 +274,7 @@ webserv_OBJECTS = \
 "CMakeFiles/webserv.dir/srcs/Server/serverUtility.cpp.o" \
 "CMakeFiles/webserv.dir/srcs/Utils/utils.cpp.o" \
 "CMakeFiles/webserv.dir/srcs/Utils/Base64.cpp.o" \
-"CMakeFiles/webserv.dir/srcs/webserv.cpp.o"
+"CMakeFiles/webserv.dir/srcs/main.cpp.o"
 
 # External object files for target webserv
 webserv_EXTERNAL_OBJECTS =
@@ -292,7 +292,7 @@ webserv: CMakeFiles/webserv.dir/srcs/Server/serverBasic.cpp.o
 webserv: CMakeFiles/webserv.dir/srcs/Server/serverUtility.cpp.o
 webserv: CMakeFiles/webserv.dir/srcs/Utils/utils.cpp.o
 webserv: CMakeFiles/webserv.dir/srcs/Utils/Base64.cpp.o
-webserv: CMakeFiles/webserv.dir/srcs/webserv.cpp.o
+webserv: CMakeFiles/webserv.dir/srcs/main.cpp.o
 webserv: CMakeFiles/webserv.dir/build.make
 webserv: CMakeFiles/webserv.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/jbennink/Documents/Projects/webserv/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX executable webserv"

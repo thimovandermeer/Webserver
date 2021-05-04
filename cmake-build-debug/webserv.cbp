@@ -157,7 +157,7 @@
 		<Unit filename="/Users/jbennink/Documents/Projects/webserv/srcs/Utils/utils.hpp">
 			<Option target="webserv"/>
 		</Unit>
-		<Unit filename="/Users/jbennink/Documents/Projects/webserv/srcs/webserv.cpp">
+		<Unit filename="/Users/jbennink/Documents/Projects/webserv/srcs/main.cpp">
 			<Option target="webserv"/>
 		</Unit>
 		<Unit filename="/Users/jbennink/Documents/Projects/webserv/srcs/webserv.hpp">

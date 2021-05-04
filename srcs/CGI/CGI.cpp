@@ -1,4 +1,5 @@
 #include "CGI.hpp"
+#include "../webserv.hpp"
 
 CGI::CGI(std::string &path, Request &request, server &server) :
 		_path(path)
@@ -32,35 +33,35 @@ std::string CGI::executeGCI(std::string &body)
     long    executableStart;
 
     if((fileIn = open("/tmp/fuckyoupeerin.txt", O_CREAT | O_TRUNC | O_RDWR, S_IRWXU)) == -1)
-        exit(1);
+        errMsgAndExit("cgi error", 1);
     asdf = write(fileIn, body.c_str(), body.length());
     if (close(fileIn) == -1)
-        exit(1);
+        errMsgAndExit("cgi error", 1);
     if (asdf == -1)
-        exit(1);
+        errMsgAndExit("cgi error", 1);
     if ((_pid = fork()) == -1)
-        exit(1);
+        errMsgAndExit("cgi error", 1);
     if (_pid == 0)
 	{
 		if ((fileOut  = open("/tmp/fuckyoupeerout.txt", O_CREAT | O_TRUNC | O_RDWR, S_IRWXU)) == -1)
-            exit(1);
+            errMsgAndExit("cgi error", 1);
         if (dup2(fileOut, STDOUT_FILENO) == -1)
-            exit(1);
+            errMsgAndExit("cgi error", 1);
         if (close(fileOut) == -1)
-            exit(1);
+            errMsgAndExit("cgi error", 1);
 		if ((fileIn = open("/tmp/fuckyoupeerin.txt", O_RDONLY, S_IRWXU)) == -1)
-            exit(1);
+            errMsgAndExit("cgi error", 1);
         if(dup2(fileIn, STDIN_FILENO) == -1)
         {
             close(fileIn);
-            exit(1);
+            errMsgAndExit("cgi error", 1);
         }
         close(fileIn);
 		executableStart = _path.rfind('/') + 1;
 		std::string executable = _path.substr(executableStart);
 		std::string pathStart = _path.substr(0, executableStart);
 		if (chdir(pathStart.c_str()) == -1)
-			    exit(1);
+			    errMsgAndExit("cgi error", 1);
 		const char *realArgv[2];
 		realArgv[0] = executable.c_str();
 		realArgv[1] = NULL;
@@ -69,26 +70,26 @@ std::string CGI::executeGCI(std::string &body)
 		if (ret < 0)
         {
             free_array(_env);
-            exit(1);
+            errMsgAndExit("cgi error", 1);
         }
     }
 	std::string ret;
 	if(waitpid(0, &status, 0) == -1)
-	    exit(1);
+	    errMsgAndExit("cgi error", 1);
 	free_array(_env);
 	if((fd = open("/tmp/fuckyoupeerout.txt", O_RDONLY)) == -1)
-        exit(1);
+        errMsgAndExit("cgi error", 1);
 	char buff[MB];
 	int readret = 1;
 	while (readret)
 	{
 		bzero(buff, MB);
 		if ((readret = read(fd, buff, MB - 1)) == -1)
-            exit(1);
+            errMsgAndExit("cgi error", 1);
         ret += buff;
 	}
 	if(close(fd) == -1)
-        exit(1);
+        errMsgAndExit("cgi error", 1);
     return ret;
 }
 
@@ -146,7 +147,7 @@ void CGI::_convertEnv()
 		std::string temp = it->first + "=" + it->second;
 		this->_env[j] = strdup(temp.c_str());
 		if (!this->_env[j])
-			exit(1);
+			errMsgAndExit("cgi error", 1);
 		it++;
 		j++;
 	}

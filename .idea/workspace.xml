@@ -30,8 +30,8 @@
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:vogsphere" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:vogsphere/theBigProjectCleanUp" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/main" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
@@ -46,54 +46,34 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="changed cgi reading to be faster, changed defines to be bigger">
-      <change afterPath="$PROJECT_DIR$/runserver.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/runtest.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cgi-bin/printenv.bla" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cgi-bin/test.pl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="main up to date with handed in shit, but still includes cmake shit now">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/DependInfo.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/cmake_clean.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/webserv.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/webserv.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configfiles/.htpasswd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configfiles/test.conf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html_pages/Downloads/file_for_git.txt" beforeDir="false" afterPath="$PROJECT_DIR$/html_pages/Downloads/.file_for_git" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/CGI/CGI.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/CGI/CGI.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/CGI/CGI.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/CGI/CGI.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Cluster/serverCluster.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Cluster/serverCluster.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Response/Response.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Response/Response.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Server/connection.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/connection.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Server/connection.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/connection.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Server/location.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/location.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Utils/utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Utils/utils.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Utils/utils.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Utils/utils.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/webserv.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Server/location.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/location.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Server/parser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/parser.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Server/server.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/server.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Utils/defines.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Utils/defines.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/webserv.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/webserv.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_linux/YoupiBanane/Yeah/not_happy.bad_extension" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_linux/YoupiBanane/nop/other.pouic" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_linux/YoupiBanane/nop/youpi.bad_extension" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_linux/YoupiBanane/youpi.bad_extension" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_linux/YoupiBanane/youpi.bla" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_linux/basic.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_linux/linux.conf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_linux/ubuntu_tester" beforeDir="false" afterPath="$PROJECT_DIR$/ubuntu_tester" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_mac/YoupiBanane/Yeah/not_happy.bad_extension" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_mac/YoupiBanane/nop/other.pouic" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_mac/YoupiBanane/nop/youpi.bad_extension" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_mac/YoupiBanane/youpi.bad_extension" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_mac/YoupiBanane/youpi.bla" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_mac/cgi_tester" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_mac/mac.conf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_mac/tester" beforeDir="false" afterPath="$PROJECT_DIR$/tester" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,15 +142,15 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.mac_tester">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Test" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv" TEST_CLASS="[List]" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="default" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv">
@@ -192,115 +172,6 @@
       <method v="2">
         <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
-    </configuration>
-    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
-      <module name="webserv" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="Tox" factoryName="Tox">
-      <module name="webserv" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Doctests">
-      <module name="webserv" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Nosetests">
-      <module name="webserv" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_regexPattern" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Twisted Trial">
-      <module name="webserv" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Unittests">
-      <module name="webserv" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="py.test">
-      <module name="webserv" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
     </configuration>
     <list>
       <item itemvalue="Catch.Test" />
@@ -387,6 +258,13 @@
       <workItem from="1617629709960" duration="3318000" />
       <workItem from="1617706471800" duration="1221000" />
       <workItem from="1618226736766" duration="2388000" />
+      <workItem from="1619417165312" duration="5963000" />
+      <workItem from="1619435976004" duration="6093000" />
+      <workItem from="1619508102233" duration="4595000" />
+      <workItem from="1619527108138" duration="2207000" />
+      <workItem from="1619534172044" duration="292000" />
+      <workItem from="1619607487433" duration="4292000" />
+      <workItem from="1620112011984" duration="4279000" />
     </task>
     <task id="LOCAL-00003" summary="nearly done all set functions of responseheader">
       <created>1611650661666</created>
@@ -675,7 +553,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618229133939</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="main up to date with handed in shit, but still includes cmake shit now">
+      <created>1618844942417</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1618844942417</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -695,7 +580,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="vogsphere/theBigProjectCleanUp" />
+                        <option value="origin/main" />
                       </list>
                     </value>
                   </entry>
@@ -760,7 +645,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="again" />
     <MESSAGE value="added auth_basic and auth_basic_user_file to location vars" />
     <MESSAGE value="updated assignment operators, split server code in 2 files" />
     <MESSAGE value="new server files were missing" />
@@ -785,7 +669,8 @@
     <MESSAGE value="minor FDSET syntax changes in servercluster" />
     <MESSAGE value="yes" />
     <MESSAGE value="changed cgi reading to be faster, changed defines to be bigger" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed cgi reading to be faster, changed defines to be bigger" />
+    <MESSAGE value="main up to date with handed in shit, but still includes cmake shit now" />
+    <option name="LAST_COMMIT_MESSAGE" value="main up to date with handed in shit, but still includes cmake shit now" />
   </component>
   <component name="WindowStateProjectService">
     <state x="880" y="357" key="#New_File_Extensions" timestamp="1616416242181">
@@ -800,89 +685,99 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="532" y="353" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1618220957420" />
-    <state x="1000" y="500" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1616504815230">
+    <state x="1000" y="500" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1619522464275">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="1000" y="500" key="#com.intellij.fileTypes.FileTypeChooser/0.23.2560.1337@0.23.2560.1337" timestamp="1616504815230" />
+    <state x="1000" y="500" key="#com.intellij.fileTypes.FileTypeChooser/0.23.2560.1337@0.23.2560.1337" timestamp="1619522464275" />
     <state x="520" y="373" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1618221268462">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="520" y="373" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1618221268462" />
-    <state x="89" y="65" width="2360" height="1137" key="DiffContextDialog" timestamp="1616404625901">
+    <state x="89" y="65" width="2360" height="1137" key="DiffContextDialog" timestamp="1620119342960">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="89" y="65" width="2360" height="1137" key="DiffContextDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1616404625901" />
-    <state width="2517" height="421" key="GridCell.Tab.0.bottom" timestamp="1618229803640">
+    <state x="89" y="65" width="2360" height="1137" key="DiffContextDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1620119342960" />
+    <state width="2518" height="293" key="GridCell.Tab.0.bottom" timestamp="1620121972621">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2517" height="421" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1618229803640" />
-    <state width="2517" height="421" key="GridCell.Tab.0.center" timestamp="1618229803639">
+    <state width="2518" height="293" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1620121972621" />
+    <state width="2518" height="293" key="GridCell.Tab.0.center" timestamp="1620121972621">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2517" height="421" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1618229803639" />
-    <state width="2517" height="421" key="GridCell.Tab.0.left" timestamp="1618229803638">
+    <state width="2518" height="293" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1620121972621" />
+    <state width="2518" height="293" key="GridCell.Tab.0.left" timestamp="1620121972620">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2517" height="421" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1618229803638" />
-    <state width="2517" height="421" key="GridCell.Tab.0.right" timestamp="1618229803639">
+    <state width="2518" height="293" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1620121972620" />
+    <state width="2518" height="293" key="GridCell.Tab.0.right" timestamp="1620121972621">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2517" height="421" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1618229803639" />
-    <state width="2517" height="421" key="GridCell.Tab.1.bottom" timestamp="1618229803640">
+    <state width="2518" height="293" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1620121972621" />
+    <state width="2518" height="293" key="GridCell.Tab.1.bottom" timestamp="1620121972622">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2517" height="421" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1618229803640" />
-    <state width="2517" height="421" key="GridCell.Tab.1.center" timestamp="1618229803640">
+    <state width="2518" height="293" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1620121972622" />
+    <state width="2518" height="293" key="GridCell.Tab.1.center" timestamp="1620121972622">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2517" height="421" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1618229803640" />
-    <state width="2517" height="421" key="GridCell.Tab.1.left" timestamp="1618229803640">
+    <state width="2518" height="293" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1620121972622" />
+    <state width="2518" height="293" key="GridCell.Tab.1.left" timestamp="1620121972621">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2517" height="421" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1618229803640" />
-    <state width="2517" height="421" key="GridCell.Tab.1.right" timestamp="1618229803640">
+    <state width="2518" height="293" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1620121972621" />
+    <state width="2518" height="293" key="GridCell.Tab.1.right" timestamp="1620121972622">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2517" height="421" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1618229803640" />
+    <state width="2518" height="293" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1620121972622" />
     <state x="789" y="330" key="SettingsEditor" timestamp="1618221293513">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="789" y="330" key="SettingsEditor/0.23.2560.1337@0.23.2560.1337" timestamp="1618221293513" />
-    <state x="101" y="123" width="2129" height="1137" key="ShowDiffWithBranchDialog" timestamp="1618844731354">
+    <state x="101" y="123" width="2129" height="1137" key="ShowDiffWithBranchDialog" timestamp="1618845303175">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="101" y="123" width="2129" height="1137" key="ShowDiffWithBranchDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1618844731354" />
-    <state x="880" y="431" key="Vcs.Push.Dialog.v2" timestamp="1617708349094">
+    <state x="101" y="123" width="2129" height="1137" key="ShowDiffWithBranchDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1618845303175" />
+    <state x="880" y="431" key="Vcs.Push.Dialog.v2" timestamp="1618844944062">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="880" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1617708349094" />
-    <state x="1065" y="432" key="VcsDiffUtil.ChangesDialog" timestamp="1616404281246">
+    <state x="880" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1618844944062" />
+    <state x="1065" y="432" key="VcsDiffUtil.ChangesDialog" timestamp="1620119206020">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="1065" y="432" key="VcsDiffUtil.ChangesDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1616404281246" />
+    <state x="1065" y="432" key="VcsDiffUtil.ChangesDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1620119206020" />
     <state width="1280" height="668" key="XDebugger.FullValuePopup" timestamp="1616584070161">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1280" height="668" key="XDebugger.FullValuePopup/0.23.2560.1337@0.23.2560.1337" timestamp="1616584070161" />
-    <state x="1064" y="484" key="refactoring.ChangeSignatureDialog" timestamp="1616408211180">
+    <state x="1064" y="484" key="refactoring.ChangeSignatureDialog" timestamp="1619442321132">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="1064" y="484" key="refactoring.ChangeSignatureDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1616408211180" />
+    <state x="1064" y="484" key="refactoring.ChangeSignatureDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1619442321132" />
     <state x="945" y="326" key="run.anything.popup" timestamp="1616419605110">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="945" y="326" key="run.anything.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1616419605110" />
-    <state x="733" y="328" width="670" height="676" key="search.everywhere.popup" timestamp="1617622323138">
+    <state x="733" y="328" width="670" height="676" key="search.everywhere.popup" timestamp="1619423481561">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="733" y="328" width="670" height="676" key="search.everywhere.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1617622323138" />
+    <state x="733" y="328" width="670" height="676" key="search.everywhere.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1619423481561" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/srcs/Server/serverUtility.cpp</url>
-          <line>64</line>
+          <url>file://$PROJECT_DIR$/srcs/main.cpp</url>
+          <line>4</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/srcs/CGI/CGI.cpp</url>
+          <line>149</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp</url>
+          <line>129</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

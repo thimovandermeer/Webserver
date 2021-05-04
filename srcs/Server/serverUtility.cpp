@@ -60,7 +60,7 @@ int server::acpt()
 	return (1);
 }
 
-void server::generateResponse(int index)
+void server::handleResponse(int index)
 {
 	static size_t nr = 0;
 	if (!this->connections[index].getResponseString().empty())

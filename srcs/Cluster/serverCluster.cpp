@@ -2,6 +2,7 @@
 #include <sys/select.h>
 #include "../Request/request.hpp"
 #include "../Utils/utils.hpp"
+#include "../Response/Response.hpp"
 #include <string.h>
 
 connection *g_recentConnection;
@@ -106,7 +107,7 @@ void	serverCluster::startListening()
 						if (!(*it)->connections[i].getBuffer().empty())
 						{
 							g_recentConnection = &((*it)->connections[i]);
-							(*it)->generateResponse(i);
+							(*it)->handleResponse(i);
 							(*it)->connections[i].sendData((*it)->_bodylen);
 						}
 						(*it)->connections[i].resetConnection();
@@ -152,8 +153,8 @@ void	serverCluster::startListening()
 					if (FD_ISSET(fd, &writeSet))
 					{
 						g_recentConnection = &((*it)->connections[connectioncounter]);
-						(*it)->generateResponse(connectioncounter);
-						(*it)->connections[connectioncounter].sendData((*it)->_bodylen); 
+						(*it)->handleResponse(connectioncounter);
+						(*it)->connections[connectioncounter].sendData((*it)->_bodylen);
 						break;
 					}
 				}

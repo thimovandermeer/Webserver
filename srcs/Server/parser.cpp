@@ -1,5 +1,6 @@
 #include "../webserv.hpp"
 #include "server.hpp"
+#include <fstream>
 
 bool	isEmptyLine(std::string line)
 {

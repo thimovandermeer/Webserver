@@ -110,7 +110,7 @@ void Response::setupResponse(Request &req, server &serv) {
 
 void 	Response::readContent()
 {
-	std::ifstream file;
+	int			fileFd;
 	struct stat statBuf;
 
 	if (_useCGI == true)
@@ -120,17 +120,18 @@ void 	Response::readContent()
 	}
 	if(stat(_path.c_str(), &statBuf) != 0)
 		return (this->setStatus(404));
-	file.open(this->_path.c_str(), std::ifstream::in);
-	if(!file.is_open())
+	fileFd = open(this->_path.c_str(), O_RDONLY);
+	if(fileFd == -1 && this->_status == 200)
 		return (this->setStatus(403));
 	if(stat(_path.c_str(), &statBuf) != 0 && _status == 200)
 		return (this->setStatus(404));
-	file.open(_path.c_str(), std::ifstream::in);
-	if(!file.is_open() && _status == 200)
-		return (this->setStatus(403));
+	char buf[statBuf.st_size + 1];
+	bzero(buf, statBuf.st_size + 1);
+	// break here
+	read(fileFd, buf, statBuf.st_size);
 	if (this->_status == 200)
-	_content.assign((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
-	file.close();
+		this->_content += buf;
+	close(fileFd);
 }
 
 void    Response::createErrorPage(std::string *pageData)
@@ -163,25 +164,29 @@ void    Response::createErrorPage(std::string *pageData)
 void	Response::errorPage(server &serv)
 {
 	int	        fd;
-	int         ret = 4096;
-	char        buff[4096];
 	std::string	pageData;
 	std::string	pathToPage;
+	struct stat	statBuff;
 
 	pathToPage = serv.getRoot() + serv.getErrorPage();
-	fd = open(pathToPage.c_str(), O_RDONLY);
-	if (fd < 0)
-		pageData = "Problem serving error. Perhaps the error page was setup incorrectly.";
+	if (stat(pathToPage.c_str(), &statBuff) < 0)
+	{
+		pageData = "Problem serving error.\nError page does not exist.";
+	}
 	else
 	{
-		while (ret == 4096)
+		fd = open(pathToPage.c_str(), O_RDONLY);
+		if (fd < 0)
+			pageData = "Problem serving error.\nCannot open error page.";
+		else
 		{
-			ret = read(fd, buff, 4095);
-			buff[ret] = 0;
-			pageData += buff;
+			char buf[statBuff.st_size + 1];
+			bzero(buf, statBuff.st_size + 1);
+			// break here
+			read(fd, buf, statBuff.st_size);
+			close(fd);
+			createErrorPage(&pageData);
 		}
-		close(fd);
-		createErrorPage(&pageData);
 	}
 	this->_content.clear();
 	if (this->_method != "HEAD")
@@ -226,7 +231,6 @@ void Response::parseContent()
     if ((pos = _content.find("Status")) != std::string::npos) {
 	    std::stringstream ss(headerValue(pos + 8));
 	    ss >> _status;
-//	    _status = stoi(headerValue(pos + 8));
     }
     if ((pos = _content.find("Content-Type")) != std::string::npos)
         _contentType = headerValue(pos + 14);
@@ -246,18 +250,19 @@ void Response::postMethod(std::string content)
 	}
 	if (this->_currentLoc->getMaxBodySize() < content.length())
 		return (this->setStatus(413));
-	std::ofstream file;
-	file.open(_path.c_str(), std::ios::out | std::ios::app);
-	if(!file.is_open() && _status == 200)
+	int	fileFd;
+	fileFd = open(_path.c_str(), O_WRONLY | O_APPEND | O_CREAT);
+	if(fileFd == -1 && _status == 200)
 		this->setStatus(403);
 	struct stat statBuf;
 	if(stat(_path.c_str(), &statBuf) < 0 && _status == 200)
 		this->setStatus(201);
-	file << content;
-	file.close();
+	// break here
+	write(fileFd, content.c_str(), content.length());
+	close(fileFd);
 	content.clear();
 	responseHeader header(content, _path, _status, _contentType);
-	_response = header.getHeader(_status); 
+	_response = header.getHeader(_status);
 }
 
 void Response::putMethod(std::string const &content)
@@ -269,19 +274,20 @@ void Response::putMethod(std::string const &content)
 		_path.erase(it);
 	writeContent(content);
 	responseHeader header(_content, _path, _status, _contentType);
-	_response = header.getHeader(_status); 
+	_response = header.getHeader(_status);
 }
 
 void 	Response::writeContent(std::string const &content)
 {
-    std::ofstream file;
+    int			fileFd;
 	struct stat statBuf;
 
 	if(stat(_path.c_str(), &statBuf) < 0 && _status == 200)
 		this->setStatus(201);
-    file.open(_path.c_str(), std::ios::in | std::ios::trunc);
-	file << content;
-	file.close();
+    fileFd = open(_path.c_str(), O_WRONLY | O_TRUNC | O_CREAT);
+	// break here
+	write(fileFd, content.c_str(), content.length());
+	close(fileFd);
 }
 
 const std::string 	&Response::getResponse() const

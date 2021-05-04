@@ -12,5 +12,7 @@
 # define NR_OF_CONNECTIONS 200
 # define MAXLOGS 20 // this is to prevent literally 100.000s of log files being created, it will only save the most recent logs
 
+//# define PRINTOUT
+//# define PRINTLOG
 
 #endif

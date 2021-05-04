@@ -1,4 +1,5 @@
 #include "location.hpp"
+#include <fstream>
 
 const char	*location::inputErrorException::what() const throw()
 {

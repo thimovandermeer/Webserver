@@ -11,6 +11,8 @@
 # include "../Utils/utils.hpp"
 # include "../Utils/defines.hpp"
 
+class Response;
+
 class connection {
 private:
 	unsigned long	_timeLastContact;
@@ -20,8 +22,7 @@ private:
 	size_t			_bodyBytesSent;
 	bool			_headerSent;
 	std::string		_responseString;
-	bool
-	isFullRequest() const;
+	bool			isFullRequest() const;
 
 public:
 	connection();
@@ -31,7 +32,7 @@ public:
 
 	void	setTimeLastRead(const unsigned long &time);
 	void	setFd(const long &fd);
-	void	setFullReq(const bool &full);
+//	void	setFullReq(const bool &full);
 	void	setResponseString(const std::string &resp);
 
 	const unsigned long&	getTimeLastRead() const;
@@ -45,8 +46,6 @@ public:
 	void		sendData(const size_t bodylen);
 	std::string	receive();
 	void		startReading();
-	bool		doINeedToFuckingCloseThisShitIDFK();
-	void		sighandler(int sig);
 
 	void		sendChunked(const size_t bodylen, const size_t headerlen);
 };
