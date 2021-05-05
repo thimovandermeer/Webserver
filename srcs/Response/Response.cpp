@@ -129,8 +129,13 @@ void 	Response::readContent()
 	bzero(buf, statBuf.st_size + 1);
 	// break here
 	read(fileFd, buf, statBuf.st_size);
-	if (this->_status == 200)
-		this->_content += buf;
+	this->_content.reserve(statBuf.st_size + 1);
+	for (off_t i = 0; i < statBuf.st_size; i++)
+	{
+		this->_content += buf[i];
+	}
+//	if (this->_status == 200)
+//		this->_content += buf;
 	close(fileFd);
 }
 
@@ -184,6 +189,7 @@ void	Response::errorPage(server &serv)
 			bzero(buf, statBuff.st_size + 1);
 			// break here
 			read(fd, buf, statBuff.st_size);
+			pageData += buf;
 			close(fd);
 			createErrorPage(&pageData);
 		}
@@ -277,16 +283,33 @@ void Response::putMethod(std::string const &content)
 	_response = header.getHeader(_status);
 }
 
+//#include <fstream>
+//void 	Response::writeContent(std::string const &content)
+//{
+//	std::ofstream file;
+//	struct stat statBuf;
+//
+//	if(stat(_path.c_str(), &statBuf) < 0 && _status == 200)
+//		this->setStatus(201);
+//	file.open(_path.c_str(), std::ios::in | std::ios::trunc);
+//	file << content;
+//	file.close();
+//}
+
 void 	Response::writeContent(std::string const &content)
 {
-    int			fileFd;
+	int			fileFd;
 	struct stat statBuf;
 
 	if(stat(_path.c_str(), &statBuf) < 0 && _status == 200)
 		this->setStatus(201);
-    fileFd = open(_path.c_str(), O_WRONLY | O_TRUNC | O_CREAT);
+	fileFd = open(_path.c_str(), O_RDWR | O_TRUNC | O_CREAT, 0744);
+	if (fileFd == -1)
+		return (this->setStatus(403));
 	// break here
-	write(fileFd, content.c_str(), content.length());
+	int ret = write(fileFd, content.c_str(), content.length());
+	if ((size_t)ret != content.length())
+		std::cerr << "didn't print it all" << std::endl;
 	close(fileFd);
 }
 

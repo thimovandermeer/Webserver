@@ -107,7 +107,7 @@ void	serverCluster::startListening()
 						if (!(*it)->connections[i].getBuffer().empty())
 						{
 							g_recentConnection = &((*it)->connections[i]);
-							(*it)->handleResponse(i);
+							(*it)->createResponse(i);
 							(*it)->connections[i].sendData((*it)->_bodylen);
 						}
 						(*it)->connections[i].resetConnection();
@@ -118,7 +118,11 @@ void	serverCluster::startListening()
 					if (!(*it)->connections[i].hasFullRequest())
 						FD_SET((*it)->connections[i].getAcceptFd(), &readSet);
 					else
+					{
 						FD_SET((*it)->connections[i].getAcceptFd(), &writeSet);
+//						(*it)->createResponse(i);
+					}
+
 				}
 			}
 			it++;
@@ -153,7 +157,7 @@ void	serverCluster::startListening()
 					if (FD_ISSET(fd, &writeSet))
 					{
 						g_recentConnection = &((*it)->connections[connectioncounter]);
-						(*it)->handleResponse(connectioncounter);
+						(*it)->createResponse(connectioncounter);
 						(*it)->connections[connectioncounter].sendData((*it)->_bodylen);
 						break;
 					}

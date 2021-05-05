@@ -32,7 +32,6 @@ public:
 
 	void	setTimeLastRead(const unsigned long &time);
 	void	setFd(const long &fd);
-//	void	setFullReq(const bool &full);
 	void	setResponseString(const std::string &resp);
 
 	const unsigned long&	getTimeLastRead() const;
@@ -48,6 +47,8 @@ public:
 	void		startReading();
 
 	void		sendChunked(const size_t bodylen, const size_t headerlen);
+
+	Response	*myresp;
 };
 
 #endif

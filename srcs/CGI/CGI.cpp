@@ -59,8 +59,10 @@ std::string CGI::executeGCI(std::string &body)
         }
         close(fileIn);
         if(_type == PHP)
-        	_path = "cgi-bin/php-cgi";
-		executableStart = _path.rfind('/') + 1;
+		{
+			_path = "cgi-bin/php-cgi";
+		}
+        executableStart = _path.rfind('/') + 1;
 		std::string executable = _path.substr(executableStart);
 		std::string pathStart = _path.substr(0, executableStart);
 		if (chdir(pathStart.c_str()) == -1)

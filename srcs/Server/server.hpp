@@ -82,7 +82,7 @@ public:
 	void		findValue(std::string &key, std::string line);
 	void	    startListening();
 	location*	findLocation(std::string &match);
-	void        handleResponse(int index);
+	void        createResponse(int index);
 };
 
 std::ostream&	operator<<(std::ostream &os, const server &serv);
