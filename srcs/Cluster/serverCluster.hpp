@@ -33,6 +33,7 @@ public:
 	bool	isEmpty() const;
 	bool    doublePort() const;
 
+    std::map<int, int> getDoublePorts() const ;
 	void	duplicatePorts();
 	void	startup();
 
