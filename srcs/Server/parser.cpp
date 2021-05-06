@@ -160,6 +160,8 @@ void	startParsing(std::fstream& configFile, serverCluster *cluster)
 			errMsgAndExit("invalid values in server block", 1);
 		cluster->addServer(newServer);
 	}
+	// -> Merel hier wordt het cluster gevuld met de servers en hier in staan de namen van de servers
+	// die je uiteindelijk moet checken met de host naam
 	if (cluster->isEmpty())
 		errMsgAndExit("config file empty", 1);
 }
@@ -185,9 +187,9 @@ void	openConfig(int ac, char **av, serverCluster *cluster)
 		}
 	}
 	startParsing(configFile, cluster);
+	cluster->duplicatePorts();      // -> merel hier een bool op ja of nee zetten om aan te geven of, en welke server dubbel is
 	try
 	{
-		cluster->duplicatePorts();
 		cluster->startup();
 	}
 	catch (std::exception &e)

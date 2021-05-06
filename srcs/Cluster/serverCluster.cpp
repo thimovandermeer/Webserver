@@ -7,12 +7,12 @@
 
 connection *g_recentConnection;
 
-const char	*serverCluster::duplicatePortException::what() const throw()
-{
-	return ("duplicate ports specificied over multiple server blocks");
-}
+//const char	*serverCluster::duplicatePortException::what() const throw()
+//{
+//	return ("duplicate ports specificied over multiple server blocks");
+//}
 
-serverCluster::serverCluster() : _nrOfServers(0), _highestFd(0)
+serverCluster::serverCluster() : _nrOfServers(0), _highestFd(0), _boolDoublePorts(false)
 {
 	FD_ZERO(&this->readFds);
 	FD_ZERO(&this->writeFds);
@@ -51,19 +51,41 @@ bool	serverCluster::isEmpty() const
 	return (this->_servers.empty());
 }
 
-void	serverCluster::duplicatePorts() const
+bool    serverCluster::doublePort() const
 {
-	std::vector<int>	ports;
+    return _boolDoublePorts;
+}
+
+void	serverCluster::duplicatePorts()
+{
 	std::vector<server*>::const_iterator it;
+	std::map<int, int>  ports;
+
 	if (this->_servers.size() < 2)
 		return;
-	for (it = this->_servers.begin(); it != this->_servers.end(); it++)
-		ports.push_back((*it)->getPortNr());
-
-	std::sort(ports.begin(), ports.end());
-	std::vector<int>::iterator it1 = std::unique(ports.begin(), ports.end());
-	if (it1 != ports.end())
-		throw duplicatePortException();
+	int i = 0;
+	for (it = this->_servers.begin(); it != this->_servers.end(); it++) {
+	    ports.insert(std::make_pair(i, (*it)->getPortNr()));
+	    i++;
+    }
+	std::map<int, int>::iterator it1;
+	std::map<int, int>::iterator it2;
+	for (it1 = ports.begin(); it1 != ports.end(); it1++) {
+        it2 = it1;
+        it2++;
+        while (it2 != ports.end()) {
+            if (it1->second == it2->second) {
+                _boolDoublePorts = true;
+                _doublePorts.insert(std::make_pair(it1->first, it2->first));
+                break;
+            }
+            it2++;
+        }
+    }
+    std::map<int, int>::iterator it3;
+    for (it3 = _doublePorts.begin(); it3 != _doublePorts.end(); it3++){
+        std::cout << it3->first << " " << it3->second << std::endl ;
+    }
 }
 
 void	serverCluster::startup()

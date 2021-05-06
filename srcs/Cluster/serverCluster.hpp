@@ -9,19 +9,21 @@ class serverCluster {
 public:
 	fd_set	readFds;
 	fd_set	writeFds;
-
 private:
-	std::vector<server*>	_servers;
-	int						_nrOfServers;
-	long					_highestFd;
+
+    std::vector<server*>	_servers;
+    std::map<int, int>      _doublePorts;
+    int						_nrOfServers;
+    long					_highestFd;
+    bool                    _boolDoublePorts;
 
 public:
 	typedef void	(server::*setter)(std::string&);
 
-	class	duplicatePortException : public std::exception {
-	public:
-		virtual const char*	what() const throw();
-	};
+//	class	duplicatePortException : public std::exception {
+//	public:
+//		virtual const char*	what() const throw();
+//	};
 	serverCluster();
 	serverCluster(const serverCluster &original);
 	~serverCluster();
@@ -29,8 +31,9 @@ public:
 
 	void	addServer(server *newServ);
 	bool	isEmpty() const;
+	bool    doublePort() const;
 
-	void	duplicatePorts() const;
+	void	duplicatePorts();
 	void	startup();
 
 	void	startListening();
