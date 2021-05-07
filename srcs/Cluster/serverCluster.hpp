@@ -11,14 +11,14 @@ public:
 	fd_set	writeFds;
 private:
 
-    std::vector<server*>	_servers;
-    std::map<int, int>      _doublePorts;
-    int						_nrOfServers;
-    long					_highestFd;
-    bool                    _boolDoublePorts;
+    std::vector<server*>	            _servers;
+    std::map<int, std::map<int, int> >  _doublePorts;
+    int						            _nrOfServers;
+    long					            _highestFd;
+    bool                                _boolDoublePorts;
 
 public:
-	typedef void	(server::*setter)(std::string&);
+//	typedef void	(server::*setter)(std::string&);
 
 //	class	duplicatePortException : public std::exception {
 //	public:
@@ -33,7 +33,7 @@ public:
 	bool	isEmpty() const;
 	bool    doublePort() const;
 
-    std::map<int, int> getDoublePorts() const ;
+    std::map<int, std::map<int, int> > getDoublePorts() const ;
 	void	duplicatePorts();
 	void	startup();
 

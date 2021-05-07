@@ -68,7 +68,6 @@ void	serverCluster::duplicatePorts()
 	    ports.insert(std::make_pair(i, (*it)->getPortNr()));
 	    i++;
     }
-
 	std::map<int, int>::iterator it1;
 	std::map<int, int>::iterator it2;
 	for (it1 = ports.begin(); it1 != ports.end(); it1++) {
@@ -77,19 +76,23 @@ void	serverCluster::duplicatePorts()
         while (it2 != ports.end()) {
             if (it1->second == it2->second) {
                 this->_boolDoublePorts = true;
-                this->_doublePorts.insert(std::make_pair(it1->first, it2->first));
+                this->_doublePorts.insert(std::make_pair(it1->second, std::map<int, int>()));
+                this->_doublePorts[it1->second].insert(std::make_pair(it1->first, it2->first));
                 break;
             }
             it2++;
         }
     }
-    std::map<int, int>::iterator it3;
-    for (it3 = this->_doublePorts.begin(); it3 != this->_doublePorts.end(); it3++){
-        std::cout << it3->first << " " << it3->second << std::endl ;
-    }
+    std::map<int, std::map<int, int> >::iterator itr;
+	std::map<int, int>::iterator ptr;
+	for(itr = _doublePorts.begin(); itr != _doublePorts.end(); itr++) {
+	    for (ptr = itr->second.begin(); ptr != itr->second.end(); ptr++) {
+	        std::cout << itr->first << " " << ptr->first << " " << ptr->second << std::endl ;
+	    }
+	}
 }
 
-std::map<int, int> serverCluster::getDoublePorts() const {
+std::map< int, std::map <int, int> > serverCluster::getDoublePorts() const {
     return (this->_doublePorts);
 }
 
@@ -115,14 +118,15 @@ void	serverCluster::startListening()
 		int 			ret;
 		long			maxFd = this->_highestFd;
 		std::vector<server*>::iterator it = this->_servers.begin();
-
+        //_servers heeft de servers waaruit we kunnen kiezen
 		g_recentConnection = NULL;
 		signal(SIGPIPE, sigPipeHandler);
 		FD_ZERO(&writeSet);
 		FD_ZERO(&readSet);
 		readSet = this->readFds;
 		while (it != this->_servers.end())
-		{
+		{   //merel -> waar wordt hier nou precies de keuze gemaakt voor welke server we kiezen
+		    //merel -> en hoe kan ik de host uit respons nog ophalen?
 			for (int i = 0; i < NR_OF_CONNECTIONS; i++)
 			{
 				if ((*it)->connections[i].getAcceptFd() != -1)
@@ -157,7 +161,9 @@ void	serverCluster::startListening()
 		    exit(1);
 		it = this->_servers.begin();
 		while (it != this->_servers.end() && ret) 
-		{
+		{       // -> merel hier wordt er gehopt tussen de servers en gecheckt welke werkt
+		        // dus ik zou zeggen dat als er een dubbele port is dat je hier bepaalt welke de juiste
+		        // server is om te pakken
 			long fd;
 			fd = (*it)->getSocketFd(); 
 			if (FD_ISSET(fd, &readSet))
@@ -192,3 +198,17 @@ void	serverCluster::startListening()
 		}
 	}
 }
+
+/*Pseudo code voor de te kiezen server
+ * er is een vector van _servers en ik weet de locaties
+ * van de ports die hetzelfde zijn. de locaties  van waar
+ * deze dubbele locaties staan zijn opgeslgen in _doublePorts,
+ * een map<int map< int, int> >, van die locaties doe ik de get->serverName
+ * en die vergelijk ik met de host van request. De locatie van
+ * de host en servername die overeenkomen is hoe ver je door
+ * de _servers moet iteraten om bij de juiste server te komen.
+ * Als geen een van de servers overeenkomen, pakken we de
+ * laagste locatie
+ * - waar wordt de juiste port bepaald?
+ * - waar wordt de keuze precies gemaakt voor de server?
+ * Dit is de plek waar we moeten ingrijpen */
