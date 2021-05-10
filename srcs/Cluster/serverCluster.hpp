@@ -18,8 +18,6 @@ private:
     bool                                _boolDoublePorts;
 
 public:
-//	typedef void	(server::*setter)(std::string&);
-
 	serverCluster();
 	serverCluster(const serverCluster &original);
 	~serverCluster();

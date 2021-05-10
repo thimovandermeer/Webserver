@@ -305,7 +305,6 @@ void				Response::setStatus(int status)
 int					Response::authenticate(Request &req)
 {
 	if (this->_currentLoc == NULL) {
-//		std::cout << RED "Location does not exist" END << std::endl;
 		return 0;
 	}
 	if (this->_currentLoc->gethtpasswdpath().empty()) {

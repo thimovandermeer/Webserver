@@ -45,8 +45,8 @@ private:
 	struct sockaddr_in	_addr;
 
 public:
-	std::vector<server*>             _alternativeServers;
 	// private maken met een setter
+	std::vector<server*>             _alternativeServers;
 
 	size_t				_bodylen;
 	connection			connections[NR_OF_CONNECTIONS];
@@ -64,6 +64,7 @@ public:
 	void	setHost(std::string &host);
 	void	setServerNames(std::string &names);
 	void	setIndices(std::string &indices);
+//	void    setAlternativeServers
 
 	const int						&getPortNr() const;
 	const size_t					&getMaxBodySize() const;

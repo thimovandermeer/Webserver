@@ -265,7 +265,6 @@ void Request::parseBody() {
 	ss << std::hex << hex.c_str();
 	ss >> tmp;
 	_bodyLength += tmp;
-        // _bodyLength += (hex.c_str(), 0, 16);
         begin = end + 2;
         end = _request.find("\r\n", begin);
         _body.append(_request, begin, end - begin);

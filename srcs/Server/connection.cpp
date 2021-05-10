@@ -52,7 +52,6 @@ const unsigned long&	connection::getTimeLastRead() const
 
 const long&			connection::getAcceptFd() const
 {
-    // -> merelvwaar en hoe wordt deze accept fd bepaald?
 	return (this->_acceptFd);
 }
 

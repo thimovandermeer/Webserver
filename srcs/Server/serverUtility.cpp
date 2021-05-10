@@ -64,7 +64,7 @@ void server::handleResponse(int index)
 {
 	static size_t nr = 0;
 	if (!this->connections[index].getResponseString().empty())
-		return;
+	    	return;
 	std::cout << "handling request nr " << nr << std::endl;
 
 #ifdef PRINTLOG
@@ -90,18 +90,18 @@ void server::handleResponse(int index)
 	std::cout << "==end==" << std::endl;
 #endif
 	Request	request(this->connections[index].getBuffer());
+
 	if (!(*this)._alternativeServers.empty()) {
-//	    std::cout << "ik ben niet leeg" << std::endl ;
-        std::cout << request.getHost() << std::endl ;
-
+	    if ((*this)._serverNames[0] != request.getHost()) {
+            std::vector<server *>::const_iterator it1;
+            for (it1 = (*this)._alternativeServers.begin(); it1 != (*this)._alternativeServers.end(); it1++) {
+                if ((*it1)->_serverNames[0] == request.getHost()){
+                    *this = *(*it1);
+                    break ;
+                }
+            }
+        }
 	}
-	// bekijk in de server class of de vector !empty s
-	// als die  niet empty is bekijk je per server welke servername
-	// overeenkomt met de hostname
-	// *this zet je naar de juiste server en die vertuur je naar de
-	// response
-
-
 	Response resp(request, *this);
 	resp.setupResponse(request, *this);
 	this->_bodylen = resp.getBodySize();
