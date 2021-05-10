@@ -20,10 +20,6 @@ private:
 public:
 //	typedef void	(server::*setter)(std::string&);
 
-//	class	duplicatePortException : public std::exception {
-//	public:
-//		virtual const char*	what() const throw();
-//	};
 	serverCluster();
 	serverCluster(const serverCluster &original);
 	~serverCluster();

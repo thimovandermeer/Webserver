@@ -90,8 +90,18 @@ void server::handleResponse(int index)
 	std::cout << "==end==" << std::endl;
 #endif
 	Request	request(this->connections[index].getBuffer());
-	// hier is het portnummer al bepaald
-	// *this verwijst naar 1 server
+	if (!(*this)._alternativeServers.empty()) {
+//	    std::cout << "ik ben niet leeg" << std::endl ;
+        std::cout << request.getHost() << std::endl ;
+
+	}
+	// bekijk in de server class of de vector !empty s
+	// als die  niet empty is bekijk je per server welke servername
+	// overeenkomt met de hostname
+	// *this zet je naar de juiste server en die vertuur je naar de
+	// response
+
+
 	Response resp(request, *this);
 	resp.setupResponse(request, *this);
 	this->_bodylen = resp.getBodySize();

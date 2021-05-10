@@ -18,7 +18,7 @@ class Request{
     public:
 		friend class Response;
         ~Request();
-        Request(std::string request);
+        explicit Request(std::string request);
         Request(const Request &original);
         Request &operator=(const Request &original);
 
@@ -27,6 +27,7 @@ class Request{
         std::map<std::string, std::string> getHeaders() const;
         std::map<std::string, std::string> getCgiHeaders() const;
         std::string getBody() const;
+        std::string getHost();
         std::string getContentType();
         std::string getCgiEnv() const;
         bool getCgi() const ;

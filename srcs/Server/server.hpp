@@ -45,6 +45,8 @@ private:
 	struct sockaddr_in	_addr;
 
 public:
+	std::vector<server*>             _alternativeServers;
+	// private maken met een setter
 
 	size_t				_bodylen;
 	connection			connections[NR_OF_CONNECTIONS];

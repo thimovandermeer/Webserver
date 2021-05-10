@@ -7,10 +7,6 @@
 
 connection *g_recentConnection;
 
-//const char	*serverCluster::duplicatePortException::what() const throw()
-//{
-//	return ("duplicate ports specificied over multiple server blocks");
-//}
 
 serverCluster::serverCluster() : _nrOfServers(0), _highestFd(0), _boolDoublePorts(false)
 {
@@ -60,41 +56,86 @@ bool    serverCluster::doublePort() const
 //std::vector<servers*>       *Allservers;
 //(*it)->servers = &this->servers
 
+// dit moet ik helemaal gaan herschrijven
+// ik moet door alle servers loopen en tegelijk
+// checken of een port dubbel is
+// als een port dubbel is, moet ik de pointer naar die server
+// opslaan in de initiele server
 void	serverCluster::duplicatePorts()
 {
-	std::vector<server*>::const_iterator    it;
-	std::map<int, int>                      ports;
+	std::vector<server*>::const_iterator    it1;
+    std::vector<server*>::const_iterator    it2;
 
 	if (this->_servers.size() < 2)
 		return;
-	int i = 0;
-	for (it = this->_servers.begin(); it != this->_servers.end(); it++) {
-	    ports.insert(std::make_pair(i, (*it)->getPortNr()));
-	    i++;
-    }
-	std::map<int, int>::iterator it1;
-	std::map<int, int>::iterator it2;
-	for (it1 = ports.begin(); it1 != ports.end(); it1++) {
-        it2 = it1;
-        it2++;
-        while (it2 != ports.end()) {
-            if (it1->second == it2->second) {
-                this->_boolDoublePorts = true;
-                this->_doublePorts.insert(std::make_pair(it1->second, std::map<int, int>()));
-                this->_doublePorts[it1->second].insert(std::make_pair(it1->first, it2->first));
-                break;
-            }
-            it2++;
-        }
-    }
-    std::map<int, std::map<int, int> >::iterator itr;
-	std::map<int, int>::iterator ptr;
-	for(itr = _doublePorts.begin(); itr != _doublePorts.end(); itr++) {
-	    for (ptr = itr->second.begin(); ptr != itr->second.end(); ptr++) {
-	        std::cout << itr->first << " " << ptr->first << " " << ptr->second << std::endl ;
+
+	for (it1 = this->_servers.begin(); it1 != this->_servers.end(); it1++) {
+	    it2 = it1;
+	    it2++;
+	    while(it2 != this->_servers.end()){
+	        if((*it1)->getPortNr() == (*it2)->getPortNr()){
+                (*it1)->_alternativeServers.push_back(*it2);
+                std::cout << (*it1)->getPortNr() << " " <<  (*it2)->getPortNr() << std::endl ;
+	        }
+	        it2++;
 	    }
-	}
+    }
+//	std::map<int, int>::iterator it1;
+//	std::map<int, int>::iterator it2;
+//	for (it1 = ports.begin(); it1 != ports.end(); it1++) {
+//        it2 = it1;
+//        it2++;
+//        while (it2 != ports.end()) {
+//            if (it1->second == it2->second) {
+//                this->_boolDoublePorts = true;
+//                this->_doublePorts.insert(std::make_pair(it1->second, std::map<int, int>()));
+//                this->_doublePorts[it1->second].insert(std::make_pair(it1->first, it2->first));
+//                break;
+//            }
+//            it2++;
+//        }
+//    }
+//    std::map<int, std::map<int, int> >::iterator itr;
+//	std::map<int, int>::iterator ptr;
+//	for(itr = _doublePorts.begin(); itr != _doublePorts.end(); itr++) {
+//	    for (ptr = itr->second.begin(); ptr != itr->second.end(); ptr++) {
+//	        std::cout << itr->first << " " << ptr->first << " " << ptr->second << std::endl ;
+//	    }
+//	}
 }
+
+//std::vector<server*>::const_iterator    it;
+//std::map<int, int>                      ports;
+//
+//if (this->_servers.size() < 2)
+//return;
+//int i = 0;
+//for (it = this->_servers.begin(); it != this->_servers.end(); it++) {
+//ports.insert(std::make_pair(i, (*it)->getPortNr()));
+//i++;
+//}
+//std::map<int, int>::iterator it1;
+//std::map<int, int>::iterator it2;
+//for (it1 = ports.begin(); it1 != ports.end(); it1++) {
+//it2 = it1;
+//it2++;
+//while (it2 != ports.end()) {
+//if (it1->second == it2->second) {
+//this->_boolDoublePorts = true;
+//this->_doublePorts.insert(std::make_pair(it1->second, std::map<int, int>()));
+//this->_doublePorts[it1->second].insert(std::make_pair(it1->first, it2->first));
+//break;
+//}
+//it2++;
+//}
+//}
+//std::map<int, std::map<int, int> >::iterator itr;
+//std::map<int, int>::iterator ptr;
+//for(itr = _doublePorts.begin(); itr != _doublePorts.end(); itr++) {
+//for (ptr = itr->second.begin(); ptr != itr->second.end(); ptr++) {
+//std::cout << itr->first << " " << ptr->first << " " << ptr->second << std::endl ;
+//}
+//}
 
 std::map< int, std::map <int, int> > serverCluster::getDoublePorts() const {
     return (this->_doublePorts);

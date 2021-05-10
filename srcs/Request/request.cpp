@@ -70,6 +70,23 @@ std::string Request::getContentType()  {
     return (it->second);
 }
 
+std::string Request::getHost() {
+    if (_defHeaders.begin() == _defHeaders.end()){
+        _status = 400;
+        return ("NULL");
+    }
+    std::map<std::string, std::string>::iterator it = _defHeaders.find("HOST");
+    if (it == _defHeaders.end()){
+        _status = 400;
+        return ("NULL");
+    }
+    std::string host = it->second;
+    std::size_t found = host.find(":");
+        if(found != std::string::npos)
+            host = host.substr(0, found);
+    return (host);
+}
+
 std::string Request::getCgiEnv() const{
     return _cgiEnv;
 }
