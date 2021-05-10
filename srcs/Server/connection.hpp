@@ -19,7 +19,9 @@ private:
 	long			_acceptFd;
 	std::string		_acceptBuffer;
 	bool			_hasFullRequest;
+public:
 	size_t			_bodyBytesSent;
+private:
 	bool			_headerSent;
 	std::string		_responseString;
 	bool			isFullRequest() const;

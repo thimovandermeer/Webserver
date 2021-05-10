@@ -26,7 +26,14 @@
         <item name="GROUP_NODE:vogsphere" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/refactoring_io" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
@@ -39,25 +46,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="omw to fix the other reads and writes to go through select">
+    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="ok almost back to nothing, but what I have now, works FOR SURE">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/flags.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/CGI/CGI.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/CGI/CGI.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Response/Response.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/connection.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/connection.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Response/Response.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Server/connection.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/connection.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/server.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/server.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,15 +121,15 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.mac_tester">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Test" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv" TEST_CLASS="[List]" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="default" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv">
@@ -252,7 +247,8 @@
       <workItem from="1620135646939" duration="5229000" />
       <workItem from="1620197200556" duration="4035000" />
       <workItem from="1620207555547" duration="2631000" />
-      <workItem from="1620222291664" duration="2079000" />
+      <workItem from="1620222291664" duration="3043000" />
+      <workItem from="1620629132518" duration="4120000" />
     </task>
     <task id="LOCAL-00003" summary="nearly done all set functions of responseheader">
       <created>1611650661666</created>
@@ -555,7 +551,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620122240530</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="ok almost back to nothing, but what I have now, works FOR SURE">
+      <created>1620226137591</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1620226137591</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -569,7 +572,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/refactoring_io" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -628,7 +643,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="updated assignment operators, split server code in 2 files" />
     <MESSAGE value="new server files were missing" />
     <MESSAGE value="copied getPath fix from other branch; edited reading auth file in location to use std::getline instead of GNL, so it reads the last line; rewrote getAuthMatch in location for clarity (and removed base64_decode() to make it work)" />
     <MESSAGE value="hmmmmst" />
@@ -653,7 +667,8 @@
     <MESSAGE value="changed cgi reading to be faster, changed defines to be bigger" />
     <MESSAGE value="main up to date with handed in shit, but still includes cmake shit now" />
     <MESSAGE value="omw to fix the other reads and writes to go through select" />
-    <option name="LAST_COMMIT_MESSAGE" value="omw to fix the other reads and writes to go through select" />
+    <MESSAGE value="ok almost back to nothing, but what I have now, works FOR SURE" />
+    <option name="LAST_COMMIT_MESSAGE" value="ok almost back to nothing, but what I have now, works FOR SURE" />
   </component>
   <component name="WindowStateProjectService">
     <state x="880" y="357" key="#New_File_Extensions" timestamp="1616416242181">
@@ -680,38 +695,38 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="89" y="65" width="2360" height="1137" key="DiffContextDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1620224848667" />
-    <state width="2518" height="293" key="GridCell.Tab.0.bottom" timestamp="1620225371677">
+    <state width="2518" height="281" key="GridCell.Tab.0.bottom" timestamp="1620637401408">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="293" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1620225371677" />
-    <state width="2518" height="293" key="GridCell.Tab.0.center" timestamp="1620225371676">
+    <state width="2518" height="281" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1620637401408" />
+    <state width="2518" height="281" key="GridCell.Tab.0.center" timestamp="1620637401406">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="293" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1620225371676" />
-    <state width="2518" height="293" key="GridCell.Tab.0.left" timestamp="1620225371675">
+    <state width="2518" height="281" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1620637401406" />
+    <state width="2518" height="281" key="GridCell.Tab.0.left" timestamp="1620637401406">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="293" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1620225371675" />
-    <state width="2518" height="293" key="GridCell.Tab.0.right" timestamp="1620225371676">
+    <state width="2518" height="281" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1620637401406" />
+    <state width="2518" height="281" key="GridCell.Tab.0.right" timestamp="1620637401407">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="293" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1620225371676" />
-    <state width="2518" height="293" key="GridCell.Tab.1.bottom" timestamp="1620225371678">
+    <state width="2518" height="281" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1620637401407" />
+    <state width="2518" height="281" key="GridCell.Tab.1.bottom" timestamp="1620637401412">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="293" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1620225371678" />
-    <state width="2518" height="293" key="GridCell.Tab.1.center" timestamp="1620225371677">
+    <state width="2518" height="281" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1620637401412" />
+    <state width="2518" height="281" key="GridCell.Tab.1.center" timestamp="1620637401410">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="293" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1620225371677" />
-    <state width="2518" height="293" key="GridCell.Tab.1.left" timestamp="1620225371677">
+    <state width="2518" height="281" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1620637401410" />
+    <state width="2518" height="281" key="GridCell.Tab.1.left" timestamp="1620637401408">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="293" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1620225371677" />
-    <state width="2518" height="293" key="GridCell.Tab.1.right" timestamp="1620225371677">
+    <state width="2518" height="281" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1620637401408" />
+    <state width="2518" height="281" key="GridCell.Tab.1.right" timestamp="1620637401412">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="293" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1620225371677" />
+    <state width="2518" height="281" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1620637401412" />
     <state x="919" y="460" key="MultipleFileMergeDialog" timestamp="1620122330209">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -724,10 +739,10 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="101" y="123" width="2129" height="1137" key="ShowDiffWithBranchDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1618845303175" />
-    <state x="880" y="431" key="Vcs.Push.Dialog.v2" timestamp="1620122341594">
+    <state x="880" y="431" key="Vcs.Push.Dialog.v2" timestamp="1620226138930">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="880" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1620122341594" />
+    <state x="880" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1620226138930" />
     <state x="1065" y="432" key="VcsDiffUtil.ChangesDialog" timestamp="1620224656389">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>

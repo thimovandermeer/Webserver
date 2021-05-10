@@ -93,6 +93,7 @@ void server::createResponse(int index)
 #endif
 	Request	request(curcon->getBuffer());
 //	Response resp(request, *this);
+
 	curcon->myresp = new Response(request, *this);
 	curcon->myresp->setupResponse(request, *this);
 	this->_bodylen = curcon->myresp->getBodySize();

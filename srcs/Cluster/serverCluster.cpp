@@ -53,17 +53,17 @@ bool	serverCluster::isEmpty() const
 
 void	serverCluster::duplicatePorts() const
 {
-	std::vector<int>	ports;
-	std::vector<server*>::const_iterator it;
-	if (this->_servers.size() < 2)
-		return;
-	for (it = this->_servers.begin(); it != this->_servers.end(); it++)
-		ports.push_back((*it)->getPortNr());
-
-	std::sort(ports.begin(), ports.end());
-	std::vector<int>::iterator it1 = std::unique(ports.begin(), ports.end());
-	if (it1 != ports.end())
-		throw duplicatePortException();
+//	std::vector<int>	ports;
+//	std::vector<server*>::const_iterator it;
+//	if (this->_servers.size() < 2)
+//		return;
+//	for (it = this->_servers.begin(); it != this->_servers.end(); it++)
+//		ports.push_back((*it)->getPortNr());
+//
+//	std::sort(ports.begin(), ports.end());
+//	std::vector<int>::iterator it1 = std::unique(ports.begin(), ports.end());
+//	if (it1 != ports.end())
+//		throw duplicatePortException();
 }
 
 void	serverCluster::startup()
@@ -120,9 +120,9 @@ void	serverCluster::startListening()
 					else
 					{
 						FD_SET((*it)->connections[i].getAcceptFd(), &writeSet);
-//						(*it)->createResponse(i);
+						if (!(*it)->connections[i].myresp)
+							(*it)->createResponse(i);
 					}
-
 				}
 			}
 			it++;
@@ -156,8 +156,13 @@ void	serverCluster::startListening()
 					}
 					if (FD_ISSET(fd, &writeSet))
 					{
+						if (!(*it)->connections[connectioncounter].myresp->isFinished)
+						{
+							std::cerr << "I think this should never happen" << std::endl;
+							std::cerr << (*it)->connections[connectioncounter]._bodyBytesSent << std::endl;
+						}
 						g_recentConnection = &((*it)->connections[connectioncounter]);
-						(*it)->createResponse(connectioncounter);
+//						(*it)->createResponse(connectioncounter);
 						(*it)->connections[connectioncounter].sendData((*it)->_bodylen);
 						break;
 					}

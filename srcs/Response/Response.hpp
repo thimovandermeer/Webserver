@@ -25,7 +25,8 @@ public:
 
 	void 	setupResponse(Request &req, server &serv);
 
-	friend std::ostream &operator<<(std::ostream &os, const Response &response);
+	friend	std::ostream &operator<<(std::ostream &os, const Response &response);
+	bool	isFinished;
 
 private:
 	std::string 				_response;

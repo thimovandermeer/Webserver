@@ -8,6 +8,7 @@
 # define BOLD			"\x1b[1m"
 
 Response::Response(Request &req, server &serv) :
+	isFinished(false),
 	_status(req.getStatus()),
 
 	_contentType(req.getContentType()),
@@ -199,6 +200,7 @@ void	Response::errorPage(server &serv)
 		this->_content = pageData;
 	responseHeader header(_content, _path, _status, _contentType);
 	_response = header.getHeader(_status) + _content;
+	this->isFinished = true;
 }
 
 void Response::getMethod()
@@ -206,7 +208,7 @@ void Response::getMethod()
 	readContent();
 	responseHeader header(_content, _path, _status, _contentType);
 	_response = header.getHeader(_status) + _content;
-
+	this->isFinished = true;
 }
 
 void Response::headMethod()
@@ -215,6 +217,7 @@ void Response::headMethod()
 	responseHeader header(_content, _path, _status, _contentType);
   	_response = header.getHeader(_status);
   	this->_content.clear();
+	this->isFinished = true;
 }
 
 std::string Response::headerValue(size_t startPos) {
@@ -252,6 +255,7 @@ void Response::postMethod(std::string content)
 		_content.erase(0, pos + 4);
 		responseHeader header(_content, _path, _status, _contentType);
 		_response = header.getHeader(_status) + _content;
+		this->isFinished = true;
 		return;
 	}
 	if (this->_currentLoc->getMaxBodySize() < content.length())
@@ -269,6 +273,7 @@ void Response::postMethod(std::string content)
 	content.clear();
 	responseHeader header(content, _path, _status, _contentType);
 	_response = header.getHeader(_status);
+	this->isFinished = true;
 }
 
 void Response::putMethod(std::string const &content)
@@ -281,6 +286,7 @@ void Response::putMethod(std::string const &content)
 	writeContent(content);
 	responseHeader header(_content, _path, _status, _contentType);
 	_response = header.getHeader(_status);
+	this->isFinished = true;
 }
 
 //#include <fstream>
