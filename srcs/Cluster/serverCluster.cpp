@@ -56,6 +56,10 @@ bool    serverCluster::doublePort() const
     return _boolDoublePorts;
 }
 
+// in de server
+//std::vector<servers*>       *Allservers;
+//(*it)->servers = &this->servers
+
 void	serverCluster::duplicatePorts()
 {
 	std::vector<server*>::const_iterator    it;

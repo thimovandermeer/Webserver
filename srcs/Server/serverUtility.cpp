@@ -90,6 +90,8 @@ void server::handleResponse(int index)
 	std::cout << "==end==" << std::endl;
 #endif
 	Request	request(this->connections[index].getBuffer());
+	// hier is het portnummer al bepaald
+	// *this verwijst naar 1 server
 	Response resp(request, *this);
 	resp.setupResponse(request, *this);
 	this->_bodylen = resp.getBodySize();
