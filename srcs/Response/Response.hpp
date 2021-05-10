@@ -26,7 +26,10 @@ public:
 	void 	setupResponse(Request &req, server &serv);
 
 	friend	std::ostream &operator<<(std::ostream &os, const Response &response);
+
+	// new shit by Jonas, needs cleanup
 	bool	isFinished;
+	int		fileFd;
 
 private:
 	std::string 				_response;

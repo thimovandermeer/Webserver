@@ -9,6 +9,7 @@
 
 Response::Response(Request &req, server &serv) :
 	isFinished(false),
+	fileFd(-1),
 	_status(req.getStatus()),
 
 	_contentType(req.getContentType()),
@@ -111,7 +112,6 @@ void Response::setupResponse(Request &req, server &serv) {
 
 void 	Response::readContent()
 {
-	int			fileFd;
 	struct stat statBuf;
 
 	if (_useCGI == true)
@@ -121,15 +121,15 @@ void 	Response::readContent()
 	}
 	if(stat(_path.c_str(), &statBuf) != 0)
 		return (this->setStatus(404));
-	fileFd = open(this->_path.c_str(), O_RDONLY);
-	if(fileFd == -1 && this->_status == 200)
+	this->fileFd = open(this->_path.c_str(), O_RDONLY);
+	if(this->fileFd == -1 && this->_status == 200)
 		return (this->setStatus(403));
 	if(stat(_path.c_str(), &statBuf) != 0 && _status == 200)
 		return (this->setStatus(404));
 	char buf[statBuf.st_size + 1];
 	bzero(buf, statBuf.st_size + 1);
 	// break here
-	read(fileFd, buf, statBuf.st_size);
+	read(this->fileFd, buf, statBuf.st_size);
 	this->_content.reserve(statBuf.st_size + 1);
 	for (off_t i = 0; i < statBuf.st_size; i++)
 	{
@@ -137,7 +137,8 @@ void 	Response::readContent()
 	}
 //	if (this->_status == 200)
 //		this->_content += buf;
-	close(fileFd);
+	close(this->fileFd);
+	this->fileFd = -1;
 }
 
 void    Response::createErrorPage(std::string *pageData)
@@ -260,16 +261,16 @@ void Response::postMethod(std::string content)
 	}
 	if (this->_currentLoc->getMaxBodySize() < content.length())
 		return (this->setStatus(413));
-	int	fileFd;
-	fileFd = open(_path.c_str(), O_WRONLY | O_APPEND | O_CREAT);
-	if(fileFd == -1 && _status == 200)
+	this->fileFd = open(_path.c_str(), O_WRONLY | O_APPEND | O_CREAT);
+	if(this->fileFd == -1 && _status == 200)
 		this->setStatus(403);
 	struct stat statBuf;
 	if(stat(_path.c_str(), &statBuf) < 0 && _status == 200)
 		this->setStatus(201);
 	// break here
-	write(fileFd, content.c_str(), content.length());
-	close(fileFd);
+	write(this->fileFd, content.c_str(), content.length());
+	close(this->fileFd);
+	this->fileFd = -1;
 	content.clear();
 	responseHeader header(content, _path, _status, _contentType);
 	_response = header.getHeader(_status);
@@ -304,19 +305,19 @@ void Response::putMethod(std::string const &content)
 
 void 	Response::writeContent(std::string const &content)
 {
-	int			fileFd;
 	struct stat statBuf;
 
 	if(stat(_path.c_str(), &statBuf) < 0 && _status == 200)
 		this->setStatus(201);
-	fileFd = open(_path.c_str(), O_RDWR | O_TRUNC | O_CREAT, 0744);
-	if (fileFd == -1)
+	this->fileFd = open(_path.c_str(), O_RDWR | O_TRUNC | O_CREAT, 0744);
+	if (this->fileFd == -1)
 		return (this->setStatus(403));
 	// break here
-	int ret = write(fileFd, content.c_str(), content.length());
+	int ret = write(this->fileFd, content.c_str(), content.length());
 	if ((size_t)ret != content.length())
 		std::cerr << "didn't print it all" << std::endl;
-	close(fileFd);
+	close(this->fileFd);
+	this->fileFd = -1;
 }
 
 const std::string 	&Response::getResponse() const
