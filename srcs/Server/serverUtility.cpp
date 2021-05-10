@@ -65,8 +65,8 @@ void server::createResponse(int index)
 {
 	connection	*curcon = &this->connections[index];
 	static size_t nr = 0;
-	if (!curcon->getResponseString().empty())
-		return;
+//	if (!curcon->getResponseString().empty())
+//		return;
 	std::cout << "handling request nr " << nr << std::endl;
 
 #ifdef PRINTLOG
@@ -96,8 +96,8 @@ void server::createResponse(int index)
 
 	curcon->myresp = new Response(request, *this);
 	curcon->myresp->setupResponse(request, *this);
-	this->_bodylen = curcon->myresp->getBodySize();
-	curcon->setResponseString(curcon->myresp->getResponse());
+//	this->_bodylen = curcon->myresp->getBodySize();
+//	curcon->setResponseString(curcon->myresp->getResponse());
 
 #ifdef PRINTLOG
 	if (nr >= MAXLOGS)
@@ -123,3 +123,11 @@ void server::createResponse(int index)
 #endif
 	nr++;
 }
+
+void	server::setupRespStr(int index)
+{
+	this->_bodylen = this->connections[index].myresp->getBodySize();
+	this->connections[index].setResponseString(this->connections[index].myresp->getResponse());
+
+}
+

@@ -159,9 +159,10 @@ void	serverCluster::startListening()
 						if (!(*it)->connections[connectioncounter].myresp->isFinished)
 						{
 							std::cerr << "I think this should never happen" << std::endl;
-							std::cerr << (*it)->connections[connectioncounter]._bodyBytesSent << std::endl;
 						}
 						g_recentConnection = &((*it)->connections[connectioncounter]);
+						if ((*it)->connections[connectioncounter].getResponseString().empty())
+							(*it)->setupRespStr(connectioncounter);
 //						(*it)->createResponse(connectioncounter);
 						(*it)->connections[connectioncounter].sendData((*it)->_bodylen);
 						break;

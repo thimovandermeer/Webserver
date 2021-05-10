@@ -63,6 +63,8 @@ public:
 	void	setServerNames(std::string &names);
 	void	setIndices(std::string &indices);
 
+	void	setupRespStr(int index);
+
 	const int						&getPortNr() const;
 	const size_t					&getMaxBodySize() const;
 	const bool						&getAutoindex() const;

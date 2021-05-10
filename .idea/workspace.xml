@@ -46,12 +46,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="ok almost back to nothing, but what I have now, works FOR SURE">
+    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="checking when finished and only creating once">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Response/Response.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Response/Response.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Server/connection.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/connection.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Server/server.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/server.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -248,7 +247,7 @@
       <workItem from="1620197200556" duration="4035000" />
       <workItem from="1620207555547" duration="2631000" />
       <workItem from="1620222291664" duration="3043000" />
-      <workItem from="1620629132518" duration="4120000" />
+      <workItem from="1620629132518" duration="5551000" />
     </task>
     <task id="LOCAL-00003" summary="nearly done all set functions of responseheader">
       <created>1611650661666</created>
@@ -558,7 +557,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620226137591</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="checking when finished and only creating once">
+      <created>1620637737345</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1620637737345</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -643,7 +649,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="new server files were missing" />
     <MESSAGE value="copied getPath fix from other branch; edited reading auth file in location to use std::getline instead of GNL, so it reads the last line; rewrote getAuthMatch in location for clarity (and removed base64_decode() to make it work)" />
     <MESSAGE value="hmmmmst" />
     <MESSAGE value="fucked some shit up since a rebase was still pending and I aborted it. I think it's working now" />
@@ -668,7 +673,8 @@
     <MESSAGE value="main up to date with handed in shit, but still includes cmake shit now" />
     <MESSAGE value="omw to fix the other reads and writes to go through select" />
     <MESSAGE value="ok almost back to nothing, but what I have now, works FOR SURE" />
-    <option name="LAST_COMMIT_MESSAGE" value="ok almost back to nothing, but what I have now, works FOR SURE" />
+    <MESSAGE value="checking when finished and only creating once" />
+    <option name="LAST_COMMIT_MESSAGE" value="checking when finished and only creating once" />
   </component>
   <component name="WindowStateProjectService">
     <state x="880" y="357" key="#New_File_Extensions" timestamp="1616416242181">
@@ -695,38 +701,38 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="89" y="65" width="2360" height="1137" key="DiffContextDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1620224848667" />
-    <state width="2518" height="281" key="GridCell.Tab.0.bottom" timestamp="1620637401408">
+    <state width="2518" height="281" key="GridCell.Tab.0.bottom" timestamp="1620639527712">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="281" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1620637401408" />
-    <state width="2518" height="281" key="GridCell.Tab.0.center" timestamp="1620637401406">
+    <state width="2518" height="281" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1620639527712" />
+    <state width="2518" height="281" key="GridCell.Tab.0.center" timestamp="1620639527711">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="281" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1620637401406" />
-    <state width="2518" height="281" key="GridCell.Tab.0.left" timestamp="1620637401406">
+    <state width="2518" height="281" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1620639527711" />
+    <state width="2518" height="281" key="GridCell.Tab.0.left" timestamp="1620639527710">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="281" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1620637401406" />
-    <state width="2518" height="281" key="GridCell.Tab.0.right" timestamp="1620637401407">
+    <state width="2518" height="281" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1620639527710" />
+    <state width="2518" height="281" key="GridCell.Tab.0.right" timestamp="1620639527711">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="281" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1620637401407" />
-    <state width="2518" height="281" key="GridCell.Tab.1.bottom" timestamp="1620637401412">
+    <state width="2518" height="281" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1620639527711" />
+    <state width="2518" height="281" key="GridCell.Tab.1.bottom" timestamp="1620639527712">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="281" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1620637401412" />
-    <state width="2518" height="281" key="GridCell.Tab.1.center" timestamp="1620637401410">
+    <state width="2518" height="281" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1620639527712" />
+    <state width="2518" height="281" key="GridCell.Tab.1.center" timestamp="1620639527712">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="281" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1620637401410" />
-    <state width="2518" height="281" key="GridCell.Tab.1.left" timestamp="1620637401408">
+    <state width="2518" height="281" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1620639527712" />
+    <state width="2518" height="281" key="GridCell.Tab.1.left" timestamp="1620639527712">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="281" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1620637401408" />
-    <state width="2518" height="281" key="GridCell.Tab.1.right" timestamp="1620637401412">
+    <state width="2518" height="281" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1620639527712" />
+    <state width="2518" height="281" key="GridCell.Tab.1.right" timestamp="1620639527712">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="281" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1620637401412" />
+    <state width="2518" height="281" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1620639527712" />
     <state x="919" y="460" key="MultipleFileMergeDialog" timestamp="1620122330209">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
