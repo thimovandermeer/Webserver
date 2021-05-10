@@ -90,7 +90,6 @@ void server::handleResponse(int index)
 	std::cout << "==end==" << std::endl;
 #endif
 	Request	request(this->connections[index].getBuffer());
-
 	if (!(*this)._alternativeServers.empty()) {
 	    if ((*this)._serverNames[0] != request.getHost()) {
             std::vector<server *>::const_iterator it1;

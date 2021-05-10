@@ -114,6 +114,10 @@ void	server::setIndices(std::string &indices)
 		this->_indices.push_back(index);
 }
 
+void    server::setAlternativeServers(server *alternative) {
+    this->_alternativeServers.push_back((alternative));
+}
+
 const int			&server::getPortNr() const
 {
 	return (this->_portNr);

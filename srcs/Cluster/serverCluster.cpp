@@ -8,7 +8,7 @@
 connection *g_recentConnection;
 
 
-serverCluster::serverCluster() : _nrOfServers(0), _highestFd(0), _boolDoublePorts(false)
+serverCluster::serverCluster() : _nrOfServers(0), _highestFd(0)
 {
 	FD_ZERO(&this->readFds);
 	FD_ZERO(&this->writeFds);
@@ -47,11 +47,6 @@ bool	serverCluster::isEmpty() const
 	return (this->_servers.empty());
 }
 
-bool    serverCluster::doublePort() const
-{
-    return _boolDoublePorts;
-}
-
 void	serverCluster::duplicatePorts()
 {
 	std::vector<server*>::const_iterator    it1;
@@ -64,16 +59,11 @@ void	serverCluster::duplicatePorts()
 	    it2 = it1;
 	    it2++;
 	    while(it2 != this->_servers.end()){
-	        if((*it1)->getPortNr() == (*it2)->getPortNr()){
-                (*it1)->_alternativeServers.push_back(*it2);
-	        }
+	        if((*it1)->getPortNr() == (*it2)->getPortNr())
+                (*it1)->setAlternativeServers(*it2);
 	        it2++;
 	    }
     }
-}
-
-std::map< int, std::map <int, int> > serverCluster::getDoublePorts() const {
-    return (this->_doublePorts);
 }
 
 void	serverCluster::startup()
@@ -174,17 +164,3 @@ void	serverCluster::startListening()
 		}
 	}
 }
-
-/*Pseudo code voor de te kiezen server
- * er is een vector van _servers en ik weet de locaties
- * van de ports die hetzelfde zijn. de locaties  van waar
- * deze dubbele locaties staan zijn opgeslgen in _doublePorts,
- * een map<int map< int, int> >, van die locaties doe ik de get->serverName
- * en die vergelijk ik met de host van request. De locatie van
- * de host en servername die overeenkomen is hoe ver je door
- * de _servers moet iteraten om bij de juiste server te komen.
- * Als geen een van de servers overeenkomen, pakken we de
- * laagste locatie
- * - waar wordt de juiste port bepaald?
- * - waar wordt de keuze precies gemaakt voor de server?
- * Dit is de plek waar we moeten ingrijpen */

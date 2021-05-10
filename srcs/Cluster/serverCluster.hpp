@@ -15,7 +15,6 @@ private:
     std::map<int, std::map<int, int> >  _doublePorts;
     int						            _nrOfServers;
     long					            _highestFd;
-    bool                                _boolDoublePorts;
 
 public:
 	serverCluster();
@@ -25,9 +24,7 @@ public:
 
 	void	addServer(server *newServ);
 	bool	isEmpty() const;
-	bool    doublePort() const;
 
-    std::map<int, std::map<int, int> > getDoublePorts() const ;
 	void	duplicatePorts();
 	void	startup();
 

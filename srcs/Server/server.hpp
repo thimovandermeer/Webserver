@@ -40,14 +40,12 @@ private:
 	std::vector<std::string>		_indices;
 	std::map<std::string, setter>	_typeFunctionMap;
 	std::vector<location*>			_locations;
+	std::vector<server*>            _alternativeServers;
 
 	long				_socketFd;
 	struct sockaddr_in	_addr;
 
 public:
-	// private maken met een setter
-	std::vector<server*>             _alternativeServers;
-
 	size_t				_bodylen;
 	connection			connections[NR_OF_CONNECTIONS];
 
@@ -64,7 +62,7 @@ public:
 	void	setHost(std::string &host);
 	void	setServerNames(std::string &names);
 	void	setIndices(std::string &indices);
-//	void    setAlternativeServers
+	void    setAlternativeServers(server *alternative);
 
 	const int						&getPortNr() const;
 	const size_t					&getMaxBodySize() const;
