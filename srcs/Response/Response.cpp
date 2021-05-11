@@ -8,15 +8,13 @@
 # define BOLD			"\x1b[1m"
 
 Response::Response(Request &req, server &serv) :
-	isFinished(false),
-	fileFd(-1),
 	_useCGI(req.getCgi()),
 	_body(req.getBody()),
 	_status(req.getStatus()),
-
-
 	_contentType(req.getContentType()),
-	_method(req.getMethod())
+	_method(req.getMethod()),
+	fileFd(-1),
+	isFinished(false)
 {
 	getPath path(serv, req, *this);
 
@@ -196,9 +194,7 @@ void	Response::errorPage(server &serv)
 		if (this->fileFd < 0)
 			pageData = "Problem serving error.\nCannot open error page.";
 		else
-		{
 			return;
-		}
 	}
 	this->_content.clear();
 	if (this->_method != "HEAD")
@@ -416,3 +412,22 @@ const int &Response::getStatus() const
 	return (this->_status);
 }
 
+const bool &Response::getUseCgi() const
+{
+	return (this->_useCGI);
+}
+
+std::string &Response::getBody()
+{
+	return (this->_body);
+}
+
+CGI &Response::getCgi()
+{
+	return (this->_myCGI);
+}
+
+const bool &Response::isRespFinished() const
+{
+	return(this->isFinished);
+}

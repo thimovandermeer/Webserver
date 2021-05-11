@@ -45,11 +45,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="checking when finished and only creating once">
+    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="guess this shit works">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/CGI/CGI.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/CGI/CGI.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/CGI/CGI.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/CGI/CGI.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Response/Response.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Response/Response.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" afterDir="false" />
@@ -121,15 +119,15 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.mac_tester">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Test" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv" TEST_CLASS="[List]" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="default" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv">
@@ -249,7 +247,8 @@
       <workItem from="1620207555547" duration="2631000" />
       <workItem from="1620222291664" duration="3043000" />
       <workItem from="1620629132518" duration="5551000" />
-      <workItem from="1620718422317" duration="4804000" />
+      <workItem from="1620718422317" duration="5646000" />
+      <workItem from="1620727807256" duration="1275000" />
     </task>
     <task id="LOCAL-00003" summary="nearly done all set functions of responseheader">
       <created>1611650661666</created>
@@ -566,7 +565,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620637737345</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="guess this shit works">
+      <created>1620726242131</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1620726242132</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -651,7 +657,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="copied getPath fix from other branch; edited reading auth file in location to use std::getline instead of GNL, so it reads the last line; rewrote getAuthMatch in location for clarity (and removed base64_decode() to make it work)" />
     <MESSAGE value="hmmmmst" />
     <MESSAGE value="fucked some shit up since a rebase was still pending and I aborted it. I think it's working now" />
     <MESSAGE value="made locations take autoindex from server if none was set specifically, in such a way that you can put the server's autoindex anywhere in the config" />
@@ -676,7 +681,8 @@
     <MESSAGE value="omw to fix the other reads and writes to go through select" />
     <MESSAGE value="ok almost back to nothing, but what I have now, works FOR SURE" />
     <MESSAGE value="checking when finished and only creating once" />
-    <option name="LAST_COMMIT_MESSAGE" value="checking when finished and only creating once" />
+    <MESSAGE value="guess this shit works" />
+    <option name="LAST_COMMIT_MESSAGE" value="guess this shit works" />
   </component>
   <component name="WindowStateProjectService">
     <state x="880" y="357" key="#New_File_Extensions" timestamp="1616416242181">
@@ -703,38 +709,38 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="89" y="65" width="2360" height="1137" key="DiffContextDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1620224848667" />
-    <state width="2518" height="281" key="GridCell.Tab.0.bottom" timestamp="1620726227351">
+    <state width="2518" height="281" key="GridCell.Tab.0.bottom" timestamp="1620729315253">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="281" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1620726227351" />
-    <state width="2518" height="281" key="GridCell.Tab.0.center" timestamp="1620726227350">
+    <state width="2518" height="281" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1620729315253" />
+    <state width="2518" height="281" key="GridCell.Tab.0.center" timestamp="1620729315253">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="281" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1620726227350" />
-    <state width="2518" height="281" key="GridCell.Tab.0.left" timestamp="1620726227349">
+    <state width="2518" height="281" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1620729315252" />
+    <state width="2518" height="281" key="GridCell.Tab.0.left" timestamp="1620729315252">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="281" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1620726227349" />
-    <state width="2518" height="281" key="GridCell.Tab.0.right" timestamp="1620726227350">
+    <state width="2518" height="281" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1620729315252" />
+    <state width="2518" height="281" key="GridCell.Tab.0.right" timestamp="1620729315253">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="281" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1620726227350" />
-    <state width="2518" height="281" key="GridCell.Tab.1.bottom" timestamp="1620726227352">
+    <state width="2518" height="281" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1620729315253" />
+    <state width="2518" height="281" key="GridCell.Tab.1.bottom" timestamp="1620729315254">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="281" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1620726227352" />
-    <state width="2518" height="281" key="GridCell.Tab.1.center" timestamp="1620726227351">
+    <state width="2518" height="281" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1620729315254" />
+    <state width="2518" height="281" key="GridCell.Tab.1.center" timestamp="1620729315253">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="281" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1620726227351" />
-    <state width="2518" height="281" key="GridCell.Tab.1.left" timestamp="1620726227351">
+    <state width="2518" height="281" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1620729315253" />
+    <state width="2518" height="281" key="GridCell.Tab.1.left" timestamp="1620729315253">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="281" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1620726227351" />
-    <state width="2518" height="281" key="GridCell.Tab.1.right" timestamp="1620726227352">
+    <state width="2518" height="281" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1620729315253" />
+    <state width="2518" height="281" key="GridCell.Tab.1.right" timestamp="1620729315254">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="281" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1620726227352" />
+    <state width="2518" height="281" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1620729315254" />
     <state x="919" y="460" key="MultipleFileMergeDialog" timestamp="1620122330209">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>

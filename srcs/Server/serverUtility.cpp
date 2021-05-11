@@ -101,10 +101,10 @@ void	server::setupRespStr(int index)
 {
 	connection	*curcon = &this->connections[index];
 
-	if (!curcon->myresp->isFinished)
+	if (!curcon->myresp->isRespFinished())
 	{
-		if (curcon->myresp->_useCGI)
-			curcon->myresp->_myCGI.executeGCI(curcon->myresp->_body);
+		if (curcon->myresp->getUseCgi())
+			curcon->myresp->getCgi().executeGCI(curcon->myresp->getBody());
 		if (curcon->myresp->getStatus() > 299)
 			curcon->myresp->finishErrorPage(*this);
 		else if (curcon->myresp->methodType() == "GET")

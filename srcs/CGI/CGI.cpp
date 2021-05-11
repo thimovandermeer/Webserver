@@ -86,18 +86,6 @@ void CGI::executeGCI(std::string &body)
 	free_array(_env);
 	if((this->_fileRet = open("/tmp/fuckyoupeerout.txt", O_RDONLY)) == -1)
         errMsgAndExit("cgi error", 1);
-//	char buff[MB];
-//	int readret = 1;
-//	while (readret)
-//	{
-//		bzero(buff, MB);
-//		if ((readret = read(fd, buff, MB - 1)) == -1)
-//            errMsgAndExit("cgi error", 1);
-//        ret += buff;
-//	}
-//	if(close(fd) == -1)
-//        errMsgAndExit("cgi error", 1);
-//    return ret;
 }
 
 std::string CGI::readOutput()

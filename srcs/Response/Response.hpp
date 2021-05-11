@@ -27,24 +27,11 @@ public:
 
 	friend	std::ostream &operator<<(std::ostream &os, const Response &response);
 
-	// new shit by Jonas, needs cleanup
-	bool	isFinished;
-	int		fileFd;
-	void	finishread();
-	const std::string&	methodType() const;
-	const int&			getStatus() const;
-	void 		getMethod();
-	void 		headMethod();
-	void	finishErrorPage(server &serv);
-	void	finishPost();
-	void	finishPut();
-	void	finishPostCgi();
-	std::string postContent;
+
+private:
 	bool 						_useCGI;
 	CGI							_myCGI;
 	std::string 				_body;
-
-private:
 	std::string 				_response;
 	std::string 				_content;
 	int 						_status;
@@ -64,6 +51,9 @@ private:
 	int		    authenticate(Request &req);
 	void        parseContent();
     std::string headerValue(size_t startPos);
+	std::string postContent;
+	int			fileFd;
+	bool		isFinished;
 
 public:
 	void				setStatus(int status);
@@ -71,7 +61,20 @@ public:
 	size_t				getBodySize() const;
 	void 				setCurrentLoc(location *newloc);
 	bool				isMethodAllowed();
+	const std::string&	methodType() const;
+	const int&			getStatus() const;
+	const bool&			getUseCgi() const;
+	const bool&			isRespFinished() const;
+	CGI&				getCgi();
+	std::string&		getBody();
 
+	void	finishread();
+	void 	getMethod();
+	void 	headMethod();
+	void	finishErrorPage(server &serv);
+	void	finishPost();
+	void	finishPut();
+	void	finishPostCgi();
 };
 
 #endif
