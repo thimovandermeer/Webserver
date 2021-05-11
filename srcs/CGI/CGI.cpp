@@ -23,41 +23,44 @@ CGI::~CGI() {
     _environment.clear();
 }
 
-std::string CGI::executeGCI(std::string &body)
+void	CGI::setupIn()
+{
+	if((this->_fileIn = open("/tmp/fuckyoupeerin.txt", O_CREAT | O_TRUNC | O_RDWR, S_IRWXU)) == -1)
+	errMsgAndExit("cgi error", 1);
+}
+
+void CGI::executeGCI(std::string &body)
 {
 	_convertEnv();
-	int     fileIn;
 	int     status;
-    int     fileOut;
-    int     asdf;
-    int     fd;
+    int     retval;
     long    executableStart;
 
-    if((fileIn = open("/tmp/fuckyoupeerin.txt", O_CREAT | O_TRUNC | O_RDWR, S_IRWXU)) == -1)
+//    if((this->_fileIn = open("/tmp/fuckyoupeerin.txt", O_CREAT | O_TRUNC | O_RDWR, S_IRWXU)) == -1)
+//        errMsgAndExit("cgi error", 1);
+    retval = write(this->_fileIn, body.c_str(), body.length());
+    if (close(this->_fileIn) == -1)
         errMsgAndExit("cgi error", 1);
-    asdf = write(fileIn, body.c_str(), body.length());
-    if (close(fileIn) == -1)
-        errMsgAndExit("cgi error", 1);
-    if (asdf == -1)
+    if (retval == -1)
         errMsgAndExit("cgi error", 1);
     if ((_pid = fork()) == -1)
         errMsgAndExit("cgi error", 1);
     if (_pid == 0)
 	{
-		if ((fileOut  = open("/tmp/fuckyoupeerout.txt", O_CREAT | O_TRUNC | O_RDWR, S_IRWXU)) == -1)
+		if ((this->_fileOut = open("/tmp/fuckyoupeerout.txt", O_CREAT | O_TRUNC | O_RDWR, S_IRWXU)) == -1)
             errMsgAndExit("cgi error", 1);
-        if (dup2(fileOut, STDOUT_FILENO) == -1)
+        if (dup2(this->_fileOut, STDOUT_FILENO) == -1)
             errMsgAndExit("cgi error", 1);
-        if (close(fileOut) == -1)
+        if (close(this->_fileOut) == -1)
             errMsgAndExit("cgi error", 1);
-		if ((fileIn = open("/tmp/fuckyoupeerin.txt", O_RDONLY, S_IRWXU)) == -1)
+		if ((this->_fileIn = open("/tmp/fuckyoupeerin.txt", O_RDONLY, S_IRWXU)) == -1)
             errMsgAndExit("cgi error", 1);
-        if(dup2(fileIn, STDIN_FILENO) == -1)
+        if(dup2(this->_fileIn, STDIN_FILENO) == -1)
         {
-            close(fileIn);
+            close(this->_fileIn);
             errMsgAndExit("cgi error", 1);
         }
-        close(fileIn);
+        close(this->_fileIn);
         if(_type == PHP)
 		{
 			_path = "cgi-bin/php-cgi";
@@ -78,24 +81,40 @@ std::string CGI::executeGCI(std::string &body)
             errMsgAndExit("cgi error", 1);
         }
     }
-	std::string ret;
 	if(waitpid(0, &status, 0) == -1)
 	    errMsgAndExit("cgi error", 1);
 	free_array(_env);
-	if((fd = open("/tmp/fuckyoupeerout.txt", O_RDONLY)) == -1)
+	if((this->_fileRet = open("/tmp/fuckyoupeerout.txt", O_RDONLY)) == -1)
         errMsgAndExit("cgi error", 1);
+//	char buff[MB];
+//	int readret = 1;
+//	while (readret)
+//	{
+//		bzero(buff, MB);
+//		if ((readret = read(fd, buff, MB - 1)) == -1)
+//            errMsgAndExit("cgi error", 1);
+//        ret += buff;
+//	}
+//	if(close(fd) == -1)
+//        errMsgAndExit("cgi error", 1);
+//    return ret;
+}
+
+std::string CGI::readOutput()
+{
 	char buff[MB];
 	int readret = 1;
+	std::string ret;
 	while (readret)
 	{
 		bzero(buff, MB);
-		if ((readret = read(fd, buff, MB - 1)) == -1)
-            errMsgAndExit("cgi error", 1);
-        ret += buff;
+		if ((readret = read(this->_fileRet, buff, MB - 1)) == -1)
+			errMsgAndExit("cgi error", 1);
+		ret += buff;
 	}
-	if(close(fd) == -1)
-        errMsgAndExit("cgi error", 1);
-    return ret;
+	if(close(this->_fileRet) == -1)
+		errMsgAndExit("cgi error", 1);
+	return (ret);
 }
 
 std::string CGI::_setRedirectStatus()

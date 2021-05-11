@@ -30,6 +30,19 @@ public:
 	// new shit by Jonas, needs cleanup
 	bool	isFinished;
 	int		fileFd;
+	void	finishread();
+	const std::string&	methodType() const;
+	const int&			getStatus() const;
+	void 		getMethod();
+	void 		headMethod();
+	void	finishErrorPage(server &serv);
+	void	finishPost();
+	void	finishPut();
+	void	finishPostCgi();
+	std::string postContent;
+	bool 						_useCGI;
+	CGI							_myCGI;
+	std::string 				_body;
 
 private:
 	std::string 				_response;
@@ -37,28 +50,20 @@ private:
 	int 						_status;
 	std::string 				_path;
 	std::string 				_contentType;
-	CGI							_CGI;
-	bool 						_useCGI;
 	std::map<int, std::string>	_errorMessage;
 	std::string					_method;
-	std::string 				_body;
 	location					*_currentLoc;
+
 private:
 	Response();
-	void 		getMethod();
-	void 		headMethod();
 	void 		postMethod(std::string content);
 	void 		putMethod(std::string const &content);
 	void		errorPage(server &serv);
     void        createErrorPage(std::string *pageData);
 	void 	    readContent();
 	int		    authenticate(Request &req);
-	void 	    writeContent(std::string const &content);
 	void        parseContent();
     std::string headerValue(size_t startPos);
-
-
-
 
 public:
 	void				setStatus(int status);

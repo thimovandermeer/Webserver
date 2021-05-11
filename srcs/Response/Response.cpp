@@ -10,19 +10,19 @@
 Response::Response(Request &req, server &serv) :
 	isFinished(false),
 	fileFd(-1),
+	_useCGI(req.getCgi()),
+	_body(req.getBody()),
 	_status(req.getStatus()),
 
-	_contentType(req.getContentType()),
 
-	_useCGI(req.getCgi()),
-	_method(req.getMethod()),
-	_body(req.getBody())
+	_contentType(req.getContentType()),
+	_method(req.getMethod())
 {
 	getPath path(serv, req, *this);
 
 	_path = path.createPath();
     CGI cgiTemp(_path, req, serv);
-    _CGI = cgiTemp;
+	_myCGI = cgiTemp;
     _errorMessage[204] = "No Content";
     _errorMessage[400] = "Bad Request";
     _errorMessage[403] = "Forbidden";
@@ -87,7 +87,7 @@ void Response::setupResponse(Request &req, server &serv) {
 	if(_method == "GET")
 	{
 		if (this->isMethodAllowed())
-			getMethod();
+			readContent();
 	}
 	else if(_method == "HEAD")
 	{
@@ -116,27 +116,38 @@ void 	Response::readContent()
 
 	if (_useCGI == true)
 	{
-		this->_content = _CGI.executeGCI(_body);
-		return ;
+//		this->_content = _myCGI.executeGCI(_body);
+		this->_myCGI.setupIn();
+		return;
 	}
-	if(stat(_path.c_str(), &statBuf) != 0)
+	if (stat(_path.c_str(), &statBuf) != 0)
 		return (this->setStatus(404));
 	this->fileFd = open(this->_path.c_str(), O_RDONLY);
-	if(this->fileFd == -1 && this->_status == 200)
+	if (this->fileFd == -1 && this->_status == 200)
 		return (this->setStatus(403));
-	if(stat(_path.c_str(), &statBuf) != 0 && _status == 200)
+	if (stat(_path.c_str(), &statBuf) != 0 && _status == 200)
 		return (this->setStatus(404));
+}
+
+void	Response::finishread()
+{
+	struct stat statBuf;
+
+	if (this->_useCGI == true)
+	{
+//		this->_myCGI.executeGCI(this->_body);
+		this->_content = this->_myCGI.readOutput();
+		return;
+	}
+	stat(_path.c_str(), &statBuf);
 	char buf[statBuf.st_size + 1];
 	bzero(buf, statBuf.st_size + 1);
-	// break here
 	read(this->fileFd, buf, statBuf.st_size);
 	this->_content.reserve(statBuf.st_size + 1);
 	for (off_t i = 0; i < statBuf.st_size; i++)
 	{
 		this->_content += buf[i];
 	}
-//	if (this->_status == 200)
-//		this->_content += buf;
 	close(this->fileFd);
 	this->fileFd = -1;
 }
@@ -170,7 +181,6 @@ void    Response::createErrorPage(std::string *pageData)
 
 void	Response::errorPage(server &serv)
 {
-	int	        fd;
 	std::string	pageData;
 	std::string	pathToPage;
 	struct stat	statBuff;
@@ -182,18 +192,12 @@ void	Response::errorPage(server &serv)
 	}
 	else
 	{
-		fd = open(pathToPage.c_str(), O_RDONLY);
-		if (fd < 0)
+		this->fileFd = open(pathToPage.c_str(), O_RDONLY);
+		if (this->fileFd < 0)
 			pageData = "Problem serving error.\nCannot open error page.";
 		else
 		{
-			char buf[statBuff.st_size + 1];
-			bzero(buf, statBuff.st_size + 1);
-			// break here
-			read(fd, buf, statBuff.st_size);
-			pageData += buf;
-			close(fd);
-			createErrorPage(&pageData);
+			return;
 		}
 	}
 	this->_content.clear();
@@ -204,9 +208,32 @@ void	Response::errorPage(server &serv)
 	this->isFinished = true;
 }
 
+void	Response::finishErrorPage(server &serv)
+{
+	struct stat	statBuff;
+	std::string	pathToPage;
+	pathToPage = serv.getRoot() + serv.getErrorPage();
+	std::string	pageData;
+
+	stat(pathToPage.c_str(), &statBuff);
+	char buf[statBuff.st_size + 1];
+	bzero(buf, statBuff.st_size + 1);
+	read(this->fileFd, buf, statBuff.st_size);
+	pageData += buf;
+	close(this->fileFd);
+	this->fileFd = -1;
+	createErrorPage(&pageData);
+	this->_content.clear();
+	if (this->_method != "HEAD")
+		this->_content = pageData;
+	responseHeader header(_content, _path, _status, _contentType);
+	_response = header.getHeader(_status) + _content;
+	this->isFinished = true;
+}
+
 void Response::getMethod()
 {
-	readContent();
+	finishread();
 	responseHeader header(_content, _path, _status, _contentType);
 	_response = header.getHeader(_status) + _content;
 	this->isFinished = true;
@@ -214,7 +241,7 @@ void Response::getMethod()
 
 void Response::headMethod()
 {
-	readContent();
+	finishread();
 	responseHeader header(_content, _path, _status, _contentType);
   	_response = header.getHeader(_status);
   	this->_content.clear();
@@ -248,18 +275,13 @@ void Response::parseContent()
 
 void Response::postMethod(std::string content)
 {
+	this->postContent = content;
 	if(_useCGI == true) {
-	    int pos;
 		readContent();
-		parseContent();
-		pos = _content.find("\r\n\r\n");
-		_content.erase(0, pos + 4);
-		responseHeader header(_content, _path, _status, _contentType);
-		_response = header.getHeader(_status) + _content;
-		this->isFinished = true;
+//		return this->finishPostCgi();
 		return;
 	}
-	if (this->_currentLoc->getMaxBodySize() < content.length())
+	if (this->_currentLoc->getMaxBodySize() < this->postContent.length())
 		return (this->setStatus(413));
 	this->fileFd = open(_path.c_str(), O_WRONLY | O_APPEND | O_CREAT);
 	if(this->fileFd == -1 && _status == 200)
@@ -267,12 +289,31 @@ void Response::postMethod(std::string content)
 	struct stat statBuf;
 	if(stat(_path.c_str(), &statBuf) < 0 && _status == 200)
 		this->setStatus(201);
-	// break here
-	write(this->fileFd, content.c_str(), content.length());
+}
+
+void	Response::finishPostCgi()
+{
+	int pos;
+	finishread();
+	parseContent();
+	pos = _content.find("\r\n\r\n");
+	_content.erase(0, pos + 4);
+	responseHeader header(_content, _path, _status, _contentType);
+	_response = header.getHeader(_status) + _content;
+	this->isFinished = true;
+}
+
+void	Response::finishPost()
+{
+	if (this->_useCGI == true)
+	{
+		return this->finishPostCgi();
+	}
+	write(this->fileFd, this->postContent.c_str(), this->postContent.length());
 	close(this->fileFd);
 	this->fileFd = -1;
-	content.clear();
-	responseHeader header(content, _path, _status, _contentType);
+	this->postContent.clear();
+	responseHeader header(this->postContent, _path, _status, _contentType);
 	_response = header.getHeader(_status);
 	this->isFinished = true;
 }
@@ -284,40 +325,26 @@ void Response::putMethod(std::string const &content)
 	it = _path.end() - 1;
 	if ((*it) == '/')
 		_path.erase(it);
-	writeContent(content);
-	responseHeader header(_content, _path, _status, _contentType);
-	_response = header.getHeader(_status);
-	this->isFinished = true;
-}
-
-//#include <fstream>
-//void 	Response::writeContent(std::string const &content)
-//{
-//	std::ofstream file;
-//	struct stat statBuf;
-//
-//	if(stat(_path.c_str(), &statBuf) < 0 && _status == 200)
-//		this->setStatus(201);
-//	file.open(_path.c_str(), std::ios::in | std::ios::trunc);
-//	file << content;
-//	file.close();
-//}
-
-void 	Response::writeContent(std::string const &content)
-{
 	struct stat statBuf;
 
+	this->postContent = content;
 	if(stat(_path.c_str(), &statBuf) < 0 && _status == 200)
 		this->setStatus(201);
 	this->fileFd = open(_path.c_str(), O_RDWR | O_TRUNC | O_CREAT, 0744);
 	if (this->fileFd == -1)
 		return (this->setStatus(403));
-	// break here
-	int ret = write(this->fileFd, content.c_str(), content.length());
-	if ((size_t)ret != content.length())
+}
+
+void	Response::finishPut()
+{
+	int ret = write(this->fileFd, this->postContent.c_str(), this->postContent.length());
+	if ((size_t)ret != this->postContent.length())
 		std::cerr << "didn't print it all" << std::endl;
 	close(this->fileFd);
 	this->fileFd = -1;
+	responseHeader header(_content, _path, _status, _contentType);
+	_response = header.getHeader(_status);
+	this->isFinished = true;
 }
 
 const std::string 	&Response::getResponse() const
@@ -377,5 +404,15 @@ std::ostream &operator<<(std::ostream &os, const Response &response)
 size_t Response::getBodySize() const
 {
 	return (this->_content.size());
+}
+
+const std::string &Response::methodType() const
+{
+	return (this->_method);
+}
+
+const int &Response::getStatus() const
+{
+	return (this->_status);
 }
 

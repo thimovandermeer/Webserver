@@ -29,9 +29,8 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/refactoring_io" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:refactoring_io" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
@@ -48,9 +47,11 @@
   <component name="ChangeListManager">
     <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="checking when finished and only creating once">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/CGI/CGI.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/CGI/CGI.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/CGI/CGI.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/CGI/CGI.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/connection.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/connection.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/server.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/server.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Response/Response.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/Response/Response.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -120,15 +121,15 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.mac_tester">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Test" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv" TEST_CLASS="[List]" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="default" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv">
@@ -248,6 +249,7 @@
       <workItem from="1620207555547" duration="2631000" />
       <workItem from="1620222291664" duration="3043000" />
       <workItem from="1620629132518" duration="5551000" />
+      <workItem from="1620718422317" duration="4804000" />
     </task>
     <task id="LOCAL-00003" summary="nearly done all set functions of responseheader">
       <created>1611650661666</created>
@@ -584,7 +586,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/refactoring_io" />
+                        <option value="refactoring_io" />
                       </list>
                     </value>
                   </entry>
@@ -689,10 +691,10 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="532" y="353" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1618220957420" />
-    <state x="1000" y="500" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1620224280301">
+    <state x="1000" y="500" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1620723918671">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="1000" y="500" key="#com.intellij.fileTypes.FileTypeChooser/0.23.2560.1337@0.23.2560.1337" timestamp="1620224280301" />
+    <state x="1000" y="500" key="#com.intellij.fileTypes.FileTypeChooser/0.23.2560.1337@0.23.2560.1337" timestamp="1620723918671" />
     <state x="520" y="373" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1618221268462">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -701,38 +703,38 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="89" y="65" width="2360" height="1137" key="DiffContextDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1620224848667" />
-    <state width="2518" height="281" key="GridCell.Tab.0.bottom" timestamp="1620639527712">
+    <state width="2518" height="281" key="GridCell.Tab.0.bottom" timestamp="1620726227351">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="281" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1620639527712" />
-    <state width="2518" height="281" key="GridCell.Tab.0.center" timestamp="1620639527711">
+    <state width="2518" height="281" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1620726227351" />
+    <state width="2518" height="281" key="GridCell.Tab.0.center" timestamp="1620726227350">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="281" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1620639527711" />
-    <state width="2518" height="281" key="GridCell.Tab.0.left" timestamp="1620639527710">
+    <state width="2518" height="281" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1620726227350" />
+    <state width="2518" height="281" key="GridCell.Tab.0.left" timestamp="1620726227349">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="281" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1620639527710" />
-    <state width="2518" height="281" key="GridCell.Tab.0.right" timestamp="1620639527711">
+    <state width="2518" height="281" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1620726227349" />
+    <state width="2518" height="281" key="GridCell.Tab.0.right" timestamp="1620726227350">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="281" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1620639527711" />
-    <state width="2518" height="281" key="GridCell.Tab.1.bottom" timestamp="1620639527712">
+    <state width="2518" height="281" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1620726227350" />
+    <state width="2518" height="281" key="GridCell.Tab.1.bottom" timestamp="1620726227352">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="281" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1620639527712" />
-    <state width="2518" height="281" key="GridCell.Tab.1.center" timestamp="1620639527712">
+    <state width="2518" height="281" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1620726227352" />
+    <state width="2518" height="281" key="GridCell.Tab.1.center" timestamp="1620726227351">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="281" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1620639527712" />
-    <state width="2518" height="281" key="GridCell.Tab.1.left" timestamp="1620639527712">
+    <state width="2518" height="281" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1620726227351" />
+    <state width="2518" height="281" key="GridCell.Tab.1.left" timestamp="1620726227351">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="281" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1620639527712" />
-    <state width="2518" height="281" key="GridCell.Tab.1.right" timestamp="1620639527712">
+    <state width="2518" height="281" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1620726227351" />
+    <state width="2518" height="281" key="GridCell.Tab.1.right" timestamp="1620726227352">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="281" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1620639527712" />
+    <state width="2518" height="281" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1620726227352" />
     <state x="919" y="460" key="MultipleFileMergeDialog" timestamp="1620122330209">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -757,10 +759,10 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1280" height="668" key="XDebugger.FullValuePopup/0.23.2560.1337@0.23.2560.1337" timestamp="1620136781580" />
-    <state x="1064" y="484" key="refactoring.ChangeSignatureDialog" timestamp="1619442321132">
+    <state x="1064" y="484" key="refactoring.ChangeSignatureDialog" timestamp="1620724686632">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="1064" y="484" key="refactoring.ChangeSignatureDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1619442321132" />
+    <state x="1064" y="484" key="refactoring.ChangeSignatureDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1620724686632" />
     <state x="945" y="326" key="run.anything.popup" timestamp="1620138255853">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>

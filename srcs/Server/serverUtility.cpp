@@ -61,12 +61,10 @@ int server::acpt()
 }
 
 #include <fstream>
+static size_t nr = 0;
 void server::createResponse(int index)
 {
 	connection	*curcon = &this->connections[index];
-	static size_t nr = 0;
-//	if (!curcon->getResponseString().empty())
-//		return;
 	std::cout << "handling request nr " << nr << std::endl;
 
 #ifdef PRINTLOG
@@ -92,12 +90,34 @@ void server::createResponse(int index)
 	std::cout << "==end==" << std::endl;
 #endif
 	Request	request(curcon->getBuffer());
-//	Response resp(request, *this);
 
 	curcon->myresp = new Response(request, *this);
 	curcon->myresp->setupResponse(request, *this);
-//	this->_bodylen = curcon->myresp->getBodySize();
-//	curcon->setResponseString(curcon->myresp->getResponse());
+
+	nr++;
+}
+
+void	server::setupRespStr(int index)
+{
+	connection	*curcon = &this->connections[index];
+
+	if (!curcon->myresp->isFinished)
+	{
+		if (curcon->myresp->_useCGI)
+			curcon->myresp->_myCGI.executeGCI(curcon->myresp->_body);
+		if (curcon->myresp->getStatus() > 299)
+			curcon->myresp->finishErrorPage(*this);
+		else if (curcon->myresp->methodType() == "GET")
+			curcon->myresp->getMethod();
+		else if (curcon->myresp->methodType() == "HEAD")
+			curcon->myresp->headMethod();
+		else if (curcon->myresp->methodType() == "POST")
+			curcon->myresp->finishPost();
+		else if (curcon->myresp->methodType() == "PUT")
+			curcon->myresp->finishPut();
+	}
+	this->_bodylen = curcon->myresp->getBodySize();
+	curcon->setResponseString(curcon->myresp->getResponse());
 
 #ifdef PRINTLOG
 	if (nr >= MAXLOGS)
@@ -121,13 +141,5 @@ void server::createResponse(int index)
 	if (write(1, curcon->getResponseString().c_str(), len1) == -1) {;}
 	std::cout << "\n==end==" << std::endl;
 #endif
-	nr++;
-}
-
-void	server::setupRespStr(int index)
-{
-	this->_bodylen = this->connections[index].myresp->getBodySize();
-	this->connections[index].setResponseString(this->connections[index].myresp->getResponse());
-
 }
 
