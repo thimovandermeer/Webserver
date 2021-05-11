@@ -7,10 +7,6 @@
 
 connection *g_recentConnection;
 
-const char	*serverCluster::duplicatePortException::what() const throw()
-{
-	return ("duplicate ports specificied over multiple server blocks");
-}
 
 serverCluster::serverCluster() : _nrOfServers(0), _highestFd(0)
 {

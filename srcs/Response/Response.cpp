@@ -1,5 +1,6 @@
 #include "Response.hpp"
 #include "getPath.hpp"
+#include "../webserv.hpp"
 
 # define RED			"\x1b[31m"
 # define GREEN			"\x1b[32m"
@@ -114,7 +115,6 @@ void 	Response::readContent()
 
 	if (_useCGI == true)
 	{
-//		this->_content = _myCGI.executeGCI(_body);
 		this->_myCGI.setupIn();
 		return;
 	}
@@ -133,14 +133,14 @@ void	Response::finishread()
 
 	if (this->_useCGI == true)
 	{
-//		this->_myCGI.executeGCI(this->_body);
 		this->_content = this->_myCGI.readOutput();
 		return;
 	}
 	stat(_path.c_str(), &statBuf);
 	char buf[statBuf.st_size + 1];
 	bzero(buf, statBuf.st_size + 1);
-	read(this->fileFd, buf, statBuf.st_size);
+	if (read(this->fileFd, buf, statBuf.st_size) == -1)
+		errMsgAndExit("file error", 1);
 	this->_content.reserve(statBuf.st_size + 1);
 	for (off_t i = 0; i < statBuf.st_size; i++)
 	{
@@ -214,7 +214,8 @@ void	Response::finishErrorPage(server &serv)
 	stat(pathToPage.c_str(), &statBuff);
 	char buf[statBuff.st_size + 1];
 	bzero(buf, statBuff.st_size + 1);
-	read(this->fileFd, buf, statBuff.st_size);
+	if (read(this->fileFd, buf, statBuff.st_size) == -1)
+		errMsgAndExit("file error", 1);
 	pageData += buf;
 	close(this->fileFd);
 	this->fileFd = -1;
@@ -305,7 +306,8 @@ void	Response::finishPost()
 	{
 		return this->finishPostCgi();
 	}
-	write(this->fileFd, this->postContent.c_str(), this->postContent.length());
+	if (write(this->fileFd, this->postContent.c_str(), this->postContent.length()) == -1)
+		errMsgAndExit("file error", 1);
 	close(this->fileFd);
 	this->fileFd = -1;
 	this->postContent.clear();

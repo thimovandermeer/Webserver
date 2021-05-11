@@ -36,8 +36,6 @@ void CGI::executeGCI(std::string &body)
     int     retval;
     long    executableStart;
 
-//    if((this->_fileIn = open("/tmp/fuckyoupeerin.txt", O_CREAT | O_TRUNC | O_RDWR, S_IRWXU)) == -1)
-//        errMsgAndExit("cgi error", 1);
     retval = write(this->_fileIn, body.c_str(), body.length());
     if (close(this->_fileIn) == -1)
         errMsgAndExit("cgi error", 1);

@@ -168,7 +168,6 @@ std::string	connection::receive()
 		std::cerr << "recv error" << std::endl;
 		this->resetConnection();
 		this->closeConnection();
-//		exit(1);
 	}
 	if (ret == 0)
 	{
