@@ -25,36 +25,35 @@ public:
 
 	void 	setupResponse(Request &req, server &serv);
 
-	friend std::ostream &operator<<(std::ostream &os, const Response &response);
+	friend	std::ostream &operator<<(std::ostream &os, const Response &response);
+
 
 private:
+	bool 						_useCGI;
+	CGI							_myCGI;
+	std::string 				_body;
 	std::string 				_response;
 	std::string 				_content;
 	int 						_status;
 	std::string 				_path;
 	std::string 				_contentType;
-	CGI							_CGI;
-	bool 						_useCGI;
 	std::map<int, std::string>	_errorMessage;
 	std::string					_method;
-	std::string 				_body;
 	location					*_currentLoc;
+
 private:
 	Response();
-	void 		getMethod();
-	void 		headMethod();
 	void 		postMethod(std::string content);
 	void 		putMethod(std::string const &content);
 	void		errorPage(server &serv);
     void        createErrorPage(std::string *pageData);
 	void 	    readContent();
 	int		    authenticate(Request &req);
-	void 	    writeContent(std::string const &content);
 	void        parseContent();
     std::string headerValue(size_t startPos);
-
-
-
+	std::string postContent;
+	int			fileFd;
+	bool		isFinished;
 
 public:
 	void				setStatus(int status);
@@ -62,7 +61,20 @@ public:
 	size_t				getBodySize() const;
 	void 				setCurrentLoc(location *newloc);
 	bool				isMethodAllowed();
+	const std::string&	methodType() const;
+	const int&			getStatus() const;
+	const bool&			getUseCgi() const;
+	const bool&			isRespFinished() const;
+	CGI&				getCgi();
+	std::string&		getBody();
 
+	void	finishread();
+	void 	getMethod();
+	void 	headMethod();
+	void	finishErrorPage(server &serv);
+	void	finishPost();
+	void	finishPut();
+	void	finishPostCgi();
 };
 
 #endif

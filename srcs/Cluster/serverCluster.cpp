@@ -7,6 +7,10 @@
 
 connection *g_recentConnection;
 
+const char	*serverCluster::duplicatePortException::what() const throw()
+{
+	return ("duplicate ports specificied over multiple server blocks");
+}
 
 serverCluster::serverCluster() : _nrOfServers(0), _highestFd(0)
 {
@@ -106,7 +110,7 @@ void	serverCluster::startListening()
 						if (!(*it)->connections[i].getBuffer().empty())
 						{
 							g_recentConnection = &((*it)->connections[i]);
-							(*it)->handleResponse(i);
+							(*it)->createResponse(i);
 							(*it)->connections[i].sendData((*it)->_bodylen);
 						}
 						(*it)->connections[i].resetConnection();
@@ -117,7 +121,11 @@ void	serverCluster::startListening()
 					if (!(*it)->connections[i].hasFullRequest())
 						FD_SET((*it)->connections[i].getAcceptFd(), &readSet);
 					else
+					{
 						FD_SET((*it)->connections[i].getAcceptFd(), &writeSet);
+						if (!(*it)->connections[i].myresp)
+							(*it)->createResponse(i);
+					}
 				}
 			}
 			it++;
@@ -152,7 +160,8 @@ void	serverCluster::startListening()
 					if (FD_ISSET(fd, &writeSet))
 					{
 						g_recentConnection = &((*it)->connections[connectioncounter]);
-						(*it)->handleResponse(connectioncounter);
+						if ((*it)->connections[connectioncounter].getResponseString().empty())
+							(*it)->setupRespStr(connectioncounter);
 						(*it)->connections[connectioncounter].sendData((*it)->_bodylen);
 						break;
 					}

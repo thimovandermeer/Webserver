@@ -29,9 +29,8 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/main" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:refactoring_io" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
@@ -46,34 +45,12 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="main up to date with handed in shit, but still includes cmake shit now">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="3a5246c3-38d0-480d-be2b-b6b2c9c9c5e4" name="Default Changelist" comment="guess this shit works">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/webserv.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/webserv.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/webserv.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/CGI/CGI.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/CGI/CGI.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/CGI/CGI.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/CGI/CGI.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Response/Response.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Response/Response.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Response/Response.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/connection.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/connection.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/connection.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/connection.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/location.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/location.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/location.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/location.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/parser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/parser.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Server/server.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/server.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Server/serverUtility.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/Utils/defines.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/Utils/defines.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/webserv.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/webserv.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +65,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="refactoring_i/o" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -142,15 +119,15 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.mac_tester">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Test" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv" TEST_CLASS="[List]" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="default" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="webserv" TARGET_NAME="webserv" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="webserv" RUN_TARGET_NAME="webserv">
@@ -264,7 +241,14 @@
       <workItem from="1619527108138" duration="2207000" />
       <workItem from="1619534172044" duration="292000" />
       <workItem from="1619607487433" duration="4292000" />
-      <workItem from="1620112011984" duration="4279000" />
+      <workItem from="1620112011984" duration="9824000" />
+      <workItem from="1620135646939" duration="5229000" />
+      <workItem from="1620197200556" duration="4035000" />
+      <workItem from="1620207555547" duration="2631000" />
+      <workItem from="1620222291664" duration="3043000" />
+      <workItem from="1620629132518" duration="5551000" />
+      <workItem from="1620718422317" duration="5646000" />
+      <workItem from="1620727807256" duration="1275000" />
     </task>
     <task id="LOCAL-00003" summary="nearly done all set functions of responseheader">
       <created>1611650661666</created>
@@ -560,7 +544,35 @@
       <option name="project" value="LOCAL" />
       <updated>1618844942417</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="omw to fix the other reads and writes to go through select">
+      <created>1620122240530</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1620122240530</updated>
+    </task>
+    <task id="LOCAL-00046" summary="ok almost back to nothing, but what I have now, works FOR SURE">
+      <created>1620226137591</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1620226137591</updated>
+    </task>
+    <task id="LOCAL-00047" summary="checking when finished and only creating once">
+      <created>1620637737345</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1620637737345</updated>
+    </task>
+    <task id="LOCAL-00048" summary="guess this shit works">
+      <created>1620726242131</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1620726242132</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -580,7 +592,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/main" />
+                        <option value="refactoring_io" />
                       </list>
                     </value>
                   </entry>
@@ -645,10 +657,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added auth_basic and auth_basic_user_file to location vars" />
-    <MESSAGE value="updated assignment operators, split server code in 2 files" />
-    <MESSAGE value="new server files were missing" />
-    <MESSAGE value="copied getPath fix from other branch; edited reading auth file in location to use std::getline instead of GNL, so it reads the last line; rewrote getAuthMatch in location for clarity (and removed base64_decode() to make it work)" />
     <MESSAGE value="hmmmmst" />
     <MESSAGE value="fucked some shit up since a rebase was still pending and I aborted it. I think it's working now" />
     <MESSAGE value="made locations take autoindex from server if none was set specifically, in such a way that you can put the server's autoindex anywhere in the config" />
@@ -670,7 +678,11 @@
     <MESSAGE value="yes" />
     <MESSAGE value="changed cgi reading to be faster, changed defines to be bigger" />
     <MESSAGE value="main up to date with handed in shit, but still includes cmake shit now" />
-    <option name="LAST_COMMIT_MESSAGE" value="main up to date with handed in shit, but still includes cmake shit now" />
+    <MESSAGE value="omw to fix the other reads and writes to go through select" />
+    <MESSAGE value="ok almost back to nothing, but what I have now, works FOR SURE" />
+    <MESSAGE value="checking when finished and only creating once" />
+    <MESSAGE value="guess this shit works" />
+    <option name="LAST_COMMIT_MESSAGE" value="guess this shit works" />
   </component>
   <component name="WindowStateProjectService">
     <state x="880" y="357" key="#New_File_Extensions" timestamp="1616416242181">
@@ -685,50 +697,54 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="532" y="353" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1618220957420" />
-    <state x="1000" y="500" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1619522464275">
+    <state x="1000" y="500" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1620723918671">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="1000" y="500" key="#com.intellij.fileTypes.FileTypeChooser/0.23.2560.1337@0.23.2560.1337" timestamp="1619522464275" />
+    <state x="1000" y="500" key="#com.intellij.fileTypes.FileTypeChooser/0.23.2560.1337@0.23.2560.1337" timestamp="1620723918671" />
     <state x="520" y="373" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1618221268462">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="520" y="373" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1618221268462" />
-    <state x="89" y="65" width="2360" height="1137" key="DiffContextDialog" timestamp="1620119342960">
+    <state x="89" y="65" width="2360" height="1137" key="DiffContextDialog" timestamp="1620224848667">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="89" y="65" width="2360" height="1137" key="DiffContextDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1620119342960" />
-    <state width="2518" height="293" key="GridCell.Tab.0.bottom" timestamp="1620121972621">
+    <state x="89" y="65" width="2360" height="1137" key="DiffContextDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1620224848667" />
+    <state width="2518" height="281" key="GridCell.Tab.0.bottom" timestamp="1620729315253">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="293" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1620121972621" />
-    <state width="2518" height="293" key="GridCell.Tab.0.center" timestamp="1620121972621">
+    <state width="2518" height="281" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1620729315253" />
+    <state width="2518" height="281" key="GridCell.Tab.0.center" timestamp="1620729315253">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="293" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1620121972621" />
-    <state width="2518" height="293" key="GridCell.Tab.0.left" timestamp="1620121972620">
+    <state width="2518" height="281" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1620729315252" />
+    <state width="2518" height="281" key="GridCell.Tab.0.left" timestamp="1620729315252">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="293" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1620121972620" />
-    <state width="2518" height="293" key="GridCell.Tab.0.right" timestamp="1620121972621">
+    <state width="2518" height="281" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1620729315252" />
+    <state width="2518" height="281" key="GridCell.Tab.0.right" timestamp="1620729315253">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="293" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1620121972621" />
-    <state width="2518" height="293" key="GridCell.Tab.1.bottom" timestamp="1620121972622">
+    <state width="2518" height="281" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1620729315253" />
+    <state width="2518" height="281" key="GridCell.Tab.1.bottom" timestamp="1620729315254">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="293" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1620121972622" />
-    <state width="2518" height="293" key="GridCell.Tab.1.center" timestamp="1620121972622">
+    <state width="2518" height="281" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1620729315254" />
+    <state width="2518" height="281" key="GridCell.Tab.1.center" timestamp="1620729315253">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="293" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1620121972622" />
-    <state width="2518" height="293" key="GridCell.Tab.1.left" timestamp="1620121972621">
+    <state width="2518" height="281" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1620729315253" />
+    <state width="2518" height="281" key="GridCell.Tab.1.left" timestamp="1620729315253">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="293" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1620121972621" />
-    <state width="2518" height="293" key="GridCell.Tab.1.right" timestamp="1620121972622">
+    <state width="2518" height="281" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1620729315253" />
+    <state width="2518" height="281" key="GridCell.Tab.1.right" timestamp="1620729315254">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2518" height="293" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1620121972622" />
+    <state width="2518" height="281" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1620729315254" />
+    <state x="919" y="460" key="MultipleFileMergeDialog" timestamp="1620122330209">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="919" y="460" key="MultipleFileMergeDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1620122330209" />
     <state x="789" y="330" key="SettingsEditor" timestamp="1618221293513">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -737,50 +753,29 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="101" y="123" width="2129" height="1137" key="ShowDiffWithBranchDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1618845303175" />
-    <state x="880" y="431" key="Vcs.Push.Dialog.v2" timestamp="1618844944062">
+    <state x="880" y="431" key="Vcs.Push.Dialog.v2" timestamp="1620226138930">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="880" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1618844944062" />
-    <state x="1065" y="432" key="VcsDiffUtil.ChangesDialog" timestamp="1620119206020">
+    <state x="880" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1620226138930" />
+    <state x="1065" y="432" key="VcsDiffUtil.ChangesDialog" timestamp="1620224656389">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="1065" y="432" key="VcsDiffUtil.ChangesDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1620119206020" />
-    <state width="1280" height="668" key="XDebugger.FullValuePopup" timestamp="1616584070161">
+    <state x="1065" y="432" key="VcsDiffUtil.ChangesDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1620224656389" />
+    <state width="1280" height="668" key="XDebugger.FullValuePopup" timestamp="1620136781580">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1280" height="668" key="XDebugger.FullValuePopup/0.23.2560.1337@0.23.2560.1337" timestamp="1616584070161" />
-    <state x="1064" y="484" key="refactoring.ChangeSignatureDialog" timestamp="1619442321132">
+    <state width="1280" height="668" key="XDebugger.FullValuePopup/0.23.2560.1337@0.23.2560.1337" timestamp="1620136781580" />
+    <state x="1064" y="484" key="refactoring.ChangeSignatureDialog" timestamp="1620724686632">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="1064" y="484" key="refactoring.ChangeSignatureDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1619442321132" />
-    <state x="945" y="326" key="run.anything.popup" timestamp="1616419605110">
+    <state x="1064" y="484" key="refactoring.ChangeSignatureDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1620724686632" />
+    <state x="945" y="326" key="run.anything.popup" timestamp="1620138255853">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="945" y="326" key="run.anything.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1616419605110" />
+    <state x="945" y="326" key="run.anything.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1620138255853" />
     <state x="733" y="328" width="670" height="676" key="search.everywhere.popup" timestamp="1619423481561">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="733" y="328" width="670" height="676" key="search.everywhere.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1619423481561" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/srcs/main.cpp</url>
-          <line>4</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/srcs/CGI/CGI.cpp</url>
-          <line>149</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/srcs/Cluster/serverCluster.cpp</url>
-          <line>129</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

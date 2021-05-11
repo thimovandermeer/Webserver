@@ -3,7 +3,8 @@
 
 connection::connection() : _timeLastContact(0),
 						   _acceptFd(-1), _hasFullRequest(false),
-						   _bodyBytesSent(0), _headerSent(false)
+						   _bodyBytesSent(0), _headerSent(false),
+						   myresp(NULL)
 {}
 
 connection::~connection()
@@ -22,6 +23,9 @@ connection &connection::operator=(const connection &original)
 	this->_acceptFd = original._acceptFd;
 	this->_acceptBuffer = original._acceptBuffer;
 	this->_hasFullRequest = original._hasFullRequest;
+	this->_bodyBytesSent = original._bodyBytesSent;
+	this->_headerSent = original._headerSent;
+	this->_responseString = original._responseString;
 	return (*this);
 }
 
@@ -34,11 +38,6 @@ void	connection::setFd(const long &fd)
 {
 	this->_acceptFd = fd;
 }
-
-//void	connection::setFullReq(const bool &full)
-//{
-//	this->_hasFullRequest = full;
-//}
 
 void	connection::setResponseString(const std::string &resp)
 {
@@ -77,6 +76,9 @@ void	connection::resetConnection()
 	this->_bodyBytesSent = 0;
 	this->_headerSent = false;
 	this->_responseString.clear();
+	if (this->myresp)
+		delete (this->myresp);
+	this->myresp = NULL;
 }
 
 void	connection::closeConnection()

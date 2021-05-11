@@ -17,12 +17,17 @@ public:
 	CGI(CGI &src);
 	~CGI();
 	CGI();
-	std::string executeGCI(std::string &body);
+	void executeGCI(std::string &body);
+	void		setupIn();
+	std::string readOutput();
 
 private:
 	void 								_initEnvironment(Request &request, server &server);
 	void 								_convertEnv();
 	std::string							_setRedirectStatus();
+	int		_fileIn;
+	int		_fileOut;
+	int		_fileRet;
 private:
 
 	std::map<std::string, std::string> 	_environment;
