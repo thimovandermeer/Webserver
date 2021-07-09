@@ -1,6 +1,11 @@
 #include "CGI.hpp"
 #include "../webserv.hpp"
 
+/*
+* 	The constructor for CGI saves the Path and the Type of CGI, after that it calls the InitEnvironment function. 
+*	So the execution is activated from the constructor
+*/
+
 CGI::CGI(std::string &path, Request &request, server &server) :
 		_path(path),
 		_type(request.getFileType())
@@ -12,16 +17,31 @@ CGI::CGI()
 {
 }
 
+/*
+*	Copy constructor which copy's all needed variabels in the current one
+*/
+
 CGI::CGI(CGI &src)
 {
 	if (this != &src)
+	{
 		this->_environment = src._environment;
-	return ;
+		this->_type = src._type;
+	}
+	return;
 }
+
+/*
+*	This function clears all the environment variabels
+*/
 
 CGI::~CGI() {
     _environment.clear();
 }
+
+/*
+*	The input filestream is setup using the tmp folder if it fails -1 is being returned
+*/
 
 void	CGI::setupIn()
 {
@@ -29,23 +49,15 @@ void	CGI::setupIn()
 	errMsgAndExit("cgi error", 1);
 }
 
-void CGI::executeGCI(std::string &body)
-{
-	_convertEnv();
-	int     status;
-    int     retval;
-    long    executableStart;
 
-    retval = write(this->_fileIn, body.c_str(), body.length());
-    if (close(this->_fileIn) == -1)
-        errMsgAndExit("cgi error", 1);
-    if (retval == -1)
-        errMsgAndExit("cgi error", 1);
-    if ((_pid = fork()) == -1)
-        errMsgAndExit("cgi error", 1);
-    if (_pid == 0)
-	{
-		if ((this->_fileOut = open("/tmp/fuckyoupeerout.txt", O_CREAT | O_TRUNC | O_RDWR, S_IRWXU)) == -1)
+/*
+*	In this function all error checking is being executed if something fails the program exits
+*/
+
+
+void CGI::errorCheckChild()
+{
+	if ((this->_fileOut = open("/tmp/fuckyoupeerout.txt", O_CREAT | O_TRUNC | O_RDWR, S_IRWXU)) == -1)
             errMsgAndExit("cgi error", 1);
         if (dup2(this->_fileOut, STDOUT_FILENO) == -1)
             errMsgAndExit("cgi error", 1);
@@ -58,8 +70,43 @@ void CGI::executeGCI(std::string &body)
             close(this->_fileIn);
             errMsgAndExit("cgi error", 1);
         }
-        close(this->_fileIn);
-        if(_type == PHP)
+}
+
+/*
+*	In this function all error checks are being performed on the parent side of the pipe
+*/
+void CGI::errorCheckParent(std::string body)
+{
+	int retval = write(this->_fileIn, body.c_str(), body.length());
+	if (close(this->_fileIn) == -1)
+		errMsgAndExit("cgi error", 1);
+    if (retval == -1)
+        errMsgAndExit("cgi error", 1);
+    if ((_pid = fork()) == -1)
+        errMsgAndExit("cgi error", 1);
+
+}
+
+
+/*
+*	In this function the actual CGI is being executed 
+*/
+
+void CGI::executeGCI(std::string &body)
+{
+	
+	int     status;
+    long    executableStart;
+
+	_convertEnv();
+    
+	errorCheckParent(body);
+	
+    if (_pid == 0)
+	{
+		errorCheckChild();
+		close(this->_fileIn);
+		if(_type == PHP)
 		{
 			_path = "cgi-bin/php-cgi";
 		}
@@ -86,6 +133,10 @@ void CGI::executeGCI(std::string &body)
         errMsgAndExit("cgi error", 1);
 }
 
+/*
+*	In this function the output from the CGI process is being read and checked for errors
+*/
+
 std::string CGI::readOutput()
 {
 	char buff[MB];
@@ -110,6 +161,11 @@ std::string CGI::_setRedirectStatus()
 	else
 		return ("CGI");
 }
+
+/*
+*	This function inits the environment for the CGI process.
+*	Its sets all vars accordingly
+*/
 
 void CGI::_initEnvironment(Request &request, server &server)
 {
@@ -154,6 +210,10 @@ void CGI::_initEnvironment(Request &request, server &server)
         it++;
     }
 }
+
+/*
+*	This function converts the environment from an std::String to c style string
+*/
 
 void CGI::_convertEnv()
 {

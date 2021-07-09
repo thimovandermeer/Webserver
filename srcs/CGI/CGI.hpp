@@ -20,6 +20,9 @@ public:
 	void executeGCI(std::string &body);
 	void		setupIn();
 	std::string readOutput();
+	void 		errorCheckChild();
+	void 		errorCheckParent(std::string body);
+	const char *changeDir();
 
 private:
 	void 								_initEnvironment(Request &request, server &server);
