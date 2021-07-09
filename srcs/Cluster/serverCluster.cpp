@@ -7,6 +7,9 @@
 
 connection *g_recentConnection;
 
+/*
+*	This constructor sets the read fd set and the write fd set to zero.
+*/
 
 serverCluster::serverCluster() : _nrOfServers(0), _highestFd(0)
 {
@@ -14,10 +17,18 @@ serverCluster::serverCluster() : _nrOfServers(0), _highestFd(0)
 	FD_ZERO(&this->writeFds);
 }
 
+/*
+*	Copy constructor
+*/
+
 serverCluster::serverCluster(const serverCluster &original)
 {
 	*this = original;
 }
+
+/*
+*	This destructor iterates over the entire array of servers and deletes them all
+*/
 
 serverCluster::~serverCluster()
 {
@@ -30,6 +41,10 @@ serverCluster::~serverCluster()
 	}
 }
 
+/*
+*	assigment operator sets the servers and the number of servers
+*/
+
 serverCluster	&serverCluster::operator=(const serverCluster &original)
 {
 	this->_servers = original._servers;
@@ -37,15 +52,28 @@ serverCluster	&serverCluster::operator=(const serverCluster &original)
 	return (*this);
 }
 
+/*
+*	This function adds a server to the array of servers
+*/
+
 void	serverCluster::addServer(server *newServ)
 {
 	this->_servers.push_back(newServ);
 }
 
+/*
+*	This function checks if the server array is empty
+*/
+
 bool	serverCluster::isEmpty() const
 {
 	return (this->_servers.empty());
 }
+
+/*
+*	This function checks if there are two or more servers using the same ports
+*	If thats the case we set a different port for the server
+*/
 
 void	serverCluster::duplicatePorts()
 {
@@ -66,6 +94,10 @@ void	serverCluster::duplicatePorts()
     }
 }
 
+/*
+*	This function activates all the servers and makes sure that the highest fd is being stored
+*/
+
 void	serverCluster::startup()
 {
 	std::vector<server*>::iterator it = this->_servers.begin();
@@ -78,6 +110,15 @@ void	serverCluster::startup()
 		it++;
 	}
 }
+
+
+/*
+*	This function contains the main loop
+*	In this function all servers start listening to incoming calls
+*	if there is a incoming call this one is directed to a open listening server
+*	The last part of this function handels our responses. It makes sure that the response is being send
+*	Over the assigned write fd set
+*/
 
 void	serverCluster::startListening()
 {

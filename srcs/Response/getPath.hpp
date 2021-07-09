@@ -4,6 +4,11 @@
 # include "Response.hpp"
 # include "../Server/server.hpp"
 
+/*
+*	This class handles the routing to the file location
+*	On which folder is the request targeted
+*/
+
 class getPath{
 public:
 	getPath(server &serv, Request &req, Response &resp);

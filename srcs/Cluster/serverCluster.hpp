@@ -5,6 +5,11 @@
 # include "../webserv.hpp"
 # include <algorithm>
 
+/*
+* 	This class contains all the individual servers and combines them
+*	To one cluster.
+*/
+
 class serverCluster {
 public:
 	fd_set	readFds;

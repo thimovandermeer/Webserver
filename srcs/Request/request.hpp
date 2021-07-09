@@ -14,6 +14,12 @@
 
 enum filetype { PY = 1, PHP = 2, BLA = 3, CGIBIN = 4};
 
+
+/*
+*	This class contains all the information about the request. 
+*	It checks for all information regarding API requests
+*/
+
 class Request{
     public:
 		friend class Response;

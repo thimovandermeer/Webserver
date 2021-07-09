@@ -8,6 +8,11 @@
 # define END			"\x1b[0m"
 # define BOLD			"\x1b[1m"
 
+/*
+*	This constructor sets all the variabels which are needed from request
+*	And the handling server
+*/
+
 Response::Response(Request &req, server &serv) :
 	_useCGI(req.getCgi()),
 	_body(req.getBody()),
@@ -35,6 +40,10 @@ Response::Response()
 
 }
 
+/*
+*	Copy constructor
+*/
+
 Response::Response(const Response &src)
 {
 	*this = src;
@@ -44,10 +53,18 @@ Response::~Response()
 {
 }
 
+/*
+*	This function sets the current location
+*/
+
 void Response::setCurrentLoc(location *newloc)
 {
 	_currentLoc = newloc;
 }
+
+/*
+*	The assigment operator sets all values to the one in the src
+*/
 
 Response	&Response::operator=(const Response &src)
 {
@@ -61,6 +78,10 @@ Response	&Response::operator=(const Response &src)
 	_method = src._method;
 	return (*this);
 }
+
+/*
+*	This function checks if the method is allowed
+*/
 
 bool	Response::isMethodAllowed()
 {
@@ -76,6 +97,10 @@ bool	Response::isMethodAllowed()
 	this->_status = 405;
 	return (false);
 }
+
+/*
+*	This function maps the call to the right method to create the response
+*/
 
 void Response::setupResponse(Request &req, server &serv) {
 	if (this->authenticate(req))
@@ -109,6 +134,11 @@ void Response::setupResponse(Request &req, server &serv) {
 	}
 }
 
+/*
+*	This function checks if the file on the requested file location is valid
+*	And returns the right exit code
+*/
+
 void 	Response::readContent()
 {
 	struct stat statBuf;
@@ -126,6 +156,10 @@ void 	Response::readContent()
 	if (stat(_path.c_str(), &statBuf) != 0 && _status == 200)
 		return (this->setStatus(404));
 }
+
+/*
+*	This function reads the entire file and stores it in the content section
+*/
 
 void	Response::finishread()
 {
@@ -149,6 +183,10 @@ void	Response::finishread()
 	close(this->fileFd);
 	this->fileFd = -1;
 }
+
+/*
+*	This function creates the error page if thats necessary
+*/
 
 void    Response::createErrorPage(std::string *pageData)
 {
@@ -177,6 +215,11 @@ void    Response::createErrorPage(std::string *pageData)
     }
 }
 
+/*
+*	This function sets the headers for the error page
+*/
+
+
 void	Response::errorPage(server &serv)
 {
 	std::string	pageData;
@@ -204,6 +247,10 @@ void	Response::errorPage(server &serv)
 	this->isFinished = true;
 }
 
+/*
+*	This function sets the error page if something goes wrong in the last part of the request
+*/
+
 void	Response::finishErrorPage(server &serv)
 {
 	struct stat	statBuff;
@@ -228,6 +275,10 @@ void	Response::finishErrorPage(server &serv)
 	this->isFinished = true;
 }
 
+/*
+*	This function has all the logic when the response for a Get method needs to be created
+*/
+
 void Response::getMethod()
 {
 	finishread();
@@ -235,6 +286,10 @@ void Response::getMethod()
 	_response = header.getHeader(_status) + _content;
 	this->isFinished = true;
 }
+
+/*
+*	This function has all the logic when the response for a Head method needs to be created
+*/
 
 void Response::headMethod()
 {
@@ -244,6 +299,10 @@ void Response::headMethod()
   	this->_content.clear();
 	this->isFinished = true;
 }
+
+/*
+*	This function sets the headervalue
+*/
 
 std::string Response::headerValue(size_t startPos) {
     size_t pos;
@@ -258,6 +317,10 @@ std::string Response::headerValue(size_t startPos) {
     return temp;
 }
 
+/*
+*	This function parses the content
+*/
+
 void Response::parseContent()
 {
     size_t pos;
@@ -269,6 +332,11 @@ void Response::parseContent()
     if ((pos = _content.find("Content-Type")) != std::string::npos)
         _contentType = headerValue(pos + 14);
 }
+
+/*
+*	This function has all the logic when the response for a Post method needs to be created
+*/
+
 
 void Response::postMethod(std::string content)
 {
@@ -288,6 +356,10 @@ void Response::postMethod(std::string content)
 		this->setStatus(201);
 }
 
+/*
+*	this function creates the response for a CGI post call
+*/
+
 void	Response::finishPostCgi()
 {
 	int pos;
@@ -299,6 +371,10 @@ void	Response::finishPostCgi()
 	_response = header.getHeader(_status) + _content;
 	this->isFinished = true;
 }
+
+/*
+*	This function creates the headers for a CGI post call
+*/
 
 void	Response::finishPost()
 {
@@ -315,6 +391,10 @@ void	Response::finishPost()
 	_response = header.getHeader(_status);
 	this->isFinished = true;
 }
+
+/*
+*	This function has all the logic when the response for a Put method needs to be created
+*/
 
 void Response::putMethod(std::string const &content)
 {
@@ -333,6 +413,10 @@ void Response::putMethod(std::string const &content)
 		return (this->setStatus(403));
 }
 
+/*
+*	This function sets the headers for a Put call
+*/
+
 void	Response::finishPut()
 {
 	int ret = write(this->fileFd, this->postContent.c_str(), this->postContent.length());
@@ -345,10 +429,18 @@ void	Response::finishPut()
 	this->isFinished = true;
 }
 
+/*
+*	This function returns the entire response
+*/
+
 const std::string 	&Response::getResponse() const
 {
 	return _response;
 }
+
+/*
+*	This function sets the status for the response
+*/
 
 void				Response::setStatus(int status)
 {
@@ -356,6 +448,10 @@ void				Response::setStatus(int status)
 		return;
 	this->_status = status;
 }
+
+/*
+*	This function takes care of authentication if the AUTHORIZATION header is being provided
+*/
 
 int					Response::authenticate(Request &req)
 {
@@ -391,6 +487,10 @@ int					Response::authenticate(Request &req)
 	return 1;
 }
 
+/*
+*	output overload for debugging purposes
+*/
+
 std::ostream &operator<<(std::ostream &os, const Response &response)
 {
 	os << "_response: " << response._response << " _content: " << response._content << " _path: " << response._path
@@ -398,35 +498,63 @@ std::ostream &operator<<(std::ostream &os, const Response &response)
 	return os;
 }
 
+/*
+*	function which returns the body size
+*/
+
 size_t Response::getBodySize() const
 {
 	return (this->_content.size());
 }
+
+/*
+*	Function which returns the method type
+*/
 
 const std::string &Response::methodType() const
 {
 	return (this->_method);
 }
 
+/*
+*	Function which returns the status
+*/
+
 const int &Response::getStatus() const
 {
 	return (this->_status);
 }
+
+/*
+*	Function which returns if CGI needs to be used
+*/
 
 const bool &Response::getUseCgi() const
 {
 	return (this->_useCGI);
 }
 
+/*
+*	Function which returns the body
+*/
+
 std::string &Response::getBody()
 {
 	return (this->_body);
 }
 
+/*
+*	Function which returns the actual cgi class
+*/
+
 CGI &Response::getCgi()
 {
 	return (this->_myCGI);
 }
+
+/*
+*	Function which returns if the response is finished
+*/
 
 const bool &Response::isRespFinished() const
 {

@@ -16,6 +16,11 @@
 # include "../Utils/utils.hpp"
 # include "../Utils/Base64.hpp"
 
+/*
+*	This class generates the entire response it contains all headers and values
+*	Which are necessary for a valid response
+*/
+
 class Response {
 public:
 	Response(Request &req, server &serv);

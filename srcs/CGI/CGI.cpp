@@ -89,7 +89,11 @@ void CGI::errorCheckParent(std::string body)
 
 
 /*
-*	In this function the actual CGI is being executed 
+*	In this function the actual CGI is being executed  first the type is being checked
+*	If it is php the route is being mapped towards the php-cgi exec
+*	after that the directory is being changed to the place where it should be executed
+*	The arguments are being executed
+*	The program waits until the child is done executing
 */
 
 void CGI::executeGCI(std::string &body)

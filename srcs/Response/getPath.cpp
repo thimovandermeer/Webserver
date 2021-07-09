@@ -1,5 +1,9 @@
 #include "getPath.hpp"
 
+/*
+*	This constructor sets the server, request and response so it can use the information from those classes
+*	To determine where the request should be pointed towards
+*/
 
 getPath::getPath(server &serv, Request &req, Response &resp) :
 	_serv(serv),
@@ -12,6 +16,12 @@ getPath::~getPath()
 {
 
 }
+
+/*
+*	This functions determines if the file contains a file extension if it has one
+*	The mapping is being adjusted so that it finds the right location for the response 
+*/
+
 location*	getPath::findFileExtension()
 {
 	std::vector<location*> locs = _serv.getLocations();
@@ -41,6 +51,10 @@ location*	getPath::findFileExtension()
 	return (NULL);
 }
 
+/*
+*	This function checks if the request is not targeted towards a file but to an index
+*/
+
 void	getPath::noLocation()
 {
 	if (_uri.find('.') != std::string::npos) // file requested
@@ -63,6 +77,10 @@ void	getPath::noLocation()
 	}
 }
 
+/*
+*	This function checks if there is a file on the position requested
+*/
+
 void	getPath::checkFile()
 {
 	_found = _uri.find_first_of('/', 1);
@@ -79,6 +97,13 @@ void	getPath::checkFile()
 			_uri.erase(0, _found);
 	}
 }
+
+
+/*
+*	This function checks if the location exists and handles special cases like
+*	CGI and root requests
+*/
+
 
 void	getPath::locationExists()
 {
@@ -109,6 +134,11 @@ void	getPath::locationExists()
 	}
 }
 
+/*
+*	This function checks only for put calls it checks
+*	If a file can be stored at the requested location
+*/
+
 void getPath::checkPut()
 {
 	std::vector<std::string>	indices;
@@ -131,6 +161,11 @@ void getPath::checkPut()
 	if (it == indices.end()) // all index pages don't exist at requested root
 		this->_resp.setStatus(404);
 }
+
+/*
+*	This is the main function it creates the exact path which is later used in the handling
+*	of the response
+*/
 
 std::string	getPath::createPath()
 {

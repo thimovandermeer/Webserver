@@ -1,6 +1,11 @@
 #include "request.hpp"
 #include <sstream>
 
+
+/*
+*	The four different methods we need to handle
+*/
+
 std::string methods[4] = {
         "GET",
         "HEAD",
@@ -11,9 +16,17 @@ std::string methods[4] = {
 Request::Request() {}
 Request::~Request() {}
 
+/*
+*	Copy constructor
+*/
+
 Request::Request(const Request &original) {
     *this = original;
 }
+
+/*
+*	Assigment operator which sets all the member variabels
+*/
 
 Request &Request::operator=(const Request &original) {
     this->_request = original._request;
@@ -28,6 +41,12 @@ Request &Request::operator=(const Request &original) {
     return (*this);
 }
 
+/*
+*	This is the constructor for the entire class
+*	During the construction the parse function which is being called
+*	This means that all logic is being executed on instantiation of the object
+*/
+
 Request::Request(std::string request) : _request(request)
 {
     _bodyLength = 0;
@@ -35,6 +54,10 @@ Request::Request(std::string request) : _request(request)
     _status = 200;
 	parseRequest();
 }
+
+/*
+*	This function parses the request and returns the method which is being asked
+*/
 
 std::string Request::getMethod() const {
     for (int i = 0; i < 4; i++){
@@ -45,21 +68,44 @@ std::string Request::getMethod() const {
     return s;
 }
 
+/*
+*	Function to return the uri all member variabels are onluy obtainable via getters and setters
+*/
+
+
+
 std::string Request::getUri() const {
     return _uri;
 }
+
+/*
+*	Function to return the headers
+*/
 
 std::map<std::string, std::string> Request::getHeaders() const {
     return _defHeaders;
 }
 
+/*
+*	Function to return the CGI headers only
+*/
+
 std::map<std::string, std::string> Request::getCgiHeaders() const {
     return _cgiHeaders;
 }
 
+/*
+*	Function to return the body of the request
+*/
+
 std::string Request::getBody() const {
     return _body;
 }
+
+/*
+*	Function to return the content-type of the request. Headers are stored in a map in this way we dont
+*	Have to store each header individually
+*/
 
 std::string Request::getContentType()  {
     if (_defHeaders.begin() == _defHeaders.end())
@@ -69,6 +115,10 @@ std::string Request::getContentType()  {
         return ("NULL");
     return (it->second);
 }
+
+/*
+*	Function to get the host header
+*/
 
 std::string Request::getHost() {
     if (_defHeaders.begin() == _defHeaders.end()){
@@ -87,18 +137,35 @@ std::string Request::getHost() {
     return (host);
 }
 
+/*
+*	Function to return the environment variabels for the CGI (if CGI is requested)
+*/
+
 std::string Request::getCgiEnv() const{
     return _cgiEnv;
 }
+
+/*
+*	Function to return the status
+*/
 
 int Request::getStatus() const {
 	return _status;
 }
 
+/*
+*	Function to return the file type
+*/
+
 filetype Request::getFileType() const
 {
 	return _type;
 }
+
+/*
+*	The meat and bones for this entire class this function is being called in the constructor.
+*	It parses the entire request string and saves all data in the object itself
+*/
 
 void Request::parseRequest() {
     checkCgi();
@@ -113,6 +180,11 @@ void Request::parseRequest() {
         _body = _request.substr(0, _request.length() - 2);
     _request.clear();
 }
+
+
+/*
+*	Function which checks if and which CGI is being asked
+*/
 
 void Request::checkCgi() {
 	if (_request.find(".py") != std::string::npos)
@@ -143,6 +215,10 @@ void Request::checkCgi() {
 	else
 		_cgi = false;
 }
+
+/*
+*	This function parses the first line of the request and retrieves all data from it
+*/
 
 void Request::parseRequestLine(){
     size_t      pos1;
@@ -175,6 +251,10 @@ void Request::parseRequestLine(){
     _version = _request.substr(pos2, pos1-pos2);
     _request = _request.substr(pos1+2);
 }
+
+/*
+*	This function parses the headers and stores them in a map which contains the key and value for eacht header
+*/
 
 void Request::parseHeaders() {
     size_t                                          pos = 0;
@@ -249,6 +329,10 @@ void Request::parseHeaders() {
 }
 
 
+/*
+*	This function parses the body and stores the body length and content in the body variabel
+*/
+
 void Request::parseBody() {
     size_t begin = 0;
     size_t end;
@@ -274,6 +358,10 @@ void Request::parseBody() {
     if (_bodyLength != _contentLength && _contentLength != -1)
         _status = 413;
 }
+
+/*
+*	This function returns if the request contains a CGI request
+*/
 
 bool Request::getCgi() const {
 	return _cgi;
