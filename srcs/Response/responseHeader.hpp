@@ -5,6 +5,10 @@
 # include "../Server/server.hpp"
 # include "../Request/request.hpp"
 
+/*
+*	In this class the response header is being generated
+*/
+
 class responseHeader
 {
 public:

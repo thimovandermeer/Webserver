@@ -1,10 +1,20 @@
 #include "location.hpp"
 #include <fstream>
 
+/*
+*	Exception which is being thrown with parsing errors
+*/
+
 const char	*location::inputErrorException::what() const throw()
 {
 	return ("error in location block in config file");
 }
+
+/*
+*	Constructor which sets all member variabels needed to create the locations
+*	We are using function pointers in a map so set all variables and once inside the map
+*	This reduces code duplication and makes sure that the typefunction map is filled on construction
+*/
 
 location::location(std::string &match) : _autoindex(false),  _ownAutoindex(false),
 										_maxBodySize(1000000), _ownBodySize(false),
@@ -24,6 +34,11 @@ location::location(std::string &match) : _autoindex(false),  _ownAutoindex(false
 	this->_typeFunctionMap.insert(std::make_pair("client_max_body_size", &location::setMaxBody));
 }
 
+/*
+*	Copy constructor simple
+*/
+
+
 location::location(const location &original)
 {
 	*this = original;
@@ -31,6 +46,10 @@ location::location(const location &original)
 
 location::~location()
 {}
+
+/*
+*	Constructor which sets all member variabels needed to create the connection
+*/
 
 location	&location::operator=(const location &original)
 {
@@ -48,6 +67,10 @@ location	&location::operator=(const location &original)
 	return (*this);
 }
 
+/*
+*	Function which checks if auto index is needed and sets the bool accordingly
+*/
+
 void	location::setAutoindex(const std::string &autoindex)
 {
 	this->_ownAutoindex = true;
@@ -60,6 +83,10 @@ void	location::setAutoindex(const std::string &autoindex)
 	{;}
 }
 
+/*
+*	Function which sets the max body size
+*/
+
 void		location::setMaxBody(const std::string &size)
 {
 	this->_ownBodySize = true;
@@ -69,10 +96,19 @@ void		location::setMaxBody(const std::string &size)
 		this->_maxBodySize = (ULONG_MAX); 
 }
 
+/*
+*	Function which sets the root
+*/
+
+
 void	location::setRoot(const std::string &root)
 {
 	this->_root = root;
 }
+
+/*
+*	Function which sets the method
+*/
 
 void	location::setMethod(const std::string &method)
 {
@@ -82,10 +118,18 @@ void	location::setMethod(const std::string &method)
 		this->_methods.push_back(meth);
 }
 
+/*
+*	Function which sets the error page for this location
+*/
+
 void	location::setErrorPage(const std::string &errorPage)
 {
 	this->_errorPage = errorPage;
 }
+
+/*
+*	Function which sets the indices of the location
+*/
 
 void	location::setIndices(const std::string &indices)
 {
@@ -95,15 +139,30 @@ void	location::setIndices(const std::string &indices)
 		this->_indices.push_back(index);
 }
 
+/*
+*	Function which sets the CGI path for this location
+*/
+
 void	location::setCgiPath(const std::string &cgiPass)
 {
 	this->_cgiPath = cgiPass;
 }
 
+
+/*
+*	Function which sets the basic authentication type
+*/
+
 void	location::setAuthBasic(const std::string &authBasic)
 {
 	this->_authBasic = authBasic;
 }
+
+
+/*
+*	Function which asks for the user password and name so it can check if acces
+*	Should be granted or not
+*/
 
 void 	location::sethtpasswdpath(const std::string &path)
 {
@@ -125,6 +184,11 @@ void 	location::sethtpasswdpath(const std::string &path)
 	}
 	configfile.close();
 }
+
+/*
+*	The upcoming 15 functions are part of the map populator for the type function map
+*	We call this functions in the constructor to set all values art ones 
+*/
 
 const bool						&location::hasOwnAutoindex() const
 {
@@ -190,6 +254,10 @@ std::string	location::gethtpasswdpath() const {
 	return _htpasswd_path;
 }
 
+/*
+*	This function searches for the key inside the map and ats it to the map
+*/
+
 void	location::findValue(std::string &key, std::string line)
 {
 	std::map<std::string, setter>::iterator it;
@@ -207,6 +275,10 @@ void	location::findValue(std::string &key, std::string line)
 	(this->*(this->_typeFunctionMap.at(key)))(line);
 }
 
+/*
+*	This functions checks if the methods in the config files are all valid
+*/
+
 bool	location::valueCheck() const
 {
 	std::string	allowedMethods[5] = {"", "HEAD", "GET", "POST", "PUT"};
@@ -223,10 +295,20 @@ bool	location::valueCheck() const
 	return (true);
 }
 
+/*
+*	This function returns if a file extension is being asked
+*/
+
 bool	location::isFileExtension() const
 {
 	return (this->_isFileExtension);
 }
+
+/*
+*	This function searches in the list of user if the given name and password are valid
+*	It returns true or false to give acces to the location
+*/
+
 
 bool location::getAuthMatch(const std::string& username, const std::string& passwd)
 {
@@ -239,6 +321,10 @@ bool location::getAuthMatch(const std::string& username, const std::string& pass
 	return (true);
 
 }
+
+/*
+*	output overload for debugging purposes
+*/
 
 std::ostream&	operator<<(std::ostream &os, const location &loc)
 {

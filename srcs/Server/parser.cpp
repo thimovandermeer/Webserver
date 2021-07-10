@@ -2,6 +2,16 @@
 #include "server.hpp"
 #include <fstream>
 
+/*
+*	In this file we stored all function related to the parsing of the config file
+*/
+
+
+
+/*
+*	This function checks if the current line being parsed is empty or not
+*/
+
 bool	isEmptyLine(std::string line)
 {
 	for (size_t i = 0; line[i]; i++)
@@ -11,6 +21,10 @@ bool	isEmptyLine(std::string line)
 	}
 	return (true);
 }
+
+/*
+*	This function returns the first word of the line being parsed
+*/
 
 std::string	firstword(std::string& line)
 {
@@ -28,6 +42,10 @@ std::string	firstword(std::string& line)
 	return (ret);
 }
 
+/*
+*	This function takes of all empty spaces at the end of the line
+*/
+
 std::string	trimEndSpaces(std::string line)
 {
 	size_t	i;
@@ -42,12 +60,22 @@ std::string	trimEndSpaces(std::string line)
 	return (line.substr(i, j + 1));
 }
 
+/*
+*	This function is being called when an error occurs
+*/
+
 void	parseError(int lineNr) 
 {
 	std::stringstream errStr;
 	errStr << "Parse error on line " << lineNr;
 	errMsgAndExit(errStr.str(), 1);
 }
+
+/*
+*	This function searches in the config file for the location parameter
+*	And uses that information to create a new location object
+*/
+
 
 location	*getLocation(std::string &startLine, std::fstream &configFile, int &lineNr)
 {
@@ -86,6 +114,12 @@ location	*getLocation(std::string &startLine, std::fstream &configFile, int &lin
 		errMsgAndExit("invalid values in location block", 1);
 	return (newLoc);
 }
+
+/*
+*	This is the main function in which the parsing happens
+*	it checks each line for the value it contains and tries to make
+*	Location out of that information
+*/
 
 void	startParsing(std::fstream& configFile, serverCluster *cluster)
 {
@@ -163,6 +197,11 @@ void	startParsing(std::fstream& configFile, serverCluster *cluster)
 	if (cluster->isEmpty())
 		errMsgAndExit("config file empty", 1);
 }
+
+/*
+*	This function opens the config file itself
+*	It check if the file exists and if the format is correct
+*/
 
 void	openConfig(int ac, char **av, serverCluster *cluster)
 {

@@ -1,4 +1,9 @@
 #include "responseHeader.hpp"
+#include <cstdlib>
+
+/*
+*	In the constructor of this class all logic is being called.
+*/
 
 responseHeader::responseHeader(std::string &content, std::string &path, int status, std::string &contentType)
 {
@@ -16,6 +21,9 @@ responseHeader::responseHeader(std::string &content, std::string &path, int stat
 	setWwwAuthenticate(status);
 }
 
+/*
+*	copy constructor for the response header
+*/
 
 responseHeader::responseHeader(const responseHeader &src)
 {
@@ -43,6 +51,10 @@ responseHeader::responseHeader(const responseHeader &src)
 
 }
 
+/*
+*	assignment operator for the response header
+*/
+
 responseHeader &responseHeader::operator=(const responseHeader &src)
 {
 	_acceptCharsets = src._acceptCharsets;
@@ -65,6 +77,10 @@ responseHeader &responseHeader::operator=(const responseHeader &src)
 	return (*this);
 }
 
+/*
+*	Function which returns the entire header 
+*/
+
 std::string responseHeader::getHeader(int status)
 {
 	std::string header;
@@ -75,6 +91,10 @@ std::string responseHeader::getHeader(int status)
 	header += writeHeader();
 	return (header);
 }
+
+/*
+*	Function which creates the status messages
+*/
 
 std::string		responseHeader::createStatusMessage(int status)
 {
@@ -102,7 +122,10 @@ std::string		responseHeader::createStatusMessage(int status)
 		return ("Unknown error");
 }
 
-#include <cstdlib>
+/*
+*	Function which writes the actual header
+*/
+
 std::string 		responseHeader::writeHeader()
 {
 	std::string header;
@@ -138,11 +161,19 @@ std::string 		responseHeader::writeHeader()
 	return (header);
 }
 
+/*
+*	Function which sets the content location
+*/
+
 void responseHeader::setContentLocation(const std::string &path, int status)
 {
 	if (status != 404)
 		_contentLocation = path;
 }
+
+/*
+*	Function which sets the allow type
+*/
 
 void responseHeader::setAllow(const int &status)
 {
@@ -152,10 +183,18 @@ void responseHeader::setAllow(const int &status)
 		_allow = "";
 }
 
+/*
+*	Function which creates the status messages
+*/
+
 void responseHeader::setContentLanguage()
 {
 	_contentLanguage = "en-US";
 }
+
+/*
+*	Function which sets the content lenght
+*/
 
 void responseHeader::setContentLength(int length)
 {
@@ -164,10 +203,18 @@ void responseHeader::setContentLength(int length)
 	_contentLength = ss.str();
 }
 
+/*
+*	Function which sets the content type
+*/
+
 void responseHeader::setContentType(const std::string &contentType)
 {
 	_contentType = contentType;
 }
+
+/*
+*	Function which sets the date at the moment the header is being created
+*/
 
 void responseHeader::setDate()
 {
@@ -177,6 +224,10 @@ void responseHeader::setDate()
 	strftime(buf, sizeof buf, "%a, %d %b %Y %H:%M:%S %Z", &tm);
 	_date = buf; 
 }
+
+/*
+*	Function which sets the last modified date and time
+*/
 
 void responseHeader::setLastModified(const std::string &path)
 {
@@ -192,27 +243,47 @@ void responseHeader::setLastModified(const std::string &path)
 	}
 }
 
+/*
+*	Function which sets the location
+*/
+
 void responseHeader::setLocation(const std::string &path, int status)
 {
 	if (status == 201 || status / 100 == 3)
 		_location = path;
 }
 
+/*
+*	Function which sets the server
+*/
+
 void responseHeader::setServer()
 {
 	_server = "Epic Merel Jonas Thimo HTTP Server HUTS";
 }
+
+/*
+*	Function which sets the transfer encoding
+*/
 
 void responseHeader::setTransferEncoding()
 {
 	_transferEncoding = "Chunked";
 }
 
+/*
+*	Function which sets the authentication
+*/
+
 void responseHeader::setWwwAuthenticate(int status)
 {
 	if (status == 401)
 		_wwwAuthenticate = "Basic realm=\"Access requires authentification\" charset=\"UTF-8\"";
 }
+
+/*
+*	Function which sets the retryafter value
+*/
 
 void responseHeader::setRetryAfter(int status, int number)
 {

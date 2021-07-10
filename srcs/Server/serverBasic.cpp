@@ -2,15 +2,30 @@
 #include "server.hpp"
 #include "location.hpp"
 
+/*
+*	This function is being thrown when an input error occurs
+*/
+
 const char	*server::inputErrorException::what() const throw()
 {
 	return ("error in server block in config file");
 }
 
+/*
+*	This function is being thrown when an syscall error occurs
+*/
+
 const char	*server::syscallErrorException::what() const throw()
 {
 	return ("a syscall has returned an error");
 }
+
+/*
+*	This is the constructor for the individual servers
+*	It the information being parsed from the config file to create 
+*	A server with the right specs and populates the typefunction map
+*/
+
 
 server::server() : _portNr(0), _maxBodySize(1000000), _autoindex(false), _errorPage("default_error_page"), _socketFd(-1)
 {
@@ -24,10 +39,18 @@ server::server() : _portNr(0), _maxBodySize(1000000), _autoindex(false), _errorP
 	this->_typeFunctionMap.insert(std::make_pair("index", &server::setIndices));
 }
 
+/*
+*	Copy constructor
+*/
+
 server::server(server const &original) : _portNr(), _maxBodySize(), _autoindex()
 {
 	*this = original;
 }
+
+/*
+*	Destructor
+*/
 
 server::~server()
 {
@@ -40,6 +63,10 @@ server::~server()
 		it++;
 	}
 }
+
+/*
+*	Assignment operator
+*/
 
 server&	server::operator=(server const &original)
 {
@@ -57,6 +84,10 @@ server&	server::operator=(server const &original)
 	this->_addr = original._addr;
 	return (*this);
 }
+
+/*
+*	The upcoming twenty functions are used to set the server data from the config file
+*/
 
 void	server::setPort(std::string &portNr)
 {
@@ -173,6 +204,10 @@ const struct sockaddr_in	&server::getAddr() const
 	return (this->_addr);
 }
 
+/*
+*	Check the value on the port number
+*/
+
 bool	server::valueCheck() const
 {
 	if (this->_portNr <= 0)
@@ -181,6 +216,10 @@ bool	server::valueCheck() const
 		return (false);
 	return (true);
 }
+
+/*
+*	This function is used to find a specific value in the map and return it
+*/
 
 void	server::findValue(std::string &key, std::string line)
 {
@@ -199,10 +238,18 @@ void	server::findValue(std::string &key, std::string line)
 	(this->*(this->_typeFunctionMap.at(key)))(line);
 }
 
+/*
+*	This function adds new locations to the array of locations within the server
+*/
+
 void	server::addLocation(location *newLoc)
 {
 	this->_locations.push_back(newLoc);
 }
+
+/*
+*	This function returns a specific location
+*/
 
 location*		server::findLocation(std::string &match)
 {
@@ -216,6 +263,11 @@ location*		server::findLocation(std::string &match)
 	}
 	return (NULL);
 }
+
+/*
+*	output overload for debugging purposes
+*/
+
 
 std::ostream&	operator<<(std::ostream &os, const server &serv)
 {

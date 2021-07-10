@@ -11,6 +11,13 @@
 #include "../Utils/utils.hpp"
 #include "../Utils/Base64.hpp"
 
+/*
+*	This class contains all information for the locations containing the data for the requests
+*	The config file is being parsed to retrieve the specs of the location, specs which are being handled are the following
+*	Which methods are allowed, is authentication needed to retrieve the data,
+*	What are the error pages for this location. 
+*/
+
 class location {
 public:
 	typedef void	(location::*setter)(const std::string&);

@@ -15,6 +15,13 @@
 # include <unistd.h>
 # include <climits>
 
+/*
+*	In this class the individual servers are being set
+*	It contains all information about the server and its locations
+*	We use composition between server and connections because each server
+*	HAS A array of connections
+*/
+
 class server {
 public:
 	typedef void	(server::*setter)(std::string&);

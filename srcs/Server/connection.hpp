@@ -13,6 +13,10 @@
 
 class Response;
 
+/*
+*	this class contains all the information about the connection between client and server
+*/
+
 class connection {
 private:
 	unsigned long	_timeLastContact;

@@ -2,6 +2,11 @@
 #include "../Request/request.hpp"
 #include "../Response/Response.hpp"
 
+/*
+*	This function start the socket and makes the server start listening
+*	To incoming calls
+*/
+
 void	server::startListening()
 {
 	this->_socketFd = socket(PF_INET, SOCK_STREAM, 0);
@@ -38,6 +43,10 @@ void	server::startListening()
 	}
 }
 
+/*
+*	This function sets an accept fd in the locations array
+*/
+
 int server::acpt()
 {
 	struct sockaddr connectingAddr;
@@ -59,6 +68,10 @@ int server::acpt()
 	this->connections[i].setTimeLastRead(getTime());
 	return (1);
 }
+
+/*
+*	This function creates the response after handling the incoming request
+*/
 
 #include <fstream>
 static size_t nr = 0;
@@ -106,6 +119,11 @@ void server::createResponse(int index)
 
 	nr++;
 }
+
+/*
+*	This function setups the response string inside the current connection
+*	And sends it to the client
+*/
 
 void	server::setupRespStr(int index)
 {

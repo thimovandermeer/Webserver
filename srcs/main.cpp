@@ -6,6 +6,12 @@ void	errMsgAndExit(const std::string &errMsg, int code)
 	exit(code);
 }
 
+/*
+*	The main function of the entire webserv.
+*	We create a servercluster containing all servers
+*	And we set up some debugging logs
+*/
+
 int main(int argc, char **argv)
 {
 	serverCluster cluster;

@@ -1,21 +1,39 @@
 #include "connection.hpp"
 #include "../Response/Response.hpp"
 
+/*
+*	Constructor which sets all member variabels needed to create the connection
+*/
+
 connection::connection() : _timeLastContact(0),
 						   _acceptFd(-1), _hasFullRequest(false),
 						   _bodyBytesSent(0), _headerSent(false),
 						   myresp(NULL)
 {}
 
+
+/*
+*	The only thing this destructor has to do is close the acceptfd_set
+*/
+
 connection::~connection()
 {
 	close(this->_acceptFd);
 }
 
+/*
+*	simple copy Constructor
+*/
+
+
 connection::connection(const connection &original)
 {
 	*this = original;
 }
+
+/*
+*	Assignment operator
+*/
 
 connection &connection::operator=(const connection &original)
 {
@@ -29,45 +47,83 @@ connection &connection::operator=(const connection &original)
 	return (*this);
 }
 
+/*
+*	This function sets the time the server has had the last connection
+*/
+
+
 void	connection::setTimeLastRead(const unsigned long &time)
 {
 	this->_timeLastContact = time;
 }
+
+/*
+*	This function sets the accept fd
+*/
 
 void	connection::setFd(const long &fd)
 {
 	this->_acceptFd = fd;
 }
 
+/*
+*	This function sets the responsestring which is later being used in the response
+*/
+
 void	connection::setResponseString(const std::string &resp)
 {
 	this->_responseString = resp;
 }
+
+/*
+*	This function returns the time the server has had the last connection
+*/
 
 const unsigned long&	connection::getTimeLastRead() const
 {
 	return (this->_timeLastContact);
 }
 
+/*
+*	This function returns the current accept fd set
+*/
+
 const long&			connection::getAcceptFd() const
 {
 	return (this->_acceptFd);
 }
+
+/*
+*	This function returns if the entire request has been received
+*/
 
 const bool&			connection::hasFullRequest() const
 {
 	return (this->_hasFullRequest);
 }
 
+/*
+*	This function returns the accept buffer from the current connection
+*/
+
 const std::string&	connection::getBuffer() const
 {
 	return (this->_acceptBuffer);
 }
 
+/*
+*	This function returns the full response string
+*/
+
+
 const std::string&	connection::getResponseString() const
 {
 	return (this->_responseString);
 }
+
+/*
+*	This function resets the connection, it makes sure that everything is cleared
+*/
 
 void	connection::resetConnection()
 {
@@ -81,12 +137,22 @@ void	connection::resetConnection()
 	this->myresp = NULL;
 }
 
+/*
+*	This function entirely closes the connection, it assures that the underlying server is
+*	Ready to retrieve new connections
+*/
+
 void	connection::closeConnection()
 {
 	close(this->_acceptFd);
 	this->_acceptFd = -1;
 	this->_timeLastContact = 0;
 }
+
+/*
+*	This function sends the data from the response to the client
+*/
+
 
 void	connection::sendData(const size_t bodylen)
 {
@@ -96,8 +162,6 @@ void	connection::sendData(const size_t bodylen)
 	{
 		if (send(this->_acceptFd, this->_responseString.c_str(), this->_responseString.length(), 0) == -1)
 		{
-//			std::cerr << "send error" << std::endl;
-			// sigpipe here is being handled elsewhere
 			return;
 		}
 		this->resetConnection();
@@ -106,6 +170,10 @@ void	connection::sendData(const size_t bodylen)
 		this->sendChunked(bodylen, headerlen);
 	this->_timeLastContact = getTime();
 }
+
+/*
+*	This functions sends the response in chunkes if the client wants chunked responses
+*/
 
 void	connection::sendChunked(const size_t bodylen, const size_t headerlen)
 {
@@ -156,6 +224,11 @@ void	connection::sendChunked(const size_t bodylen, const size_t headerlen)
 	}
 }
 
+/*
+*	Constructor which sets all member variabels needed to create the connection
+*/
+
+
 std::string	connection::receive()
 {
 	char 	buffer[MAXREADSIZE + 1];
@@ -177,6 +250,10 @@ std::string	connection::receive()
 	return (buffer);
 }
 
+/*
+*	This function makes sure that the connection is ready to start reading
+*/
+
 void	connection::startReading()
 {
 	std::string receivedRequest;
@@ -193,6 +270,10 @@ void	connection::startReading()
 	if (this->isFullRequest())
 		this->_hasFullRequest = true;
 }
+
+/*
+*	This function checks if the full request is received via the connection
+*/
 
 bool connection::isFullRequest() const
 {
