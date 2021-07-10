@@ -2,7 +2,7 @@
 Created a webserver which is able to handle http requests. Written in C++ from scratch and yes we stole some ideas from nginx.
 
 ## How it works
-Because watching video's is always more clear then reading my writing: 
+Because watching video's is always more clear than reading my writing: 
 
 
 https://user-images.githubusercontent.com/57872522/125160010-066d8580-e17b-11eb-9833-c775a3dd9694.mov
