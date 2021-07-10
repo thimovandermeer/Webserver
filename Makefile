@@ -6,13 +6,13 @@
 #    By: thvan-de <thvan-de@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/07/25 17:28:30 by pde-bakk      #+#    #+#                  #
-#    Updated: 2021/04/07 15:24:42 by thvan-de      ########   odam.nl          #
+#    Updated: 2021/07/10 12:23:38 by thvan-de      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = webserv
 CC = g++
-CXXFLAGS = -W -Wall -Wextra -Werror -pedantic -std=c++98
+CXXFLAGS = -W  -pedantic -std=c++03
 OBJDIR = objects
 
 _SRCS =	CGI/CGI.cpp \
