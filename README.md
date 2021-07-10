@@ -2,8 +2,8 @@
 Created a webserver which is able to handle http requests. Written in C++ from scratch and yes we stole some ideas from nginx.
 
 ## How it works
-Because watching video's is always more clear than reading my writing: 
-
+First you have to run make to create the webserver executable. After that you can run the runserver script using bash. 
+As soon as the Server is up and running you can start the testing script. For the testing we have also written a script which is called runtest.sh. If you run this script while the server is up the server will be tested rather thorughly for 10 minutes. Using the config file you can setup different ports and locations. I recommend using postman to test individual get requests on our server :)
 
 https://user-images.githubusercontent.com/57872522/125160010-066d8580-e17b-11eb-9833-c775a3dd9694.mov
 
